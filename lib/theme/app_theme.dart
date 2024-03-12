@@ -1,0 +1,41 @@
+import 'package:flutter/material.dart';
+
+const Color lightThemeDividerColor = Color(0xFFEEF1F9);
+const Color lightTHemeSecondTextColor = Color(0xFF717D96);
+final ThemeData lightTheme = ThemeData.light().copyWith(
+    brightness: Brightness.light,
+    primaryColor: const Color(0xFF00A1BD),
+    colorScheme: const ColorScheme.light(
+        secondary: Color(0xFFB71E00),
+        primaryContainer: Color(0xFFEEF1F9),
+        secondaryContainer: Color(0xFF92E8F6),
+        onSecondaryContainer: Color(0xFFEEF1F9)),
+    appBarTheme: const AppBarTheme(backgroundColor: Colors.white, elevation: 0),
+    scaffoldBackgroundColor: Colors.white,
+    iconTheme: const IconThemeData(color: lightTHemeSecondTextColor),
+    dividerColor: lightThemeDividerColor,
+    textTheme: const TextTheme(
+        titleLarge: TextStyle(
+            fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold),
+        titleSmall: TextStyle(
+            fontSize: 14, color: Colors.black, fontWeight: FontWeight.bold),
+        titleMedium: TextStyle(
+            fontSize: 16, color: Colors.black, fontWeight: FontWeight.bold),
+        labelMedium: TextStyle(
+            fontSize: 12, color: Colors.black, fontWeight: FontWeight.w600),
+        labelSmall: TextStyle(
+            fontSize: 10,
+            color: lightTHemeSecondTextColor,
+            fontWeight: FontWeight.w500),
+        labelLarge: TextStyle(
+            fontSize: 15,
+            color: Color(0xFF00A1BD),
+            fontWeight: FontWeight.w500),
+        bodyMedium: TextStyle(color: lightTHemeSecondTextColor, fontSize: 13),
+        bodySmall: TextStyle(fontSize: 12, color: Colors.black)));
+
+final ThemeData darkTheme = ThemeData.dark().copyWith(
+    brightness: Brightness.light,
+    primaryColor: const Color(0xFF00A1BD),
+    colorScheme: const ColorScheme.light(
+        secondary: Color(0xFFB71E00), secondaryContainer: Color(0xFF92E8F6)));
