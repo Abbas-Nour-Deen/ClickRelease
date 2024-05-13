@@ -1,6 +1,6 @@
-import 'package:click_release/screens/regestration_Screens/createAccount_screen.dart';
+import 'package:click_release/screens/regestration_Screens/on_boarding_screen.dart';
 import 'package:click_release/theme/app_theme.dart';
-import 'package:click_release/widgets/custome_btn.dart';
+import 'package:click_release/widgets/public_widgets/custome_btn.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,7 +11,7 @@ class EntryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Padding(
-      padding: const EdgeInsets.all(15.0),
+      padding: const EdgeInsets.all(10.0),
       child: Column(
         children: [imageWidget(), title(), btnWidget(), signInText()],
       ),
@@ -51,10 +51,10 @@ class EntryScreen extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 30),
       child: CustomeButton(
         text: "Let’s Get Started",
-        width: Get.width * 0.8,
+        width: 300,
         height: 45,
         ontap: () {
-          Get.to(() => CreateAccountScreen());
+          Get.to(() => OnBoardingScreen());
         },
       ),
     );

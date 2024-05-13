@@ -7,11 +7,13 @@ class ProfileOptionTile extends StatelessWidget {
   final String title;
   final String iconPath;
   final VoidCallback onTap;
+  final double? iconSize;
   const ProfileOptionTile(
       {super.key,
       required this.title,
       required this.iconPath,
-      required this.onTap});
+      required this.onTap,
+      this.iconSize});
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +27,7 @@ class ProfileOptionTile extends StatelessWidget {
           leading: SvgPicture.asset(
             iconPath,
             color: Get.theme.iconTheme.color,
+            height: iconSize ?? null,
           ),
           title: Text(
             title,

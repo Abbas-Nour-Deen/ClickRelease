@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-import '../theme/app_theme.dart';
+import '../../theme/app_theme.dart';
 
 class CustomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -16,16 +16,14 @@ class CustomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      bottom: type == null || type == true
-          ? PreferredSize(
-              preferredSize: const Size.fromHeight(4.0),
-              child: Container(
-                color: lightThemeDividerColor,
-                height: 1.0,
-                margin: const EdgeInsets.symmetric(horizontal: 15),
-              ),
-            )
-          : null,
+      bottom: PreferredSize(
+        preferredSize: const Size.fromHeight(4.0),
+        child: Container(
+          color: lightThemeDividerColor,
+          height: 1.0,
+          margin: const EdgeInsets.symmetric(horizontal: 15),
+        ),
+      ),
       backgroundColor: Colors.white,
       elevation: 0,
       leading: type == null || type == true

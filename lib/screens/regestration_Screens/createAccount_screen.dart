@@ -1,5 +1,5 @@
-import 'package:click_release/widgets/custome_btn.dart';
-import 'package:click_release/widgets/custome_input.dart';
+import 'package:click_release/widgets/public_widgets/custome_btn.dart';
+import 'package:click_release/widgets/public_widgets/custome_input.dart';
 import 'package:click_release/widgets/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

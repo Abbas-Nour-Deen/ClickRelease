@@ -30,11 +30,10 @@ class CustomeButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            icon != null
-                ? const SizedBox(
-                    width: 6,
-                  )
-                : Container(),
+            icon ?? Container(),
+            const SizedBox(
+              width: 6,
+            ),
             Text(
               text,
               style: Get.textTheme.titleLarge!.copyWith(

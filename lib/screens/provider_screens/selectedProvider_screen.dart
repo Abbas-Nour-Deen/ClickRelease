@@ -1,10 +1,10 @@
-import 'dart:math';
-
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:click_release/models/provider_model.dart';
 import 'package:click_release/theme/app_theme.dart';
-import 'package:click_release/widgets/appBar.dart';
-import 'package:click_release/widgets/customeButtomSheet.dart';
-import 'package:click_release/widgets/custome_btn.dart';
+import 'package:click_release/widgets/public_widgets/appBar.dart';
+import 'package:click_release/widgets/public_widgets/customeButtomSheet.dart';
+import 'package:click_release/widgets/public_widgets/custome_btn.dart';
+import 'package:click_release/widgets/provider_category_icons.dart';
 import 'package:click_release/widgets/selected_provider_widgets/contained_Tab.dart';
 import 'package:click_release/widgets/selected_provider_widgets/expansion_tile.dart';
 import 'package:click_release/widgets/socialMedia_btn.dart';
@@ -14,7 +14,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class SelectedProviderScreen extends StatelessWidget {
-  const SelectedProviderScreen({super.key});
+  final ProviderModel? provider;
+  const SelectedProviderScreen({super.key, this.provider});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class SelectedProviderScreen extends StatelessWidget {
           trailing: SvgPicture.asset(
               "assets/icons/lightheme_icons/share_btn_light.svg")),
       body: Padding(
-        padding: const EdgeInsets.all(15.0),
+        padding: const EdgeInsets.all(10.0),
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -71,7 +72,7 @@ class SelectedProviderScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      headerIcons(),
+                      ProviderCategoryIcons(),
                       name(),
                     ],
                   ),
@@ -81,24 +82,6 @@ class SelectedProviderScreen extends StatelessWidget {
           )
         ],
       ),
-    );
-  }
-
-  Widget headerIcons() {
-    return Row(
-      children: [
-        SvgPicture.asset(
-          "assets/icons/serv_icon.svg",
-          height: 14,
-        ),
-        const SizedBox(
-          width: 7,
-        ),
-        SvgPicture.asset(
-          "assets/icons/individual.svg",
-          height: 14,
-        )
-      ],
     );
   }
 

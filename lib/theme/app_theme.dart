@@ -31,7 +31,7 @@ final ThemeData lightTheme = ThemeData.light().copyWith(
             fontSize: 15,
             color: Color(0xFF00A1BD),
             fontWeight: FontWeight.w500),
-        bodyMedium: TextStyle(color: lightTHemeSecondTextColor, fontSize: 13),
+        bodyMedium: TextStyle(color: Colors.black, fontSize: 13),
         bodySmall: TextStyle(fontSize: 12, color: Colors.black)));
 
 final ThemeData darkTheme = ThemeData.dark().copyWith(

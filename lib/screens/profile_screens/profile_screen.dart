@@ -1,7 +1,8 @@
-import 'package:click_release/widgets/appBar.dart';
-import 'package:click_release/widgets/customedivider.dart';
-import 'package:click_release/widgets/profileScreen_widgets/profile_option_tile.dart';
-import 'package:click_release/widgets/profileScreen_widgets/profile_photo.dart';
+import 'package:click_release/screens/profile_screens/contact_us.dart';
+import 'package:click_release/widgets/public_widgets/appBar.dart';
+import 'package:click_release/widgets/public_widgets/customedivider.dart';
+import 'package:click_release/screens/profile_screens/profileScreen_widgets/profile_option_tile.dart';
+import 'package:click_release/screens/profile_screens/profileScreen_widgets/profile_photo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -94,7 +95,7 @@ class ProfileScreen extends StatelessWidget {
         ),
         ProfileOptionTile(
           iconPath: "assets/icons/lightheme_icons/contactus.svg",
-          onTap: () {},
+          onTap: () => Get.to(const ContactUsScreen()),
           title: "Contact us",
         ),
         const CustomeDivider(),

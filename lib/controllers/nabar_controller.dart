@@ -1,11 +1,8 @@
 import 'package:get/get.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class NavBarController extends GetxController {
-  RxInt currentIndex = 0.obs;
-
-  void changeTabIndex(int index) {
-    currentIndex.value = index;
-    update();
-    print(currentIndex.value);
-  }
+  final PersistentTabController tabController = PersistentTabController(
+    initialIndex: 0,
+  );
 }

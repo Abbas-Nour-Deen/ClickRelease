@@ -1,4 +1,4 @@
-import 'package:click_release/widgets/homescreen_widgets/homeScreen_items/provider_item.dart';
+import 'package:click_release/screens/home_screens/homescreen_widgets/homeScreen_items/provider_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -25,7 +25,9 @@ class RecommendedForYouSlideWidget extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: 7,
               itemBuilder: (context, index) {
-                return ProviderItem();
+                return ProviderItem(
+                  margin: const EdgeInsets.only(right: 10),
+                );
               },
             ),
           )

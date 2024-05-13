@@ -1,8 +1,8 @@
 import 'package:click_release/screens/provider_screens/add_review_screen.dart';
 import 'package:click_release/theme/app_theme.dart';
-import 'package:click_release/widgets/appBar.dart';
-import 'package:click_release/widgets/customeButtomSheet.dart';
-import 'package:click_release/widgets/custome_btn.dart';
+import 'package:click_release/widgets/public_widgets/appBar.dart';
+import 'package:click_release/widgets/public_widgets/customeButtomSheet.dart';
+import 'package:click_release/widgets/public_widgets/custome_btn.dart';
 import 'package:click_release/widgets/selected_provider_widgets/rating_summary.dart';
 import 'package:click_release/widgets/selected_provider_widgets/items/review_item.dart';
 import 'package:flutter/material.dart';

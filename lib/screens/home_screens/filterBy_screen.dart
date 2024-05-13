@@ -1,6 +1,6 @@
-import 'package:click_release/widgets/appBar.dart';
-import 'package:click_release/widgets/customeButtomSheet.dart';
-import 'package:click_release/widgets/custome_btn.dart';
+import 'package:click_release/widgets/public_widgets/appBar.dart';
+import 'package:click_release/widgets/public_widgets/customeButtomSheet.dart';
+import 'package:click_release/widgets/public_widgets/custome_btn.dart';
 import 'package:click_release/widgets/filterByWidgets/customeDropDown_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

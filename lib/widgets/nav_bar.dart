@@ -1,7 +1,7 @@
-import 'package:click_release/screens/favorite_screen.dart';
+import 'package:click_release/screens/favorite_screen/favorite_screen.dart';
 import 'package:click_release/screens/home_screens/home_screen.dart';
 import 'package:click_release/screens/profile_screens/profile_screen.dart';
-import 'package:click_release/screens/search_screen.dart';
+import 'package:click_release/screens/search_screen/search_screen.dart';
 import 'package:click_release/theme/app_theme.dart';
 import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,17 +12,13 @@ import '../controllers/nabar_controller.dart';
 
 class CustomNavBar extends StatelessWidget {
   CustomNavBar({super.key});
-  NavBarController navController = Get.put(NavBarController());
-
-  final PersistentTabController _controller = PersistentTabController(
-    initialIndex: 0,
-  );
+  NavBarController navController = Get.find();
 
   @override
   Widget build(BuildContext context) {
     return PersistentTabView(
       context,
-      controller: _controller,
+      controller: navController.tabController,
       screens: _buildScreens(),
       items: _navBarsItems(context),
       confineInSafeArea: true,
@@ -54,7 +50,7 @@ class CustomNavBar extends StatelessWidget {
   }
 
   List<Widget> _buildScreens() {
-    return [HomeScreen(), FavoriteScreen(), SearchScreen(), ProfileScreen()];
+    return [HomeScreen(), SearchScreen(), FavoriteScreen(), ProfileScreen()];
   }
 
   List<PersistentBottomNavBarItem> _navBarsItems(context) {

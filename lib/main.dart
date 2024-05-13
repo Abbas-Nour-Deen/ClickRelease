@@ -1,6 +1,6 @@
 import 'package:click_release/controllers/theme_controller.dart';
+import 'package:click_release/data/data_binding.dart';
 import 'package:click_release/screens/regestration_Screens/entry_screen.dart';
-import 'package:click_release/widgets/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
       theme: _themeController.theme,
       darkTheme: _themeController.theme,
       themeMode: Get.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+      initialBinding: AppBindings(),
       home: EntryScreen(),
     );
   }
