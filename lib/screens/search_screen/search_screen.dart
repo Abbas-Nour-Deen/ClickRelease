@@ -26,7 +26,7 @@ class SearchScreen extends StatelessWidget {
               margin: const EdgeInsets.symmetric(vertical: 1),
               searchController: _searchProviderController,
             ),
-            placeHolder()
+            response()
           ],
         ),
       ),
@@ -37,7 +37,7 @@ class SearchScreen extends StatelessWidget {
     return _searchProviderController.obx((state) => ListView.builder(
           itemCount: _searchProviderController.searchProviders.length,
           itemBuilder: (context, index) =>
-              const ProviderItem(margin: EdgeInsets.symmetric(horizontal: 5)),
+              ProviderItem(margin: EdgeInsets.symmetric(horizontal: 5)),
         ));
   }
 

@@ -1,105 +1,90 @@
-import 'package:flutter/material.dart';
-
-class ProviderModel with ChangeNotifier {
-  final String provID;
-  final String? firstName;
-  final String? middleName;
-  final String? lastName;
-  final String? sex;
-  final String? idFront;
-  final String? idBack;
-  final String? passport;
-  final String? residence;
-  final String? sejilAdel;
-  final String phoneNumber;
-  final String? profileImage;
-  final String? description;
-  final String? providerUsername;
-  final String? providerPass;
-  final String? homeLocation;
-  final int? onlineStatus;
-  final String? entryUser;
-  final DateTime entryDate;
-  final String? updateUser;
-  final DateTime updateDate;
-  final int verified;
-  final String? type;
-  final String? instagram;
-  final String? facebook;
-  final String? linkedIn;
-  final String? website;
-  final String? education;
-  final Map<String, dynamic>? location;
-  final String? keyword;
-  final int? indexs;
+class ProviderModel {
+  String provid;
+  String firstName;
+  String lastName;
+  String phoneNumber;
+  dynamic profileImage; // Can be of any type
+  Location location;
+  String description;
+  String? facebook; // Can be of any type
+  String? instagram; // Can be of any type
+  String? indexs; // Can be of any type
+  String? linkedIn; // Can be of any type
+  String? website; // Can be of any type
+  String sex;
+  String sexDesc;
+  String type;
+  int verified;
+  String locationCode;
+  String? locationEnglishName;
+  String? locationArabicName;
+  int? rate;
+  String serviceNameEng;
+  String serviceNameArb;
 
   ProviderModel({
-    required this.provID,
+    required this.provid,
     required this.firstName,
-    required this.middleName,
     required this.lastName,
-    required this.sex,
-    required this.idFront,
-    required this.idBack,
-    required this.passport,
-    required this.residence,
-    required this.sejilAdel,
     required this.phoneNumber,
     this.profileImage,
+    required this.location,
     required this.description,
-    required this.providerUsername,
-    required this.providerPass,
-    this.homeLocation,
-    this.onlineStatus,
-    required this.entryUser,
-    required this.entryDate,
-    this.updateUser,
-    required this.updateDate,
-    required this.verified,
-    this.type,
-    this.instagram,
     this.facebook,
+    this.instagram,
+    this.indexs,
     this.linkedIn,
     this.website,
-    this.education,
-    this.location,
-    this.keyword,
-    this.indexs,
+    required this.sex,
+    required this.sexDesc,
+    required this.type,
+    required this.verified,
+    required this.locationCode,
+    this.locationEnglishName,
+    this.locationArabicName,
+    this.rate,
+    required this.serviceNameEng,
+    required this.serviceNameArb,
   });
 
   factory ProviderModel.fromJson(Map<String, dynamic> json) {
     return ProviderModel(
-      provID: json['provID'] ?? '',
-      firstName: json['firstName'] ?? '',
-      middleName: json['middleName'] ?? '',
-      lastName: json['lastName'] ?? '',
-      sex: json['Sex'] ?? '',
-      idFront: json['idFront'] ?? '',
-      idBack: json['idBack'] ?? '',
-      passport: json['passport'] ?? '',
-      residence: json['residence'] ?? '',
-      sejilAdel: json['sejilAdel'] ?? '',
-      phoneNumber: json['phoneNumber'] ?? '',
-      profileImage: json['profileImage'] ?? '',
-      description: json['description'] ?? '',
-      providerUsername: json['providerUsername'] ?? '',
-      providerPass: json['providerPass'] ?? '',
-      homeLocation: json['homeLocation'] ?? '',
-      onlineStatus: json['onlineStatus'] ?? 1,
-      entryUser: json['entryUser'] ?? '',
-      entryDate: DateTime.parse(json['entryDate']) ?? DateTime.now(),
-      updateUser: json['UpdateUser'] ?? '',
-      updateDate: DateTime.parse(json['UpdateDate']) ?? DateTime.now(),
-      verified: json['Verified'] ?? 1,
-      type: json['Type'] ?? '',
-      instagram: json['Instagram'] ?? '',
-      facebook: json['FaceBook'] ?? '',
-      linkedIn: json['LinkedIn'] ?? '',
-      website: json['Website'] ?? '',
-      education: json['Education'] ?? '',
-      location: json['Location'] ?? '',
-      keyword: json['Keyword'] ?? '',
-      indexs: json['Indexs'] ?? 1,
+      provid: json['provid'],
+      firstName: json['firstName'],
+      lastName: json['lastName'],
+      phoneNumber: json['phoneNumber'],
+      profileImage: json['profileImage'],
+      location: Location.fromJson(json['Location']),
+      description: json['description'],
+      facebook: json['FaceBook'] ?? "",
+      instagram: json['Instagram'] ?? "",
+      indexs: json['Indexs'] ?? "",
+      linkedIn: json['LinkedIn'] ?? "",
+      website: json['website'] ?? "",
+      sex: json['Sex'],
+      sexDesc: json['sexDesc'],
+      type: json['Type'],
+      verified: json['Verified'],
+      locationCode: json['LocationCode'],
+      locationEnglishName: json['locationEnglishName'] ?? "",
+      locationArabicName: json['locationArabicName'] ?? "",
+      rate: json['rate'] ?? 0,
+      serviceNameEng: json['serviceNameEng'],
+      serviceNameArb: json['serviceNameArb'],
+    );
+  }
+}
+
+class Location {
+  double x;
+  double y;
+
+  Location({required this.x, required this.y});
+
+  factory Location.fromJson(Map<String, dynamic> json) {
+    return Location(
+      x: json['x'].toDouble(),
+      y: json['y'].toDouble(),
     );
   }
 }

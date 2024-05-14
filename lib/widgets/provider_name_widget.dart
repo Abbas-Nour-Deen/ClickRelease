@@ -1,10 +1,13 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:click_release/models/provider_model.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class ProviderNameWidget extends StatelessWidget {
-  const ProviderNameWidget({super.key});
+  final ProviderModel? provider;
+  const ProviderNameWidget({super.key, this.provider});
 
   @override
   Widget build(BuildContext context) {
@@ -20,16 +23,19 @@ class ProviderNameWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 AutoSizeText(
-                  "Dr.Abbas Nour Deen",
+                  provider?.firstName ?? "Dr.Abbas Nour Deen",
                   style: Get.textTheme.titleSmall,
                   maxLines: 1,
                 ),
                 const SizedBox(
                   width: 3,
                 ),
-                SvgPicture.asset(
-                  "assets/icons/Verified.svg",
-                  height: 14,
+                Visibility(
+                  visible: provider?.verified == 0 ? false : true,
+                  child: SvgPicture.asset(
+                    "assets/icons/Verified.svg",
+                    height: 14,
+                  ),
                 ),
               ],
             ),
@@ -42,7 +48,7 @@ class ProviderNameWidget extends StatelessWidget {
             textBaseline: TextBaseline.alphabetic,
             children: [
               Text(
-                "Plastic Surgeon",
+                provider?.serviceNameEng ?? "Plastic Surgeon",
                 style: Get.textTheme.labelSmall,
               ),
               const SizedBox(
@@ -54,7 +60,7 @@ class ProviderNameWidget extends StatelessWidget {
                 size: 12,
               ),
               Text(
-                "4.5",
+                provider?.rate.toString() ?? "4.5",
                 style: Get.textTheme.labelSmall!.copyWith(
                     fontWeight: FontWeight.bold, color: Get.theme.primaryColor),
               ),

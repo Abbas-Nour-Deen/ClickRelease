@@ -1,6 +1,7 @@
 import 'package:click_release/data/repo/data_repo.dart';
 import 'package:click_release/models/provider_model.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProviderController extends GetxController with StateMixin {
   final DataRepo dataRepo;
@@ -16,7 +17,7 @@ class ProviderController extends GetxController with StateMixin {
       if (response.statusCode == 200) {
         currentProviders.clear();
 
-        final List<dynamic> list = response.body;
+        final List<dynamic> list = response.body['providers'];
 
         list.forEach((element) {
           final ProviderModel service =
@@ -33,5 +34,17 @@ class ProviderController extends GetxController with StateMixin {
     } catch (e) {
       print(e.toString());
     }
+  }
+
+  void launchUrls({required Uri url, required bool inApp}) async {
+    try {
+      if (await canLaunchUrl(url)) {
+        if (inApp) {
+          await launchUrl(url, mode: LaunchMode.inAppWebView);
+        } else {
+          await launchUrl(url, mode: LaunchMode.externalApplication);
+        }
+      }
+    } catch (e) {}
   }
 }

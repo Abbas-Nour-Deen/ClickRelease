@@ -1,3 +1,4 @@
+import 'package:click_release/controllers/provider_controller.dart';
 import 'package:click_release/models/provider_model.dart';
 import 'package:click_release/screens/provider_screens/selectedProvider_screen.dart';
 import 'package:click_release/theme/app_theme.dart';
@@ -13,9 +14,9 @@ class ProviderItem extends StatelessWidget {
   final double? width;
   final EdgeInsets margin;
   final ProviderModel? provider;
-  const ProviderItem(
-      {super.key, this.width, required this.margin, this.provider});
+  ProviderItem({super.key, this.width, required this.margin, this.provider});
 
+  final ProviderController _providerController = Get.find();
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -50,7 +51,9 @@ class ProviderItem extends StatelessWidget {
                           const SizedBox(
                             height: 3,
                           ),
-                          const ProviderNameWidget(),
+                          ProviderNameWidget(
+                            provider: provider,
+                          ),
                           footer()
                         ],
                       ),
@@ -60,7 +63,12 @@ class ProviderItem extends StatelessWidget {
               ],
             ),
             Container(
-                margin: EdgeInsets.only(right: 10), child: CallButtonWidget())
+                margin: const EdgeInsets.only(right: 10),
+                child: CallButtonWidget(
+                  onTap: () => _providerController.launchUrls(
+                      url: Uri.parse('tel:${provider?.phoneNumber}'),
+                      inApp: false),
+                ))
           ],
         ),
       ),
