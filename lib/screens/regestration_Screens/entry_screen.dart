@@ -1,5 +1,6 @@
 import 'package:click_release/screens/regestration_Screens/on_boarding_screen.dart';
 import 'package:click_release/theme/app_theme.dart';
+import 'package:click_release/widgets/onBoarding/onboarding_view.dart';
 import 'package:click_release/widgets/public_widgets/custome_btn.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -54,7 +55,7 @@ class EntryScreen extends StatelessWidget {
         width: 300,
         height: 45,
         ontap: () {
-          Get.to(() => OnBoardingScreen());
+          Get.to(() => OnboardingView());
         },
       ),
     );
