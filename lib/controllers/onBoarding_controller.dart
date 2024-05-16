@@ -11,20 +11,20 @@ class OOnBoardingController extends GetxController {
   void goToNextPage() {
     !isLastPage
         ? pageController.nextPage(
-            duration: const Duration(milliseconds: 600), curve: Curves.easeIn)
+            duration: const Duration(milliseconds: 450), curve: Curves.easeIn)
         : Get.to(CustomNavBar());
     update();
   }
 
   void goToPreviousPage() {
     pageController.previousPage(
-        duration: const Duration(milliseconds: 600), curve: Curves.easeIn);
+        duration: const Duration(milliseconds: 450), curve: Curves.easeIn);
     update();
   }
 
   void onDotClicked(index) {
     pageController.animateToPage(index,
-        duration: const Duration(milliseconds: 600), curve: Curves.easeIn);
+        duration: const Duration(milliseconds: 450), curve: Curves.easeIn);
     update();
   }
 

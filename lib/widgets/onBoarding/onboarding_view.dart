@@ -18,7 +18,7 @@ class OnboardingView extends StatelessWidget {
       builder: (controller) => Scaffold(
         bottomSheet: Container(
           color: Colors.white,
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -57,58 +57,44 @@ class OnboardingView extends StatelessWidget {
             itemCount: _onBoardingController.items.items.length,
             controller: _onBoardingController.pageController,
             itemBuilder: (context, index) {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Image.asset(
-                    _onBoardingController.items.items[index].image,
-                    height: Get.height * 0.55,
-                    fit: BoxFit.fill,
-                    width: double.infinity,
-                  ),
-                  const SizedBox(height: 15),
-                  Text(_onBoardingController.items.items[index].title,
-                      style: Get.textTheme.titleLarge,
-                      textAlign: TextAlign.center),
-                  const SizedBox(height: 15),
-                  Text(_onBoardingController.items.items[index].descriptions,
-                      style:
-                          Get.textTheme.bodySmall!.copyWith(color: Colors.grey),
-                      textAlign: TextAlign.center),
-                ],
-              );
+              return designedContainer(
+                  text1: _onBoardingController.items.items[index].title,
+                  text2: _onBoardingController.items.items[index].descriptions,
+                  image: _onBoardingController.items.items[index].image);
             }),
       ),
     );
   }
 
-  //Now the problem is when press get started button
-  // after re run the app we see again the onboarding screen
-  // so lets do one time onboarding
-
-  //Get started button
-
-  // Widget getStarted() {
-  //   return Container(
-  //     decoration: BoxDecoration(
-  //         borderRadius: BorderRadius.circular(8), color: primaryColor),
-  //     width: MediaQuery.of(context).size.width * .9,
-  //     height: 55,
-  //     child: TextButton(
-  //         onPressed: () async {
-  //           final pres = await SharedPreferences.getInstance();
-  //           pres.setBool("onboarding", true);
-
-  //           //After we press get started button this onboarding value become true
-  //           // same key
-  //           if (!mounted) return;
-  //           Navigator.pushReplacement(
-  //               context, MaterialPageRoute(builder: (context) => Home()));
-  //         },
-  //         child: const Text(
-  //           "Get started",
-  //           style: TextStyle(color: Colors.white),
-  //         )),
-  //   );
-  // }
+  Widget designedContainer(
+      {required String text1, required String text2, required String image}) {
+    return Stack(
+      children: [
+        Container(
+          height: Get.height,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(image),
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        Positioned(
+          left: 54,
+          bottom: Get.height * 0.2,
+          child: Column(
+            children: [
+              Text(text1,
+                  style: Get.textTheme.titleLarge!.copyWith(fontSize: 23),
+                  textAlign: TextAlign.center),
+              const SizedBox(height: 15),
+              Text(text2,
+                  style: Get.textTheme.bodySmall!.copyWith(color: Colors.grey),
+                  textAlign: TextAlign.center),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
 }
