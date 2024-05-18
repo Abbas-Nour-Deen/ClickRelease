@@ -1,5 +1,6 @@
 import 'package:click_release/controllers/categories_controller.dart';
 import 'package:click_release/controllers/allServices_controller.dart';
+import 'package:click_release/controllers/location_controller.dart';
 import 'package:click_release/controllers/nabar_controller.dart';
 import 'package:click_release/controllers/onBoarding_controller.dart';
 import 'package:click_release/controllers/provider_controller.dart';
@@ -12,6 +13,8 @@ import 'package:get/get.dart';
 class AppBindings extends Bindings {
   @override
   void dependencies() {
+    Get.lazyPut(() => LocationController(), fenix: true);
+
     Get.lazyPut(() => DataApiHandler());
     Get.lazyPut(() => DataRepo(dataApiHandler: Get.find()));
     Get.lazyPut(() => CategoryControler(dataRepo: Get.find()));
@@ -27,6 +30,6 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => SearchProviderController(dataRepo: Get.find()));
     Get.lazyPut(() => NavBarController());
 
-    Get.lazyPut(() => OOnBoardingController());
+    Get.lazyPut(() => OOnBoardingController(), fenix: true);
   }
 }

@@ -9,8 +9,8 @@ import 'package:geolocator/geolocator.dart';
 class LocationController extends GetxController with StateMixin {
   RxBool isLocationEnabled = false.obs;
 
-  PickedLocationModel pickedLocation = PickedLocationModel(
-      longitude: 0.0, latitude: 0.0, locationName: "searching");
+  PickedLocationModel pickedLocation =
+      PickedLocationModel(longitude: 0.0, latitude: 0.0, locationName: "");
 
   Completer<GoogleMapController> googleMapController = Completer();
   CameraPosition? cameraPosition;
@@ -28,6 +28,7 @@ class LocationController extends GetxController with StateMixin {
   }
 
   Future<void> determineUserCurrentPosition() async {
+    change(pickedLocation, status: RxStatus.loading());
     LocationPermission locationPermission = await Geolocator.checkPermission();
     print(locationPermission.name);
     if (locationPermission == LocationPermission.denied) {
@@ -55,6 +56,7 @@ class LocationController extends GetxController with StateMixin {
       cameraPosition = CameraPosition(
           zoom: 13,
           target: LatLng(pickedLocation.latitude, pickedLocation.longitude));
+      change(pickedLocation, status: RxStatus.success());
     } else {
       print("Location permission unknown");
     }
@@ -66,17 +68,31 @@ class LocationController extends GetxController with StateMixin {
       final position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high,
       );
+
       pickedLocation.latitude = position.latitude;
       pickedLocation.longitude = position.longitude;
     } on PlatformException catch (e) {
+      change(pickedLocation, status: RxStatus.error());
+
       if (e.code == 'PERMISSION_DENIED') {
         print('Permission denied');
       } else if (e.code == 'LOCATION_SERVICES_DISABLED') {
         print('Location services are disabled');
       }
     } catch (e) {
+      change(pickedLocation, status: RxStatus.error());
+
       print('Failed to get location: $e');
     } finally {}
+  }
+
+  void onCameraIdle(LatLng draggedLatLng) {
+    getAddress(draggedLatLng);
+  }
+
+  void onCameraMove(CameraPosition cameraPosition) {
+    pickedLocation.latitude = cameraPosition.target.latitude;
+    pickedLocation.longitude = cameraPosition.target.longitude;
   }
 
   @override
@@ -146,15 +162,6 @@ class LocationController extends GetxController with StateMixin {
   //   );
   //   await getAddress(position);
   // }
-
-  void onCameraIdle(LatLng draggedLatLng) {
-    getAddress(draggedLatLng);
-  }
-
-  void onCameraMove(CameraPosition cameraPosition) {
-    pickedLocation.latitude = cameraPosition.target.latitude;
-    pickedLocation.longitude = cameraPosition.target.longitude;
-  }
 
 ////////////////////////////////////////////////
 

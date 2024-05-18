@@ -48,7 +48,7 @@ class ProviderNameWidget extends StatelessWidget {
             textBaseline: TextBaseline.alphabetic,
             children: [
               Text(
-                provider?.serviceNameEng ?? "Plastic Surgeon",
+                "Plastic Surgeon",
                 style: Get.textTheme.labelSmall,
               ),
               const SizedBox(

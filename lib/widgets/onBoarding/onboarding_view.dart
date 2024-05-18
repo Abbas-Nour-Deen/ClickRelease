@@ -51,27 +51,35 @@ class OnboardingView extends StatelessWidget {
             ],
           ),
         ),
-        body: PageView.builder(
-            onPageChanged: (index) =>
-                _onBoardingController.onPageChanged(index),
-            itemCount: _onBoardingController.items.items.length,
-            controller: _onBoardingController.pageController,
-            itemBuilder: (context, index) {
-              return designedContainer(
-                  text1: _onBoardingController.items.items[index].title,
-                  text2: _onBoardingController.items.items[index].descriptions,
-                  image: _onBoardingController.items.items[index].image);
-            }),
+        body: LayoutBuilder(
+          builder: (context, constraints) => PageView.builder(
+              onPageChanged: (index) =>
+                  _onBoardingController.onPageChanged(index),
+              itemCount: _onBoardingController.items.items.length,
+              controller: _onBoardingController.pageController,
+              itemBuilder: (context, index) {
+                return designedContainer(
+                    text1: _onBoardingController.items.items[index].title,
+                    text2:
+                        _onBoardingController.items.items[index].descriptions,
+                    image: _onBoardingController.items.items[index].image,
+                    constraints: constraints);
+              }),
+        ),
       ),
     );
   }
 
   Widget designedContainer(
-      {required String text1, required String text2, required String image}) {
+      {required String text1,
+      required String text2,
+      required String image,
+      required BoxConstraints constraints}) {
     return Stack(
       children: [
         Container(
-          height: Get.height,
+          width: constraints.maxWidth,
+          height: constraints.maxHeight,
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage(image),
@@ -80,18 +88,22 @@ class OnboardingView extends StatelessWidget {
           ),
         ),
         Positioned(
-          left: 54,
-          bottom: Get.height * 0.2,
-          child: Column(
-            children: [
-              Text(text1,
-                  style: Get.textTheme.titleLarge!.copyWith(fontSize: 23),
-                  textAlign: TextAlign.center),
-              const SizedBox(height: 15),
-              Text(text2,
-                  style: Get.textTheme.bodySmall!.copyWith(color: Colors.grey),
-                  textAlign: TextAlign.center),
-            ],
+          left: constraints.maxWidth * 0.1,
+          bottom: constraints.maxHeight * 0.2,
+          child: SizedBox(
+            width: constraints.maxWidth * 0.8,
+            child: Column(
+              children: [
+                Text(text1,
+                    style: Get.textTheme.titleLarge!.copyWith(fontSize: 23),
+                    textAlign: TextAlign.center),
+                const SizedBox(height: 15),
+                Text(text2,
+                    style:
+                        Get.textTheme.bodySmall!.copyWith(color: Colors.grey),
+                    textAlign: TextAlign.center),
+              ],
+            ),
           ),
         ),
       ],

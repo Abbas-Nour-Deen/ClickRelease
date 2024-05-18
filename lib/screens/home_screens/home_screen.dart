@@ -18,6 +18,8 @@ class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
+  final LocationController _locationController = Get.find();
+
   final NavBarController _navController = Get.find();
   @override
   Widget build(BuildContext context) {
@@ -71,21 +73,29 @@ class HomeScreen extends StatelessWidget {
 
   Widget header() {
     return GetBuilder<LocationController>(
-        init: LocationController(),
         builder: (controller) => Container(
               child: Row(
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.location_on_outlined,
                   ),
                   InkWell(
                     onTap: () => Utils().showLocationBottomSheet(),
-                    child: Text(
-                      controller.pickedLocation.locationName,
-                      style: Get.textTheme.labelMedium,
-                    ),
+                    child: controller.obx(
+                        onError: (error) => Text(
+                              "Location Error, please try again!",
+                              style: Get.textTheme.labelMedium,
+                            ),
+                        onLoading: Text(
+                          "Searching",
+                          style: Get.textTheme.labelMedium,
+                        ),
+                        (state) => Text(
+                              controller.pickedLocation.locationName,
+                              style: Get.textTheme.labelMedium,
+                            )),
                   ),
-                  Icon(Icons.keyboard_arrow_down)
+                  const Icon(Icons.keyboard_arrow_down)
                 ],
               ),
             ));

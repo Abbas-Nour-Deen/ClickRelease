@@ -1,7 +1,10 @@
+import 'package:click_release/controllers/location_controller.dart';
 import 'package:click_release/screens/profile_screens/profileScreen_widgets/profile_option_tile.dart';
 import 'package:click_release/widgets/google_maps.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+final LocationController _locationController = Get.find();
 
 class Utils {
   void showLocationBottomSheet() {
@@ -18,7 +21,11 @@ class Utils {
             ProfileOptionTile(
               title: "Your current location",
               iconPath: "assets/icons/location.svg",
-              onTap: () {},
+              onTap: () async {
+                await _locationController
+                    .determineUserCurrentPosition()
+                    .then((value) => Get.back());
+              },
               iconSize: 20,
             ),
             ProfileOptionTile(

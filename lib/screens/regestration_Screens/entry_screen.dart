@@ -1,4 +1,3 @@
-import 'package:click_release/screens/regestration_Screens/on_boarding_screen.dart';
 import 'package:click_release/theme/app_theme.dart';
 import 'package:click_release/widgets/onBoarding/onboarding_view.dart';
 import 'package:click_release/widgets/public_widgets/custome_btn.dart';
@@ -11,10 +10,12 @@ class EntryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: Column(
-        children: [imageWidget(), title(), btnWidget(), signInText()],
+        body: SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          children: [imageWidget(), title(), btnWidget(), signInText()],
+        ),
       ),
     ));
   }
@@ -22,7 +23,7 @@ class EntryScreen extends StatelessWidget {
   Widget imageWidget() {
     return Container(
       margin: const EdgeInsets.only(top: 60),
-      child: Image.asset("assets/images/entry.png"),
+      child: Image.asset("assets/images/Onboarding1.png"),
     );
   }
 

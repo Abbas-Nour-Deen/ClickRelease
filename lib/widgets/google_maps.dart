@@ -1,4 +1,5 @@
 import 'package:click_release/controllers/location_controller.dart';
+import 'package:click_release/widgets/public_widgets/custome_btn.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -19,6 +20,19 @@ class GoogleMapsWidget extends StatelessWidget {
               _getMap(),
               _getCustomPin(),
               _showDraggedAddress(locationController.draggedAddress),
+              Positioned(
+                bottom: 17,
+                left: 50,
+                child: CustomeButton(
+                  text: "Click",
+                  width: Get.width * 0.7,
+                  height: 50,
+                  ontap: () {
+                    Get.back();
+                    Get.back();
+                  },
+                ),
+              )
             ],
           );
         },
