@@ -1,4 +1,4 @@
-import 'package:click_release/widgets/nav_bar.dart';
+import 'package:click_release/screens/regestration_Screens/phonenumber_screen.dart';
 import 'package:click_release/widgets/onBoarding/onboarding_items.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,7 +12,7 @@ class OOnBoardingController extends GetxController {
     !isLastPage
         ? pageController.nextPage(
             duration: const Duration(milliseconds: 450), curve: Curves.easeIn)
-        : Get.to(CustomNavBar());
+        : Get.to(PhoneNumberScreen());
     update();
   }
 
