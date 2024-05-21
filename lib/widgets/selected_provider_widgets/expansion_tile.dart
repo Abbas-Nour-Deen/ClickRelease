@@ -34,6 +34,10 @@ class CustomExpansionTile extends StatelessWidget {
               title,
               style: Get.textTheme.labelMedium,
             ),
+            shape: Border(
+              bottom:
+                  BorderSide(color: Colors.transparent), // Set to transparent
+            ),
             minLeadingWidth: 2,
             onTap: () => isExpanded.toggle(),
             trailing: Obx(() => isExpanded.value

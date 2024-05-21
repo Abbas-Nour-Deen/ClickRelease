@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:click_release/controllers/review_controller.dart';
 import 'package:click_release/models/provider_model.dart';
 import 'package:click_release/theme/app_theme.dart';
 import 'package:click_release/widgets/public_widgets/appBar.dart';
@@ -34,7 +35,7 @@ class SelectedProviderScreen extends StatelessWidget {
               butons(),
               details(),
               about(),
-              const ContainedTabWidget(),
+              ContainedTabWidget(),
               expansions(),
               const SizedBox(
                 height: 65,

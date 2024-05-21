@@ -14,7 +14,15 @@ class EntryScreen extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(
-          children: [imageWidget(), title(), btnWidget(), signInText()],
+          children: [
+            imageWidget(),
+            // Image.network(
+            //   "https://clickdb.blob.core.windows.net/client/81019355/profilePhoto?sv=2024-05-04&se=2024-05-21T19%3A11%3A48Z&sr=b&sp=r&sig=b3JKq9ZfDS4lr%2FYU6u2irUiZsXpRn0hQoUsKnGLuoCw%3D",
+            // ),
+            title(),
+            btnWidget(),
+            signInText()
+          ],
         ),
       ),
     ));

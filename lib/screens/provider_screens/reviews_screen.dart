@@ -1,3 +1,4 @@
+import 'package:click_release/models/review_model.dart';
 import 'package:click_release/screens/provider_screens/add_review_screen.dart';
 import 'package:click_release/theme/app_theme.dart';
 import 'package:click_release/widgets/public_widgets/appBar.dart';
@@ -9,7 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class RatingAndReviewsScreen extends StatelessWidget {
-  const RatingAndReviewsScreen({super.key});
+  final List<ReviewModel> reviews;
+  const RatingAndReviewsScreen({super.key, required this.reviews});
 
   @override
   Widget build(BuildContext context) {
@@ -21,18 +23,24 @@ class RatingAndReviewsScreen extends StatelessWidget {
             padding: const EdgeInsets.all(15),
             child: Column(
               children: [
-                const RatingSummaryWidget(),
+                RatingSummaryWidget(),
                 const SizedBox(
                   height: 10,
                 ),
-                for (int i = 0; i <= 4; i++)
-                  Container(
-                      decoration: const BoxDecoration(
-                          border: Border(
-                              bottom: BorderSide(
-                                  width: 1, color: lightThemeDividerColor))),
-                      child: const ReviewItem()),
-                const SizedBox(
+                Column(
+                  children: List.generate(
+                      reviews.length,
+                      (index) => Container(
+                          decoration: const BoxDecoration(
+                              border: Border(
+                                  bottom: BorderSide(
+                                      width: 1,
+                                      color: lightThemeDividerColor))),
+                          child: ReviewItem(
+                            review: reviews[index],
+                          ))),
+                ),
+                SizedBox(
                   height: 65,
                 ),
               ],

@@ -1,3 +1,4 @@
+import 'package:click_release/controllers/review_controller.dart';
 import 'package:click_release/theme/app_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +6,11 @@ import 'package:get/get.dart';
 import 'package:rating_summary/rating_summary.dart';
 
 class RatingSummaryWidget extends StatelessWidget {
-  const RatingSummaryWidget({super.key});
+  RatingSummaryWidget({
+    super.key,
+  });
+
+  final ReviewsController reviewsController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -17,14 +22,14 @@ class RatingSummaryWidget extends StatelessWidget {
               bottom: BorderSide(width: 1, color: lightThemeDividerColor))),
       child: RatingSummary(
         color: Get.theme.primaryColor,
-        counter: 12,
-        average: 3.846,
+        counter: reviewsController.currentProviderReviews.length,
+        average: reviewsController.average,
         showAverage: true,
-        counterFiveStars: 10,
-        counterFourStars: 7,
-        counterThreeStars: 5,
-        counterTwoStars: 4,
-        counterOneStars: 1,
+        counterFiveStars: reviewsController.totalFiveStars,
+        counterFourStars: reviewsController.totalFourStars,
+        counterThreeStars: reviewsController.totalThreeStars,
+        counterTwoStars: reviewsController.totalTwoStars,
+        counterOneStars: reviewsController.totalOneStars,
         labelStyle: Get.textTheme.labelMedium!
             .copyWith(color: lightTHemeSecondTextColor),
       ),

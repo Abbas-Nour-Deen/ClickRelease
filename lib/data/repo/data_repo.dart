@@ -20,10 +20,19 @@ class DataRepo extends GetxService {
   }
 
   Future<Response> getProviderByServiceID({required String id}) async {
-    return await dataApiHandler.getAllServices("api/providerByservice/$id");
+    return await dataApiHandler.getProviders("api/providerByservice/$id");
   }
 
   Future<Response> getProviderBySearch({required String keyWord}) async {
-    return await dataApiHandler.getAllServices("api/provider-search/$keyWord");
+    return await dataApiHandler.getProviders("api/provider-search/$keyWord");
+  }
+
+  Future<Response> getCurrentProviderReviews({required String id}) async {
+    return await dataApiHandler.getCurrentProviderReviews("api/reviews/$id");
+  }
+
+  Future<Response> getCurrentProviderProjects({required String id}) async {
+    return await dataApiHandler
+        .getCurrentProviderReviews("api/ProvProject/$id");
   }
 }

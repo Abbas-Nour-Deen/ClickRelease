@@ -1,3 +1,4 @@
+import 'package:click_release/controllers/review_controller.dart';
 import 'package:click_release/screens/provider_screens/reviews_screen.dart';
 import 'package:click_release/theme/app_theme.dart';
 import 'package:click_release/widgets/selected_provider_widgets/items/post_item.dart';
@@ -9,7 +10,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ContainedTabWidget extends StatelessWidget {
-  const ContainedTabWidget({super.key});
+  ContainedTabWidget({
+    super.key,
+  });
+  final ReviewsController reviewsController =
+      Get.put(ReviewsController(dataRepo: Get.find()));
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +24,7 @@ class ContainedTabWidget extends StatelessWidget {
       width: double.infinity,
       height: 420,
       child: ContainedTabBarView(
-        initialIndex: 1,
+        initialIndex: 0,
         tabBarProperties: TabBarProperties(
             labelStyle: Get.textTheme.titleSmall,
             unselectedLabelColor: Colors.black,
@@ -36,49 +41,56 @@ class ContainedTabWidget extends StatelessWidget {
                 color: Get.theme.primaryColor,
               ),
             ))),
-        tabs: [
-          Text('Posts'),
+        tabs: const [
+          // Text('Posts'),
           Text('Reviews'),
           Text('Projects'),
         ],
-        views: [postsContent(), reviewsContent(), projectContent()],
+        views: [reviewsContent(), projectContent()],
         onChange: (index) => print(index),
       ),
     );
   }
 
   Widget reviewsContent() {
-    return Container(
-      padding: const EdgeInsets.all(10),
-      color: Get.theme.colorScheme.onSecondaryContainer,
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return reviewsController.obx((state) => Container(
+          padding: const EdgeInsets.all(10),
+          color: Get.theme.colorScheme.onSecondaryContainer,
+          child: Column(
             children: [
-              Text(
-                "12 Reviews",
-                style: Get.textTheme.labelMedium!
-                    .copyWith(color: lightTHemeSecondTextColor),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "${reviewsController.currentProviderReviews.length} Reviews",
+                    style: Get.textTheme.labelMedium!
+                        .copyWith(color: lightTHemeSecondTextColor),
+                  ),
+                  InkWell(
+                    onTap: () => Get.to(RatingAndReviewsScreen(
+                      reviews: reviewsController.currentProviderReviews,
+                    )),
+                    child: Text(
+                      "View All",
+                      style: Get.textTheme.labelMedium!
+                          .copyWith(color: lightTHemeSecondTextColor),
+                    ),
+                  )
+                ],
               ),
-              InkWell(
-                onTap: () => Get.to(RatingAndReviewsScreen()),
-                child: Text(
-                  "View All",
-                  style: Get.textTheme.labelMedium!
-                      .copyWith(color: lightTHemeSecondTextColor),
-                ),
+              const SizedBox(
+                height: 10,
+              ),
+              Column(
+                children: List.generate(2, (index) {
+                  return ReviewItem(
+                    review: reviewsController.currentProviderReviews[index],
+                  );
+                }).toList(),
               )
             ],
           ),
-          const SizedBox(
-            height: 10,
-          ),
-          ReviewItem(),
-          ReviewItem()
-        ],
-      ),
-    );
+        ));
   }
 
   Widget postsContent() {
@@ -116,44 +128,52 @@ class ContainedTabWidget extends StatelessWidget {
   }
 
   Widget projectContent() {
-    return Container(
-      padding: const EdgeInsets.all(10),
-      color: Get.theme.colorScheme.onSecondaryContainer,
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return reviewsController.projectsController.obx((state) => Container(
+          padding: const EdgeInsets.all(10),
+          color: Get.theme.colorScheme.onSecondaryContainer,
+          child: Column(
             children: [
-              Text(
-                "20 Projects",
-                style: Get.textTheme.labelMedium!
-                    .copyWith(color: lightTHemeSecondTextColor),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "${reviewsController.projectsController.currentProviderProjects.length} Projects",
+                    style: Get.textTheme.labelMedium!
+                        .copyWith(color: lightTHemeSecondTextColor),
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child: Text(
+                      "View All",
+                      style: Get.textTheme.labelMedium!
+                          .copyWith(color: lightTHemeSecondTextColor),
+                    ),
+                  )
+                ],
               ),
-              InkWell(
-                onTap: () {},
-                child: Text(
-                  "View All",
-                  style: Get.textTheme.labelMedium!
-                      .copyWith(color: lightTHemeSecondTextColor),
+              const SizedBox(
+                height: 10,
+              ),
+              Expanded(
+                child: DynamicHeightGridView(
+                  itemCount: reviewsController.projectsController
+                              .currentProviderProjects.length >
+                          6
+                      ? 6
+                      : reviewsController
+                          .projectsController.currentProviderProjects.length,
+                  crossAxisCount: 3,
+                  physics: const NeverScrollableScrollPhysics(),
+                  builder: (context, index) {
+                    return ProjectItem(
+                      projectModel: reviewsController
+                          .projectsController.currentProviderProjects[index],
+                    );
+                  },
                 ),
               )
             ],
           ),
-          const SizedBox(
-            height: 10,
-          ),
-          Expanded(
-            child: DynamicHeightGridView(
-              itemCount: 6,
-              crossAxisCount: 3,
-              physics: const NeverScrollableScrollPhysics(),
-              builder: (context, index) {
-                return ProjectItem();
-              },
-            ),
-          )
-        ],
-      ),
-    );
+        ));
   }
 }

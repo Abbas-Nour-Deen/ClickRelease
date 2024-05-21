@@ -10,6 +10,8 @@ class ProviderController extends GetxController with StateMixin {
 
   final List<ProviderModel> currentProviders = [];
 
+  late ProviderModel selectedProvider;
+
   Future<void> getProviderByServiceID({required String serviceID}) async {
     try {
       change(currentProviders, status: RxStatus.loading());

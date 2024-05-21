@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/svg.dart';
 
 class StarsWidget extends StatelessWidget {
-  final double rateValue;
+  final int rateValue;
   const StarsWidget({super.key, required this.rateValue});
 
   @override

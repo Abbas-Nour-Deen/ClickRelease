@@ -56,6 +56,8 @@ class LocationController extends GetxController with StateMixin {
       cameraPosition = CameraPosition(
           zoom: 13,
           target: LatLng(pickedLocation.latitude, pickedLocation.longitude));
+      pickedLocation.longitude = -74.006;
+      pickedLocation.latitude = 40.7128;
       change(pickedLocation, status: RxStatus.success());
     } else {
       print("Location permission unknown");

@@ -1,9 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:click_release/models/project_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProjectItem extends StatelessWidget {
-  const ProjectItem({super.key});
+  final ProjectModel projectModel;
+  const ProjectItem({super.key, required this.projectModel});
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +26,14 @@ class ProjectItem extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          AutoSizeText(
-            "Elderly Fall Prevention Program",
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: Get.textTheme.labelSmall!
-                .copyWith(fontSize: 8, fontWeight: FontWeight.w400),
+          Expanded(
+            child: AutoSizeText(
+              'projectModel.projectDesc',
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: Get.textTheme.labelSmall!
+                  .copyWith(fontSize: 8, fontWeight: FontWeight.w400),
+            ),
           )
         ],
       ),
