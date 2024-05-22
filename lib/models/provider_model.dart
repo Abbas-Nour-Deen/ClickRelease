@@ -3,7 +3,7 @@ class ProviderModel {
   String firstName;
   String lastName;
   String phoneNumber;
-  // String providerUsername;
+  String providerUsername;
   dynamic profileImage; // Can be of any type
   Location location;
   String description;
@@ -15,49 +15,53 @@ class ProviderModel {
   String sex;
   String sexDesc;
   String type;
-  // String education; //missing
+  String education; //missing
   int verified;
   String locationCode;
   String? locationEnglishName;
   String? locationArabicName;
-  int? rate;
-  // String serviceNameEng;
-  // String serviceNameArb;
-  int index;
-  ProviderModel(
-      {required this.provid,
-      // required this.education,
-      required this.firstName,
-      required this.lastName,
-      // required this.providerUsername,
-      required this.phoneNumber,
-      this.profileImage,
-      required this.location,
-      required this.description,
-      this.facebook,
-      this.instagram,
-      this.indexs,
-      this.linkedIn,
-      this.website,
-      required this.sex,
-      required this.sexDesc,
-      required this.type,
-      required this.verified,
-      required this.locationCode,
-      this.locationEnglishName,
-      this.locationArabicName,
-      this.rate,
-      // required this.serviceNameEng,
-      // required this.serviceNameArb,
-      required this.index});
+  double? rate;
+  String serviceNameEng;
+  String serviceNameArb;
+  String categoryNameArb;
+  String categoryNameEng;
+
+  ProviderModel({
+    required this.provid,
+    required this.education,
+    required this.firstName,
+    required this.lastName,
+    required this.providerUsername,
+    required this.phoneNumber,
+    this.profileImage,
+    required this.location,
+    required this.description,
+    this.facebook,
+    this.instagram,
+    this.indexs,
+    this.linkedIn,
+    this.website,
+    required this.sex,
+    required this.sexDesc,
+    required this.type,
+    required this.verified,
+    required this.locationCode,
+    this.locationEnglishName,
+    this.locationArabicName,
+    this.rate,
+    required this.serviceNameEng,
+    required this.serviceNameArb,
+    required this.categoryNameEng,
+    required this.categoryNameArb,
+  });
 
   factory ProviderModel.fromJson(Map<String, dynamic> json) {
     return ProviderModel(
-        // education: json['Education'],
+        education: json['Education'],
         provid: json['provid'] ?? "",
         firstName: json['firstName'] ?? "",
         lastName: json['lastName'] ?? "",
-        // providerUsername: json['providerUsername'],
+        providerUsername: json['providerUsername'],
         phoneNumber: json['phoneNumber'] ?? "",
         profileImage: json['profileImage'] ?? "",
         location: Location.fromJson(json['Location']),
@@ -74,10 +78,11 @@ class ProviderModel {
         locationCode: json['LocationCode'] ?? "",
         locationEnglishName: json['locationEnglishName'] ?? "",
         locationArabicName: json['locationArabicName'] ?? "",
-        rate: json['rate'] ?? 0,
-        // serviceNameEng: json['serviceNameEng'] ?? "",
-        // serviceNameArb: json['serviceNameArb'] ?? "",
-        index: json['Indexs'] ?? "");
+        rate: json['averageRate'] ?? 0,
+        serviceNameEng: json['categories'][0]['services'][0]['serviceNameEng'],
+        serviceNameArb: json['categories'][0]['services'][0]['serviceNameArb'],
+        categoryNameEng: json['categories'][0]['catNameEng'],
+        categoryNameArb: json['categories'][0]['catNameArb']);
   }
 }
 

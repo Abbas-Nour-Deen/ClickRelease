@@ -9,10 +9,11 @@ class ProjectsController extends GetxController with StateMixin {
 
   final List<ProjectModel> currentProviderProjects = [];
 
-  Future<void> getProviderProjects({required String serviceID}) async {
+  Future<void> getProviderProjects({required String providerID}) async {
     try {
       change(currentProviderProjects, status: RxStatus.loading());
-      final response = await dataRepo.getCurrentProviderProjects(id: serviceID);
+      final response =
+          await dataRepo.getCurrentProviderProjects(id: providerID);
       if (response.statusCode == 200) {
         currentProviderProjects.clear();
 
@@ -38,6 +39,6 @@ class ProjectsController extends GetxController with StateMixin {
   @override
   void onInit() {
     super.onInit();
-    getProviderProjects(serviceID: "16456700-497b-4f03-83b4-2e2bc710f27b");
+    getProviderProjects(providerID: "16456700-497b-4f03-83b4-2e2bc710f27b");
   }
 }

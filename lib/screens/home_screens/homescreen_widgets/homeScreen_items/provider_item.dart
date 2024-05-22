@@ -26,6 +26,7 @@ class ProviderItem extends StatelessWidget {
       child: Container(
         width: width ?? 310,
         margin: margin,
+        height: 100,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
             color: Get.theme.colorScheme.onSecondaryContainer),

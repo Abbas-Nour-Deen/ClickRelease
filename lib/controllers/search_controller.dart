@@ -16,7 +16,7 @@ class SearchProviderController extends GetxController with StateMixin {
       if (response.statusCode == 200) {
         searchProviders.clear();
 
-        final List<dynamic> list = response.body;
+        final List<dynamic> list = response.body['providers'];
 
         list.forEach((element) {
           final ProviderModel provider =

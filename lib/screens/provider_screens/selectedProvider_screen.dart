@@ -1,5 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:click_release/controllers/review_controller.dart';
+import 'package:click_release/controllers/providerInfo_controller.dart';
 import 'package:click_release/models/provider_model.dart';
 import 'package:click_release/theme/app_theme.dart';
 import 'package:click_release/widgets/public_widgets/appBar.dart';
@@ -13,10 +13,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 
 class SelectedProviderScreen extends StatelessWidget {
   final ProviderModel? provider;
-  const SelectedProviderScreen({super.key, this.provider});
+  SelectedProviderScreen({super.key, this.provider});
+
+  // final ProviderInfoController _providerInfoController =
+  //     Get.put(ProviderInfoController(dataRepo: Get.find()));
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +40,10 @@ class SelectedProviderScreen extends StatelessWidget {
               details(),
               about(),
               ContainedTabWidget(),
-              expansions(),
+              GetBuilder<ProviderInfoController>(
+                  init: ProviderInfoController(dataRepo: Get.find()),
+                  builder: (controller) =>
+                      expansions(providerInfoController: controller)),
               const SizedBox(
                 height: 65,
               ),
@@ -317,7 +324,7 @@ class SelectedProviderScreen extends StatelessWidget {
     );
   }
 
-  Widget expansions() {
+  Widget expansions({required ProviderInfoController providerInfoController}) {
     return Container(
       padding: const EdgeInsets.all(5),
       child: Column(
@@ -326,27 +333,29 @@ class SelectedProviderScreen extends StatelessWidget {
             icon: Icons.settings,
             title: "Specelities",
             options: [
-              "Osteopathic Manipulative Treatment (OMT)",
-              "Manual Therapy Techniques",
-              "Physical Therapy Sessions",
-              "Personalized Home Care Plans for Wellness Optimization"
+              for (var info
+                  in providerInfoController.currentProviderInfoModel.speciality)
+                info.serviceNameEng
             ],
           ),
           CustomExpansionTile(
             icon: Icons.settings,
-            title: "Specelities",
-            options: ["2", "3", "4"],
+            title: "Working Hours",
+            options: [
+              for (var info
+                  in providerInfoController.currentProviderInfoModel.workingHR)
+                info.start
+            ],
           ),
           CustomExpansionTile(
             icon: Icons.settings,
-            title: "Specelities",
-            options: ["2", "3", "4"],
+            title: "Certifications",
+            options: [
+              for (var info in providerInfoController
+                  .currentProviderInfoModel.certification)
+                info.certificationName
+            ],
           ),
-          CustomExpansionTile(
-            icon: Icons.settings,
-            title: "Specelities",
-            options: ["2", "3", "4"],
-          )
         ],
       ),
     );

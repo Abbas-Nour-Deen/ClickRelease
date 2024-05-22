@@ -35,4 +35,9 @@ class DataRepo extends GetxService {
     return await dataApiHandler
         .getCurrentProviderReviews("api/ProvProject/$id");
   }
+
+  Future<Response> getCurrentProviderInfoData({required String id}) async {
+    return await dataApiHandler
+        .getCurrentProviderReviews("api/providerWSC/$id");
+  }
 }

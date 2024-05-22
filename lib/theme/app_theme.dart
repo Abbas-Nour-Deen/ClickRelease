@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 const Color lightThemeDividerColor = Color(0xFFEEF1F9);
 const Color lightTHemeSecondTextColor = Color(0xFF717D96);
 final ThemeData lightTheme = ThemeData.light().copyWith(
-    listTileTheme: ListTileThemeData(
+    listTileTheme: const ListTileThemeData(
       shape: Border(
         bottom: BorderSide(color: Colors.transparent), // Set to transparent
       ),

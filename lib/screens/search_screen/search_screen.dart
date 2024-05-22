@@ -20,14 +20,19 @@ class SearchScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(15),
-        child: Column(
-          children: [
-            CustomeSearchBar(
-              margin: const EdgeInsets.symmetric(vertical: 1),
-              searchController: _searchProviderController,
-            ),
-            response()
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              CustomeSearchBar(
+                margin: const EdgeInsets.symmetric(vertical: 1),
+                searchController: _searchProviderController,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              response()
+            ],
+          ),
         ),
       ),
     );
@@ -35,9 +40,14 @@ class SearchScreen extends StatelessWidget {
 
   Widget response() {
     return _searchProviderController.obx((state) => ListView.builder(
+          physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
           itemCount: _searchProviderController.searchProviders.length,
-          itemBuilder: (context, index) =>
-              ProviderItem(margin: EdgeInsets.symmetric(horizontal: 5)),
+          itemBuilder: (context, index) => SizedBox(
+              height: 120,
+              child: ProviderItem(
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 2, vertical: 3))),
         ));
   }
 
