@@ -1,6 +1,7 @@
 import 'package:click_release/controllers/categories_controller.dart';
 import 'package:click_release/screens/allCategories_screens/allcategories_screen.dart';
 import 'package:click_release/screens/home_screens/homescreen_widgets/homeScreen_items/category_item.dart';
+import 'package:click_release/widgets/public_widgets/loading_widgets/categories_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -50,7 +51,7 @@ class CategoriesWidget extends StatelessWidget {
                 },
               ),
             ),
-            onLoading: const Center(child: CircularProgressIndicator()),
+            onLoading: CategoriesLoadingAnimation(),
             onError: (error) => Text(error.toString()),
           )
         ],

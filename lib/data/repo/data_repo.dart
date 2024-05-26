@@ -24,7 +24,8 @@ class DataRepo extends GetxService {
   }
 
   Future<Response> getProviderBySearch({required String keyWord}) async {
-    return await dataApiHandler.getProviders("api/provider-search/$keyWord");
+    return await dataApiHandler
+        .getCurrentProviderReviews("api/provider-search/$keyWord");
   }
 
   Future<Response> getCurrentProviderReviews({required String id}) async {
@@ -39,5 +40,10 @@ class DataRepo extends GetxService {
   Future<Response> getCurrentProviderInfoData({required String id}) async {
     return await dataApiHandler
         .getCurrentProviderReviews("api/providerWSC/$id");
+  }
+
+  Future<Response> getTopProviders() async {
+    return await dataApiHandler
+        .getCurrentProviderReviews("api/providerByTop/top");
   }
 }

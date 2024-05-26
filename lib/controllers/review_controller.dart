@@ -62,6 +62,8 @@ class ReviewsController extends GetxController with StateMixin {
         change(currentProviderReviews, status: RxStatus.success());
 
         print("reviews length ${currentProviderReviews.length}");
+      } else if (response.statusCode == 404) {
+        change(currentProviderReviews, status: RxStatus.empty());
       } else {
         print(response.statusCode);
       }

@@ -13,41 +13,41 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 
 class SelectedProviderScreen extends StatelessWidget {
   final ProviderModel? provider;
-  SelectedProviderScreen({super.key, this.provider});
-
-  // final ProviderInfoController _providerInfoController =
-  //     Get.put(ProviderInfoController(dataRepo: Get.find()));
+  const SelectedProviderScreen({super.key, this.provider});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomSheet: bottomSheet(),
-      appBar: CustomeAppBar(
-          title: "",
-          trailing: SvgPicture.asset(
-              "assets/icons/lightheme_icons/share_btn_light.svg")),
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              providerInfo(),
-              butons(),
-              details(),
-              about(),
-              ContainedTabWidget(),
-              GetBuilder<ProviderInfoController>(
-                  init: ProviderInfoController(dataRepo: Get.find()),
-                  builder: (controller) =>
-                      expansions(providerInfoController: controller)),
-              const SizedBox(
-                height: 65,
-              ),
-            ],
+    return GetBuilder<ProviderInfoController>(
+      init: ProviderInfoController(dataRepo: Get.find()),
+      builder: (controller) => Scaffold(
+        bottomSheet: bottomSheet(providerInfoController: controller),
+        appBar: CustomeAppBar(
+            title: "",
+            trailing: SvgPicture.asset(
+                "assets/icons/lightheme_icons/share_btn_light.svg")),
+        body: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: SingleChildScrollView(
+            child: controller.obx(
+                onLoading: const Center(
+                  child: CircularProgressIndicator.adaptive(),
+                ),
+                (state) => Column(
+                      children: [
+                        providerInfo(),
+                        butons(),
+                        details(controller: controller),
+                        about(controller: controller),
+                        ContainedTabWidget(),
+                        expansions(providerInfoController: controller),
+                        const SizedBox(
+                          height: 65,
+                        ),
+                      ],
+                    )),
           ),
         ),
       ),
@@ -62,25 +62,39 @@ class SelectedProviderScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //profilePhoto
-              Container(
-                // margin: const EdgeInsets.only(right: 10),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(100),
-                  child: Image.asset(
-                    "assets/images/me.jpeg",
-                    height: 100,
-                    width: 100,
-                    fit: BoxFit.cover,
-                  ),
-                ),
+              ClipRRect(
+                borderRadius: provider!.profileImage == null ||
+                        provider!.profileImage == ''
+                    ? BorderRadius.circular(0)
+                    : BorderRadius.circular(100),
+                child: provider!.profileImage == null ||
+                        provider!.profileImage == ''
+                    ? Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SvgPicture.asset(
+                          "assets/images/person.svg",
+                          height: 100,
+                          width: 100,
+                          fit: BoxFit.fill,
+                        ),
+                      )
+                    : Image.network(
+                        provider!.profileImage,
+                        height: 100,
+                        width: 100,
+                        fit: BoxFit.cover,
+                      ),
               ),
+
               Expanded(
                 child: Container(
                   margin: const EdgeInsets.symmetric(horizontal: 10),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      ProviderCategoryIcons(),
+                      ProviderCategoryIcons(
+                        provider: provider!,
+                      ),
                       name(),
                     ],
                   ),
@@ -106,7 +120,7 @@ class SelectedProviderScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 AutoSizeText(
-                  "Dr.Abbas Nour Deen",
+                  provider!.providerUsername,
                   style: Get.textTheme.titleLarge,
                   maxLines: 1,
                 ),
@@ -124,38 +138,31 @@ class SelectedProviderScreen extends StatelessWidget {
             height: 2,
           ),
           Text(
-            "Plastic Surgeon",
+            provider!.serviceNameEng,
             style: Get.textTheme.labelSmall,
           ),
           const SizedBox(
-            height: 10,
+            height: 1,
           ),
           Text(
-            "Physiotherapist",
+            provider!.categoryNameEng,
             style: Get.textTheme.labelSmall!
                 .copyWith(color: Get.theme.primaryColor),
           ),
           const SizedBox(
-            height: 5,
+            height: 10,
           ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.baseline,
             textBaseline: TextBaseline.alphabetic,
             children: [
-              Text(
-                "20 Likes",
-                style: Get.textTheme.labelMedium,
-              ),
-              const SizedBox(
-                width: 15,
-              ),
               Icon(
                 CupertinoIcons.star_fill,
                 color: Get.theme.primaryColor,
                 size: 12,
               ),
               Text(
-                "4.5",
+                provider!.rate!.toStringAsFixed(0),
                 style: Get.textTheme.labelMedium,
               ),
             ],
@@ -204,7 +211,7 @@ class SelectedProviderScreen extends StatelessWidget {
     );
   }
 
-  Widget details() {
+  Widget details({required ProviderInfoController controller}) {
     return Container(
       padding: const EdgeInsets.all(5),
       decoration: const BoxDecoration(
@@ -232,11 +239,12 @@ class SelectedProviderScreen extends StatelessWidget {
                           style: Get.textTheme.labelSmall!.copyWith(
                             fontWeight: FontWeight.w600,
                           ),
-                          text: "Galleri Semaan,Crossroad,| "),
+                          text: "${provider!.locationEnglishName} | "),
                       TextSpan(
                           style: Get.textTheme.labelMedium!
                               .copyWith(fontWeight: FontWeight.bold),
-                          text: "5.55KM away"),
+                          text:
+                              "${controller.providerController.calculateDistance(provider!.location.y, provider!.location.x).toStringAsFixed(2)} away"),
                     ])),
               )
             ],
@@ -268,7 +276,8 @@ class SelectedProviderScreen extends StatelessWidget {
                       TextSpan(
                           style: Get.textTheme.labelMedium!
                               .copyWith(fontWeight: FontWeight.bold),
-                          text: "Mon Sun"),
+                          text:
+                              "${controller.currentProviderInfoModel.workingHR.first.day} ${controller.currentProviderInfoModel.workingHR.last.day}"),
                     ])),
               )
             ],
@@ -278,7 +287,7 @@ class SelectedProviderScreen extends StatelessWidget {
     );
   }
 
-  Widget about() {
+  Widget about({required ProviderInfoController controller}) {
     return Container(
       padding: const EdgeInsets.all(5),
       decoration: const BoxDecoration(
@@ -295,25 +304,71 @@ class SelectedProviderScreen extends StatelessWidget {
             height: 10,
           ),
           Text(
-            "I am a Master's graduate in Osteopathy & Manual Therapy, with expertise in Physical Therapy.My focus is on delivering tailored home care services to elevate overall wellness.",
+            provider!.description,
             style: Get.textTheme.bodyMedium!
                 .copyWith(color: lightTHemeSecondTextColor),
           ),
           const SizedBox(
             height: 10,
           ),
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SocialMediaButtom(
-                svgPath: "assets/icons/lightheme_icons/facebook_light.svg",
+              Visibility(
+                visible: provider!.facebook == null || provider!.facebook == ''
+                    ? false
+                    : true,
+                child: SocialMediaButtom(
+                  svgPath: "assets/icons/lightheme_icons/facebook_light.svg",
+                  onTap: () {
+                    controller.providerController.launchUrls(
+                        url: provider!.facebook!,
+                        type: "facebook",
+                        inApp: false);
+                  },
+                ),
               ),
-              SocialMediaButtom(
-                svgPath: "assets/icons/lightheme_icons/instagram_light.svg",
+              Visibility(
+                visible:
+                    provider!.instagram == null || provider!.instagram == ''
+                        ? false
+                        : true,
+                child: SocialMediaButtom(
+                  onTap: () {
+                    controller.providerController.launchUrls(
+                        url: provider!.instagram!,
+                        type: "instagram",
+                        inApp: false);
+                  },
+                  svgPath: "assets/icons/lightheme_icons/instagram_light.svg",
+                ),
               ),
-              SocialMediaButtom(
-                svgPath: "assets/icons/lightheme_icons/enternet_light.svg",
-              )
+              Visibility(
+                visible: provider!.linkedIn == null || provider!.linkedIn == ''
+                    ? false
+                    : true,
+                child: SocialMediaButtom(
+                  onTap: () {
+                    controller.providerController.launchUrls(
+                        url: provider!.linkedIn!,
+                        type: "linkedin",
+                        inApp: false);
+                  },
+                  svgPath: "assets/icons/lightheme_icons/linkedin.svg",
+                ),
+              ),
+              Visibility(
+                visible: provider!.website == null || provider!.website == ''
+                    ? false
+                    : true,
+                child: SocialMediaButtom(
+                  onTap: () {
+                    controller.providerController.launchUrls(
+                        url: provider!.website!, type: "website", inApp: false);
+                  },
+                  svgPath: "assets/icons/lightheme_icons/enternet_light.svg",
+                ),
+              ),
             ],
           ),
           const SizedBox(
@@ -361,7 +416,7 @@ class SelectedProviderScreen extends StatelessWidget {
     );
   }
 
-  Widget bottomSheet() {
+  Widget bottomSheet({required ProviderInfoController providerInfoController}) {
     return CustomeButtomSheet(
       childrens: [
         Expanded(
@@ -371,7 +426,10 @@ class SelectedProviderScreen extends StatelessWidget {
               color: Colors.white,
               size: 22,
             ),
-            ontap: () {},
+            ontap: () {
+              providerInfoController.providerController.launchUrls(
+                  url: provider!.phoneNumber, inApp: false, type: "call");
+            },
             text: "Click",
             width: double.infinity,
           ),

@@ -1,3 +1,4 @@
+import 'package:click_release/controllers/provider_controller.dart';
 import 'package:click_release/data/repo/data_repo.dart';
 import 'package:click_release/models/category_model.dart';
 import 'package:get/get.dart';
@@ -8,6 +9,10 @@ class CategoryControler extends GetxController with StateMixin {
   CategoryControler({required this.dataRepo});
 
   final List<CategoryModel> allCategories = [];
+
+  bool isCategoriesLoaidng = false;
+
+  final ProviderController providerController = Get.find();
 
   Future<void> getAllCategories() async {
     try {
@@ -31,6 +36,9 @@ class CategoryControler extends GetxController with StateMixin {
     } catch (e) {
       print(e.toString());
     }
+
+    update(['categories']);
+    providerController.update(["topProviders"]);
   }
 
   @override

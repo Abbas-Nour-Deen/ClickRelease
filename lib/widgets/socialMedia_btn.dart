@@ -5,7 +5,9 @@ import 'package:get/get.dart';
 
 class SocialMediaButtom extends StatelessWidget {
   final String svgPath;
-  const SocialMediaButtom({super.key, required this.svgPath});
+  final Function() onTap;
+  const SocialMediaButtom(
+      {super.key, required this.svgPath, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +19,11 @@ class SocialMediaButtom extends StatelessWidget {
       decoration: BoxDecoration(
           color: Get.theme.colorScheme.onSecondaryContainer,
           borderRadius: BorderRadius.circular(100)),
-      child: Center(
-        child: SvgPicture.asset(svgPath),
+      child: InkWell(
+        onTap: onTap,
+        child: Center(
+          child: SvgPicture.asset(svgPath),
+        ),
       ),
     );
   }

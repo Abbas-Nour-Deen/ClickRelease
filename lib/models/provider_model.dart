@@ -57,15 +57,15 @@ class ProviderModel {
 
   factory ProviderModel.fromJson(Map<String, dynamic> json) {
     return ProviderModel(
-        education: json['Education'],
-        provid: json['provid'] ?? "",
+        education: json['Education'] ?? '',
+        provid: json['provID'] ?? "",
         firstName: json['firstName'] ?? "",
         lastName: json['lastName'] ?? "",
-        providerUsername: json['providerUsername'],
+        providerUsername: json['providerUsername'] ?? '',
         phoneNumber: json['phoneNumber'] ?? "",
         profileImage: json['profileImage'] ?? "",
         location: Location.fromJson(json['Location']),
-        description: json['description'],
+        description: json['description'] ?? '',
         facebook: json['FaceBook'] ?? "",
         instagram: json['Instagram'] ?? "",
         indexs: json['Indexs'] ?? "",
@@ -78,11 +78,13 @@ class ProviderModel {
         locationCode: json['LocationCode'] ?? "",
         locationEnglishName: json['locationEnglishName'] ?? "",
         locationArabicName: json['locationArabicName'] ?? "",
-        rate: json['averageRate'] ?? 0,
-        serviceNameEng: json['categories'][0]['services'][0]['serviceNameEng'],
-        serviceNameArb: json['categories'][0]['services'][0]['serviceNameArb'],
-        categoryNameEng: json['categories'][0]['catNameEng'],
-        categoryNameArb: json['categories'][0]['catNameArb']);
+        rate: double.parse(json['averageRate'].toString()) ?? 0.0,
+        serviceNameEng:
+            json['categories'][0]['services'][0]['serviceNameEng'] ?? '',
+        serviceNameArb:
+            json['categories'][0]['services'][0]['serviceNameArb'] ?? '',
+        categoryNameEng: json['categories'][0]['categoryNameEng'] ?? '',
+        categoryNameArb: json['categories'][0]['categoryNameArb'] ?? '');
   }
 }
 

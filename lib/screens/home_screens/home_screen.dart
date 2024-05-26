@@ -1,4 +1,3 @@
-import 'package:click_release/controllers/categories_controller.dart';
 import 'package:click_release/controllers/location_controller.dart';
 import 'package:click_release/controllers/nabar_controller.dart';
 import 'package:click_release/controllers/search_controller.dart';
@@ -18,9 +17,8 @@ class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
-  final LocationController _locationController = Get.find();
-
   final NavBarController _navController = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,8 +42,8 @@ class HomeScreen extends StatelessWidget {
               ),
               const ImageSlideShowWidget(),
               CategoriesWidget(),
-              const RecommendedForYouSlideWidget(),
-              const NearMeWidget(),
+              RecommendedForYouSlideWidget(),
+              // const NearMeWidget(),
               ServicesChipsWidget()
             ],
           ),

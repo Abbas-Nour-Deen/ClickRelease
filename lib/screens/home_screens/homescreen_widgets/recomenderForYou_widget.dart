@@ -1,13 +1,18 @@
+import 'package:click_release/controllers/provider_controller.dart';
 import 'package:click_release/screens/home_screens/homescreen_widgets/homeScreen_items/provider_item.dart';
+import 'package:click_release/widgets/public_widgets/loading_widgets/topProviders_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class RecommendedForYouSlideWidget extends StatelessWidget {
-  const RecommendedForYouSlideWidget({super.key});
+  RecommendedForYouSlideWidget({super.key});
+
+  final ProviderController _providerController = Get.find();
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.only(top: 10),
       height: 150,
       width: double.infinity,
       child: Column(
@@ -20,16 +25,23 @@ class RecommendedForYouSlideWidget extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          Expanded(
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: 7,
-              itemBuilder: (context, index) {
-                return ProviderItem(
-                  margin: const EdgeInsets.only(right: 10),
-                );
-              },
-            ),
+          GetBuilder<ProviderController>(
+            id: 'topProviders',
+            initState: (state) => _providerController.getTopProviders(),
+            builder: (controller) => _providerController.isTopProvidersLoading
+                ? const TopProvidersLoading()
+                : Expanded(
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: _providerController.topProviders.length,
+                      itemBuilder: (context, index) {
+                        return ProviderItem(
+                          provider: _providerController.topProviders[index],
+                          margin: const EdgeInsets.only(right: 10),
+                        );
+                      },
+                    ),
+                  ),
           )
         ],
       ),

@@ -28,11 +28,13 @@ class ProjectsController extends GetxController with StateMixin {
         change(currentProviderProjects, status: RxStatus.success());
 
         print("providers projects length ${currentProviderProjects.length}");
+      } else if (response.statusCode == 404) {
+        change(currentProviderProjects, status: RxStatus.empty());
       } else {
         print(response.statusCode);
       }
     } catch (e) {
-      print(e.toString());
+      throw Exception(e);
     }
   }
 

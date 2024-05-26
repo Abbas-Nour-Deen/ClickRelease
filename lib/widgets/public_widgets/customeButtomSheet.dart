@@ -12,7 +12,9 @@ class CustomeButtomSheet extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       height: 65,
       decoration: const BoxDecoration(
-          border: Border(top: BorderSide(width: 1, color: Colors.white))),
+          color: Colors.white,
+          border:
+              Border(top: BorderSide(width: 1, color: lightThemeDividerColor))),
       child: Row(
         children: childrens,
       ),

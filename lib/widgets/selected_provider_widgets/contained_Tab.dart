@@ -53,43 +53,47 @@ class ContainedTabWidget extends StatelessWidget {
   }
 
   Widget reviewsContent() {
-    return reviewsController.obx((state) => Container(
-          padding: const EdgeInsets.all(10),
-          color: Get.theme.colorScheme.onSecondaryContainer,
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return reviewsController.obx(
+        (state) => Container(
+              padding: const EdgeInsets.all(10),
+              color: Get.theme.colorScheme.onSecondaryContainer,
+              child: Column(
                 children: [
-                  Text(
-                    "${reviewsController.currentProviderReviews.length} Reviews",
-                    style: Get.textTheme.labelMedium!
-                        .copyWith(color: lightTHemeSecondTextColor),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "${reviewsController.currentProviderReviews.length} Reviews",
+                        style: Get.textTheme.labelMedium!
+                            .copyWith(color: lightTHemeSecondTextColor),
+                      ),
+                      InkWell(
+                        onTap: () => Get.to(RatingAndReviewsScreen(
+                          reviews: reviewsController.currentProviderReviews,
+                        )),
+                        child: Text(
+                          "View All",
+                          style: Get.textTheme.labelMedium!
+                              .copyWith(color: lightTHemeSecondTextColor),
+                        ),
+                      )
+                    ],
                   ),
-                  InkWell(
-                    onTap: () => Get.to(RatingAndReviewsScreen(
-                      reviews: reviewsController.currentProviderReviews,
-                    )),
-                    child: Text(
-                      "View All",
-                      style: Get.textTheme.labelMedium!
-                          .copyWith(color: lightTHemeSecondTextColor),
-                    ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Column(
+                    children: List.generate(2, (index) {
+                      return ReviewItem(
+                        review: reviewsController.currentProviderReviews[index],
+                      );
+                    }).toList(),
                   )
                 ],
               ),
-              const SizedBox(
-                height: 10,
-              ),
-              Column(
-                children: List.generate(2, (index) {
-                  return ReviewItem(
-                    review: reviewsController.currentProviderReviews[index],
-                  );
-                }).toList(),
-              )
-            ],
-          ),
+            ),
+        onEmpty: const Center(
+          child: Text("No reviews yet !"),
         ));
   }
 

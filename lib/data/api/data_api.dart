@@ -43,7 +43,7 @@ class DataApiHandler extends GetConnect implements GetxService {
       print(url);
       print(_locationController.pickedLocation.latitude.toString());
       Response response =
-          await post(url, {"latitude": 40.7091, "longitude": -74.003});
+          await post(url, {"latitude": 40.7095, "longitude": -74.0025});
 
       print("recieved providers data ${response.statusCode}");
       return response;
@@ -55,8 +55,6 @@ class DataApiHandler extends GetConnect implements GetxService {
 
   Future<Response> getCurrentProviderReviews(url) async {
     try {
-      print(_locationController.pickedLocation.longitude.toString());
-      print(_locationController.pickedLocation.latitude.toString());
       Response response = await get(
         url,
       );

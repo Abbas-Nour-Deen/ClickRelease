@@ -4,7 +4,6 @@ import 'package:click_release/controllers/location_controller.dart';
 import 'package:click_release/controllers/nabar_controller.dart';
 import 'package:click_release/controllers/onBoarding_controller.dart';
 import 'package:click_release/controllers/provider_controller.dart';
-import 'package:click_release/controllers/review_controller.dart';
 import 'package:click_release/controllers/search_controller.dart';
 import 'package:click_release/controllers/service_byID_controller.dart';
 import 'package:click_release/data/api/data_api.dart';

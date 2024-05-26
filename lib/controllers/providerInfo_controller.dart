@@ -1,3 +1,4 @@
+import 'package:click_release/controllers/provider_controller.dart';
 import 'package:click_release/data/repo/data_repo.dart';
 import 'package:click_release/models/provider_info.dart';
 import 'package:get/get.dart';
@@ -9,6 +10,8 @@ class ProviderInfoController extends GetxController with StateMixin {
 
   late ProviderInfoModel currentProviderInfoModel;
 
+  final ProviderController providerController = Get.find();
+
   Future<void> fetchData({required String providerID}) async {
     change(null, status: RxStatus.loading());
 
@@ -19,7 +22,7 @@ class ProviderInfoController extends GetxController with StateMixin {
 
       print(currentProviderInfoModel);
     } else {
-      change(currentProviderInfoModel, status: RxStatus.error());
+      change(null, status: RxStatus.error());
 
       throw Exception('Failed to load data');
     }
@@ -28,6 +31,6 @@ class ProviderInfoController extends GetxController with StateMixin {
   @override
   void onInit() {
     super.onInit();
-    fetchData(providerID: "16456700-497b-4f03-83b4-2e2bc710f27b");
+    fetchData(providerID: providerController.selectedProvider.provid);
   }
 }

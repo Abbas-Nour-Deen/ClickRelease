@@ -1,13 +1,12 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:click_release/models/provider_model.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class ProviderNameWidget extends StatelessWidget {
-  final ProviderModel? provider;
-  const ProviderNameWidget({super.key, this.provider});
+  final ProviderModel provider;
+  const ProviderNameWidget({super.key, required this.provider});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +22,7 @@ class ProviderNameWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 AutoSizeText(
-                  provider?.firstName ?? "Dr.Abbas Nour Deen",
+                  provider.firstName,
                   style: Get.textTheme.titleSmall,
                   maxLines: 1,
                 ),
@@ -31,7 +30,7 @@ class ProviderNameWidget extends StatelessWidget {
                   width: 3,
                 ),
                 Visibility(
-                  visible: provider?.verified == 0 ? false : true,
+                  visible: provider.verified == 0 ? false : true,
                   child: SvgPicture.asset(
                     "assets/icons/Verified.svg",
                     height: 14,
@@ -48,7 +47,7 @@ class ProviderNameWidget extends StatelessWidget {
             textBaseline: TextBaseline.alphabetic,
             children: [
               Text(
-                "Plastic Surgeon",
+                provider.serviceNameEng,
                 style: Get.textTheme.labelSmall,
               ),
               const SizedBox(
@@ -60,7 +59,7 @@ class ProviderNameWidget extends StatelessWidget {
                 size: 12,
               ),
               Text(
-                provider?.rate.toString() ?? "4.5",
+                provider.rate!.toStringAsFixed(0),
                 style: Get.textTheme.labelSmall!.copyWith(
                     fontWeight: FontWeight.bold, color: Get.theme.primaryColor),
               ),
