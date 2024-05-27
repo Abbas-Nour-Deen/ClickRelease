@@ -27,7 +27,9 @@ class RecommendedForYouSlideWidget extends StatelessWidget {
           ),
           GetBuilder<ProviderController>(
             id: 'topProviders',
-            initState: (state) => _providerController.getTopProviders(),
+            initState: (state) => _providerController.isFirstLoading
+                ? _providerController.getTopProviders()
+                : null,
             builder: (controller) => _providerController.isTopProvidersLoading
                 ? const TopProvidersLoading()
                 : Expanded(

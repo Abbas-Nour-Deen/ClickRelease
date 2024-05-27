@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:click_release/controllers/categories_controller.dart';
 import 'package:click_release/models/provider_model.dart';
 import 'package:flutter/material.dart';
@@ -14,11 +15,8 @@ class ProviderCategoryIcons extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Image.memory(
-          categoriesController.allCategories
-              .firstWhere(
-                  (element) => element.nameEn == provider.categoryNameEng)
-              .image,
+        CachedNetworkImage(
+          imageUrl: provider.categoryIcon,
           color: Get.theme.primaryColor,
           height: 14,
         ),

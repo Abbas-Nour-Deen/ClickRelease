@@ -25,35 +25,36 @@ class ProviderModel {
   String serviceNameArb;
   String categoryNameArb;
   String categoryNameEng;
+  String categoryIcon;
 
-  ProviderModel({
-    required this.provid,
-    required this.education,
-    required this.firstName,
-    required this.lastName,
-    required this.providerUsername,
-    required this.phoneNumber,
-    this.profileImage,
-    required this.location,
-    required this.description,
-    this.facebook,
-    this.instagram,
-    this.indexs,
-    this.linkedIn,
-    this.website,
-    required this.sex,
-    required this.sexDesc,
-    required this.type,
-    required this.verified,
-    required this.locationCode,
-    this.locationEnglishName,
-    this.locationArabicName,
-    this.rate,
-    required this.serviceNameEng,
-    required this.serviceNameArb,
-    required this.categoryNameEng,
-    required this.categoryNameArb,
-  });
+  ProviderModel(
+      {required this.provid,
+      required this.education,
+      required this.firstName,
+      required this.lastName,
+      required this.providerUsername,
+      required this.phoneNumber,
+      this.profileImage,
+      required this.location,
+      required this.description,
+      this.facebook,
+      this.instagram,
+      this.indexs,
+      this.linkedIn,
+      this.website,
+      required this.sex,
+      required this.sexDesc,
+      required this.type,
+      required this.verified,
+      required this.locationCode,
+      this.locationEnglishName,
+      this.locationArabicName,
+      this.rate,
+      required this.serviceNameEng,
+      required this.serviceNameArb,
+      required this.categoryNameEng,
+      required this.categoryNameArb,
+      required this.categoryIcon});
 
   factory ProviderModel.fromJson(Map<String, dynamic> json) {
     return ProviderModel(
@@ -84,7 +85,8 @@ class ProviderModel {
         serviceNameArb:
             json['categories'][0]['services'][0]['serviceNameArb'] ?? '',
         categoryNameEng: json['categories'][0]['categoryNameEng'] ?? '',
-        categoryNameArb: json['categories'][0]['categoryNameArb'] ?? '');
+        categoryNameArb: json['categories'][0]['categoryNameArb'] ?? '',
+        categoryIcon: json['categories'][0]['icon']);
   }
 }
 

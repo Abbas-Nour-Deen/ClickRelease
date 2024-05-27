@@ -1,10 +1,8 @@
-import 'dart:typed_data';
-
 class CategoryModel {
   final String categoryID;
   final String nameEn;
   final String descr;
-  final Uint8List image;
+  final String image;
   final String nameAr;
 
   CategoryModel({
@@ -16,13 +14,11 @@ class CategoryModel {
   });
 
   factory CategoryModel.fromJson(Map<String, dynamic> json) {
-    List<dynamic> data = json['icon']['data'];
-    List<int> bytes = data.cast<int>();
     return CategoryModel(
       categoryID: json['catId'] ?? '',
       nameEn: json['catNameEng'] ?? '',
       descr: json['description'] ?? '',
-      image: Uint8List.fromList(bytes),
+      image: json['icon'],
       nameAr: json['catNameArb'] ?? '',
     );
   }

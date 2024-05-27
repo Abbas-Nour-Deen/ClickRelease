@@ -132,52 +132,60 @@ class ContainedTabWidget extends StatelessWidget {
   }
 
   Widget projectContent() {
-    return reviewsController.projectsController.obx((state) => Container(
-          padding: const EdgeInsets.all(10),
-          color: Get.theme.colorScheme.onSecondaryContainer,
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "${reviewsController.projectsController.currentProviderProjects.length} Projects",
+    return reviewsController.projectsController.obx(
+      (state) => Container(
+        padding: const EdgeInsets.all(10),
+        color: Get.theme.colorScheme.onSecondaryContainer,
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "${reviewsController.projectsController.currentProviderProjects.length} Projects",
+                  style: Get.textTheme.labelMedium!
+                      .copyWith(color: lightTHemeSecondTextColor),
+                ),
+                InkWell(
+                  onTap: () {},
+                  child: Text(
+                    "View All",
                     style: Get.textTheme.labelMedium!
                         .copyWith(color: lightTHemeSecondTextColor),
                   ),
-                  InkWell(
-                    onTap: () {},
-                    child: Text(
-                      "View All",
-                      style: Get.textTheme.labelMedium!
-                          .copyWith(color: lightTHemeSecondTextColor),
-                    ),
-                  )
-                ],
+                )
+              ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Expanded(
+              child: DynamicHeightGridView(
+                itemCount: reviewsController
+                            .projectsController.currentProviderProjects.length >
+                        6
+                    ? 6
+                    : reviewsController
+                        .projectsController.currentProviderProjects.length,
+                crossAxisCount: 3,
+                physics: const NeverScrollableScrollPhysics(),
+                builder: (context, index) {
+                  return ProjectItem(
+                    projectModel: reviewsController
+                        .projectsController.currentProviderProjects[index],
+                  );
+                },
               ),
-              const SizedBox(
-                height: 10,
-              ),
-              Expanded(
-                child: DynamicHeightGridView(
-                  itemCount: reviewsController.projectsController
-                              .currentProviderProjects.length >
-                          6
-                      ? 6
-                      : reviewsController
-                          .projectsController.currentProviderProjects.length,
-                  crossAxisCount: 3,
-                  physics: const NeverScrollableScrollPhysics(),
-                  builder: (context, index) {
-                    return ProjectItem(
-                      projectModel: reviewsController
-                          .projectsController.currentProviderProjects[index],
-                    );
-                  },
-                ),
-              )
-            ],
-          ),
-        ));
+            )
+          ],
+        ),
+      ),
+      onEmpty: const Center(
+        child: Text("No Projects Found!"),
+      ),
+      onError: (error) => const Center(
+        child: Text("No Projects Found!"),
+      ),
+    );
   }
 }

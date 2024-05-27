@@ -1,24 +1,16 @@
-import 'package:click_release/controllers/search_controller.dart';
-import 'package:click_release/screens/home_screens/filterBy_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-class CustomeSearchBar extends StatelessWidget {
-  final EdgeInsets? margin;
-  CustomeSearchBar({super.key, this.margin});
-
-  final SearchProviderController searchController = Get.find();
+class SearchShape extends StatelessWidget {
+  const SearchShape({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: margin ?? const EdgeInsets.symmetric(vertical: 10, horizontal: 4),
+      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 4),
       child: SearchBar(
-        controller: searchController.searchTextController,
-        onSubmitted: (value) {
-          searchController.getProvidersBySearch(keyWord: value);
-        },
+        controller: TextEditingController(),
         elevation: const MaterialStatePropertyAll(0),
         backgroundColor: MaterialStatePropertyAll(
             Get.theme.colorScheme.onSecondaryContainer),
@@ -33,10 +25,7 @@ class CustomeSearchBar extends StatelessWidget {
         leading:
             SvgPicture.asset("assets/icons/lightheme_icons/search_light.svg"),
         trailing: [
-          InkWell(
-              onTap: () => Get.to(() => const FilterByScreen()),
-              child: SvgPicture.asset(
-                  "assets/icons/lightheme_icons/filter_icon.svg"))
+          SvgPicture.asset("assets/icons/lightheme_icons/filter_icon.svg")
         ],
       ),
     );

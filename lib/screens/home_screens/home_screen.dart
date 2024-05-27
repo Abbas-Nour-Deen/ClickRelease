@@ -1,11 +1,10 @@
 import 'package:click_release/controllers/location_controller.dart';
 import 'package:click_release/controllers/nabar_controller.dart';
-import 'package:click_release/controllers/search_controller.dart';
 import 'package:click_release/screens/home_screens/homescreen_widgets/categories_widget.dart';
 import 'package:click_release/screens/home_screens/homescreen_widgets/customeSearch_bar.dart';
 import 'package:click_release/screens/home_screens/homescreen_widgets/imageslidShow.dart';
-import 'package:click_release/screens/home_screens/homescreen_widgets/nearme_widget.dart';
 import 'package:click_release/screens/home_screens/homescreen_widgets/recomenderForYou_widget.dart';
+import 'package:click_release/screens/home_screens/homescreen_widgets/searchShape.dart';
 import 'package:click_release/screens/home_screens/homescreen_widgets/servicesChip_widget.dart';
 import 'package:click_release/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -15,14 +14,14 @@ import 'homescreen_widgets/custome_drawer.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
-  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   final NavBarController _navController = Get.find();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: scaffoldKey,
+      key: _scaffoldKey,
       drawer: CustomDrawer(),
       appBar: appBar(context),
       body: Padding(
@@ -35,9 +34,7 @@ class HomeScreen extends StatelessWidget {
               InkWell(
                 onTap: () => _navController.tabController.index = 1,
                 child: IgnorePointer(
-                  child: CustomeSearchBar(
-                    searchController: Get.find<SearchProviderController>(),
-                  ),
+                  child: SearchShape(),
                 ),
               ),
               const ImageSlideShowWidget(),
@@ -64,7 +61,7 @@ class HomeScreen extends StatelessWidget {
           Icons.menu,
           color: Colors.black,
         ),
-        onPressed: () => scaffoldKey.currentState?.openDrawer(),
+        onPressed: () => _scaffoldKey.currentState!.openDrawer(),
       ),
     );
   }

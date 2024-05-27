@@ -1,4 +1,3 @@
-import 'package:click_release/controllers/provider_controller.dart';
 import 'package:click_release/controllers/search_controller.dart';
 import 'package:click_release/screens/home_screens/homescreen_widgets/customeSearch_bar.dart';
 import 'package:click_release/screens/home_screens/homescreen_widgets/homeScreen_items/provider_item.dart';
@@ -11,8 +10,6 @@ class SearchScreen extends StatelessWidget {
   SearchScreen({super.key});
 
   final SearchProviderController _searchProviderController = Get.find();
-
-  final ProviderController _providerController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +25,11 @@ class SearchScreen extends StatelessWidget {
             children: [
               CustomeSearchBar(
                 margin: const EdgeInsets.symmetric(vertical: 1),
-                searchController: _searchProviderController,
               ),
               const SizedBox(
                 height: 10,
               ),
-              response()
+              body()
             ],
           ),
         ),
@@ -41,17 +37,29 @@ class SearchScreen extends StatelessWidget {
     );
   }
 
+  Widget body() {
+    return _searchProviderController.searchTextController.text.isEmpty &&
+            !_searchProviderController.isSearchLoading.value
+        ? placeHolder()
+        : response();
+  }
+
   Widget response() {
-    return _searchProviderController.obx((state) => ListView.builder(
-          physics: const NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
-          itemCount: _searchProviderController.searchProviders.length,
-          itemBuilder: (context, index) => SizedBox(
-              height: 120,
-              child: ProviderItem(
-                  provider: _providerController.selectedProvider,
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 2, vertical: 3))),
+    return _searchProviderController.obx(
+        (state) => ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: _searchProviderController.searchProviders.length,
+              itemBuilder: (context, index) => SizedBox(
+                  height: 120,
+                  child: ProviderItem(
+                      provider:
+                          _searchProviderController.searchProviders[index],
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 2, vertical: 3))),
+            ),
+        onLoading: const Center(
+          child: CircularProgressIndicator.adaptive(),
         ));
   }
 

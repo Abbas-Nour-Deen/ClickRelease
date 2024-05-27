@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:click_release/models/category_model.dart';
 import 'package:click_release/screens/allCategories_screens/selected_category_screen.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,7 @@ class CategoryItem extends StatelessWidget {
                   borderRadius: BorderRadius.circular(150),
                   color: Get.theme.colorScheme.onSecondaryContainer),
               child: Center(
-                child: Image.memory(category.image),
+                child: CachedNetworkImage(imageUrl: category.image),
               ),
             ),
             const SizedBox(

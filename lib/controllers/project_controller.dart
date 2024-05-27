@@ -1,3 +1,4 @@
+import 'package:click_release/controllers/provider_controller.dart';
 import 'package:click_release/data/repo/data_repo.dart';
 import 'package:click_release/models/project_model.dart';
 import 'package:get/get.dart';
@@ -8,6 +9,8 @@ class ProjectsController extends GetxController with StateMixin {
   ProjectsController({required this.dataRepo});
 
   final List<ProjectModel> currentProviderProjects = [];
+
+  final ProviderController providerController = Get.find();
 
   Future<void> getProviderProjects({required String providerID}) async {
     try {
@@ -41,6 +44,6 @@ class ProjectsController extends GetxController with StateMixin {
   @override
   void onInit() {
     super.onInit();
-    getProviderProjects(providerID: "16456700-497b-4f03-83b4-2e2bc710f27b");
+    getProviderProjects(providerID: providerController.selectedProvider.provid);
   }
 }

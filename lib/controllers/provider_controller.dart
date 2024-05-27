@@ -20,7 +20,7 @@ class ProviderController extends GetxController
   final LocationController locationController = Get.find();
 
   bool isTopProvidersLoading = false;
-
+  bool isFirstLoading = true;
   Future<void> getProviderByServiceID({required String serviceID}) async {
     try {
       change(currentProviders, status: RxStatus.loading());
@@ -50,7 +50,7 @@ class ProviderController extends GetxController
   Future<void> getTopProviders() async {
     try {
       isTopProvidersLoading = true;
-
+      isFirstLoading = false;
       final response = await dataRepo.getTopProviders();
       if (response.statusCode == 200) {
         topProviders.clear();
