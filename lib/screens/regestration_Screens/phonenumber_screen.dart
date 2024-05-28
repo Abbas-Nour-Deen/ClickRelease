@@ -1,3 +1,4 @@
+import 'package:click_release/controllers/login_controller.dart';
 import 'package:click_release/screens/regestration_Screens/otp_screen.dart';
 import 'package:click_release/screens/regestration_Screens/registration_widgets/phoneNumber_picker.dart';
 import 'package:click_release/theme/app_theme.dart';
@@ -6,7 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class PhoneNumberScreen extends StatelessWidget {
-  const PhoneNumberScreen({super.key});
+  PhoneNumberScreen({super.key});
+
+  final LoginController logInController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +18,9 @@ class PhoneNumberScreen extends StatelessWidget {
         height: 45,
         text: "Next",
         width: Get.width * 0.8,
-        ontap: () => Get.to(OtpScreen()),
+        ontap: () {
+          logInController.sendOTP();
+        },
         margin: const EdgeInsets.only(bottom: 20),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -83,7 +88,7 @@ class PhoneNumberScreen extends StatelessWidget {
           const SizedBox(
             height: 25,
           ),
-          PhoneNumberPicker(),
+          PhoneNumberPicker(loginController: logInController),
         ],
       ),
     );

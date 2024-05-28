@@ -12,7 +12,7 @@ class CreateAccountScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(15),
+          padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -57,7 +57,17 @@ class CreateAccountScreen extends StatelessWidget {
           textcontroller: TextEditingController(),
           hint: "",
           type: "text",
-          title: "Name",
+          title: "Full Name",
+        ),
+        DropdownButton<String>(
+          value: "Male",
+          items: [
+            DropdownMenuItem(value: "Male", child: Text("Male")),
+            DropdownMenuItem(value: "Female", child: Text("Female"))
+          ],
+          onChanged: (value) {
+            print(value);
+          },
         )
       ],
     );

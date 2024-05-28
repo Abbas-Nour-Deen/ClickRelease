@@ -1,6 +1,7 @@
 import 'package:click_release/controllers/categories_controller.dart';
 import 'package:click_release/controllers/allServices_controller.dart';
 import 'package:click_release/controllers/location_controller.dart';
+import 'package:click_release/controllers/login_controller.dart';
 import 'package:click_release/controllers/nabar_controller.dart';
 import 'package:click_release/controllers/onBoarding_controller.dart';
 import 'package:click_release/controllers/provider_controller.dart';
@@ -13,6 +14,8 @@ import 'package:get/get.dart';
 class AppBindings extends Bindings {
   @override
   void dependencies() {
+    Get.lazyPut(() => LoginController(dataRepo: Get.find()));
+
     Get.lazyPut(() => LocationController(), fenix: true);
 
     Get.lazyPut(() => DataApiHandler());

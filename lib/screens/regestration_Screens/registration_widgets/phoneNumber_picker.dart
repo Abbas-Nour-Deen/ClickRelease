@@ -1,13 +1,12 @@
+import 'package:click_release/controllers/login_controller.dart';
 import 'package:click_release/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 class PhoneNumberPicker extends StatelessWidget {
-  PhoneNumberPicker({super.key});
-
-  String initialCountry = 'LB';
-  PhoneNumber number2 = PhoneNumber(isoCode: 'LB', dialCode: '+961');
+  final LoginController loginController;
+  PhoneNumberPicker({super.key, required this.loginController});
 
   @override
   Widget build(BuildContext context) {
@@ -23,14 +22,19 @@ class PhoneNumberPicker extends StatelessWidget {
             hintStyle: TextStyle(
               color: lightTHemeSecondTextColor,
             ),
+            focusedBorder: InputBorder.none,
             enabledBorder: InputBorder.none,
             hintText: "Enter Phone Number"),
         textStyle: Get.textTheme.bodyMedium,
         onInputChanged: (PhoneNumber number) {
-          number2 = number;
-          print(number2.dialCode);
+          loginController.enteredNumber = number;
+          print("code ${loginController.enteredNumber.dialCode}");
+          print("number ${loginController.enteredNumber.phoneNumber}");
+
+          print("iso code ${loginController.enteredNumber.isoCode}");
         },
         onInputValidated: (bool isValid) {
+          loginController.isPhoneNumberValid = isValid;
           if (!isValid) {
             print("not valid");
           } else {
@@ -38,9 +42,12 @@ class PhoneNumberPicker extends StatelessWidget {
           }
         },
         validator: (p0) {
-          if (p0!.length != 8) {
+          if (!loginController.isPhoneNumberValid) {
             return "invalid phone number";
           }
+
+          // if (p0!.length != 8) {
+          // }
         },
         selectorConfig: const SelectorConfig(
           selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
@@ -48,11 +55,11 @@ class PhoneNumberPicker extends StatelessWidget {
           trailingSpace: false,
           useEmoji: true,
         ),
-        autoValidateMode: AutovalidateMode.onUserInteraction,
+        autoValidateMode: AutovalidateMode.disabled,
         autoFocus: false,
         ignoreBlank: false,
         formatInput: true,
-        initialValue: number2,
+        initialValue: loginController.enteredNumber,
         keyboardType: const TextInputType.numberWithOptions(
           signed: true,
           decimal: false,

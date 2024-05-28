@@ -46,4 +46,12 @@ class DataRepo extends GetxService {
     return await dataApiHandler
         .getCurrentProviderReviews("api/providerByTop/top");
   }
+
+  Future<Response> sendOtp(phoneNumber) async {
+    return await dataApiHandler.sendOTP("api/send-otp", phoneNumber);
+  }
+
+  Future<Response> validateOTP(otp, otpID) async {
+    return await dataApiHandler.validateOTP("api/verify-otp", otp, otpID);
+  }
 }

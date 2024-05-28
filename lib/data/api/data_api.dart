@@ -66,4 +66,28 @@ class DataApiHandler extends GetConnect implements GetxService {
       return Response(statusCode: 1, statusText: e.toString());
     }
   }
+
+  Future<Response> sendOTP(url, phoneNumber) async {
+    try {
+      Response response = await post(url, {"clientPhone": phoneNumber});
+
+      print("recieved otp  ${response.statusCode}");
+      return response;
+    } catch (e) {
+      print(e);
+      return Response(statusCode: 1, statusText: e.toString());
+    }
+  }
+
+  Future<Response> validateOTP(url, otp, otpID) async {
+    try {
+      Response response = await post(url, {"otp_id": otpID, "otp_code": otp});
+
+      print("recieved otp status  ${response.body}");
+      return response;
+    } catch (e) {
+      print(e);
+      return Response(statusCode: 1, statusText: e.toString());
+    }
+  }
 }
