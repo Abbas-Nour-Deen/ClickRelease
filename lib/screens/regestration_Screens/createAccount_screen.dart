@@ -1,6 +1,8 @@
+import 'package:click_release/theme/app_theme.dart';
+import 'package:click_release/widgets/nav_bar.dart';
 import 'package:click_release/widgets/public_widgets/custome_btn.dart';
 import 'package:click_release/widgets/public_widgets/custome_input.dart';
-import 'package:click_release/widgets/nav_bar.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,6 +12,14 @@ class CreateAccountScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: CustomeButton(
+        height: 45,
+        text: "Click",
+        width: Get.width * 0.8,
+        ontap: () => Get.to(CustomNavBar()),
+        margin: const EdgeInsets.only(top: 30),
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 15),
@@ -18,12 +28,6 @@ class CreateAccountScreen extends StatelessWidget {
             children: [
               titleWidget(),
               inputsWidget(),
-              CustomeButton(
-                text: "Click",
-                ontap: () {
-                  Get.to(() => CustomNavBar());
-                },
-              )
             ],
           ),
         ),
@@ -34,17 +38,14 @@ class CreateAccountScreen extends StatelessWidget {
   Widget titleWidget() {
     return Container(
       alignment: Alignment.center,
+      margin: const EdgeInsets.only(bottom: 50),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            "Create Account",
+            "Complete Your Profile",
             style: Get.textTheme.titleLarge,
           ),
-          Text(
-            "Fill your information below or register\narea with your social account.",
-            textAlign: TextAlign.center,
-          )
         ],
       ),
     );
@@ -55,19 +56,39 @@ class CreateAccountScreen extends StatelessWidget {
       children: [
         CustomeInput(
           textcontroller: TextEditingController(),
-          hint: "",
+          hint: "Enter your full name",
           type: "text",
           title: "Full Name",
         ),
-        DropdownButton<String>(
-          value: "Male",
-          items: [
-            DropdownMenuItem(value: "Male", child: Text("Male")),
-            DropdownMenuItem(value: "Female", child: Text("Female"))
-          ],
-          onChanged: (value) {
-            print(value);
-          },
+        const SizedBox(
+          height: 15,
+        ),
+        DropdownButtonHideUnderline(
+          child: DropdownButton2<String>(
+            dropdownStyleData: const DropdownStyleData(
+                elevation: 2,
+                decoration: BoxDecoration(color: lightThemeDividerColor)),
+            isExpanded: true,
+            value: "Male",
+            items: const [
+              DropdownMenuItem(
+                value: "Male",
+                child: Text("Male"),
+              ),
+              DropdownMenuItem(value: "Female", child: Text("Female"))
+            ],
+            buttonStyleData: const ButtonStyleData(
+              padding: EdgeInsets.symmetric(horizontal: 5),
+              decoration: BoxDecoration(color: lightThemeDividerColor),
+              height: 40,
+            ),
+            menuItemStyleData: const MenuItemStyleData(
+              height: 40,
+            ),
+            onChanged: (value) {
+              print(value);
+            },
+          ),
         )
       ],
     );

@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:click_release/controllers/providerInfo_controller.dart';
+import 'package:click_release/controllers/provider_calculation_controller.dart';
 import 'package:click_release/models/provider_model.dart';
 import 'package:click_release/theme/app_theme.dart';
 import 'package:click_release/widgets/public_widgets/appBar.dart';
@@ -16,7 +17,9 @@ import 'package:get/get.dart';
 
 class SelectedProviderScreen extends StatelessWidget {
   final ProviderModel? provider;
-  const SelectedProviderScreen({super.key, this.provider});
+  SelectedProviderScreen({super.key, this.provider});
+
+  final ProviderCalculations providerCalculations = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -244,7 +247,7 @@ class SelectedProviderScreen extends StatelessWidget {
                           style: Get.textTheme.labelMedium!
                               .copyWith(fontWeight: FontWeight.bold),
                           text:
-                              "${controller.providerController.calculateDistance(provider!.location.y, provider!.location.x).toStringAsFixed(2)} away"),
+                              "${providerCalculations.calculateDistance(provider!.location.y, provider!.location.x).toStringAsFixed(2)} away"),
                     ])),
               )
             ],

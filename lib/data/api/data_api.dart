@@ -1,4 +1,3 @@
-import 'package:click_release/controllers/location_controller.dart';
 import 'package:click_release/data/appconfig.dart';
 import 'package:get/get.dart';
 
@@ -9,7 +8,6 @@ class DataApiHandler extends GetConnect implements GetxService {
     maxAuthRetries = 50;
   }
 
-  final LocationController _locationController = Get.find();
   Future<Response> getAllCategories(url) async {
     try {
       Response response = await get(
@@ -41,7 +39,6 @@ class DataApiHandler extends GetConnect implements GetxService {
   Future<Response> getProviders(url) async {
     try {
       print(url);
-      print(_locationController.pickedLocation.latitude.toString());
       Response response =
           await post(url, {"latitude": 40.7095, "longitude": -74.0025});
 

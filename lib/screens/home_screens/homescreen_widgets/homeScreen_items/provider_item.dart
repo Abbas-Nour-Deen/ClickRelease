@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:click_release/controllers/provider_calculation_controller.dart';
 import 'package:click_release/controllers/provider_controller.dart';
 import 'package:click_release/models/provider_model.dart';
 import 'package:click_release/screens/provider_screens/selectedProvider_screen.dart';
@@ -19,6 +20,9 @@ class ProviderItem extends StatelessWidget {
       {super.key, this.width, required this.margin, required this.provider});
 
   final ProviderController _providerController = Get.find();
+
+  final ProviderCalculations providerCalculations = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -113,7 +117,7 @@ class ProviderItem extends StatelessWidget {
                     width: 2,
                   ),
                   Text(
-                    "${_providerController.calculateDistance(provider.location.y, provider.location.x).toStringAsFixed(2)} away",
+                    "${providerCalculations.calculateDistance(provider.location.y, provider.location.x).toStringAsFixed(2)} away",
                     style: Get.textTheme.labelSmall!,
                   ),
                 ],

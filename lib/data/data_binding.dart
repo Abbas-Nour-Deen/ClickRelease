@@ -4,6 +4,7 @@ import 'package:click_release/controllers/location_controller.dart';
 import 'package:click_release/controllers/login_controller.dart';
 import 'package:click_release/controllers/nabar_controller.dart';
 import 'package:click_release/controllers/onBoarding_controller.dart';
+import 'package:click_release/controllers/provider_calculation_controller.dart';
 import 'package:click_release/controllers/provider_controller.dart';
 import 'package:click_release/controllers/search_controller.dart';
 import 'package:click_release/controllers/service_byID_controller.dart';
@@ -35,6 +36,7 @@ class AppBindings extends Bindings {
 
     Get.lazyPut(() => OOnBoardingController(), fenix: true);
 
+    Get.lazyPut(() => ProviderCalculations(), fenix: true);
     // Get.lazyPut(
     //   () => ReviewsController(dataRepo: Get.find()),
     // );
