@@ -1,5 +1,5 @@
 import 'package:click_release/controllers/search_controller.dart';
-import 'package:click_release/screens/home_screens/filterBy_screen.dart';
+import 'package:click_release/screens/search_screen/filterBy_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -34,7 +34,7 @@ class CustomeSearchBar extends StatelessWidget {
             SvgPicture.asset("assets/icons/lightheme_icons/search_light.svg"),
         trailing: [
           InkWell(
-              onTap: () => Get.to(() => const FilterByScreen()),
+              onTap: () => Get.to(() => FilterByScreen()),
               child: SvgPicture.asset(
                   "assets/icons/lightheme_icons/filter_icon.svg"))
         ],

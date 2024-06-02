@@ -60,7 +60,7 @@ class CustomeInput extends StatelessWidget {
                     hintText: hint ?? "",
                     hintStyle: const TextStyle(
                       fontSize: 16,
-                      fontWeight: FontWeight.normal,
+                      fontWeight: FontWeight.bold,
                       color: Colors.grey,
                     ),
                     border: InputBorder.none,

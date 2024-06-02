@@ -1,7 +1,6 @@
 import 'package:click_release/controllers/location_controller.dart';
 import 'package:click_release/controllers/nabar_controller.dart';
 import 'package:click_release/screens/home_screens/homescreen_widgets/categories_widget.dart';
-import 'package:click_release/screens/home_screens/homescreen_widgets/customeSearch_bar.dart';
 import 'package:click_release/screens/home_screens/homescreen_widgets/imageslidShow.dart';
 import 'package:click_release/screens/home_screens/homescreen_widgets/recomenderForYou_widget.dart';
 import 'package:click_release/screens/home_screens/homescreen_widgets/searchShape.dart';

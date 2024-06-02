@@ -12,7 +12,8 @@ import '../controllers/nabar_controller.dart';
 
 class CustomNavBar extends StatelessWidget {
   CustomNavBar({super.key});
-  NavBarController navController = Get.find();
+  NavBarController navController =
+      Get.put(NavBarController(), permanent: false);
 
   @override
   Widget build(BuildContext context) {

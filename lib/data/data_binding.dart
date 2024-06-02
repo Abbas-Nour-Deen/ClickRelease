@@ -8,6 +8,7 @@ import 'package:click_release/controllers/provider_calculation_controller.dart';
 import 'package:click_release/controllers/provider_controller.dart';
 import 'package:click_release/controllers/search_controller.dart';
 import 'package:click_release/controllers/service_byID_controller.dart';
+import 'package:click_release/controllers/zones_controller.dart';
 import 'package:click_release/data/api/data_api.dart';
 import 'package:click_release/data/repo/data_repo.dart';
 import 'package:get/get.dart';
@@ -32,13 +33,13 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => ServiceByIDController(dataRepo: Get.find()));
 
     Get.lazyPut(() => SearchProviderController(dataRepo: Get.find()));
-    Get.lazyPut(() => NavBarController());
 
     Get.lazyPut(() => OOnBoardingController(), fenix: true);
 
     Get.lazyPut(() => ProviderCalculations(), fenix: true);
-    // Get.lazyPut(
-    //   () => ReviewsController(dataRepo: Get.find()),
-    // );
+
+    Get.lazyPut(
+      () => ZonesController(dataRepo: Get.find()),
+    );
   }
 }

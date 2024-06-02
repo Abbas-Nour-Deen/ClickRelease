@@ -1,12 +1,19 @@
+import 'package:click_release/controllers/search_controller.dart';
 import 'package:click_release/theme/constant_designs.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CustomeDropDownWidget extends StatelessWidget {
+class CustomeDropDownWidget<T> extends StatelessWidget {
   final String title;
-  final List<String> categories;
-  const CustomeDropDownWidget(
-      {Key? key, required this.title, required this.categories})
+  List<DropdownMenuItem<T>> items;
+  final Function(T) onChanged;
+  T value;
+  CustomeDropDownWidget(
+      {Key? key,
+      required this.title,
+      required this.items,
+      required this.value,
+      required this.onChanged})
       : super(key: key);
 
   @override
@@ -25,7 +32,7 @@ class CustomeDropDownWidget extends StatelessWidget {
           ),
           Container(
             decoration: customContainerDecoration(),
-            child: DropdownButton<String>(
+            child: DropdownButton<T>(
               elevation: 2,
               padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
               underline: Container(),
@@ -35,28 +42,31 @@ class CustomeDropDownWidget extends StatelessWidget {
                 'Select',
                 style: Get.textTheme.bodyMedium,
               ),
-              value: null,
-              items: categories
-                  .map((e) => DropdownMenuItem<String>(
-                        value: e,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              e,
-                              style: Get.textTheme.bodyMedium,
-                            ),
-                            const Divider(
-                              color: Colors.white,
-                              thickness: 1,
-                            )
-                          ],
-                        ),
-                      ))
-                  .toList(),
+              value: value,
+              items: items,
+
+              //  categories
+              //     .map((e) => DropdownMenuItem<String>(
+              //           value: e,
+              //           child: Column(
+              //             crossAxisAlignment: CrossAxisAlignment.start,
+              //             mainAxisAlignment: MainAxisAlignment.center,
+              //             children: [
+              //               Text(
+              //                 e,
+              //                 style: Get.textTheme.bodyMedium,
+              //               ),
+              //               const Divider(
+              //                 color: Colors.white,
+              //                 thickness: 1,
+              //               )
+              //             ],
+              //           ),
+              //         ))
+              //     .toList(),
               onChanged: (value) {
                 // Handle dropdown value change here
+                onChanged(value as T);
               },
             ),
           )
