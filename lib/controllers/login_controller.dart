@@ -1,11 +1,13 @@
 import 'package:click_release/data/repo/data_repo.dart';
 import 'package:click_release/models/gender_model.dart';
+import 'package:click_release/models/user_model.dart';
 import 'package:click_release/screens/regestration_Screens/createAccount_screen.dart';
 import 'package:click_release/screens/regestration_Screens/otp_screen.dart';
 import 'package:click_release/widgets/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:get_storage/get_storage.dart';
 
 class LoginController extends GetxController with StateMixin {
   final DataRepo dataRepo;
@@ -30,6 +32,12 @@ class LoginController extends GetxController with StateMixin {
   ];
 
   GenderModel? selectedGender;
+
+  GetStorage storage = GetStorage();
+
+  late String userToken;
+  late UserModel currentUser;
+  bool isUserLogedin = false;
 
   Future<void> sendOTP() async {
     try {
@@ -69,6 +77,18 @@ class LoginController extends GetxController with StateMixin {
             'OTP verified successfully, User does not exist') {
           Get.to(CreateAccountScreen());
         } else if (response.body['message'] == 'User already exists') {
+          final data = response.body;
+          final userData = data['data'];
+          final userList = userData['User'];
+
+          currentUser = UserModel.fromJson(userList[0]);
+
+          userToken = userData['token'];
+          storage.write("token", userToken);
+          storage.write("isLogedin", true);
+
+          print(
+              "currentUser ${currentUser.firstName},  ${currentUser.lastName}");
           Get.showSnackbar(const GetSnackBar(
             message: "Welcome Back!",
             duration: Duration(seconds: 3),
@@ -96,11 +116,15 @@ class LoginController extends GetxController with StateMixin {
           firstName: firstNameController.text,
           lastName: lastNameController.text,
           phoneNumber: enteredNumber.phoneNumber,
-          profilePhoto: null,
           sex: selectedGender!.code,
           userName: userNameController.text);
 
       if (response.statusCode == 200) {
+        userToken = response.body['token'];
+        storage.write("token", userToken);
+        storage.write("isLogedin", true);
+
+        // Get.to(CustomNavBar());
         print("new user response  ${response.body}");
       } else {
         print(response.statusCode);
@@ -108,5 +132,21 @@ class LoginController extends GetxController with StateMixin {
     } catch (e) {
       print(e.toString());
     }
+  }
+
+  Future<void> loadKeys() async {
+    isUserLogedin = storage.read("isLogedin") ?? false;
+    userToken = storage.read("token") ?? "";
+
+    print("user loged in ${isUserLogedin}");
+
+    print("loaded user token ${userToken}");
+  }
+
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    loadKeys();
   }
 }

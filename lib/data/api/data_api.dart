@@ -108,24 +108,23 @@ class DataApiHandler extends GetConnect implements GetxService {
     }
   }
 
-  Future<Response> createNewUser(
-      {url,
-      firstName,
-      lastName,
-      userName,
-      sex,
-      phoneNumber,
-      profilePhoto}) async {
+  Future<Response> createNewUser({
+    url,
+    firstName,
+    lastName,
+    userName,
+    sex,
+    phoneNumber,
+  }) async {
     try {
+      print(
+          "firstname ${firstName}, last name ${lastName}, username ${userName}, sex ${sex}, phone ${phoneNumber}");
       Response response = await post(url, {
         "FirstName": firstName,
-        "MiddleName": "",
         "LastName": lastName,
         "clientUsername": userName,
         "sex": sex,
         "clientPhone": phoneNumber,
-        "profilePhoto": null,
-        "Location": null
       });
 
       print("recieved create user response ${response.body}");

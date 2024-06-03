@@ -16,12 +16,8 @@ import 'package:get/get.dart';
 class AppBindings extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => LoginController(dataRepo: Get.find()));
-
-    Get.lazyPut(() => LocationController(), fenix: true);
-
-    Get.lazyPut(() => DataApiHandler());
-    Get.lazyPut(() => DataRepo(dataApiHandler: Get.find()));
+    // Get.lazyPut(() => DataApiHandler());
+    // Get.lazyPut(() => DataRepo(dataApiHandler: Get.find()));
     Get.lazyPut(() => CategoryControler(dataRepo: Get.find()));
     Get.lazyPut(() => AllServicesController(dataRepo: Get.find()));
     Get.lazyPut(

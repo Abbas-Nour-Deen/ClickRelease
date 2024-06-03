@@ -60,6 +60,7 @@ dependencies:
   shimmer: ^3.0.0
   dropdown_button2: ^2.3.9
   image_picker: ^1.1.1
+  another_flutter_splash_screen: ^1.2.0
 
   
  

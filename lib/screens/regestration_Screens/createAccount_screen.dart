@@ -22,7 +22,7 @@ class CreateAccountScreen extends StatelessWidget {
         height: 45,
         text: "Click",
         width: Get.width * 0.8,
-        ontap: () => Get.to(CustomNavBar()),
+        ontap: () => loginController.createNewUser(),
         margin: const EdgeInsets.only(top: 30),
       ),
       resizeToAvoidBottomInset: true,
@@ -80,7 +80,7 @@ class CreateAccountScreen extends StatelessWidget {
             title: "Last name",
           ),
           CustomeInput(
-            textcontroller: TextEditingController(),
+            textcontroller: loginController.userNameController,
             hint: "Enter your user name",
             type: "text",
             title: "User Name",

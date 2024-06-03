@@ -73,7 +73,6 @@ class DataRepo extends GetxService {
         firstName: firstName,
         lastName: lastName,
         phoneNumber: phoneNumber,
-        profilePhoto: profilePhoto,
         sex: sex,
         userName: userName);
   }

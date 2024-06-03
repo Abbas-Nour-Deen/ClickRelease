@@ -52,7 +52,6 @@ class CustomeInput extends StatelessWidget {
                       onChanged!(text);
                     }
                   },
-                  // obscureText: loginController.isPasswordVisible.value,
                   style: TextStyle(
                       color: Get.isDarkMode ? Colors.white : Colors.black),
                   controller: textcontroller,
@@ -64,21 +63,6 @@ class CustomeInput extends StatelessWidget {
                       color: Colors.grey,
                     ),
                     border: InputBorder.none,
-                    // suffixIcon: IconButton(
-                    //   icon: Icon(
-                    //     loginController.isPasswordVisible.value
-                    //         ? Icons.visibility_outlined
-                    //         : Icons.visibility_off_outlined,
-                    //     color: Get.isDarkMode
-                    //         ? Colors.black
-                    //         : Get.textTheme.titleSmall!.color!.withOpacity(0.4),
-                    //   ),
-                    //   onPressed: () {
-
-                    //   },
-                    //   // onPressed: () =>
-                    //   //     loginController.togglePasswordVisibility(),
-                    // ),
                   ),
                 )))
             : Container(

@@ -1,11 +1,7 @@
-import 'package:click_release/controllers/login_controller.dart';
 import 'package:click_release/controllers/theme_controller.dart';
-import 'package:click_release/data/api/data_api.dart';
 import 'package:click_release/data/data_binding.dart';
-import 'package:click_release/data/repo/data_repo.dart';
-import 'package:click_release/screens/regestration_Screens/createAccount_screen.dart';
 import 'package:click_release/screens/regestration_Screens/entry_screen.dart';
-import 'package:click_release/widgets/nav_bar.dart';
+import 'package:click_release/screens/regestration_Screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -22,8 +18,6 @@ class MyApp extends StatelessWidget {
   final ThemeController _themeController =
       Get.put(ThemeController(), permanent: true);
 
-  final LoginController loginController = Get.put(LoginController(
-      dataRepo: Get.put(DataRepo(dataApiHandler: Get.put(DataApiHandler())))));
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -38,7 +32,7 @@ class MyApp extends StatelessWidget {
       darkTheme: _themeController.theme,
       themeMode: Get.isDarkMode ? ThemeMode.dark : ThemeMode.light,
       initialBinding: AppBindings(),
-      home: CreateAccountScreen(),
+      home: SplashScreen(),
     );
   }
 }

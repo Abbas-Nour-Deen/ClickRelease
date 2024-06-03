@@ -17,6 +17,9 @@ class HomeScreen extends StatelessWidget {
   final NavBarController _navController = Get.find();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
+  final LocationController locationController =
+      Get.put(LocationController(), permanent: true);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,10 +53,7 @@ class HomeScreen extends StatelessWidget {
 
   AppBar appBar(context) {
     return AppBar(
-      title: Image.asset(
-        'assets/images/clickLogo.png',
-        fit: BoxFit.cover,
-      ),
+      title: Image.asset('assets/images/clickLogo.png', height: 80),
       centerTitle: true,
       leading: IconButton(
         icon: const Icon(
