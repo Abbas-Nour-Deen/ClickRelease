@@ -1,6 +1,5 @@
 import 'package:click_release/controllers/theme_controller.dart';
 import 'package:click_release/data/data_binding.dart';
-import 'package:click_release/screens/regestration_Screens/entry_screen.dart';
 import 'package:click_release/screens/regestration_Screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

@@ -1,4 +1,5 @@
 class UserModel {
+  String userID;
   String firstName;
   String middleName;
   String lastName;
@@ -9,6 +10,7 @@ class UserModel {
   dynamic location;
 
   UserModel({
+    required this.userID,
     required this.firstName,
     required this.middleName,
     required this.lastName,
@@ -21,6 +23,7 @@ class UserModel {
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
+      userID: json['clientId'],
       firstName: json['FirstName'] ?? "",
       middleName: json['MiddleName'] ?? "",
       lastName: json['LastName'] ?? "",

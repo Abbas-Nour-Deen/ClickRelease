@@ -17,7 +17,9 @@ class CustomeSearchBar extends StatelessWidget {
       child: SearchBar(
         controller: searchController.searchTextController,
         onSubmitted: (value) {
-          searchController.getProvidersBySearch(keyWord: value);
+          if (value.isNotEmpty) {
+            searchController.getProvidersBySearch(keyWord: value);
+          }
         },
         elevation: const MaterialStatePropertyAll(0),
         backgroundColor: MaterialStatePropertyAll(

@@ -47,15 +47,6 @@ class DataRepo extends GetxService {
         .getCurrentProviderReviews("api/providerByTop/top");
   }
 
-  Future<Response> sendOtp(phoneNumber) async {
-    return await dataApiHandler.sendOTP("api/send-otp", phoneNumber);
-  }
-
-  Future<Response> validateOTP(otp, otpID, phoneNumber) async {
-    return await dataApiHandler.validateOTP(
-        "api/verify-otp", otp, otpID, phoneNumber);
-  }
-
   Future<Response> getZones() async {
     return await dataApiHandler.getAllServices("api/zone");
   }
@@ -64,16 +55,5 @@ class DataRepo extends GetxService {
       {serviceId, zoneId, rate, categoryID}) async {
     return await dataApiHandler.getdataByFilter(
         "api/provider/filter", serviceId, zoneId, rate, categoryID);
-  }
-
-  Future<Response> createNewUser(
-      {firstName, lastName, userName, sex, phoneNumber, profilePhoto}) async {
-    return await dataApiHandler.createNewUser(
-        url: "api/client",
-        firstName: firstName,
-        lastName: lastName,
-        phoneNumber: phoneNumber,
-        sex: sex,
-        userName: userName);
   }
 }

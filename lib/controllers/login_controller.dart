@@ -1,4 +1,5 @@
-import 'package:click_release/data/repo/data_repo.dart';
+import 'dart:convert';
+import 'package:click_release/data/repo/login_repo.dart';
 import 'package:click_release/models/gender_model.dart';
 import 'package:click_release/models/user_model.dart';
 import 'package:click_release/screens/regestration_Screens/createAccount_screen.dart';
@@ -10,9 +11,9 @@ import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:get_storage/get_storage.dart';
 
 class LoginController extends GetxController with StateMixin {
-  final DataRepo dataRepo;
+  final LoginRepo loginRepo;
 
-  LoginController({required this.dataRepo});
+  LoginController({required this.loginRepo});
 
   final TextEditingController phoneController = TextEditingController();
 
@@ -38,13 +39,17 @@ class LoginController extends GetxController with StateMixin {
   late String userToken;
   late UserModel currentUser;
   bool isUserLogedin = false;
+  late String? currentUserID;
+
+  bool isTokenLoading = false;
 
   Future<void> sendOTP() async {
     try {
       if (isPhoneNumberValid) {
         change(null, status: RxStatus.loading());
         Get.to(OtpScreen());
-        final response = await dataRepo.sendOtp("${enteredNumber.phoneNumber}");
+        final response =
+            await loginRepo.sendOtp("${enteredNumber.phoneNumber}");
         if (response.statusCode == 200) {
           change(null, status: RxStatus.success());
           otpID = response.body['data']["otp_id"];
@@ -67,7 +72,7 @@ class LoginController extends GetxController with StateMixin {
     try {
       change(null, status: RxStatus.loading());
       final response =
-          await dataRepo.validateOTP(otp, otpID, enteredNumber.phoneNumber);
+          await loginRepo.validateOTP(otp, otpID, enteredNumber.phoneNumber);
       print("recieved otp response  ${response.body}");
 
       if (response.statusCode == 200) {
@@ -86,6 +91,7 @@ class LoginController extends GetxController with StateMixin {
           userToken = userData['token'];
           storage.write("token", userToken);
           storage.write("isLogedin", true);
+          storage.write("userID", currentUser.userID);
 
           print(
               "currentUser ${currentUser.firstName},  ${currentUser.lastName}");
@@ -112,7 +118,7 @@ class LoginController extends GetxController with StateMixin {
 
   Future<void> createNewUser() async {
     try {
-      final response = await dataRepo.createNewUser(
+      final response = await loginRepo.createNewUser(
           firstName: firstNameController.text,
           lastName: lastNameController.text,
           phoneNumber: enteredNumber.phoneNumber,
@@ -120,12 +126,20 @@ class LoginController extends GetxController with StateMixin {
           userName: userNameController.text);
 
       if (response.statusCode == 200) {
+        final data = response.body;
+        final userList = data['User'];
+
+        currentUser = UserModel.fromJson(userList[0]);
+
         userToken = response.body['token'];
         storage.write("token", userToken);
         storage.write("isLogedin", true);
+        storage.write("userID", currentUser.userID);
 
-        // Get.to(CustomNavBar());
+        Get.to(CustomNavBar());
         print("new user response  ${response.body}");
+        print("new user token  ${userToken}");
+        print("new user id  ${currentUser.userID}");
       } else {
         print(response.statusCode);
       }
@@ -136,11 +150,39 @@ class LoginController extends GetxController with StateMixin {
 
   Future<void> loadKeys() async {
     isUserLogedin = storage.read("isLogedin") ?? false;
-    userToken = storage.read("token") ?? "";
 
-    print("user loged in ${isUserLogedin}");
+    if (isUserLogedin) {
+      print("user already logedin, calling get user by id");
+      currentUserID = storage.read("userID") ?? "";
+    }
 
-    print("loaded user token ${userToken}");
+    print("loaded user token ${jsonEncode(userToken)}");
+    print("loaded user id ${currentUserID}");
+  }
+
+  Future<void> getUserByID() async {
+    if (currentUserID != null) {
+      isTokenLoading = true;
+      try {
+        final response = await loginRepo.getUserByID(userID: currentUserID!);
+        final data = response.body;
+
+        if (response.statusCode == 200 && data['message'] == 'User fetched') {
+          userToken = data['token'];
+
+          final userList = data['User'];
+
+          currentUser = UserModel.fromJson(userList[0]);
+          storage.write("token", userToken);
+          storage.write("userID", currentUser.userID);
+
+          isTokenLoading = false;
+          update();
+        }
+      } catch (e) {
+        throw Exception(e);
+      }
+    }
   }
 
   @override

@@ -1,4 +1,4 @@
-import 'package:click_release/controllers/search_controller.dart';
+import 'package:click_release/controllers/filtration_controller.dart';
 import 'package:click_release/models/category_model.dart';
 import 'package:click_release/models/service_model.dart';
 import 'package:click_release/models/zone_model.dart';
@@ -8,6 +8,7 @@ import 'package:click_release/widgets/public_widgets/appBar.dart';
 import 'package:click_release/widgets/public_widgets/customeButtomSheet.dart';
 import 'package:click_release/widgets/public_widgets/custome_btn.dart';
 import 'package:click_release/widgets/filterByWidgets/customeDropDown_widget.dart';
+import 'package:click_release/widgets/public_widgets/customedivider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -15,8 +16,8 @@ import 'package:get/get.dart';
 class FilterByScreen extends StatelessWidget {
   FilterByScreen({super.key});
 
-  final SearchProviderController searchController = Get.find();
-
+  final FiltrationController filtrationController =
+      Get.put(FiltrationController(dataRepo: Get.find()));
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,25 +25,21 @@ class FilterByScreen extends StatelessWidget {
       appBar: CustomeAppBar(title: "Filter By"),
       body: Padding(
         padding: const EdgeInsets.all(15),
-        child: GetBuilder<SearchProviderController>(
+        child: GetBuilder<FiltrationController>(
           id: "DropDowns",
-          dispose: (state) => searchController.clearFiltrationData(),
-          initState: (state) {
-            searchController.searchProviders.clear();
-            searchController.searchTextController.clear();
-          },
+          dispose: (state) => filtrationController.clearFiltrationData(),
           builder: (controller) => SingleChildScrollView(
             child: Column(
               children: [
                 CustomeDropDownWidget(
-                  value: searchController.selectedCategoryForFilter,
+                  value: filtrationController.selectedCategoryForFilter,
                   onChanged: (p0) {
                     print(p0!.nameEn);
-                    searchController.selectedCategoryForFilter = p0;
-                    searchController.selectedServiceForFilter = null;
-                    searchController.update(["DropDowns"]);
+                    filtrationController.selectedCategoryForFilter = p0;
+                    filtrationController.selectedServiceForFilter = null;
+                    filtrationController.update(["DropDowns"]);
                   },
-                  items: searchController.categoryControler.allCategories
+                  items: filtrationController.categoryControler.allCategories
                       .map((e) => DropdownMenuItem<CategoryModel>(
                             value: e,
                             child: Column(
@@ -64,20 +61,21 @@ class FilterByScreen extends StatelessWidget {
                   title: "Category",
                 ),
                 Visibility(
-                  visible: searchController.selectedCategoryForFilter == null
-                      ? false
-                      : true,
+                  visible:
+                      filtrationController.selectedCategoryForFilter == null
+                          ? false
+                          : true,
                   child: CustomeDropDownWidget(
-                    value: searchController.selectedServiceForFilter,
+                    value: filtrationController.selectedServiceForFilter,
                     onChanged: (p0) {
                       print(p0!.nameEn);
-                      searchController.selectedServiceForFilter = p0;
-                      searchController.update(["DropDowns"]);
+                      filtrationController.selectedServiceForFilter = p0;
+                      filtrationController.update(["DropDowns"]);
                     },
-                    items: searchController.servicesController.allServices
+                    items: filtrationController.servicesController.allServices
                         .where((element) =>
                             element.catId ==
-                            searchController
+                            filtrationController
                                 .selectedCategoryForFilter?.categoryID)
                         .map((e) => DropdownMenuItem<ServiceModel>(
                               value: e,
@@ -101,13 +99,13 @@ class FilterByScreen extends StatelessWidget {
                   ),
                 ),
                 CustomeDropDownWidget(
-                  value: searchController.selectedZoneForFilter,
+                  value: filtrationController.selectedZoneForFilter,
                   onChanged: (p0) {
                     print(p0!.nameEng);
-                    searchController.selectedZoneForFilter = p0;
-                    searchController.update(["DropDowns"]);
+                    filtrationController.selectedZoneForFilter = p0;
+                    filtrationController.update(["DropDowns"]);
                   },
-                  items: searchController.zoneController.zones
+                  items: filtrationController.zoneController.zones
                       .map((e) => DropdownMenuItem<ZoneModel>(
                             value: e,
                             child: Column(
@@ -139,16 +137,50 @@ class FilterByScreen extends StatelessWidget {
   }
 
   Widget filtrationResult() {
-    return Container(
-      margin: const EdgeInsets.only(top: 15),
-      child: searchController.obx((state) => ListView.builder(
-            shrinkWrap: true,
-            itemCount: searchController.searchProviders.length,
-            itemBuilder: (context, index) => ProviderItem(
-                margin: const EdgeInsets.only(bottom: 10),
-                provider: searchController.searchProviders[index]),
-          )),
-    );
+    return Obx(() => filtrationController.isFilterLoading.value
+        ? filtrationController.obx(
+            (state) => Container(
+              margin: const EdgeInsets.only(top: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const CustomeDivider(
+                    height: 0.7,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    "${filtrationController.filterProviders.length} results found",
+                    style: Get.textTheme.labelSmall!.copyWith(fontSize: 11),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 50),
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: filtrationController.filterProviders.length,
+                      itemBuilder: (context, index) => ProviderItem(
+                          margin: const EdgeInsets.only(bottom: 10),
+                          provider:
+                              filtrationController.filterProviders[index]),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            onEmpty: const Center(
+              child: Text("No results found"),
+            ),
+            onLoading: const Center(
+              child: CircularProgressIndicator.adaptive(),
+            ),
+            onError: (error) => Text(error.toString()),
+          )
+        : const SizedBox.shrink());
   }
 
   Widget bottomSheet() {
@@ -169,7 +201,7 @@ class FilterByScreen extends StatelessWidget {
         Expanded(
           child: CustomeButton(
             ontap: () {
-              searchController.onFilterSubmittied();
+              filtrationController.onFilterSubmittied();
             },
             text: "Click",
           ),
@@ -205,8 +237,8 @@ class FilterByScreen extends StatelessWidget {
                   'Select',
                   style: Get.textTheme.bodyMedium,
                 ),
-                value: searchController.selectedCategoryForFilter,
-                items: searchController.categoryControler.allCategories
+                value: filtrationController.selectedCategoryForFilter,
+                items: filtrationController.categoryControler.allCategories
                     .map((e) => DropdownMenuItem<CategoryModel>(
                           value: e,
                           child: Column(
@@ -226,8 +258,8 @@ class FilterByScreen extends StatelessWidget {
                         ))
                     .toList(),
                 onChanged: (value) {
-                  searchController.selectedCategoryForFilter = value;
-                  searchController.update(["DropDowns"]);
+                  filtrationController.selectedCategoryForFilter = value;
+                  filtrationController.update(["DropDowns"]);
                 },
               ),
             ),
@@ -264,8 +296,8 @@ class FilterByScreen extends StatelessWidget {
                   'Select',
                   style: Get.textTheme.bodyMedium,
                 ),
-                value: searchController.selectedRateForFilter,
-                items: searchController.ratings
+                value: filtrationController.selectedRateForFilter,
+                items: filtrationController.ratings
                     .map((e) => DropdownMenuItem<int>(
                         value: e,
                         child: Column(
@@ -291,8 +323,8 @@ class FilterByScreen extends StatelessWidget {
                         )))
                     .toList(),
                 onChanged: (value) {
-                  searchController.selectedRateForFilter = value;
-                  searchController.update(["DropDowns"]);
+                  filtrationController.selectedRateForFilter = value;
+                  filtrationController.update(["DropDowns"]);
                 },
               ),
             ),

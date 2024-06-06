@@ -1,18 +1,26 @@
+import 'package:click_release/controllers/login_controller.dart';
 import 'package:click_release/data/appconfig.dart';
 import 'package:get/get.dart';
 
 class DataApiHandler extends GetConnect implements GetxService {
+  late Map<String, String> _mainHeaders;
+
+  final LoginController loginController = Get.find();
+
   DataApiHandler() {
     baseUrl = appBaseUrl;
     timeout = const Duration(seconds: 30);
     maxAuthRetries = 50;
+    _mainHeaders = {
+      'Authorization': '${loginController.userToken}',
+      'Content-Type': 'application/json',
+    };
   }
 
   Future<Response> getAllCategories(url) async {
     try {
-      Response response = await get(
-        url,
-      );
+      print("called with this token ${loginController.userToken}");
+      Response response = await get(url, headers: _mainHeaders);
 
       print("recieved categories ${response.body}");
       return response;
@@ -24,9 +32,7 @@ class DataApiHandler extends GetConnect implements GetxService {
 
   Future<Response> getAllServices(url) async {
     try {
-      Response response = await get(
-        url,
-      );
+      Response response = await get(url, headers: _mainHeaders);
 
       print("recieved data ${response.body}");
       return response;
@@ -39,8 +45,10 @@ class DataApiHandler extends GetConnect implements GetxService {
   Future<Response> getProviders(url) async {
     try {
       print(url);
-      Response response =
-          await post(url, {"latitude": 40.7095, "longitude": -74.0025});
+      Response response = await post(
+          url,
+          headers: _mainHeaders,
+          {"latitude": 40.7095, "longitude": -74.0025});
 
       print("recieved providers data ${response.statusCode}");
       return response;
@@ -52,36 +60,9 @@ class DataApiHandler extends GetConnect implements GetxService {
 
   Future<Response> getCurrentProviderReviews(url) async {
     try {
-      Response response = await get(
-        url,
-      );
+      Response response = await get(url, headers: _mainHeaders);
 
       print("recieved provider reviews ${response.statusCode}");
-      return response;
-    } catch (e) {
-      print(e);
-      return Response(statusCode: 1, statusText: e.toString());
-    }
-  }
-
-  Future<Response> sendOTP(url, phoneNumber) async {
-    try {
-      Response response = await post(url, {"clientPhone": phoneNumber});
-
-      print("recieved otp  ${response.statusCode}");
-      return response;
-    } catch (e) {
-      print(e);
-      return Response(statusCode: 1, statusText: e.toString());
-    }
-  }
-
-  Future<Response> validateOTP(url, otp, otpID, phoneNumber) async {
-    try {
-      Response response = await post(
-          url, {"otp_id": otpID, "otp_code": otp, "clientPhone": phoneNumber});
-
-      print("recieved otp status  ${response.body}");
       return response;
     } catch (e) {
       print(e);
@@ -93,7 +74,7 @@ class DataApiHandler extends GetConnect implements GetxService {
       url, serviceId, zoneId, rate, categoryID) async {
     try {
       print("service id : $serviceId, zoneID: $zoneId, categoryID:$categoryID");
-      Response response = await post(url, {
+      Response response = await post(url, headers: _mainHeaders, {
         "serviceId": serviceId,
         "zoneId": zoneId,
         "rate": 0,
@@ -101,33 +82,6 @@ class DataApiHandler extends GetConnect implements GetxService {
       });
 
       print("recieved filtered data  ${response.body}");
-      return response;
-    } catch (e) {
-      print(e);
-      return Response(statusCode: 1, statusText: e.toString());
-    }
-  }
-
-  Future<Response> createNewUser({
-    url,
-    firstName,
-    lastName,
-    userName,
-    sex,
-    phoneNumber,
-  }) async {
-    try {
-      print(
-          "firstname ${firstName}, last name ${lastName}, username ${userName}, sex ${sex}, phone ${phoneNumber}");
-      Response response = await post(url, {
-        "FirstName": firstName,
-        "LastName": lastName,
-        "clientUsername": userName,
-        "sex": sex,
-        "clientPhone": phoneNumber,
-      });
-
-      print("recieved create user response ${response.body}");
       return response;
     } catch (e) {
       print(e);

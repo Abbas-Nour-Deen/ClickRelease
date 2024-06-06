@@ -1,8 +1,10 @@
+import 'package:click_release/controllers/login_controller.dart';
 import 'package:click_release/screens/favorite_screen/favorite_screen.dart';
 import 'package:click_release/screens/home_screens/home_screen.dart';
 import 'package:click_release/screens/profile_screens/profile_screen.dart';
 import 'package:click_release/screens/search_screen/search_screen.dart';
 import 'package:click_release/theme/app_theme.dart';
+import 'package:click_release/widgets/loading_screen.dart';
 import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,43 +17,55 @@ class CustomNavBar extends StatelessWidget {
   NavBarController navController =
       Get.put(NavBarController(), permanent: false);
 
+  final LoginController loginController = Get.find();
+
   @override
   Widget build(BuildContext context) {
-    return PersistentTabView(
-      context,
-      controller: navController.tabController,
-      screens: _buildScreens(),
-      items: _navBarsItems(context),
-      confineInSafeArea: true,
-      decoration: NavBarDecoration(
-          border: Border(
-              top: BorderSide(
-        color:
-            Get.isDarkMode ? const Color(0xFF2A3139) : lightThemeDividerColor,
-      ))),
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      handleAndroidBackButtonPress: true,
-      resizeToAvoidBottomInset: true,
-      stateManagement: true,
-      hideNavigationBarWhenKeyboardShows: true,
-      popAllScreensOnTapOfSelectedTab: true,
-      popActionScreens: PopActionScreensType.all,
-      itemAnimationProperties: const ItemAnimationProperties(
-        duration: Duration(milliseconds: 200),
-        curve: Curves.ease,
-      ),
-      screenTransitionAnimation: const ScreenTransitionAnimation(
-        animateTabTransition: true,
-        curve: Curves.ease,
-        duration: Duration(milliseconds: 200),
-      ),
-      navBarStyle: NavBarStyle.style1,
-      navBarHeight: 63,
-    );
+    return GetBuilder<LoginController>(
+        initState: (state) => loginController.getUserByID(),
+        builder: (controller) => PersistentTabView(
+              context,
+              controller: navController.tabController,
+              screens: _buildScreens(),
+              items: _navBarsItems(context),
+              confineInSafeArea: true,
+              decoration: NavBarDecoration(
+                  border: Border(
+                      top: BorderSide(
+                color: Get.isDarkMode
+                    ? const Color(0xFF2A3139)
+                    : lightThemeDividerColor,
+              ))),
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+              handleAndroidBackButtonPress: true,
+              resizeToAvoidBottomInset: true,
+              stateManagement: true,
+              hideNavigationBarWhenKeyboardShows: true,
+              popAllScreensOnTapOfSelectedTab: true,
+              popActionScreens: PopActionScreensType.all,
+              itemAnimationProperties: const ItemAnimationProperties(
+                duration: Duration(milliseconds: 200),
+                curve: Curves.ease,
+              ),
+              screenTransitionAnimation: const ScreenTransitionAnimation(
+                animateTabTransition: true,
+                curve: Curves.ease,
+                duration: Duration(milliseconds: 200),
+              ),
+              navBarStyle: NavBarStyle.style1,
+              navBarHeight: 63,
+            ));
   }
 
   List<Widget> _buildScreens() {
-    return [HomeScreen(), SearchScreen(), FavoriteScreen(), ProfileScreen()];
+    return loginController.isTokenLoading
+        ? const [
+            LoadingScreen(),
+            LoadingScreen(),
+            LoadingScreen(),
+            LoadingScreen()
+          ]
+        : [HomeScreen(), SearchScreen(), FavoriteScreen(), ProfileScreen()];
   }
 
   List<PersistentBottomNavBarItem> _navBarsItems(context) {
