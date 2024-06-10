@@ -1,8 +1,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:click_release/controllers/providerInfo_controller.dart';
 import 'package:click_release/controllers/provider_calculation_controller.dart';
+import 'package:click_release/controllers/provider_controller.dart';
 import 'package:click_release/models/provider_model.dart';
 import 'package:click_release/theme/app_theme.dart';
+import 'package:click_release/widgets/point.dart';
 import 'package:click_release/widgets/public_widgets/appBar.dart';
 import 'package:click_release/widgets/public_widgets/customeButtomSheet.dart';
 import 'package:click_release/widgets/public_widgets/custome_btn.dart';
@@ -14,17 +16,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class SelectedProviderScreen extends StatelessWidget {
   final ProviderModel? provider;
   SelectedProviderScreen({super.key, this.provider});
 
   final ProviderCalculations providerCalculations = Get.find();
-
+  final ProviderController providerConteroller = Get.find();
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ProviderInfoController>(
-      init: ProviderInfoController(dataRepo: Get.find()),
+      initState: (state) => providerConteroller.providerInfoController
+          .fetchData(providerID: provider!.provid),
       builder: (controller) => Scaffold(
         bottomSheet: bottomSheet(providerInfoController: controller),
         appBar: CustomeAppBar(
@@ -181,11 +185,14 @@ class SelectedProviderScreen extends StatelessWidget {
       decoration: const BoxDecoration(
           border: Border(bottom: BorderSide(color: lightThemeDividerColor))),
       margin: const EdgeInsets.only(top: 10),
-      child: const Row(
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Expanded(
             child: CustomeButton(
+              ontap: () {
+                providerConteroller.likeProvider(provID: provider!.provid);
+              },
               height: 35,
               text: 'Like',
               icon: Icon(
@@ -275,7 +282,8 @@ class SelectedProviderScreen extends StatelessWidget {
                           style: Get.textTheme.labelSmall!.copyWith(
                             fontWeight: FontWeight.w600,
                           ),
-                          text: "08:30AM till 02:00PM - "),
+                          text:
+                              "${DateFormat('hh:mma').format(DateFormat('HH:mm:ss').parse(controller.currentProviderInfoModel.workingHR.first.start))} till ${DateFormat('hh:mma').format(DateFormat('HH:mm:ss').parse(controller.currentProviderInfoModel.workingHR.first.end))} - "),
                       TextSpan(
                           style: Get.textTheme.labelMedium!
                               .copyWith(fontWeight: FontWeight.bold),
@@ -324,7 +332,7 @@ class SelectedProviderScreen extends StatelessWidget {
                 child: SocialMediaButtom(
                   svgPath: "assets/icons/lightheme_icons/facebook_light.svg",
                   onTap: () {
-                    controller.providerController.launchUrls(
+                    providerConteroller.launchUrls(
                         url: provider!.facebook!,
                         type: "facebook",
                         inApp: false);
@@ -338,7 +346,7 @@ class SelectedProviderScreen extends StatelessWidget {
                         : true,
                 child: SocialMediaButtom(
                   onTap: () {
-                    controller.providerController.launchUrls(
+                    providerConteroller.launchUrls(
                         url: provider!.instagram!,
                         type: "instagram",
                         inApp: false);
@@ -352,7 +360,7 @@ class SelectedProviderScreen extends StatelessWidget {
                     : true,
                 child: SocialMediaButtom(
                   onTap: () {
-                    controller.providerController.launchUrls(
+                    providerConteroller.launchUrls(
                         url: provider!.linkedIn!,
                         type: "linkedin",
                         inApp: false);
@@ -366,7 +374,7 @@ class SelectedProviderScreen extends StatelessWidget {
                     : true,
                 child: SocialMediaButtom(
                   onTap: () {
-                    controller.providerController.launchUrls(
+                    providerConteroller.launchUrls(
                         url: provider!.website!, type: "website", inApp: false);
                   },
                   svgPath: "assets/icons/lightheme_icons/enternet_light.svg",
@@ -393,7 +401,14 @@ class SelectedProviderScreen extends StatelessWidget {
             options: [
               for (var info
                   in providerInfoController.currentProviderInfoModel.speciality)
-                info.serviceNameEng
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const CirclePoint(),
+                    const SizedBox(width: 10),
+                    Text(info.serviceNameEng)
+                  ],
+                )
             ],
           ),
           CustomExpansionTile(
@@ -402,16 +417,38 @@ class SelectedProviderScreen extends StatelessWidget {
             options: [
               for (var info
                   in providerInfoController.currentProviderInfoModel.workingHR)
-                info.start
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10.0, vertical: 2),
+                  child: Row(
+                    children: [
+                      const CirclePoint(),
+                      const SizedBox(width: 10),
+                      AutoSizeText(
+                        info.day,
+                        style: Get.textTheme.bodyMedium,
+                        maxLines: 2,
+                      ),
+                      const Spacer(),
+                      AutoSizeText(
+                        '${DateFormat('hh:mma').format(DateFormat('HH:mm:ss').parse(info.start))} - ${DateFormat('hh:mma').format(DateFormat('HH:mm:ss').parse(info.end))}',
+                        style: Get.textTheme.labelSmall!.copyWith(
+                          fontWeight: FontWeight.w600,
+                        ),
+                        maxLines: 1,
+                      ),
+                    ],
+                  ),
+                ),
             ],
           ),
           CustomExpansionTile(
             icon: Icons.settings,
             title: "Certifications",
             options: [
-              for (var info in providerInfoController
-                  .currentProviderInfoModel.certification)
-                info.certificationName
+              // for (var info in providerInfoController
+              //     .currentProviderInfoModel.certification)
+              //   info.certificationName
             ],
           ),
         ],
@@ -430,7 +467,7 @@ class SelectedProviderScreen extends StatelessWidget {
               size: 22,
             ),
             ontap: () {
-              providerInfoController.providerController.launchUrls(
+              providerConteroller.launchUrls(
                   url: provider!.phoneNumber, inApp: false, type: "call");
             },
             text: "Click",

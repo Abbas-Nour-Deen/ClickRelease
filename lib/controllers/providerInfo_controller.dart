@@ -10,17 +10,16 @@ class ProviderInfoController extends GetxController with StateMixin {
 
   late ProviderInfoModel currentProviderInfoModel;
 
-  final ProviderController providerController = Get.find();
-
-  Future<void> fetchData({required String providerID}) async {
+  Future<ProviderInfoModel> fetchData({required String providerID}) async {
     change(null, status: RxStatus.loading());
 
     final response = await dataRepo.getCurrentProviderInfoData(id: providerID);
     if (response.statusCode == 200) {
       currentProviderInfoModel = ProviderInfoModel.fromJson(response.body);
       change(currentProviderInfoModel, status: RxStatus.success());
-
       print(currentProviderInfoModel);
+
+      return currentProviderInfoModel;
     } else {
       change(null, status: RxStatus.error());
 
@@ -28,9 +27,9 @@ class ProviderInfoController extends GetxController with StateMixin {
     }
   }
 
-  @override
-  void onInit() {
-    super.onInit();
-    fetchData(providerID: providerController.selectedProvider.provid);
-  }
+  // @override
+  // void onInit() {
+  //   super.onInit();
+  //   fetchData(providerID: providerController.selectedProvider.provid);
+  // }
 }

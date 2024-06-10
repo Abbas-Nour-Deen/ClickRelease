@@ -1,3 +1,5 @@
+import 'package:click_release/models/workingHours_model.dart';
+
 class ProviderModel {
   String provid;
   String firstName;
@@ -26,35 +28,38 @@ class ProviderModel {
   String categoryNameArb;
   String categoryNameEng;
   String categoryIcon;
+  List<WorkingHoursModel>? workingHR;
 
-  ProviderModel(
-      {required this.provid,
-      required this.education,
-      required this.firstName,
-      required this.lastName,
-      required this.providerUsername,
-      required this.phoneNumber,
-      this.profileImage,
-      required this.location,
-      required this.description,
-      this.facebook,
-      this.instagram,
-      this.indexs,
-      this.linkedIn,
-      this.website,
-      required this.sex,
-      required this.sexDesc,
-      required this.type,
-      required this.verified,
-      required this.locationCode,
-      this.locationEnglishName,
-      this.locationArabicName,
-      this.rate,
-      required this.serviceNameEng,
-      required this.serviceNameArb,
-      required this.categoryNameEng,
-      required this.categoryNameArb,
-      required this.categoryIcon});
+  ProviderModel({
+    required this.provid,
+    required this.education,
+    required this.firstName,
+    required this.lastName,
+    required this.providerUsername,
+    required this.phoneNumber,
+    this.profileImage,
+    required this.location,
+    required this.description,
+    this.facebook,
+    this.instagram,
+    this.indexs,
+    this.linkedIn,
+    this.website,
+    required this.sex,
+    required this.sexDesc,
+    required this.type,
+    required this.verified,
+    required this.locationCode,
+    this.locationEnglishName,
+    this.locationArabicName,
+    this.rate,
+    required this.serviceNameEng,
+    required this.serviceNameArb,
+    required this.categoryNameEng,
+    required this.categoryNameArb,
+    required this.categoryIcon,
+    this.workingHR,
+  });
 
   factory ProviderModel.fromJson(Map<String, dynamic> json) {
     return ProviderModel(

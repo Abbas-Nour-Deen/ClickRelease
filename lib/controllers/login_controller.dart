@@ -156,7 +156,6 @@ class LoginController extends GetxController with StateMixin {
       currentUserID = storage.read("userID") ?? "";
     }
 
-    print("loaded user token ${jsonEncode(userToken)}");
     print("loaded user id ${currentUserID}");
   }
 
@@ -164,6 +163,7 @@ class LoginController extends GetxController with StateMixin {
     if (currentUserID != null) {
       isTokenLoading = true;
       try {
+        print("current user id$currentUserID");
         final response = await loginRepo.getUserByID(userID: currentUserID!);
         final data = response.body;
 

@@ -1,3 +1,4 @@
+import 'package:click_release/controllers/liked_providers_controller.dart';
 import 'package:click_release/controllers/provider_controller.dart';
 import 'package:click_release/widgets/public_widgets/appBar.dart';
 import 'package:click_release/screens/home_screens/homescreen_widgets/homeScreen_items/provider_item.dart';
@@ -17,19 +18,21 @@ class FavoriteScreen extends StatelessWidget {
           padding: const EdgeInsets.all(10.0),
           child: Column(
             children: [
-              Expanded(
-                child: ListView.builder(
-                  itemCount: 5,
-                  itemBuilder: (context, index) {
-                    return SizedBox(
-                        height: 120,
-                        child: ProviderItem(
-                          provider: _providerController.selectedProvider,
-                          margin: const EdgeInsets.only(bottom: 10),
-                        ));
-                  },
-                ),
-              )
+              GetBuilder<LikedProvidersController>(
+                  init: LikedProvidersController(dataRepo: Get.find()),
+                  builder: (controller) => controller.obx((state) => Expanded(
+                        child: ListView.builder(
+                          itemCount: controller.likedProviders.length,
+                          itemBuilder: (context, index) {
+                            return SizedBox(
+                                height: 120,
+                                child: ProviderItem(
+                                  provider: controller.likedProviders[index],
+                                  margin: const EdgeInsets.only(bottom: 10),
+                                ));
+                          },
+                        ),
+                      )))
             ],
           ),
         ));

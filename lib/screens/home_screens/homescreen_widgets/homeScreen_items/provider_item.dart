@@ -11,6 +11,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class ProviderItem extends StatelessWidget {
   final double? width;
@@ -133,7 +134,7 @@ class ProviderItem extends StatelessWidget {
                     width: 2,
                   ),
                   Text(
-                    "02:30PM till 06:00PM",
+                    "${DateFormat('hh:mma').format(DateFormat('HH:mm:ss').parse(provider.workingHR!.first.start))} till ${DateFormat('hh:mma').format(DateFormat('HH:mm:ss').parse(provider.workingHR!.first.end))}",
                     style: Get.textTheme.labelSmall!,
                   ),
                 ],

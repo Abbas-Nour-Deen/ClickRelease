@@ -6,7 +6,7 @@ import 'package:click_release/widgets/point.dart';
 class CustomExpansionTile extends StatelessWidget {
   final String title;
   final IconData icon;
-  final List<String> options;
+  final List<Widget> options;
 
   CustomExpansionTile({
     Key? key,
@@ -49,27 +49,7 @@ class CustomExpansionTile extends StatelessWidget {
             return Container(
               margin: const EdgeInsets.only(top: 10),
               child: Column(
-                children: options
-                    .map(
-                      (option) => Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16.0, vertical: 2),
-                        child: Row(
-                          children: [
-                            const CirclePoint(),
-                            const SizedBox(width: 10),
-                            Expanded(
-                              child: AutoSizeText(
-                                option,
-                                style: Get.textTheme.bodyMedium,
-                                maxLines: 2,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    )
-                    .toList(),
+                children: options.toList(),
               ),
             );
           } else {

@@ -12,7 +12,7 @@ class DataApiHandler extends GetConnect implements GetxService {
     timeout = const Duration(seconds: 30);
     maxAuthRetries = 50;
     _mainHeaders = {
-      'Authorization': '${loginController.userToken}',
+      'Authorization': 'Bearer ${loginController.userToken}',
       'Content-Type': 'application/json',
     };
   }
@@ -62,7 +62,6 @@ class DataApiHandler extends GetConnect implements GetxService {
     try {
       Response response = await get(url, headers: _mainHeaders);
 
-      print("recieved provider reviews ${response.statusCode}");
       return response;
     } catch (e) {
       print(e);
@@ -85,6 +84,22 @@ class DataApiHandler extends GetConnect implements GetxService {
       return response;
     } catch (e) {
       print(e);
+      return Response(statusCode: 1, statusText: e.toString());
+    }
+  }
+
+  Future<Response> likeProvider(
+      {required url,
+      required provID,
+      required isFvorite,
+      required clientID}) async {
+    try {
+      Response response = await post(
+          url,
+          headers: _mainHeaders,
+          {"provID": provID, "favor": isFvorite, "clientId": clientID});
+      return response;
+    } catch (e) {
       return Response(statusCode: 1, statusText: e.toString());
     }
   }

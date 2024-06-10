@@ -56,4 +56,18 @@ class DataRepo extends GetxService {
     return await dataApiHandler.getdataByFilter(
         "api/provider/filter", serviceId, zoneId, rate, categoryID);
   }
+
+  Future<Response> getLikedProviders({required userID}) async {
+    return await dataApiHandler
+        .getCurrentProviderReviews("api/favorite/$userID");
+  }
+
+  Future<Response> likeProvider(
+      {required provID, required isFavorite, required clientID}) async {
+    return await dataApiHandler.likeProvider(
+        url: "api/favorite",
+        provID: provID,
+        isFvorite: isFavorite,
+        clientID: clientID);
+  }
 }

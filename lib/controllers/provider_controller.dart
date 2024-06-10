@@ -1,5 +1,9 @@
+import 'package:click_release/controllers/login_controller.dart';
+import 'package:click_release/controllers/providerInfo_controller.dart';
 import 'package:click_release/data/repo/data_repo.dart';
+import 'package:click_release/models/provider_info.dart';
 import 'package:click_release/models/provider_model.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -16,6 +20,11 @@ class ProviderController extends GetxController
 
   bool isTopProvidersLoading = false;
   bool isFirstLoading = true;
+
+  final LoginController loginController = Get.find();
+
+  final ProviderInfoController providerInfoController = Get.find();
+
   Future<void> getProviderByServiceID({required String serviceID}) async {
     try {
       change(currentProviders, status: RxStatus.loading());
@@ -58,6 +67,13 @@ class ProviderController extends GetxController
 
           topProviders.add(provider);
         });
+
+        for (var provider in topProviders) {
+          final ProviderInfoModel providerInfo = await providerInfoController
+              .fetchData(providerID: provider.provid);
+          provider.workingHR = providerInfo.workingHR;
+        }
+
         isTopProvidersLoading = false;
 
         print("top providers length ${topProviders.length}");
@@ -117,4 +133,21 @@ class ProviderController extends GetxController
       throw Exception(e);
     }
   }
+
+  Future<void> likeProvider({required provID}) async {
+    try {
+      final response = await dataRepo.likeProvider(
+          provID: provID,
+          isFavorite: true,
+          clientID: loginController.currentUserID);
+
+      print("like provider response ${response.statusCode}, ${response.body}");
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+// Widget getworkingTimeForProvider({provider}){
+
+// }
 }
