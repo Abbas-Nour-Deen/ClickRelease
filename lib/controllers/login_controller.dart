@@ -176,12 +176,33 @@ class LoginController extends GetxController with StateMixin {
           storage.write("token", userToken);
           storage.write("userID", currentUser.userID);
 
+          selectedGender =
+              genders.where((element) => element.code == currentUser.sex).first;
+
           isTokenLoading = false;
           update();
         }
       } catch (e) {
         throw Exception(e);
       }
+    }
+  }
+
+  Future<void> updateUser() async {
+    try {
+      final response = await loginRepo.updateUser(
+          profilePhoto: '',
+          phoneNumber: currentUser.clientPhone,
+          sex: selectedGender!.code,
+          userID: currentUser.userID,
+          userName: userNameController.text);
+
+      if (response.statusCode == 200) {
+      } else {
+        print(response.statusCode);
+      }
+    } catch (e) {
+      print(e.toString());
     }
   }
 

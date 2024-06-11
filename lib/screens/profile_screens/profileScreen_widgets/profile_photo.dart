@@ -17,7 +17,7 @@ class ProfilePhoto extends StatelessWidget {
           decoration: BoxDecoration(
               color: lightThemeDividerColor,
               borderRadius: BorderRadius.circular(100)),
-          child: imageUrl == null
+          child: imageUrl == null || imageUrl!.isEmpty
               ? ClipRRect(
                   borderRadius: BorderRadius.circular(0),
                   child: SvgPicture.asset(

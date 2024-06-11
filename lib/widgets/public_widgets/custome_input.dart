@@ -7,7 +7,7 @@ class CustomeInput extends StatelessWidget {
   final String? hint;
   final String? title;
   final Function(String)? onChanged;
-
+  final bool? enabled;
   final Color? color;
   final EdgeInsets? padding;
   final EdgeInsets? margin;
@@ -20,7 +20,8 @@ class CustomeInput extends StatelessWidget {
       this.title,
       this.color,
       this.padding,
-      this.margin});
+      this.margin,
+      this.enabled});
 
   @override
   Widget build(BuildContext context) {
@@ -77,6 +78,7 @@ class CustomeInput extends StatelessWidget {
                   borderRadius: BorderRadius.circular(3),
                 ),
                 child: TextField(
+                  enabled: enabled ?? true,
                   onChanged: (text) {
                     if (onChanged != null) {
                       onChanged!(text);

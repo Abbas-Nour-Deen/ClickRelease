@@ -1,4 +1,6 @@
+import 'package:click_release/controllers/login_controller.dart';
 import 'package:click_release/screens/profile_screens/contact_us.dart';
+import 'package:click_release/screens/profile_screens/editProfile_screen.dart';
 import 'package:click_release/widgets/public_widgets/appBar.dart';
 import 'package:click_release/widgets/public_widgets/customedivider.dart';
 import 'package:click_release/screens/profile_screens/profileScreen_widgets/profile_option_tile.dart';
@@ -7,7 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+  ProfileScreen({super.key});
+
+  final LoginController loginController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +44,7 @@ class ProfileScreen extends StatelessWidget {
             height: 13,
           ),
           Text(
-            "Abbas Nour Deen",
+            loginController.currentUser.clientUsername,
             style: Get.textTheme.titleMedium,
           )
         ],
@@ -53,7 +57,11 @@ class ProfileScreen extends StatelessWidget {
       children: [
         ProfileOptionTile(
           iconPath: "assets/icons/lightheme_icons/user_icon.svg",
-          onTap: () {},
+          onTap: () {
+            Get.to(EditProfileScreen(
+              loginController: loginController,
+            ));
+          },
           title: "My Profile",
         ),
         ProfileOptionTile(

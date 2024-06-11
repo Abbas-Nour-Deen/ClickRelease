@@ -26,6 +26,17 @@ class LoginRepo extends GetxService {
         userName: userName);
   }
 
+  Future<Response> updateUser(
+      {userName, sex, phoneNumber, profilePhoto, userID}) async {
+    return await loginApiHandler.updateUser(
+        profilePhoto: profilePhoto,
+        userID: userID,
+        url: "api/client",
+        phoneNumber: phoneNumber,
+        sex: sex,
+        userName: userName);
+  }
+
   Future<Response> getUserByID({required String userID}) async {
     return await loginApiHandler.getUserByID("api/client/$userID");
   }
