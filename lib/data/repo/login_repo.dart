@@ -1,5 +1,6 @@
 import 'package:click_release/data/api/login_api.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 
 class LoginRepo extends GetxService {
   final LoginApiHandler loginApiHandler;
@@ -26,12 +27,12 @@ class LoginRepo extends GetxService {
         userName: userName);
   }
 
-  Future<Response> updateUser(
+  Future<http.Response> updateUser(
       {userName, sex, phoneNumber, profilePhoto, userID}) async {
     return await loginApiHandler.updateUser(
         profilePhoto: profilePhoto,
         userID: userID,
-        url: "api/client",
+        url: "https://click-server-5.onrender.com/api/client",
         phoneNumber: phoneNumber,
         sex: sex,
         userName: userName);

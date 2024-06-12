@@ -1,11 +1,8 @@
 import 'package:click_release/controllers/login_controller.dart';
 import 'package:click_release/models/gender_model.dart';
-import 'package:click_release/theme/app_theme.dart';
 import 'package:click_release/theme/constant_designs.dart';
-import 'package:click_release/widgets/nav_bar.dart';
 import 'package:click_release/widgets/public_widgets/custome_btn.dart';
 import 'package:click_release/widgets/public_widgets/custome_input.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

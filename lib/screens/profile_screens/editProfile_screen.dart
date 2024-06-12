@@ -24,11 +24,21 @@ class EditProfileScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
-                margin: const EdgeInsets.symmetric(vertical: 20),
-                child: Center(
-                  child: ProfilePhoto(
-                    imageUrl: loginController.currentUser.profilePhoto,
+              GestureDetector(
+                onTap: () => loginController.pickAndUploadImage(),
+                child: Container(
+                  margin: const EdgeInsets.symmetric(vertical: 20),
+                  child: Center(
+                    child: GetBuilder<LoginController>(
+                      id: 'profilePhoto',
+                      dispose: (state) =>
+                          loginController.pickedProfilePhoto = null,
+                      builder: (controller) => ProfilePhoto(
+                        type: 'editable',
+                        imageUrl: loginController.currentUser.profilePhoto,
+                        pickedImage: loginController.pickedProfilePhoto,
+                      ),
+                    ),
                   ),
                 ),
               ),

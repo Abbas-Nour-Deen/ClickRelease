@@ -1,4 +1,5 @@
-import 'dart:convert';
+import 'dart:io';
+
 import 'package:click_release/data/repo/login_repo.dart';
 import 'package:click_release/models/gender_model.dart';
 import 'package:click_release/models/user_model.dart';
@@ -9,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:image_picker/image_picker.dart';
 
 class LoginController extends GetxController with StateMixin {
   final LoginRepo loginRepo;
@@ -39,23 +41,28 @@ class LoginController extends GetxController with StateMixin {
   late String userToken;
   late UserModel currentUser;
   bool isUserLogedin = false;
-  late String? currentUserID;
+  String? currentUserID;
 
   bool isTokenLoading = false;
+  bool optSent = false;
+  File? pickedProfilePhoto;
 
   Future<void> sendOTP() async {
     try {
       if (isPhoneNumberValid) {
         change(null, status: RxStatus.loading());
         Get.to(OtpScreen());
-        final response =
-            await loginRepo.sendOtp("${enteredNumber.phoneNumber}");
-        if (response.statusCode == 200) {
-          change(null, status: RxStatus.success());
-          otpID = response.body['data']["otp_id"];
-          print("recieved otp id  ${otpID}");
-        } else {
-          print(response.statusCode);
+        if (!optSent) {
+          final response =
+              await loginRepo.sendOtp("${enteredNumber.phoneNumber}");
+          if (response.statusCode == 200) {
+            optSent = true;
+            change(null, status: RxStatus.success());
+            otpID = response.body['data']["otp_id"];
+            print("recieved otp id  ${otpID}");
+          } else {
+            print(response.statusCode);
+          }
         }
       } else {
         Get.showSnackbar(const GetSnackBar(
@@ -191,18 +198,38 @@ class LoginController extends GetxController with StateMixin {
   Future<void> updateUser() async {
     try {
       final response = await loginRepo.updateUser(
-          profilePhoto: '',
+          profilePhoto: pickedProfilePhoto,
           phoneNumber: currentUser.clientPhone,
           sex: selectedGender!.code,
           userID: currentUser.userID,
           userName: userNameController.text);
 
       if (response.statusCode == 200) {
-      } else {
+      } else if (response.statusCode == 409) {
+        Get.showSnackbar(const GetSnackBar(
+          message: "Name already exists !",
+        ));
         print(response.statusCode);
       }
     } catch (e) {
       print(e.toString());
+    }
+  }
+
+  Future<void> pickAndUploadImage() async {
+    final picker = ImagePicker();
+
+    // Pick image from gallery
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      // Create a File object from the picked image path
+      pickedProfilePhoto = File(pickedFile.path);
+      print("picked image ${pickedFile.path}");
+
+      update(['profilePhoto']);
+    } else {
+      print('No image picked');
     }
   }
 

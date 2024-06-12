@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:click_release/data/appconfig.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:http/http.dart' as http;
 
 class LoginApiHandler extends GetConnect implements GetxService {
   GetStorage storage = GetStorage();
@@ -81,25 +84,37 @@ class LoginApiHandler extends GetConnect implements GetxService {
     }
   }
 
-  Future<Response> updateUser(
-      {userName, sex, phoneNumber, profilePhoto, userID, url}) async {
-    print("called witsh sex ${sex}");
+  Future<http.Response> updateUser(
+      {userName, sex, phoneNumber, File? profilePhoto, userID, url}) async {
     try {
-      Response response = await put(
-          url,
-          {
-            "clientId": userID,
-            "clientUsername": userName,
-            "Sex": sex,
-            "clientPhone": phoneNumber,
-          },
-          headers: _mainHeaders);
+      var request = http.MultipartRequest('PUT', Uri.parse(url));
 
-      print("recieved update user response ${response.body}");
+      // Add fields to the request
+      request.fields['clientId'] = userID;
+      request.fields['clientUsername'] = userName;
+      request.fields['Sex'] = sex;
+      request.fields['clientPhone'] = phoneNumber;
+
+      // Add the file to the request
+      if (profilePhoto != null) {
+        var file = await http.MultipartFile.fromPath(
+            'profilePhoto', profilePhoto.path);
+        request.files.add(file);
+      }
+
+      request.headers['Authorization'] = 'Bearer ${storage.read("token")}';
+
+      // Send the request
+      var streamedResponse = await request.send();
+
+      // Get the response
+      var response = await http.Response.fromStream(streamedResponse);
+
+      print("received update user response ${response.body}");
       return response;
     } catch (e) {
       print(e);
-      return Response(statusCode: 1, statusText: e.toString());
+      return http.Response("failed", 100);
     }
   }
 }

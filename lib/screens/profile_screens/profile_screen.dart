@@ -36,18 +36,17 @@ class ProfileScreen extends StatelessWidget {
 
   Widget profilePhoto() {
     return Container(
-      alignment: Alignment.center,
-      child: Column(
-        children: [
-          const ProfilePhoto(),
-          const SizedBox(
-            height: 13,
+      margin: const EdgeInsets.symmetric(vertical: 20),
+      child: Center(
+        child: GetBuilder<LoginController>(
+          id: 'profilePhoto',
+          dispose: (state) => loginController.pickedProfilePhoto = null,
+          builder: (controller) => ProfilePhoto(
+            type: 'noteditable',
+            imageUrl: loginController.currentUser.profilePhoto,
+            pickedImage: loginController.pickedProfilePhoto,
           ),
-          Text(
-            loginController.currentUser.clientUsername,
-            style: Get.textTheme.titleMedium,
-          )
-        ],
+        ),
       ),
     );
   }

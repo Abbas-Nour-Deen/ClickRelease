@@ -1,6 +1,5 @@
 import 'package:click_release/screens/regestration_Screens/registration_widgets/otp_widget.dart';
 import 'package:click_release/theme/app_theme.dart';
-import 'package:click_release/widgets/public_widgets/custome_btn.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,32 +9,23 @@ class OtpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomInset: true,
-        floatingActionButton: CustomeButton(
-          height: 45,
-          text: "Verify",
-          width: Get.width * 0.8,
-          ontap: () {},
-          margin: const EdgeInsets.only(bottom: 20),
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         body: Stack(children: [
-          Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("assets/images/OTP.png"),
-                fit: BoxFit.cover,
-              ),
-            ),
+      Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/OTP.png"),
+            fit: BoxFit.cover,
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              title(),
-            ],
-          ),
-        ]));
+        ),
+      ),
+      Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          title(),
+        ],
+      ),
+    ]));
   }
 
   Widget title() {

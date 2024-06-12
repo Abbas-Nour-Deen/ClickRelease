@@ -17,9 +17,6 @@ class HomeScreen extends StatelessWidget {
   final NavBarController _navController = Get.find();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  final LocationController locationController =
-      Get.put(LocationController(), permanent: true);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

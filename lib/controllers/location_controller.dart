@@ -24,7 +24,8 @@ class LocationController extends GetxController with StateMixin {
         "${address.locality}, ${address.administrativeArea}, ${address.country}";
     draggedAddress = addressStr;
     pickedLocation.locationName = addressStr;
-    update();
+    print("final picked location ${pickedLocation.locationName}");
+    change(pickedLocation, status: RxStatus.success());
   }
 
   Future<void> determineUserCurrentPosition() async {
@@ -35,9 +36,13 @@ class LocationController extends GetxController with StateMixin {
       locationPermission = await Geolocator.requestPermission();
       if (locationPermission == LocationPermission.deniedForever) {
         // Handle case when permission is permanently denied
+        change(pickedLocation, status: RxStatus.error());
+
         print("Location permission denied forever");
       } else if (locationPermission == LocationPermission.denied) {
         // Handle case when permission is denied
+        change(pickedLocation, status: RxStatus.error());
+
         print("Location permission denied");
       } else {
         // Permission granted, continue
@@ -58,7 +63,6 @@ class LocationController extends GetxController with StateMixin {
           target: LatLng(pickedLocation.latitude, pickedLocation.longitude));
       pickedLocation.longitude = 1.1236548;
       pickedLocation.latitude = -40.66669985;
-      change(pickedLocation, status: RxStatus.success());
     } else {
       print("Location permission unknown");
     }
