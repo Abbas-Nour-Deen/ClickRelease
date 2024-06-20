@@ -1,10 +1,14 @@
 import 'package:click_release/controllers/location_controller.dart';
+import 'package:click_release/controllers/provider_controller.dart';
 import 'package:click_release/screens/profile_screens/profileScreen_widgets/profile_option_tile.dart';
 import 'package:click_release/widgets/google_maps.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 final LocationController _locationController = Get.find();
+
+final ProviderController providerController = Get.find();
 
 class Utils {
   void showLocationBottomSheet() {
@@ -35,6 +39,39 @@ class Utils {
                 Get.to(GoogleMapsWidget());
               },
             )
+          ],
+        ),
+      ),
+    ));
+  }
+
+  void becomeAserviceProviderWidget() {
+    Get.dialog(AlertDialog.adaptive(
+      backgroundColor: Get.theme.primaryColor,
+      content: SizedBox(
+        height: 140,
+        child: Column(
+          children: [
+            Text(
+              "Become a service provider",
+              style: Get.textTheme.bodyLarge!
+                  .copyWith(color: Colors.white, fontWeight: FontWeight.bold),
+            ),
+            Text(
+              "Call us for more information ",
+              style: Get.textTheme.labelSmall!.copyWith(
+                color: Colors.white,
+              ),
+            ),
+            Spacer(),
+            InkWell(
+              onTap: () {
+                providerController.launchUrls(
+                    url: '81851410', inApp: false, type: 'call');
+              },
+              child: SvgPicture.asset(
+                  "assets/icons/lightheme_icons/call_btn_2.svg"),
+            ),
           ],
         ),
       ),

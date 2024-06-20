@@ -29,37 +29,40 @@ class ProviderModel {
   String categoryNameEng;
   String categoryIcon;
   List<WorkingHoursModel>? workingHR;
+  bool isLiked;
+  String classification;
 
-  ProviderModel({
-    required this.provid,
-    required this.education,
-    required this.firstName,
-    required this.lastName,
-    required this.providerUsername,
-    required this.phoneNumber,
-    this.profileImage,
-    required this.location,
-    required this.description,
-    this.facebook,
-    this.instagram,
-    this.indexs,
-    this.linkedIn,
-    this.website,
-    required this.sex,
-    required this.sexDesc,
-    required this.type,
-    required this.verified,
-    required this.locationCode,
-    this.locationEnglishName,
-    this.locationArabicName,
-    this.rate,
-    required this.serviceNameEng,
-    required this.serviceNameArb,
-    required this.categoryNameEng,
-    required this.categoryNameArb,
-    required this.categoryIcon,
-    this.workingHR,
-  });
+  ProviderModel(
+      {required this.provid,
+      required this.education,
+      required this.firstName,
+      required this.lastName,
+      required this.providerUsername,
+      required this.phoneNumber,
+      this.profileImage,
+      required this.location,
+      required this.description,
+      this.facebook,
+      this.instagram,
+      this.indexs,
+      this.linkedIn,
+      this.website,
+      required this.sex,
+      required this.sexDesc,
+      required this.type,
+      required this.verified,
+      required this.locationCode,
+      this.locationEnglishName,
+      this.locationArabicName,
+      this.rate,
+      required this.serviceNameEng,
+      required this.serviceNameArb,
+      required this.categoryNameEng,
+      required this.categoryNameArb,
+      required this.categoryIcon,
+      this.workingHR,
+      required this.isLiked,
+      required this.classification});
 
   factory ProviderModel.fromJson(Map<String, dynamic> json) {
     return ProviderModel(
@@ -91,7 +94,14 @@ class ProviderModel {
             json['categories'][0]['services'][0]['serviceNameArb'] ?? '',
         categoryNameEng: json['categories'][0]['categoryNameEng'] ?? '',
         categoryNameArb: json['categories'][0]['categoryNameArb'] ?? '',
-        categoryIcon: json['categories'][0]['icon']);
+        categoryIcon: json['categories'][0]['icon'],
+        isLiked: json['isLiked'],
+        classification: json['ClassificationDesc'],
+        workingHR: json['workingHours'] == []
+            ? []
+            : (json['workingHours'] as List<dynamic>)
+                .map((e) => WorkingHoursModel.fromJson(e))
+                .toList());
   }
 }
 

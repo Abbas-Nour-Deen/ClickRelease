@@ -55,7 +55,7 @@ class RatingAndReviewsScreen extends StatelessWidget {
         Expanded(
           child: CustomeButton(
             ontap: () {
-              Get.to(const AddReviewScreen());
+              Get.to(AddReviewScreen());
             },
             text: "Leave Review",
             width: double.infinity,

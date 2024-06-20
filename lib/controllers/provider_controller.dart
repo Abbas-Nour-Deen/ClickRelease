@@ -1,3 +1,4 @@
+import 'package:click_release/controllers/liked_providers_controller.dart';
 import 'package:click_release/controllers/login_controller.dart';
 import 'package:click_release/controllers/providerInfo_controller.dart';
 import 'package:click_release/data/repo/data_repo.dart';
@@ -24,6 +25,12 @@ class ProviderController extends GetxController
   final LoginController loginController = Get.find();
 
   final ProviderInfoController providerInfoController = Get.find();
+
+  final LikedProvidersController likedProviderController = Get.find();
+
+  final TextEditingController commentTextController = TextEditingController();
+
+  int? rateOfProvider;
 
   Future<void> getProviderByServiceID({required String serviceID}) async {
     try {
@@ -55,7 +62,8 @@ class ProviderController extends GetxController
     try {
       isTopProvidersLoading = true;
       isFirstLoading = false;
-      final response = await dataRepo.getTopProviders();
+      final response = await dataRepo.getTopProviders(
+          userID: loginController.currentUserID!);
       if (response.statusCode == 200) {
         topProviders.clear();
 
@@ -68,11 +76,11 @@ class ProviderController extends GetxController
           topProviders.add(provider);
         });
 
-        for (var provider in topProviders) {
-          final ProviderInfoModel providerInfo = await providerInfoController
-              .fetchData(providerID: provider.provid);
-          provider.workingHR = providerInfo.workingHR;
-        }
+        // for (var provider in topProviders) {
+        //   final ProviderInfoModel providerInfo = await providerInfoController
+        //       .fetchData(providerID: provider.provid);
+        //   provider.workingHR = providerInfo.workingHR;
+        // }
 
         isTopProvidersLoading = false;
 
@@ -81,7 +89,7 @@ class ProviderController extends GetxController
         print(response.statusCode);
       }
     } catch (e) {
-      print(e.toString());
+      print("top providers response ${e.toString()}");
     }
 
     update(['topProviders']);
@@ -134,16 +142,50 @@ class ProviderController extends GetxController
     }
   }
 
-  Future<void> likeProvider({required provID}) async {
+  Future<void> likeProvider(
+      {required ProviderModel provider, required bool isLiked}) async {
     try {
       final response = await dataRepo.likeProvider(
-          provID: provID,
-          isFavorite: true,
+          provID: provider.provid,
+          isFavorite: isLiked,
           clientID: loginController.currentUserID);
 
+      if (response.statusCode == 200) {
+        provider.isLiked = isLiked;
+        if (!isLiked) {
+          likedProviderController.likedProviders
+              .removeWhere((element) => element.provid == provider.provid);
+
+          likedProviderController.update();
+        } else {
+          likedProviderController.likedProviders.add(provider);
+          likedProviderController.update();
+        }
+        update(['likebtn']);
+      }
       print("like provider response ${response.statusCode}, ${response.body}");
     } catch (e) {
       throw Exception(e);
+    }
+  }
+
+  Future<void> rateProvider() async {
+    try {
+      final response = await dataRepo.rateProvider(
+          provID: selectedProvider.provid,
+          comment: commentTextController.text,
+          rate: rateOfProvider ?? 3,
+          clientID: loginController.currentUserID,
+          entryUser: loginController.currentUser.clientUsername,
+          updateUser: loginController.currentUser.clientUsername);
+
+      if (response.statusCode == 200) {
+        print("provider rated successfully !");
+      } else {
+        print("failed to rate provider ${response.body}");
+      }
+    } catch (e) {
+      print(e.toString());
     }
   }
 

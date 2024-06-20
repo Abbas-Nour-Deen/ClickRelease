@@ -22,7 +22,7 @@ class ContainedTabWidget extends StatelessWidget {
       margin: const EdgeInsets.only(top: 10),
       padding: const EdgeInsets.all(8.0),
       width: double.infinity,
-      height: 420,
+      height: 400,
       child: ContainedTabBarView(
         initialIndex: 0,
         tabBarProperties: TabBarProperties(
@@ -83,7 +83,11 @@ class ContainedTabWidget extends StatelessWidget {
                     height: 10,
                   ),
                   Column(
-                    children: List.generate(2, (index) {
+                    children: List.generate(
+                        reviewsController.currentProviderReviews.length > 2
+                            ? 2
+                            : reviewsController.currentProviderReviews.length,
+                        (index) {
                       return ReviewItem(
                         review: reviewsController.currentProviderReviews[index],
                       );

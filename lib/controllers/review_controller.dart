@@ -77,6 +77,6 @@ class ReviewsController extends GetxController with StateMixin {
     // TODO: implement onInit
     super.onInit();
     getCurrentProviderReviews(
-        providerID: "16456700-497b-4f03-83b4-2e2bc710f27b");
+        providerID: providerController.selectedProvider.provid);
   }
 }

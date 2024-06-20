@@ -94,6 +94,7 @@ class LoginController extends GetxController with StateMixin {
           final userList = userData['User'];
 
           currentUser = UserModel.fromJson(userList[0]);
+          currentUserID = currentUser.userID;
 
           userToken = userData['token'];
           storage.write("token", userToken);

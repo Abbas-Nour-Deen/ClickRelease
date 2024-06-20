@@ -4,10 +4,12 @@ import 'package:get/get.dart';
 class CustomeButton extends StatelessWidget {
   final Icon? icon;
   final String text;
+  final TextStyle? textStyle;
   final double? width;
   final double? height;
   final Function()? ontap;
   final EdgeInsets? margin;
+  final Color? color;
   const CustomeButton(
       {super.key,
       required this.text,
@@ -15,7 +17,9 @@ class CustomeButton extends StatelessWidget {
       this.width,
       this.height,
       this.ontap,
-      this.margin});
+      this.margin,
+      this.color,
+      this.textStyle});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +28,7 @@ class CustomeButton extends StatelessWidget {
       width: width ?? 100,
       height: height ?? 120,
       decoration: BoxDecoration(
-          color: Get.theme.primaryColor,
+          color: color ?? Get.theme.primaryColor,
           borderRadius: BorderRadius.circular(3)),
       child: InkWell(
         onTap: ontap,
@@ -39,10 +43,11 @@ class CustomeButton extends StatelessWidget {
             ),
             Text(
               text,
-              style: Get.textTheme.titleLarge!.copyWith(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600),
+              style: textStyle ??
+                  Get.textTheme.titleLarge!.copyWith(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600),
             )
           ],
         ),

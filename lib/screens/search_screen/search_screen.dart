@@ -38,10 +38,12 @@ class SearchScreen extends StatelessWidget {
   }
 
   Widget body() {
-    return _searchProviderController.searchTextController.text.isEmpty &&
-            !_searchProviderController.isSearchLoading.value
-        ? placeHolder()
-        : response();
+    return response();
+
+    // _searchProviderController.searchTextController.text.isEmpty &&
+    //         !_searchProviderController.isSearchLoading.value
+    //     ? placeHolder()
+    //     : response();
   }
 
   Widget response() {

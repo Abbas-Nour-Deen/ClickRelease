@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       enableLog: true,
       title: 'Click',
       debugShowCheckedModeBanner: false,
-      defaultTransition: Transition.fadeIn,
+      defaultTransition: Transition.zoom,
       popGesture: Get.isPopGestureEnable,
       transitionDuration: const Duration(milliseconds: 200),
       theme: _themeController.theme,

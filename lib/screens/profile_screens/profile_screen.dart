@@ -1,6 +1,7 @@
 import 'package:click_release/controllers/login_controller.dart';
 import 'package:click_release/screens/profile_screens/contact_us.dart';
 import 'package:click_release/screens/profile_screens/editProfile_screen.dart';
+import 'package:click_release/utils/utils.dart';
 import 'package:click_release/widgets/public_widgets/appBar.dart';
 import 'package:click_release/widgets/public_widgets/customedivider.dart';
 import 'package:click_release/screens/profile_screens/profileScreen_widgets/profile_option_tile.dart';
@@ -65,7 +66,9 @@ class ProfileScreen extends StatelessWidget {
         ),
         ProfileOptionTile(
           iconPath: "assets/icons/lightheme_icons/aboutus.svg",
-          onTap: () {},
+          onTap: () {
+            Utils().becomeAserviceProviderWidget();
+          },
           title: "Become a service provider",
         ),
         ProfileOptionTile(

@@ -7,6 +7,8 @@ import 'package:click_release/theme/app_theme.dart';
 import 'package:click_release/widgets/public_widgets/call_btn_widget.dart';
 import 'package:click_release/widgets/provider_category_icons.dart';
 import 'package:click_release/widgets/provider_name_widget.dart';
+import 'package:click_release/widgets/public_widgets/likeButton_widget.dart';
+// import 'package:click_release/widgets/public_widgets/likebtn_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -45,20 +47,29 @@ class ProviderItem extends StatelessWidget {
           children: [
             Row(
               children: [
-                Container(
-                  width: 80,
-                  height: 100,
-                  margin: const EdgeInsets.only(right: 10),
-                  child: provider.profileImage == null ||
-                          provider.profileImage == ''
-                      ? Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: SvgPicture.asset("assets/images/person.svg"),
-                        )
-                      : CachedNetworkImage(
-                          imageUrl: provider.profileImage,
-                          fit: BoxFit.fill,
-                        ),
+                Stack(
+                  children: [
+                    Container(
+                      width: 80,
+                      height: 100,
+                      margin: const EdgeInsets.only(right: 10),
+                      child: provider.profileImage == null ||
+                              provider.profileImage == ''
+                          ? Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child:
+                                  SvgPicture.asset("assets/images/person.svg"),
+                            )
+                          : CachedNetworkImage(
+                              imageUrl: provider.profileImage,
+                              fit: BoxFit.fill,
+                            ),
+                    ),
+                    LikeButtunWidget(
+                      provider: provider,
+                    )
+                    // LikeButtunWidget(provider: provider)
+                  ],
                 ),
                 Column(
                   children: [

@@ -31,7 +31,7 @@ class HomeScreen extends StatelessWidget {
             children: [
               header(),
               InkWell(
-                onTap: () => _navController.tabController.index = 1,
+                onTap: () => _navController.tabController.jumpToTab(1),
                 child: const IgnorePointer(
                   child: SearchShape(),
                 ),

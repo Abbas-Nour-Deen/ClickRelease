@@ -9,7 +9,7 @@ class DataApiHandler extends GetConnect implements GetxService {
 
   DataApiHandler() {
     baseUrl = appBaseUrl;
-    timeout = const Duration(seconds: 30);
+    timeout = const Duration(seconds: 60);
     maxAuthRetries = 50;
     _mainHeaders = {
       'Authorization': 'Bearer ${loginController.userToken}',
@@ -45,10 +45,11 @@ class DataApiHandler extends GetConnect implements GetxService {
   Future<Response> getProviders(url) async {
     try {
       print(url);
-      Response response = await post(
-          url,
-          headers: _mainHeaders,
-          {"latitude": 40.7095, "longitude": -74.0025});
+      Response response = await post(url, headers: _mainHeaders, {
+        'clientId': loginController.currentUserID,
+        "latitude": 40.7095,
+        "longitude": -74.0025
+      });
 
       print("recieved providers data ${response.statusCode}");
       return response;
@@ -69,11 +70,39 @@ class DataApiHandler extends GetConnect implements GetxService {
     }
   }
 
+  Future<Response> getProvidersBySearch(url) async {
+    try {
+      Response response = await post(
+          url,
+          headers: _mainHeaders,
+          {'clientId': loginController.currentUserID});
+
+      return response;
+    } catch (e) {
+      print(e);
+      return Response(statusCode: 1, statusText: e.toString());
+    }
+  }
+
+  Future<Response> getTopProviders(url) async {
+    try {
+      Response response = await post(
+          url,
+          headers: _mainHeaders,
+          {'clientId': loginController.currentUserID});
+
+      return response;
+    } catch (e) {
+      print(e);
+      return Response(statusCode: 1, statusText: e.toString());
+    }
+  }
+
   Future<Response> getdataByFilter(
       url, serviceId, zoneId, rate, categoryID) async {
     try {
-      print("service id : $serviceId, zoneID: $zoneId, categoryID:$categoryID");
       Response response = await post(url, headers: _mainHeaders, {
+        'clientId': loginController.currentUserID,
         "serviceId": serviceId,
         "zoneId": zoneId,
         "rate": 0,
@@ -98,6 +127,29 @@ class DataApiHandler extends GetConnect implements GetxService {
           url,
           headers: _mainHeaders,
           {"provID": provID, "favor": isFvorite, "clientId": clientID});
+      return response;
+    } catch (e) {
+      return Response(statusCode: 1, statusText: e.toString());
+    }
+  }
+
+  Future<Response> rateProvider(
+      {required url,
+      required provID,
+      required comment,
+      required rate,
+      required clientID,
+      required entryUser,
+      required updateUser}) async {
+    try {
+      Response response = await post(url, headers: _mainHeaders, {
+        "provID": provID,
+        "comment": comment,
+        "rate": rate,
+        'clientId': clientID,
+        "entryUser": entryUser,
+        "updateUser": updateUser
+      });
       return response;
     } catch (e) {
       return Response(statusCode: 1, statusText: e.toString());

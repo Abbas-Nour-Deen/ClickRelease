@@ -1,3 +1,4 @@
+import 'package:click_release/controllers/provider_controller.dart';
 import 'package:click_release/theme/app_theme.dart';
 import 'package:click_release/widgets/public_widgets/appBar.dart';
 import 'package:click_release/widgets/public_widgets/customeButtomSheet.dart';
@@ -7,7 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AddReviewScreen extends StatelessWidget {
-  const AddReviewScreen({super.key});
+  AddReviewScreen({super.key});
+
+  final ProviderController providerController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +46,9 @@ class AddReviewScreen extends StatelessWidget {
             const SizedBox(
               height: 15,
             ),
-            RatingBarWidget(),
+            RatingBarWidget(
+              providerController: providerController,
+            ),
           ],
         ));
   }
@@ -57,6 +62,7 @@ class AddReviewScreen extends StatelessWidget {
           borderRadius: BorderRadius.circular(5),
           color: Get.theme.colorScheme.onSecondaryContainer),
       child: TextFormField(
+        controller: providerController.commentTextController,
         maxLines: null,
         style: Get.textTheme.bodyMedium,
         decoration: InputDecoration(
@@ -86,7 +92,7 @@ class AddReviewScreen extends StatelessWidget {
         Expanded(
           child: CustomeButton(
             ontap: () {
-              Get.to(AddReviewScreen());
+              providerController.rateProvider();
             },
             text: "Click",
           ),

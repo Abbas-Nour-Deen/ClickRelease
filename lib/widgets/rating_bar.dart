@@ -1,3 +1,4 @@
+import 'package:click_release/controllers/provider_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -5,7 +6,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class RatingBarWidget extends StatelessWidget {
-  const RatingBarWidget({super.key});
+  final ProviderController providerController;
+  const RatingBarWidget({super.key, required this.providerController});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +15,7 @@ class RatingBarWidget extends StatelessWidget {
       initialRating: 3,
       minRating: 1,
       direction: Axis.horizontal,
-      allowHalfRating: true,
+      allowHalfRating: false,
       itemCount: 5,
       itemSize: 30,
       glow: true,
@@ -24,6 +26,7 @@ class RatingBarWidget extends StatelessWidget {
         "assets/icons/lightheme_icons/star.svg",
       ),
       onRatingUpdate: (rating) {
+        providerController.rateOfProvider = rating.toInt();
         print(rating);
       },
     );

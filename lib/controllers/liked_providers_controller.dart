@@ -32,7 +32,9 @@ class LikedProvidersController extends GetxController with StateMixin {
         });
 
         if (likedProviders.isNotEmpty) {
-          change(likedProviders, status: RxStatus.loading());
+          change(likedProviders, status: RxStatus.success());
+        } else {
+          change(likedProviders, status: RxStatus.empty());
         }
       } else {
         change(likedProviders, status: RxStatus.error());

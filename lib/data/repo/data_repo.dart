@@ -25,7 +25,7 @@ class DataRepo extends GetxService {
 
   Future<Response> getProviderBySearch({required String keyWord}) async {
     return await dataApiHandler
-        .getCurrentProviderReviews("api/provider-search/$keyWord");
+        .getProvidersBySearch("api/provider-search/$keyWord");
   }
 
   Future<Response> getCurrentProviderReviews({required String id}) async {
@@ -42,9 +42,8 @@ class DataRepo extends GetxService {
         .getCurrentProviderReviews("api/providerWSC/$id");
   }
 
-  Future<Response> getTopProviders() async {
-    return await dataApiHandler
-        .getCurrentProviderReviews("api/providerByTop/top");
+  Future<Response> getTopProviders({required String userID}) async {
+    return await dataApiHandler.getTopProviders("api/providerByTop/top");
   }
 
   Future<Response> getZones() async {
@@ -54,7 +53,7 @@ class DataRepo extends GetxService {
   Future<Response> getDataByFilter(
       {serviceId, zoneId, rate, categoryID}) async {
     return await dataApiHandler.getdataByFilter(
-        "api/provider/filter", serviceId, zoneId, rate, categoryID);
+        "api/provider-filter", serviceId, zoneId, rate, categoryID);
   }
 
   Future<Response> getLikedProviders({required userID}) async {
@@ -69,5 +68,22 @@ class DataRepo extends GetxService {
         provID: provID,
         isFvorite: isFavorite,
         clientID: clientID);
+  }
+
+  Future<Response> rateProvider(
+      {required provID,
+      required comment,
+      required rate,
+      required clientID,
+      required entryUser,
+      required updateUser}) async {
+    return await dataApiHandler.rateProvider(
+        url: "api/reviews",
+        provID: provID,
+        clientID: clientID,
+        comment: comment,
+        rate: rate,
+        entryUser: entryUser,
+        updateUser: updateUser);
   }
 }

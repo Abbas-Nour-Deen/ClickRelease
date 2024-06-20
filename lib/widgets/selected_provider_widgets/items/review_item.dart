@@ -1,13 +1,22 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:click_release/controllers/review_controller.dart';
 import 'package:click_release/models/review_model.dart';
+import 'package:click_release/screens/provider_screens/reviews_screen.dart';
 import 'package:click_release/theme/app_theme.dart';
 import 'package:click_release/widgets/selected_provider_widgets/stars_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class ReviewItem extends StatelessWidget {
   final ReviewModel review;
-  const ReviewItem({super.key, required this.review});
+  ReviewItem({
+    super.key,
+    required this.review,
+  });
+
+  final ReviewsController reviewsController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -16,19 +25,25 @@ class ReviewItem extends StatelessWidget {
           color: Colors.white, borderRadius: BorderRadius.circular(5)),
       margin: const EdgeInsets.only(bottom: 14),
       padding: const EdgeInsets.all(10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          header(),
-          const SizedBox(
-            height: 7,
-          ),
-          rating(),
-          const SizedBox(
-            height: 7,
-          ),
-          content()
-        ],
+      child: InkWell(
+        onTap: () {
+          Get.to(RatingAndReviewsScreen(
+              reviews: reviewsController.currentProviderReviews));
+        },
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            header(),
+            const SizedBox(
+              height: 6,
+            ),
+            rating(),
+            const SizedBox(
+              height: 9,
+            ),
+            content()
+          ],
+        ),
       ),
     );
   }
@@ -39,17 +54,33 @@ class ReviewItem extends StatelessWidget {
       children: [
         Row(
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(100),
-              child: Image.asset(
-                "assets/images/me.jpeg",
+            Container(
                 height: 40,
                 width: 40,
-                fit: BoxFit.cover,
-              ),
-            ),
+                padding: const EdgeInsets.all(2),
+                decoration: BoxDecoration(
+                    color: lightThemeDividerColor,
+                    borderRadius: BorderRadius.circular(100)),
+                child:
+                    review.profilePhoto == null || review.profilePhoto.isEmpty
+                        ? Padding(
+                            padding: const EdgeInsets.all(2.0),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(50),
+                              child: SvgPicture.asset(
+                                "assets/images/person.svg",
+                              ),
+                            ),
+                          )
+                        : ClipRRect(
+                            borderRadius: BorderRadius.circular(100),
+                            child: Image.network(
+                              review.profilePhoto,
+                              fit: BoxFit.cover,
+                            ),
+                          )),
             const SizedBox(
-              width: 6,
+              width: 8,
             ),
             Text(
               review.clientUsername,
@@ -85,7 +116,8 @@ class ReviewItem extends StatelessWidget {
   Widget content() {
     return AutoSizeText(
       review.comment,
-      maxLines: 3,
+      maxLines: 2,
+      overflow: TextOverflow.ellipsis,
       style:
           Get.textTheme.bodyMedium!.copyWith(color: lightTHemeSecondTextColor),
     );

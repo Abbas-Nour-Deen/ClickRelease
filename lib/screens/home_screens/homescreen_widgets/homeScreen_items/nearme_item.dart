@@ -16,7 +16,7 @@ class NearMeItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(SelectedProviderScreen());
+        // Get.to(SelectedProviderScreen());
       },
       child: Container(
           width: 160,
