@@ -5,8 +5,11 @@ import 'package:get/get.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 class PhoneNumberPicker extends StatelessWidget {
-  final LoginController loginController;
-  PhoneNumberPicker({super.key, required this.loginController});
+  PhoneNumberPicker({
+    super.key,
+  });
+
+  final LoginController logInController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -27,14 +30,14 @@ class PhoneNumberPicker extends StatelessWidget {
             hintText: "Enter Phone Number"),
         textStyle: Get.textTheme.bodyMedium,
         onInputChanged: (PhoneNumber number) {
-          loginController.enteredNumber = number;
-          print("code ${loginController.enteredNumber.dialCode}");
-          print("number ${loginController.enteredNumber.phoneNumber}");
+          logInController.enteredNumber = number;
+          print("code ${logInController.enteredNumber.dialCode}");
+          print("number ${logInController.enteredNumber.phoneNumber}");
 
-          print("iso code ${loginController.enteredNumber.isoCode}");
+          print("iso code ${logInController.enteredNumber.isoCode}");
         },
         onInputValidated: (bool isValid) {
-          loginController.isPhoneNumberValid = isValid;
+          logInController.isPhoneNumberValid = isValid;
           if (!isValid) {
             print("not valid");
           } else {
@@ -42,7 +45,7 @@ class PhoneNumberPicker extends StatelessWidget {
           }
         },
         validator: (p0) {
-          if (!loginController.isPhoneNumberValid) {
+          if (!logInController.isPhoneNumberValid) {
             return "invalid phone number";
           }
 
@@ -59,7 +62,7 @@ class PhoneNumberPicker extends StatelessWidget {
         autoFocus: false,
         ignoreBlank: false,
         formatInput: true,
-        initialValue: loginController.enteredNumber,
+        initialValue: logInController.enteredNumber,
         keyboardType: const TextInputType.numberWithOptions(
           signed: true,
           decimal: false,

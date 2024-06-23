@@ -1,0 +1,35 @@
+{
+
+"settings": "الإعدادات",
+"english":"English",
+"arabic":"عربي",
+"language":"اللغة",
+"categories": "الفئات",
+"featured": "مميز",
+"services": "الخدمات",
+"viewAll": "عرض الكل",
+"searchbynameorkeyword": "البحث بالاسم أو الكلمة الرئيسية",
+"home": "الرئيسية",
+"search": "بحث",
+"favorites": "المفضلة",
+"profile": "الملف الشخصي",
+"select": "اختيار",
+"zone": "المنطقة",
+"rate": "التقييم",
+"filterby": "تصفية حسب",
+"cancel": "إلغاء",
+"click": "انقر",
+"myProfile": "ملفي الشخصي",
+"becomeaserviceprovider": "كن مقدم خدمة",
+"inviteFriends": "دعوة الأصدقاء",
+"manageAddress": "إدارة العناوين",
+"myFavorites": "المفضلة لدي",
+"aboutUs": "معلومات عنا",
+"privacyPolicy": "سياسة الخصوصية",
+"termsconditions": "الشروط والأحكام",
+"contactUS":"اتصل بنا",
+"logout":"تسجيل خروج"
+
+
+
+}

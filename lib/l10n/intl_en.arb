@@ -1,0 +1,35 @@
+{
+
+"settings":"Settings",
+"english":"English",
+"arabic":"عربي",
+"language":"Language",
+"categories": "Categories",
+"featured": "Featured",
+"services": "Services",
+"viewAll": "View All",
+"searchbynameorkeyword": "Search by Name or Keyword",
+"home": "Home",
+"search": "Search",
+"favorites": "Favorites",
+"profile": "Profile",
+"select": "Select",
+"zone": "Zone",
+"rate": "Rate",
+"filterby": "Filter By",
+"cancel": "Cancel",
+"click": "Click",
+"myProfile": "My Profile",
+"becomeaserviceprovider": "Become a Service Provider",
+"inviteFriends": "Invite Friends",
+"manageAddress": "Manage Address",
+"myFavorites": "My Favorites",
+"aboutUs": "About Us",
+"privacyPolicy": "Privacy Policy",
+"termsconditions": "Terms & Conditions",
+"contactUS":"Contact us",
+"logout":"Log out"
+ 
+
+
+}

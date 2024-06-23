@@ -305,7 +305,7 @@ class SelectedProviderScreen extends StatelessWidget {
                             fontWeight: FontWeight.w600,
                           ),
                           text:
-                              "${DateFormat('hh:mma').format(DateFormat('HH:mm:ss').parse(provider.workingHR!.first.start))} till ${DateFormat('hh:mma').format(DateFormat('HH:mm:ss').parse(provider.workingHR!.first.end))} - "),
+                              "${DateFormat('hh:mma', 'en').format(DateFormat('HH:mm:ss', 'en').parse(provider.workingHR!.first.start))} till ${DateFormat('hh:mma', 'en').format(DateFormat('HH:mm:ss', 'en').parse(provider.workingHR!.first.end))} - "),
                       TextSpan(
                           style: Get.textTheme.labelMedium!
                               .copyWith(fontWeight: FontWeight.bold),
@@ -451,7 +451,7 @@ class SelectedProviderScreen extends StatelessWidget {
                       ),
                       const Spacer(),
                       AutoSizeText(
-                        '${DateFormat('hh:mma').format(DateFormat('HH:mm:ss').parse(info.start))} - ${DateFormat('hh:mma').format(DateFormat('HH:mm:ss').parse(info.end))}',
+                        '${DateFormat('hh:mma', 'en').format(DateFormat('HH:mm:ss', 'en').parse(info.start))} - ${DateFormat('hh:mma', 'en').format(DateFormat('HH:mm:ss', 'en').parse(info.end))}',
                         style: Get.textTheme.labelSmall!.copyWith(
                           fontWeight: FontWeight.w600,
                         ),

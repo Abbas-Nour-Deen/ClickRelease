@@ -88,7 +88,7 @@ class PhoneNumberScreen extends StatelessWidget {
           const SizedBox(
             height: 25,
           ),
-          PhoneNumberPicker(loginController: logInController),
+          PhoneNumberPicker(),
         ],
       ),
     );

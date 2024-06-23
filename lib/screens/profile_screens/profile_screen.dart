@@ -1,6 +1,8 @@
 import 'package:click_release/controllers/login_controller.dart';
+import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/screens/profile_screens/contact_us.dart';
 import 'package:click_release/screens/profile_screens/editProfile_screen.dart';
+import 'package:click_release/screens/profile_screens/settings_screen.dart';
 import 'package:click_release/utils/utils.dart';
 import 'package:click_release/widgets/public_widgets/appBar.dart';
 import 'package:click_release/widgets/public_widgets/customedivider.dart';
@@ -28,7 +30,10 @@ class ProfileScreen extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                tilesWidgets()
+                tilesWidgets(context),
+                const SizedBox(
+                  height: 70,
+                ),
               ],
             ),
           ),
@@ -52,7 +57,7 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  Widget tilesWidgets() {
+  Widget tilesWidgets(BuildContext context) {
     return Column(
       children: [
         ProfileOptionTile(
@@ -62,62 +67,64 @@ class ProfileScreen extends StatelessWidget {
               loginController: loginController,
             ));
           },
-          title: "My Profile",
+          title: S.of(context).myProfile,
         ),
         ProfileOptionTile(
           iconPath: "assets/icons/lightheme_icons/aboutus.svg",
           onTap: () {
             Utils().becomeAserviceProviderWidget();
           },
-          title: "Become a service provider",
+          title: S.of(context).becomeaserviceprovider,
         ),
         ProfileOptionTile(
           iconPath: "assets/icons/lightheme_icons/invitefriends.svg",
           onTap: () {},
-          title: "Invite friends",
+          title: S.of(context).inviteFriends,
         ),
         const CustomeDivider(),
         ProfileOptionTile(
           iconPath: "assets/icons/lightheme_icons/address.svg",
           onTap: () {},
-          title: "Manage Address",
+          title: S.of(context).manageAddress,
         ),
         ProfileOptionTile(
           iconPath: "assets/icons/lightheme_icons/fav.svg",
           onTap: () {},
-          title: "My Favorites",
+          title: S.of(context).myFavorites,
         ),
         const CustomeDivider(),
         ProfileOptionTile(
           iconPath: "assets/icons/lightheme_icons/aboutus.svg",
           onTap: () {},
-          title: "About us",
+          title: S.of(context).aboutUs,
         ),
         ProfileOptionTile(
           iconPath: "assets/icons/lightheme_icons/privacypolicy.svg",
           onTap: () {},
-          title: "Privacy policy",
+          title: S.of(context).privacyPolicy,
         ),
         ProfileOptionTile(
           iconPath: "assets/icons/lightheme_icons/termscondition.svg",
           onTap: () {},
-          title: "Terms & conditions",
+          title: S.of(context).termsconditions,
         ),
         ProfileOptionTile(
           iconPath: "assets/icons/lightheme_icons/contactus.svg",
           onTap: () => Get.to(const ContactUsScreen()),
-          title: "Contact us",
+          title: S.of(context).contactUS,
         ),
         const CustomeDivider(),
         ProfileOptionTile(
           iconPath: "assets/icons/lightheme_icons/settingss.svg",
-          onTap: () {},
-          title: "Settings",
+          onTap: () {
+            Get.to(SettingsScreen());
+          },
+          title: S.of(context).settings,
         ),
         ProfileOptionTile(
           iconPath: "assets/icons/lightheme_icons/logout.svg",
           onTap: () {},
-          title: "Log out",
+          title: S.of(context).logout,
         ),
       ],
     );

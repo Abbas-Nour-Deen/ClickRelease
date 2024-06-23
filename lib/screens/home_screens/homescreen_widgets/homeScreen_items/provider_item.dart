@@ -145,7 +145,7 @@ class ProviderItem extends StatelessWidget {
                     width: 2,
                   ),
                   Text(
-                    "${DateFormat('hh:mma').format(DateFormat('HH:mm:ss').parse(provider.workingHR!.first.start))} till ${DateFormat('hh:mma').format(DateFormat('HH:mm:ss').parse(provider.workingHR!.first.end))}",
+                    "${DateFormat('hh:mma', 'en').format(DateFormat('HH:mm:ss', 'en').parse(provider.workingHR!.first.start))} till ${DateFormat('hh:mma', 'en').format(DateFormat('HH:mm:ss', 'en').parse(provider.workingHR!.first.end))}",
                     style: Get.textTheme.labelSmall!,
                   ),
                 ],

@@ -28,7 +28,7 @@ class CustomeAppBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: 0,
       leading: type == null || type == true
           ? Container(
-              margin: const EdgeInsets.only(left: 15),
+              margin: const EdgeInsets.symmetric(horizontal: 10),
               child: InkWell(
                 onTap: () => Get.back(),
                 child: SvgPicture.asset(

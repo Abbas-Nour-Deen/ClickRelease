@@ -1,10 +1,13 @@
+import 'package:click_release/controllers/login_controller.dart';
 import 'package:click_release/screens/regestration_Screens/registration_widgets/otp_widget.dart';
 import 'package:click_release/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class OtpScreen extends StatelessWidget {
-  const OtpScreen({super.key});
+  OtpScreen({super.key});
+
+  final LoginController logInController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +46,7 @@ class OtpScreen extends StatelessWidget {
             height: MediaQuery.of(Get.context!).size.height * 0.02,
           ),
           Text(
-            "Please enter the code we just sent to\n +961 81 851 410",
+            "Please enter the code we just sent to\n ${logInController.enteredNumber.phoneNumber}",
             style: Get.textTheme.labelMedium!
                 .copyWith(color: lightTHemeSecondTextColor),
             textAlign: TextAlign.center,
