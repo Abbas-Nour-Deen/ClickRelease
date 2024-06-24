@@ -1,6 +1,5 @@
 import 'package:click_release/controllers/provider_controller.dart';
 import 'package:click_release/models/provider_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -14,7 +13,14 @@ class LikeButtunWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Positioned(
         top: 0,
-        left: 1,
+        left:
+            providerController.localizationController.selectedLang.value == 'en'
+                ? 1
+                : null,
+        right:
+            providerController.localizationController.selectedLang.value == 'en'
+                ? null
+                : 1,
         child: InkWell(
           onTap: () async {
             await providerController.likeProvider(

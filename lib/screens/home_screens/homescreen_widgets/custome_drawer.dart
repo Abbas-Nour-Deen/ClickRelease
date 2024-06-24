@@ -1,5 +1,6 @@
 import 'package:click_release/controllers/allServices_controller.dart';
 import 'package:click_release/controllers/nabar_controller.dart';
+import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/screens/allCategories_screens/allcategories_screen.dart';
 import 'package:click_release/screens/allServices_screens/allServices_screen.dart';
 import 'package:click_release/screens/profile_screens/profileScreen_widgets/profile_option_tile.dart';
@@ -43,34 +44,34 @@ class CustomDrawer extends StatelessWidget {
         ProfileOptionTile(
           iconPath: "assets/icons/lightheme_icons/homeicon.svg",
           onTap: () => Navigator.of(context).pop(),
-          title: "Home",
+          title: S.of(context).home,
         ),
         ProfileOptionTile(
           iconPath: "assets/icons/lightheme_icons/fav.svg",
           onTap: () {
             navBarController.tabController.jumpToTab(2);
           },
-          title: "My Favorites",
+          title: S.of(context).myFavorites,
         ),
         ProfileOptionTile(
           iconPath: "assets/icons/lightheme_icons/user_icon.svg",
           onTap: () {
             navBarController.tabController.jumpToTab(3);
           },
-          title: "My Profile",
+          title: S.of(context).myProfile,
         ),
         const CustomeDivider(),
         ProfileOptionTile(
           iconPath: "assets/icons/lightheme_icons/categoriesicon.svg",
           onTap: () => Get.to(AllCategoriesScreen()),
-          title: "Categories",
+          title: S.of(context).categories,
         ),
         ProfileOptionTile(
           iconPath: "assets/icons/lightheme_icons/servicesicon.svg",
           onTap: () => Get.to(AllServicesScreen(
             servicesController: Get.find<AllServicesController>(),
           )),
-          title: "Services",
+          title: S.of(context).services,
         ),
         const CustomeDivider(),
         ProfileOptionTile(
@@ -78,12 +79,12 @@ class CustomDrawer extends StatelessWidget {
           onTap: () {
             Utils().becomeAserviceProviderWidget();
           },
-          title: "Become a service provider",
+          title: S.of(context).becomeaserviceprovider,
         ),
         ProfileOptionTile(
           iconPath: "assets/icons/lightheme_icons/contactus.svg",
           onTap: () {},
-          title: "Help Center",
+          title: S.of(context).helpCenter,
         ),
       ],
     );

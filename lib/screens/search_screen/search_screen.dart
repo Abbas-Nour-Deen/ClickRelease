@@ -1,4 +1,5 @@
 import 'package:click_release/controllers/search_controller.dart';
+import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/screens/home_screens/homescreen_widgets/customeSearch_bar.dart';
 import 'package:click_release/screens/home_screens/homescreen_widgets/homeScreen_items/provider_item.dart';
 import 'package:click_release/widgets/public_widgets/appBar.dart';
@@ -16,7 +17,7 @@ class SearchScreen extends StatelessWidget {
     return Scaffold(
       appBar: CustomeAppBar(
         type: false,
-        title: "Search",
+        title: S.of(context).search,
       ),
       body: Padding(
         padding: const EdgeInsets.all(15),

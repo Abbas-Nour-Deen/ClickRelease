@@ -22,8 +22,19 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "Certifications":
+            MessageLookupByLibrary.simpleMessage("Certifications"),
+        "Km": MessageLookupByLibrary.simpleMessage("Km"),
+        "LocationErrorpleasetryagain": MessageLookupByLibrary.simpleMessage(
+            "Location error. Please try again !"),
+        "NoProjectsyet":
+            MessageLookupByLibrary.simpleMessage("No Projects Yet !"),
+        "Specialities": MessageLookupByLibrary.simpleMessage("Specialities"),
+        "WorkingHours": MessageLookupByLibrary.simpleMessage("Working Hours"),
+        "about": MessageLookupByLibrary.simpleMessage("About"),
         "aboutUs": MessageLookupByLibrary.simpleMessage("About Us"),
         "arabic": MessageLookupByLibrary.simpleMessage("عربي"),
+        "away": MessageLookupByLibrary.simpleMessage("away"),
         "becomeaserviceprovider":
             MessageLookupByLibrary.simpleMessage("Become a Service Provider"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
@@ -34,19 +45,27 @@ class MessageLookup extends MessageLookupByLibrary {
         "favorites": MessageLookupByLibrary.simpleMessage("Favorites"),
         "featured": MessageLookupByLibrary.simpleMessage("Featured"),
         "filterby": MessageLookupByLibrary.simpleMessage("Filter By"),
+        "helpCenter": MessageLookupByLibrary.simpleMessage("Help Center"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "inviteFriends": MessageLookupByLibrary.simpleMessage("Invite Friends"),
         "language": MessageLookupByLibrary.simpleMessage("Language"),
+        "like": MessageLookupByLibrary.simpleMessage("Like"),
+        "liked": MessageLookupByLibrary.simpleMessage("Liked"),
         "logout": MessageLookupByLibrary.simpleMessage("Log out"),
         "manageAddress": MessageLookupByLibrary.simpleMessage("Manage Address"),
         "myFavorites": MessageLookupByLibrary.simpleMessage("My Favorites"),
         "myProfile": MessageLookupByLibrary.simpleMessage("My Profile"),
+        "noreviewsyet":
+            MessageLookupByLibrary.simpleMessage("No reviews Yet !"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
+        "projects": MessageLookupByLibrary.simpleMessage("Projects"),
         "rate": MessageLookupByLibrary.simpleMessage("Rate"),
+        "reviews": MessageLookupByLibrary.simpleMessage("Reviews"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "searchbynameorkeyword":
             MessageLookupByLibrary.simpleMessage("Search by Name or Keyword"),
+        "searching": MessageLookupByLibrary.simpleMessage("Searching..."),
         "select": MessageLookupByLibrary.simpleMessage("Select"),
         "services": MessageLookupByLibrary.simpleMessage("Services"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),

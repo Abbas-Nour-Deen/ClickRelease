@@ -14,7 +14,7 @@ class SelectedCategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomeAppBar(title: "Home Essentials"),
+      appBar: CustomeAppBar(title: category.nameEn),
       body: Column(
         children: [
           DefaultSearchBar(),

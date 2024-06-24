@@ -1,5 +1,6 @@
 import 'package:choice/choice.dart';
 import 'package:click_release/controllers/allServices_controller.dart';
+import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/models/service_model.dart';
 import 'package:click_release/screens/allCategories_screens/selected_service_screen.dart';
 import 'package:click_release/screens/allServices_screens/allServices_screen.dart';
@@ -23,7 +24,7 @@ class ServicesChipsWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Services",
+                S.of(context).services,
                 style: Get.textTheme.titleLarge,
               ),
               InkWell(
@@ -31,7 +32,7 @@ class ServicesChipsWidget extends StatelessWidget {
                   servicesController: _servicesController,
                 )),
                 child: Text(
-                  "View all",
+                  S.of(context).viewAll,
                   style: Get.textTheme.labelMedium!.copyWith(
                       color: Colors.grey,
                       fontWeight: FontWeight.bold,

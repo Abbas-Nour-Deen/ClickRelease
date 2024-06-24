@@ -1,4 +1,5 @@
 import 'package:click_release/controllers/liked_providers_controller.dart';
+import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/widgets/public_widgets/appBar.dart';
 import 'package:click_release/screens/home_screens/homescreen_widgets/homeScreen_items/provider_item.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,7 @@ class FavoriteScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomeAppBar(title: "Favorites", type: false),
+        appBar: CustomeAppBar(title: S.of(context).favorites, type: false),
         body: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Column(

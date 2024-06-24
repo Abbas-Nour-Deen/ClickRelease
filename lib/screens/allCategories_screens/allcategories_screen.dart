@@ -1,4 +1,5 @@
 import 'package:click_release/controllers/categories_controller.dart';
+import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/widgets/public_widgets/appBar.dart';
 import 'package:click_release/screens/home_screens/homescreen_widgets/homeScreen_items/category_item.dart';
 import 'package:dynamic_height_grid_view/dynamic_height_grid_view.dart';
@@ -12,7 +13,7 @@ class AllCategoriesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomeAppBar(title: "Categories"),
+      appBar: CustomeAppBar(title: S.of(context).categories),
       body: Padding(
           padding: const EdgeInsets.all(10.0),
           child: DynamicHeightGridView(

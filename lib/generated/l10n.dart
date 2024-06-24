@@ -339,6 +339,156 @@ class S {
       args: [],
     );
   }
+
+  /// `Searching...`
+  String get searching {
+    return Intl.message(
+      'Searching...',
+      name: 'searching',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Location error. Please try again !`
+  String get LocationErrorpleasetryagain {
+    return Intl.message(
+      'Location error. Please try again !',
+      name: 'LocationErrorpleasetryagain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Help Center`
+  String get helpCenter {
+    return Intl.message(
+      'Help Center',
+      name: 'helpCenter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Certifications`
+  String get Certifications {
+    return Intl.message(
+      'Certifications',
+      name: 'Certifications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Working Hours`
+  String get WorkingHours {
+    return Intl.message(
+      'Working Hours',
+      name: 'WorkingHours',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Specialities`
+  String get Specialities {
+    return Intl.message(
+      'Specialities',
+      name: 'Specialities',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `away`
+  String get away {
+    return Intl.message(
+      'away',
+      name: 'away',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Km`
+  String get Km {
+    return Intl.message(
+      'Km',
+      name: 'Km',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `About`
+  String get about {
+    return Intl.message(
+      'About',
+      name: 'about',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Like`
+  String get like {
+    return Intl.message(
+      'Like',
+      name: 'like',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Liked`
+  String get liked {
+    return Intl.message(
+      'Liked',
+      name: 'liked',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reviews`
+  String get reviews {
+    return Intl.message(
+      'Reviews',
+      name: 'reviews',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Projects`
+  String get projects {
+    return Intl.message(
+      'Projects',
+      name: 'projects',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No reviews Yet !`
+  String get noreviewsyet {
+    return Intl.message(
+      'No reviews Yet !',
+      name: 'noreviewsyet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Projects Yet !`
+  String get NoProjectsyet {
+    return Intl.message(
+      'No Projects Yet !',
+      name: 'NoProjectsyet',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

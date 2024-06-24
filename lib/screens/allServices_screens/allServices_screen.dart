@@ -1,5 +1,6 @@
 import 'package:click_release/controllers/categories_controller.dart';
 import 'package:click_release/controllers/allServices_controller.dart';
+import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/screens/allServices_screens/widgets/service_expansion_widget.dart';
 import 'package:click_release/widgets/items/service_item.dart';
 import 'package:click_release/widgets/public_widgets/appBar.dart';
@@ -16,9 +17,7 @@ class AllServicesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomeAppBar(
-          title: "Services",
-        ),
+        appBar: CustomeAppBar(title: S.of(context).services),
         body: ListView(children: [
           const DefaultSearchBar(),
           Padding(

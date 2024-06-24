@@ -2,10 +2,11 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:click_release/controllers/providerInfo_controller.dart';
 import 'package:click_release/controllers/provider_calculation_controller.dart';
 import 'package:click_release/controllers/provider_controller.dart';
+import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/models/provider_model.dart';
 import 'package:click_release/screens/provider_screens/add_review_screen.dart';
-import 'package:click_release/screens/provider_screens/reviews_screen.dart';
 import 'package:click_release/theme/app_theme.dart';
+import 'package:click_release/utils/utils.dart';
 import 'package:click_release/widgets/point.dart';
 import 'package:click_release/widgets/public_widgets/appBar.dart';
 import 'package:click_release/widgets/public_widgets/customeButtomSheet.dart';
@@ -48,11 +49,13 @@ class SelectedProviderScreen extends StatelessWidget {
                 (state) => Column(
                       children: [
                         providerInfo(),
-                        butons(),
-                        details(controller: controller),
-                        about(controller: controller),
+                        butons(context),
+                        details(controller: controller, context: context),
+                        about(controller: controller, context: context),
                         ContainedTabWidget(),
-                        expansions(providerInfoController: controller),
+                        expansions(
+                            providerInfoController: controller,
+                            context: context),
                         const SizedBox(
                           height: 65,
                         ),
@@ -155,7 +158,10 @@ class SelectedProviderScreen extends StatelessWidget {
             textBaseline: TextBaseline.alphabetic,
             children: [
               Text(
-                provider.categoryNameEng,
+                providerController.localizationController.selectedLang.value ==
+                        'en'
+                    ? provider.categoryNameEng
+                    : provider.categoryNameArb,
                 style: Get.textTheme.labelSmall,
               ),
               const SizedBox(
@@ -176,7 +182,9 @@ class SelectedProviderScreen extends StatelessWidget {
             height: 1,
           ),
           Text(
-            provider.serviceNameEng,
+            providerController.localizationController.selectedLang.value == 'en'
+                ? provider.serviceNameEng
+                : provider.serviceNameArb,
             style: Get.textTheme.labelSmall!
                 .copyWith(color: Get.theme.primaryColor),
           ),
@@ -185,7 +193,7 @@ class SelectedProviderScreen extends StatelessWidget {
     );
   }
 
-  Widget butons() {
+  Widget butons(context) {
     return Container(
       padding: const EdgeInsets.all(10),
       decoration: const BoxDecoration(
@@ -211,7 +219,8 @@ class SelectedProviderScreen extends StatelessWidget {
                       isLiked: provider.isLiked ? false : true);
                 },
                 height: 35,
-                text: provider.isLiked ? 'Liked' : "Like",
+                text:
+                    provider.isLiked ? S.of(context).liked : S.of(context).like,
                 icon: Icon(
                   CupertinoIcons.suit_heart,
                   color:
@@ -230,8 +239,8 @@ class SelectedProviderScreen extends StatelessWidget {
                 Get.to(AddReviewScreen());
               },
               height: 35,
-              text: 'Rate',
-              icon: Icon(
+              text: S.of(context).rate,
+              icon: const Icon(
                 CupertinoIcons.star,
                 color: Colors.white,
                 size: 14,
@@ -243,7 +252,9 @@ class SelectedProviderScreen extends StatelessWidget {
     );
   }
 
-  Widget details({required ProviderInfoController controller}) {
+  Widget details(
+      {required ProviderInfoController controller,
+      required BuildContext context}) {
     return Container(
       padding: const EdgeInsets.all(5),
       decoration: const BoxDecoration(
@@ -271,12 +282,16 @@ class SelectedProviderScreen extends StatelessWidget {
                           style: Get.textTheme.labelSmall!.copyWith(
                             fontWeight: FontWeight.w600,
                           ),
-                          text: "${provider.locationEnglishName} | "),
+                          text:
+                              "${providerController.localizationController.selectedLang.value == 'en' ? provider.locationEnglishName : provider.locationArabicName} | "),
                       TextSpan(
                           style: Get.textTheme.labelMedium!
                               .copyWith(fontWeight: FontWeight.bold),
-                          text:
-                              "${providerCalculations.calculateDistance(provider.location.y, provider.location.x).toStringAsFixed(2)} Km away"),
+                          text: providerController.localizationController
+                                      .selectedLang.value ==
+                                  'en'
+                              ? "${providerCalculations.calculateDistance(provider.location.y, provider.location.x).toStringAsFixed(2)} ${S.of(context).Km}  ${S.of(context).away}"
+                              : " ${S.of(context).away} ${providerCalculations.calculateDistance(provider.location.y, provider.location.x).toStringAsFixed(2)} ${S.of(context).Km} "),
                     ])),
               )
             ],
@@ -299,19 +314,35 @@ class SelectedProviderScreen extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.clip,
                     softWrap: true,
-                    text: TextSpan(children: <TextSpan>[
-                      TextSpan(
-                          style: Get.textTheme.labelSmall!.copyWith(
-                            fontWeight: FontWeight.w600,
-                          ),
-                          text:
-                              "${DateFormat('hh:mma', 'en').format(DateFormat('HH:mm:ss', 'en').parse(provider.workingHR!.first.start))} till ${DateFormat('hh:mma', 'en').format(DateFormat('HH:mm:ss', 'en').parse(provider.workingHR!.first.end))} - "),
-                      TextSpan(
-                          style: Get.textTheme.labelMedium!
-                              .copyWith(fontWeight: FontWeight.bold),
-                          text:
-                              "${provider.workingHR!.first.day} ${provider.workingHR!.last.day}"),
-                    ])),
+                    text: providerController
+                                .localizationController.selectedLang.value ==
+                            'en'
+                        ? TextSpan(children: <TextSpan>[
+                            TextSpan(
+                                style: Get.textTheme.labelSmall!.copyWith(
+                                  fontWeight: FontWeight.w600,
+                                ),
+                                text:
+                                    "${DateFormat('hh:mma', 'en').format(DateFormat('HH:mm:ss', 'en').parse(provider.workingHR!.first.start))} till ${DateFormat('hh:mma', 'en').format(DateFormat('HH:mm:ss', 'en').parse(provider.workingHR!.first.end))} - "),
+                            TextSpan(
+                                style: Get.textTheme.labelMedium!
+                                    .copyWith(fontWeight: FontWeight.bold),
+                                text:
+                                    "${provider.workingHR!.first.day} ${provider.workingHR!.last.day}"),
+                          ])
+                        : TextSpan(children: <TextSpan>[
+                            TextSpan(
+                                style: Get.textTheme.labelMedium!
+                                    .copyWith(fontWeight: FontWeight.bold),
+                                text:
+                                    "${provider.workingHR!.first.day} ${provider.workingHR!.last.day} - "),
+                            TextSpan(
+                                style: Get.textTheme.labelSmall!.copyWith(
+                                  fontWeight: FontWeight.w600,
+                                ),
+                                text:
+                                    "${DateFormat('hh:mma', 'en').format(DateFormat('HH:mm:ss', 'en').parse(provider.workingHR!.first.start))} till ${DateFormat('hh:mma', 'en').format(DateFormat('HH:mm:ss', 'en').parse(provider.workingHR!.first.end))} "),
+                          ])),
               )
             ],
           )
@@ -320,7 +351,9 @@ class SelectedProviderScreen extends StatelessWidget {
     );
   }
 
-  Widget about({required ProviderInfoController controller}) {
+  Widget about(
+      {required ProviderInfoController controller,
+      required BuildContext context}) {
     return Container(
       padding: const EdgeInsets.all(5),
       decoration: const BoxDecoration(
@@ -330,7 +363,7 @@ class SelectedProviderScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "About",
+            S.of(context).about,
             style: Get.textTheme.titleLarge,
           ),
           const SizedBox(
@@ -411,14 +444,16 @@ class SelectedProviderScreen extends StatelessWidget {
     );
   }
 
-  Widget expansions({required ProviderInfoController providerInfoController}) {
+  Widget expansions(
+      {required ProviderInfoController providerInfoController,
+      required BuildContext context}) {
     return Container(
       padding: const EdgeInsets.all(5),
       child: Column(
         children: [
           CustomExpansionTile(
             icon: Icons.settings,
-            title: "Specelities",
+            title: S.of(context).Specialities,
             options: [
               for (var info
                   in providerInfoController.currentProviderInfoModel.speciality)
@@ -427,14 +462,18 @@ class SelectedProviderScreen extends StatelessWidget {
                   children: [
                     const CirclePoint(),
                     const SizedBox(width: 10),
-                    Text(info.serviceNameEng)
+                    Text(providerConteroller
+                                .localizationController.selectedLang.value ==
+                            'en'
+                        ? info.serviceNameEng
+                        : info.serviceNameArb)
                   ],
                 )
             ],
           ),
           CustomExpansionTile(
             icon: Icons.settings,
-            title: "Working Hours",
+            title: S.of(context).WorkingHours,
             options: [
               for (var info in provider.workingHR!)
                 Padding(
@@ -464,11 +503,11 @@ class SelectedProviderScreen extends StatelessWidget {
           ),
           CustomExpansionTile(
             icon: Icons.settings,
-            title: "Certifications",
+            title: S.of(context).Certifications,
             options: [
-              // for (var info in providerInfoController
-              //     .currentProviderInfoModel.certification)
-              //   info.certificationName
+              for (var info in providerInfoController
+                  .currentProviderInfoModel.certification)
+                Text(info.certificationName)
             ],
           ),
         ],

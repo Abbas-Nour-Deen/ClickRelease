@@ -39,7 +39,7 @@ class CustomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           : null,
       actions: [
         Container(
-            margin: const EdgeInsets.only(right: 12),
+            margin: const EdgeInsets.symmetric(horizontal: 12),
             child: trailing ?? Container())
       ],
       leadingWidth: 50,

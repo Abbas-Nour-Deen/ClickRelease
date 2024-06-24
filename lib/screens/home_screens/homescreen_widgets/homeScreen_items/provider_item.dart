@@ -52,7 +52,11 @@ class ProviderItem extends StatelessWidget {
                     Container(
                       width: 80,
                       height: 100,
-                      margin: const EdgeInsets.only(right: 10),
+                      margin: _providerController
+                                  .localizationController.selectedLang.value ==
+                              'en'
+                          ? const EdgeInsets.only(right: 10)
+                          : const EdgeInsets.only(left: 10),
                       child: provider.profileImage == null ||
                               provider.profileImage == ''
                           ? Padding(
@@ -96,7 +100,11 @@ class ProviderItem extends StatelessWidget {
               ],
             ),
             Container(
-                margin: const EdgeInsets.only(right: 10),
+                margin: _providerController
+                            .localizationController.selectedLang.value ==
+                        'en'
+                    ? const EdgeInsets.only(right: 10)
+                    : const EdgeInsets.only(left: 10),
                 child: CallButtonWidget(
                   onTap: () => _providerController.launchUrls(
                       url: provider.phoneNumber.toString(),

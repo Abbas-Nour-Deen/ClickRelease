@@ -1,4 +1,5 @@
 import 'package:click_release/controllers/categories_controller.dart';
+import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/screens/allCategories_screens/allcategories_screen.dart';
 import 'package:click_release/screens/home_screens/homescreen_widgets/homeScreen_items/category_item.dart';
 import 'package:click_release/widgets/public_widgets/loading_widgets/categories_loading.dart';
@@ -21,13 +22,13 @@ class CategoriesWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Categories",
+                S.of(context).categories,
                 style: Get.textTheme.titleLarge,
               ),
               InkWell(
                 onTap: () => Get.to(AllCategoriesScreen()),
                 child: Text(
-                  "View all",
+                  S.of(context).viewAll,
                   style: Get.textTheme.labelMedium!.copyWith(
                       color: Colors.grey,
                       fontWeight: FontWeight.bold,

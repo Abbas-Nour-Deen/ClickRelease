@@ -19,7 +19,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomeAppBar(title: "Profile", type: false),
+        appBar: CustomeAppBar(title: S.of(context).profile, type: false),
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(15),

@@ -28,8 +28,23 @@
 "privacyPolicy": "Privacy Policy",
 "termsconditions": "Terms & Conditions",
 "contactUS":"Contact us",
-"logout":"Log out"
- 
+"logout":"Log out",
+"searching": "Searching...",
+"LocationErrorpleasetryagain": "Location error. Please try again !",
+"helpCenter":"Help Center",
+"Certifications":"Certifications",
+"WorkingHours":"Working Hours",
+"Specialities":"Specialities",
+"away":"away",
+"Km":"Km",
+"about":"About",
+"like":"Like",
+"liked":"Liked",
+"reviews":"Reviews",
+"projects":"Projects",
+"noreviewsyet":"No reviews Yet !",
+"NoProjectsyet":"No Projects Yet !"
+
 
 
 }

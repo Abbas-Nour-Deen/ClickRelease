@@ -1,5 +1,6 @@
 import 'package:click_release/controllers/location_controller.dart';
 import 'package:click_release/controllers/nabar_controller.dart';
+import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/screens/home_screens/homescreen_widgets/categories_widget.dart';
 import 'package:click_release/screens/home_screens/homescreen_widgets/imageslidShow.dart';
 import 'package:click_release/screens/home_screens/homescreen_widgets/recomenderForYou_widget.dart';
@@ -29,7 +30,7 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              header(),
+              header(context),
               InkWell(
                 onTap: () => _navController.tabController.jumpToTab(1),
                 child: const IgnorePointer(
@@ -62,7 +63,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget header() {
+  Widget header(context) {
     return GetBuilder<LocationController>(
         builder: (controller) => Container(
               child: Row(
@@ -74,11 +75,11 @@ class HomeScreen extends StatelessWidget {
                     onTap: () => Utils().showLocationBottomSheet(),
                     child: controller.obx(
                         onError: (error) => Text(
-                              "Location Error, please try again!",
+                              S.of(context).LocationErrorpleasetryagain,
                               style: Get.textTheme.labelMedium,
                             ),
                         onLoading: Text(
-                          "Searching",
+                          S.of(context).searching,
                           style: Get.textTheme.labelMedium,
                         ),
                         (state) => Text(

@@ -1,4 +1,5 @@
 import 'package:click_release/controllers/review_controller.dart';
+import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/screens/provider_screens/reviews_screen.dart';
 import 'package:click_release/theme/app_theme.dart';
 import 'package:click_release/widgets/selected_provider_widgets/items/post_item.dart';
@@ -6,7 +7,9 @@ import 'package:click_release/widgets/selected_provider_widgets/items/project_it
 import 'package:click_release/widgets/selected_provider_widgets/items/review_item.dart';
 import 'package:contained_tab_bar_view/contained_tab_bar_view.dart';
 import 'package:dynamic_height_grid_view/dynamic_height_grid_view.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class ContainedTabWidget extends StatelessWidget {
@@ -20,7 +23,7 @@ class ContainedTabWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(top: 10),
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(5.0),
       width: double.infinity,
       height: 400,
       child: ContainedTabBarView(
@@ -41,29 +44,34 @@ class ContainedTabWidget extends StatelessWidget {
                 color: Get.theme.primaryColor,
               ),
             ))),
-        tabs: const [
+        tabs: [
           // Text('Posts'),
-          Text('Reviews'),
-          Text('Projects'),
+          Text(S.of(context).reviews),
+          Text(S.of(context).projects),
         ],
-        views: [reviewsContent(), projectContent()],
+        views: [
+          reviewsContent(context: context),
+          projectContent(context: context)
+        ],
         onChange: (index) => print(index),
       ),
     );
   }
 
-  Widget reviewsContent() {
+  Widget reviewsContent({required BuildContext context}) {
     return reviewsController.obx(
         (state) => Container(
               padding: const EdgeInsets.all(10),
-              color: Get.theme.colorScheme.onSecondaryContainer,
+              decoration: BoxDecoration(
+                color: Get.theme.colorScheme.onSecondaryContainer,
+              ),
               child: Column(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "${reviewsController.currentProviderReviews.length} Reviews",
+                        "${reviewsController.currentProviderReviews.length} ${S.of(context).reviews}",
                         style: Get.textTheme.labelMedium!
                             .copyWith(color: lightTHemeSecondTextColor),
                       ),
@@ -72,7 +80,7 @@ class ContainedTabWidget extends StatelessWidget {
                           reviews: reviewsController.currentProviderReviews,
                         )),
                         child: Text(
-                          "View All",
+                          S.of(context).viewAll,
                           style: Get.textTheme.labelMedium!
                               .copyWith(color: lightTHemeSecondTextColor),
                         ),
@@ -96,8 +104,8 @@ class ContainedTabWidget extends StatelessWidget {
                 ],
               ),
             ),
-        onEmpty: const Center(
-          child: Text("No reviews yet !"),
+        onEmpty: Center(
+          child: Text(S.of(context).noreviewsyet),
         ));
   }
 
@@ -135,7 +143,7 @@ class ContainedTabWidget extends StatelessWidget {
     );
   }
 
-  Widget projectContent() {
+  Widget projectContent({required BuildContext context}) {
     return reviewsController.projectsController.obx(
       (state) => Container(
         padding: const EdgeInsets.all(10),
@@ -146,7 +154,7 @@ class ContainedTabWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "${reviewsController.projectsController.currentProviderProjects.length} Projects",
+                  "${reviewsController.projectsController.currentProviderProjects.length} ${S.of(context).projects}",
                   style: Get.textTheme.labelMedium!
                       .copyWith(color: lightTHemeSecondTextColor),
                 ),
@@ -184,11 +192,11 @@ class ContainedTabWidget extends StatelessWidget {
           ],
         ),
       ),
-      onEmpty: const Center(
-        child: Text("No Projects Found!"),
+      onEmpty: Center(
+        child: Text(S.of(context).NoProjectsyet),
       ),
-      onError: (error) => const Center(
-        child: Text("No Projects Found!"),
+      onError: (error) => Center(
+        child: Text(S.of(context).NoProjectsyet),
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:click_release/controllers/provider_controller.dart';
+import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/screens/home_screens/homescreen_widgets/homeScreen_items/provider_item.dart';
 import 'package:click_release/widgets/public_widgets/loading_widgets/topProviders_loading.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class RecommendedForYouSlideWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Recommended for you",
+            S.of(context).featured,
             style: Get.textTheme.titleLarge,
           ),
           const SizedBox(

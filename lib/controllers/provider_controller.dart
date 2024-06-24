@@ -1,4 +1,5 @@
 import 'package:click_release/controllers/liked_providers_controller.dart';
+import 'package:click_release/controllers/localization_controller.dart';
 import 'package:click_release/controllers/login_controller.dart';
 import 'package:click_release/controllers/providerInfo_controller.dart';
 import 'package:click_release/data/repo/data_repo.dart';
@@ -31,6 +32,8 @@ class ProviderController extends GetxController
   final TextEditingController commentTextController = TextEditingController();
 
   int? rateOfProvider;
+
+  final LocalizationController localizationController = Get.find();
 
   Future<void> getProviderByServiceID({required String serviceID}) async {
     try {

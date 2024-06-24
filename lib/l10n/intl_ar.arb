@@ -15,7 +15,7 @@
 "profile": "الملف الشخصي",
 "select": "اختيار",
 "zone": "المنطقة",
-"rate": "التقييم",
+"rate": "تقييم",
 "filterby": "تصفية حسب",
 "cancel": "إلغاء",
 "click": "انقر",
@@ -28,7 +28,32 @@
 "privacyPolicy": "سياسة الخصوصية",
 "termsconditions": "الشروط والأحكام",
 "contactUS":"اتصل بنا",
-"logout":"تسجيل خروج"
+"logout":"تسجيل خروج",
+"searching": "جار البحث...",
+"LocationErrorpleasetryagain": "خطأ في تحديد الموقع. يرجى المحاولة مرة أخرى.",
+"helpCenter":"مركز المساعدة",
+"Certifications":"الشهادات",
+"WorkingHours":"ساعات العمل",
+"Specialities":"التخصصات",
+"away":"بعيد",
+"Km":"كم",
+"about":"مختصر",
+"like":"اعجاب",
+"liked":"أعجبني",
+"reviews":"تعليق",
+"projects":"المشاريع",
+"noreviewsyet":"لم يتم تقديم أي تعليقات حتى الآن!",
+"NoProjectsyet":"لا توجد مشاريع حتى الآن !"
+
+
+
+
+
+
+
+
+
+
 
 
 

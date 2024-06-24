@@ -1,4 +1,5 @@
 import 'package:click_release/controllers/search_controller.dart';
+import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/screens/search_screen/filterBy_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -21,17 +22,16 @@ class CustomeSearchBar extends StatelessWidget {
             searchController.getProvidersBySearch(keyWord: value);
           }
         },
-        elevation: const MaterialStatePropertyAll(0),
-        backgroundColor: MaterialStatePropertyAll(
-            Get.theme.colorScheme.onSecondaryContainer),
-        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+        elevation: const WidgetStatePropertyAll(0),
+        backgroundColor:
+            WidgetStatePropertyAll(Get.theme.colorScheme.onSecondaryContainer),
+        shape: WidgetStatePropertyAll<RoundedRectangleBorder>(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(3),
           ),
         ),
-        hintText: "Search by name or keyword",
-        hintStyle:
-            const MaterialStatePropertyAll(TextStyle(color: Colors.grey)),
+        hintText: S.of(context).searchbynameorkeyword,
+        hintStyle: const WidgetStatePropertyAll(TextStyle(color: Colors.grey)),
         leading:
             SvgPicture.asset("assets/icons/lightheme_icons/search_light.svg"),
         trailing: [

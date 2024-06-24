@@ -22,8 +22,18 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "Certifications": MessageLookupByLibrary.simpleMessage("الشهادات"),
+        "Km": MessageLookupByLibrary.simpleMessage("كم"),
+        "LocationErrorpleasetryagain": MessageLookupByLibrary.simpleMessage(
+            "خطأ في تحديد الموقع. يرجى المحاولة مرة أخرى."),
+        "NoProjectsyet":
+            MessageLookupByLibrary.simpleMessage("لا توجد مشاريع حتى الآن !"),
+        "Specialities": MessageLookupByLibrary.simpleMessage("التخصصات"),
+        "WorkingHours": MessageLookupByLibrary.simpleMessage("ساعات العمل"),
+        "about": MessageLookupByLibrary.simpleMessage("مختصر"),
         "aboutUs": MessageLookupByLibrary.simpleMessage("معلومات عنا"),
         "arabic": MessageLookupByLibrary.simpleMessage("عربي"),
+        "away": MessageLookupByLibrary.simpleMessage("بعيد"),
         "becomeaserviceprovider":
             MessageLookupByLibrary.simpleMessage("كن مقدم خدمة"),
         "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
@@ -34,19 +44,27 @@ class MessageLookup extends MessageLookupByLibrary {
         "favorites": MessageLookupByLibrary.simpleMessage("المفضلة"),
         "featured": MessageLookupByLibrary.simpleMessage("مميز"),
         "filterby": MessageLookupByLibrary.simpleMessage("تصفية حسب"),
+        "helpCenter": MessageLookupByLibrary.simpleMessage("مركز المساعدة"),
         "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
         "inviteFriends": MessageLookupByLibrary.simpleMessage("دعوة الأصدقاء"),
         "language": MessageLookupByLibrary.simpleMessage("اللغة"),
+        "like": MessageLookupByLibrary.simpleMessage("اعجاب"),
+        "liked": MessageLookupByLibrary.simpleMessage("أعجبني"),
         "logout": MessageLookupByLibrary.simpleMessage("تسجيل خروج"),
         "manageAddress": MessageLookupByLibrary.simpleMessage("إدارة العناوين"),
         "myFavorites": MessageLookupByLibrary.simpleMessage("المفضلة لدي"),
         "myProfile": MessageLookupByLibrary.simpleMessage("ملفي الشخصي"),
+        "noreviewsyet": MessageLookupByLibrary.simpleMessage(
+            "لم يتم تقديم أي تعليقات حتى الآن!"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
         "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
-        "rate": MessageLookupByLibrary.simpleMessage("التقييم"),
+        "projects": MessageLookupByLibrary.simpleMessage("المشاريع"),
+        "rate": MessageLookupByLibrary.simpleMessage("تقييم"),
+        "reviews": MessageLookupByLibrary.simpleMessage("تعليق"),
         "search": MessageLookupByLibrary.simpleMessage("بحث"),
         "searchbynameorkeyword": MessageLookupByLibrary.simpleMessage(
             "البحث بالاسم أو الكلمة الرئيسية"),
+        "searching": MessageLookupByLibrary.simpleMessage("جار البحث..."),
         "select": MessageLookupByLibrary.simpleMessage("اختيار"),
         "services": MessageLookupByLibrary.simpleMessage("الخدمات"),
         "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
