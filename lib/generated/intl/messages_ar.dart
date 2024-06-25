@@ -22,14 +22,36 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "Adjustyourfilters": MessageLookupByLibrary.simpleMessage(
+            "اضبط عوامل التصفية للعثور على المحترفين الذين تبحث\n عنهم"),
+        "Becomeaserviceprovider":
+            MessageLookupByLibrary.simpleMessage("كن مقدم خدمة"),
+        "Callusformoreinformation":
+            MessageLookupByLibrary.simpleMessage("اتصل بنا لمزيد من المعلومات"),
         "Certifications": MessageLookupByLibrary.simpleMessage("الشهادات"),
+        "Findprofessionalsyoucanrelyon": MessageLookupByLibrary.simpleMessage(
+            "ابحث عن محترفين يمكنك الاعتماد عليهم"),
         "Km": MessageLookupByLibrary.simpleMessage("كم"),
         "LocationErrorpleasetryagain": MessageLookupByLibrary.simpleMessage(
             "خطأ في تحديد الموقع. يرجى المحاولة مرة أخرى."),
         "NoProjectsyet":
             MessageLookupByLibrary.simpleMessage("لا توجد مشاريع حتى الآن !"),
+        "Noresultsmatchyourfilters": MessageLookupByLibrary.simpleMessage(
+            "لا توجد نتائج تطابق عوامل التصفية الخاصة بك"),
+        "Saveyourpreferredprofessionalshere": MessageLookupByLibrary.simpleMessage(
+            "احفظ المحترفين المفضلين لديك هنا. قم بوضع علامة على الملفات الشخصية\n كمفضلة للوصول إليها بسهولة لاحقًا"),
+        "SearchbynameorKeywordtofindwhatyouarelookingfor":
+            MessageLookupByLibrary.simpleMessage(
+                "ابحث بالاسم أو الكلمة الرئيسية للعثور على ما تبحث عنه"),
         "Specialities": MessageLookupByLibrary.simpleMessage("التخصصات"),
+        "Trydifferentkeywords": MessageLookupByLibrary.simpleMessage(
+            "جرّب كلمات رئيسية مختلفة أو تصفح فئاتنا للعثور على\n المحترفين الذين تبحث عنهم"),
+        "Wecouldntfindanymatchesforyoursearch":
+            MessageLookupByLibrary.simpleMessage(
+                "لم نتمكن من العثور على أي نتائج مطابقة لبحثك"),
         "WorkingHours": MessageLookupByLibrary.simpleMessage("ساعات العمل"),
+        "Yourfavoritespageisempty":
+            MessageLookupByLibrary.simpleMessage("صفحتك المفضلة فارغة"),
         "about": MessageLookupByLibrary.simpleMessage("مختصر"),
         "aboutUs": MessageLookupByLibrary.simpleMessage("معلومات عنا"),
         "arabic": MessageLookupByLibrary.simpleMessage("عربي"),

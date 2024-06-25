@@ -41,6 +41,7 @@ class HomeScreen extends StatelessWidget {
               CategoriesWidget(),
               RecommendedForYouSlideWidget(),
               // const NearMeWidget(),
+
               ServicesChipsWidget()
             ],
           ),

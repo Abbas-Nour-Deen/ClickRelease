@@ -52,7 +52,7 @@ class CategoriesWidget extends StatelessWidget {
                 },
               ),
             ),
-            onLoading: CategoriesLoadingAnimation(),
+            onLoading: const CategoriesLoadingAnimation(),
             onError: (error) => Text(error.toString()),
           )
         ],

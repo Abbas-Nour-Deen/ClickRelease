@@ -1,5 +1,6 @@
 import 'package:click_release/controllers/location_controller.dart';
 import 'package:click_release/controllers/provider_controller.dart';
+import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/screens/profile_screens/profileScreen_widgets/profile_option_tile.dart';
 import 'package:click_release/widgets/google_maps.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +46,7 @@ class Utils {
     ));
   }
 
-  void becomeAserviceProviderWidget() {
+  void becomeAserviceProviderWidget(BuildContext context) {
     Get.dialog(AlertDialog.adaptive(
       backgroundColor: Get.theme.primaryColor,
       content: SizedBox(
@@ -53,12 +54,12 @@ class Utils {
         child: Column(
           children: [
             Text(
-              "Become a service provider",
+              S.of(context).Becomeaserviceprovider,
               style: Get.textTheme.bodyLarge!
                   .copyWith(color: Colors.white, fontWeight: FontWeight.bold),
             ),
             Text(
-              "Call us for more information ",
+              S.of(context).Callusformoreinformation,
               style: Get.textTheme.labelSmall!.copyWith(
                 color: Colors.white,
               ),

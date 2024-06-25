@@ -77,7 +77,7 @@ class CustomDrawer extends StatelessWidget {
         ProfileOptionTile(
           iconPath: "assets/icons/lightheme_icons/aboutus.svg",
           onTap: () {
-            Utils().becomeAserviceProviderWidget();
+            Utils().becomeAserviceProviderWidget(context);
           },
           title: S.of(context).becomeaserviceprovider,
         ),

@@ -6,6 +6,7 @@ import 'package:click_release/models/category_model.dart';
 import 'package:click_release/models/provider_model.dart';
 import 'package:click_release/models/service_model.dart';
 import 'package:click_release/models/zone_model.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class FiltrationController extends GetxController with StateMixin {
@@ -27,6 +28,8 @@ class FiltrationController extends GetxController with StateMixin {
   ServiceModel? selectedServiceForFilter;
   ZoneModel? selectedZoneForFilter;
   int? selectedRateForFilter;
+
+  // final ScrollController scrolController = ScrollController();
 
   Future<void> onFilterSubmittied() async {
     try {
@@ -54,15 +57,21 @@ class FiltrationController extends GetxController with StateMixin {
 
           filterProviders.add(provider);
         });
-        change(filterProviders, status: RxStatus.success());
+        if (filterProviders.isEmpty) {
+          change(filterProviders, status: RxStatus.empty());
+        } else {
+          change(filterProviders, status: RxStatus.success());
+        }
 
         print("providers length by filter${filterProviders.length}");
       } else {
-        change(filterProviders,
-            status: RxStatus.error("Please try again later !"));
+        change(filterProviders, status: RxStatus.empty());
 
         print(response.statusText);
       }
+
+      // scrolController.animateTo(scrolController.position.maxScrollExtent,
+      //     duration: const Duration(milliseconds: 300), curve: Curves.linear);
     } catch (e) {
       print(e.toString());
     }

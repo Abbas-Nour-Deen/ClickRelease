@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:click_release/controllers/provider_calculation_controller.dart';
 import 'package:click_release/controllers/provider_controller.dart';
+import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/models/provider_model.dart';
 import 'package:click_release/screens/provider_screens/selectedProvider_screen.dart';
 import 'package:click_release/theme/app_theme.dart';
@@ -91,7 +92,7 @@ class ProviderItem extends StatelessWidget {
                           ProviderNameWidget(
                             provider: provider,
                           ),
-                          footer()
+                          footer(context)
                         ],
                       ),
                     ),
@@ -117,7 +118,7 @@ class ProviderItem extends StatelessWidget {
     );
   }
 
-  Widget footer() {
+  Widget footer(BuildContext context) {
     return Container(
       width: 150,
       margin: const EdgeInsets.only(top: 5),
@@ -137,7 +138,7 @@ class ProviderItem extends StatelessWidget {
                     width: 2,
                   ),
                   Text(
-                    "${providerCalculations.calculateDistance(provider.location.y, provider.location.x).toStringAsFixed(2)} away",
+                    "${providerCalculations.calculateDistance(provider.location.y, provider.location.x).toStringAsFixed(2)} ${S.of(context).Km} ${S.of(context).away} ",
                     style: Get.textTheme.labelSmall!,
                   ),
                 ],

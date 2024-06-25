@@ -61,7 +61,11 @@ class ServicesChipsWidget extends StatelessWidget {
                           state.selected(_servicesController.allServices[i]),
                       onSelected:
                           state.onSelected(_servicesController.allServices[i]),
-                      label: Text(_servicesController.allServices[i].nameEn),
+                      label: Text(_servicesController
+                                  .localizationController.selectedLang.value ==
+                              'en'
+                          ? _servicesController.allServices[i].nameEn
+                          : _servicesController.allServices[i].nameAr),
                       backgroundColor:
                           Get.theme.colorScheme.onSecondaryContainer,
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,

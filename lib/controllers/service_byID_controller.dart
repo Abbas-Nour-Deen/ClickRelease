@@ -1,3 +1,4 @@
+import 'package:click_release/controllers/localization_controller.dart';
 import 'package:click_release/data/repo/data_repo.dart';
 import 'package:click_release/models/service_model.dart';
 import 'package:get/get.dart';
@@ -8,6 +9,8 @@ class ServiceByIDController extends GetxController with StateMixin {
   ServiceByIDController({required this.dataRepo});
 
   final List<ServiceModel> currentCategoryServices = [];
+
+  final LocalizationController localizationController = Get.find();
 
   Future<void> getServiceByID({required String categoryID}) async {
     try {

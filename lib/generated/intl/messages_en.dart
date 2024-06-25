@@ -22,15 +22,37 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "Adjustyourfilters": MessageLookupByLibrary.simpleMessage(
+            "Adjust your filters to find the professionals you\'re looking\n for"),
+        "Becomeaserviceprovider":
+            MessageLookupByLibrary.simpleMessage("Become a service provider"),
+        "Callusformoreinformation": MessageLookupByLibrary.simpleMessage(
+            "Call us for more information"),
         "Certifications":
             MessageLookupByLibrary.simpleMessage("Certifications"),
+        "Findprofessionalsyoucanrelyon": MessageLookupByLibrary.simpleMessage(
+            "Find professionals you can rely on"),
         "Km": MessageLookupByLibrary.simpleMessage("Km"),
         "LocationErrorpleasetryagain": MessageLookupByLibrary.simpleMessage(
             "Location error. Please try again !"),
         "NoProjectsyet":
             MessageLookupByLibrary.simpleMessage("No Projects Yet !"),
+        "Noresultsmatchyourfilters": MessageLookupByLibrary.simpleMessage(
+            "No results match your filters"),
+        "Saveyourpreferredprofessionalshere": MessageLookupByLibrary.simpleMessage(
+            "Save your preferred professionals here. Mark profiles as\n favorites to easily access them later"),
+        "SearchbynameorKeywordtofindwhatyouarelookingfor":
+            MessageLookupByLibrary.simpleMessage(
+                "Search by name or Keyword to find what you \nare looking for"),
         "Specialities": MessageLookupByLibrary.simpleMessage("Specialities"),
+        "Trydifferentkeywords": MessageLookupByLibrary.simpleMessage(
+            "Try different keywords or browse our categories to find\n the professionals you\'re looking for"),
+        "Wecouldntfindanymatchesforyoursearch":
+            MessageLookupByLibrary.simpleMessage(
+                "We couldn\'t find any matches for your search"),
         "WorkingHours": MessageLookupByLibrary.simpleMessage("Working Hours"),
+        "Yourfavoritespageisempty": MessageLookupByLibrary.simpleMessage(
+            "Your favorites page is empty"),
         "about": MessageLookupByLibrary.simpleMessage("About"),
         "aboutUs": MessageLookupByLibrary.simpleMessage("About Us"),
         "arabic": MessageLookupByLibrary.simpleMessage("عربي"),

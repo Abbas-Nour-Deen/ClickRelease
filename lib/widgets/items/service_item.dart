@@ -1,3 +1,4 @@
+import 'package:click_release/controllers/localization_controller.dart';
 import 'package:click_release/models/service_model.dart';
 import 'package:click_release/screens/allCategories_screens/selected_service_screen.dart';
 import 'package:click_release/theme/app_theme.dart';
@@ -6,13 +7,17 @@ import 'package:get/get.dart';
 
 class ServcieItem extends StatelessWidget {
   final ServiceModel service;
-  const ServcieItem({super.key, required this.service});
+  ServcieItem({super.key, required this.service});
+
+  final LocalizationController localizationController = Get.find();
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(
-        service.nameEn,
+        localizationController.selectedLang.value == 'en'
+            ? service.nameEn
+            : service.nameAr,
         style: Get.textTheme.bodyMedium,
       ),
       trailing: const Icon(

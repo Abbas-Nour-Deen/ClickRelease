@@ -14,10 +14,15 @@ class SelectedCategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomeAppBar(title: category.nameEn),
+      appBar: CustomeAppBar(
+          title: _serviceByIDController
+                      .localizationController.selectedLang.value ==
+                  'en'
+              ? category.nameEn
+              : category.nameAr),
       body: Column(
         children: [
-          DefaultSearchBar(),
+          const DefaultSearchBar(),
           GetBuilder<ServiceByIDController>(
               initState: (state) async => await _serviceByIDController
                   .getServiceByID(categoryID: category.categoryID),

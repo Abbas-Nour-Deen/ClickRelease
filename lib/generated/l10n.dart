@@ -489,6 +489,106 @@ class S {
       args: [],
     );
   }
+
+  /// `Your favorites page is empty`
+  String get Yourfavoritespageisempty {
+    return Intl.message(
+      'Your favorites page is empty',
+      name: 'Yourfavoritespageisempty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save your preferred professionals here. Mark profiles as\n favorites to easily access them later`
+  String get Saveyourpreferredprofessionalshere {
+    return Intl.message(
+      'Save your preferred professionals here. Mark profiles as\n favorites to easily access them later',
+      name: 'Saveyourpreferredprofessionalshere',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No results match your filters`
+  String get Noresultsmatchyourfilters {
+    return Intl.message(
+      'No results match your filters',
+      name: 'Noresultsmatchyourfilters',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Adjust your filters to find the professionals you're looking\n for`
+  String get Adjustyourfilters {
+    return Intl.message(
+      'Adjust your filters to find the professionals you\'re looking\n for',
+      name: 'Adjustyourfilters',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We couldn't find any matches for your search`
+  String get Wecouldntfindanymatchesforyoursearch {
+    return Intl.message(
+      'We couldn\'t find any matches for your search',
+      name: 'Wecouldntfindanymatchesforyoursearch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Try different keywords or browse our categories to find\n the professionals you're looking for`
+  String get Trydifferentkeywords {
+    return Intl.message(
+      'Try different keywords or browse our categories to find\n the professionals you\'re looking for',
+      name: 'Trydifferentkeywords',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Find professionals you can rely on`
+  String get Findprofessionalsyoucanrelyon {
+    return Intl.message(
+      'Find professionals you can rely on',
+      name: 'Findprofessionalsyoucanrelyon',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search by name or Keyword to find what you \nare looking for`
+  String get SearchbynameorKeywordtofindwhatyouarelookingfor {
+    return Intl.message(
+      'Search by name or Keyword to find what you \nare looking for',
+      name: 'SearchbynameorKeywordtofindwhatyouarelookingfor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Become a service provider`
+  String get Becomeaserviceprovider {
+    return Intl.message(
+      'Become a service provider',
+      name: 'Becomeaserviceprovider',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Call us for more information`
+  String get Callusformoreinformation {
+    return Intl.message(
+      'Call us for more information',
+      name: 'Callusformoreinformation',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

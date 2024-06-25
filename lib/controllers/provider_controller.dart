@@ -159,9 +159,16 @@ class ProviderController extends GetxController
           likedProviderController.likedProviders
               .removeWhere((element) => element.provid == provider.provid);
 
+          if (likedProviderController.likedProviders.isEmpty) {
+            likedProviderController.change(
+                likedProviderController.likedProviders,
+                status: RxStatus.empty());
+          }
           likedProviderController.update();
         } else {
           likedProviderController.likedProviders.add(provider);
+          likedProviderController.change(likedProviderController.likedProviders,
+              status: RxStatus.success());
           likedProviderController.update();
         }
         update(['likebtn']);

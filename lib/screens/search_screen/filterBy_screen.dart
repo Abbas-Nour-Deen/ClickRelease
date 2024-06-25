@@ -1,4 +1,5 @@
 import 'package:click_release/controllers/filtration_controller.dart';
+import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/models/category_model.dart';
 import 'package:click_release/models/service_model.dart';
 import 'package:click_release/models/zone_model.dart';
@@ -22,13 +23,14 @@ class FilterByScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomSheet: bottomSheet(),
-      appBar: CustomeAppBar(title: "Filter By"),
+      appBar: CustomeAppBar(title: S.of(context).filterby),
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: GetBuilder<FiltrationController>(
           id: "DropDowns",
           dispose: (state) => filtrationController.clearFiltrationData(),
           builder: (controller) => SingleChildScrollView(
+            // controller: filtrationController.scrolController,
             child: Column(
               children: [
                 CustomeDropDownWidget(
@@ -58,7 +60,7 @@ class FilterByScreen extends StatelessWidget {
                             ),
                           ))
                       .toList(),
-                  title: "Category",
+                  title: S.of(context).categories,
                 ),
                 Visibility(
                   visible:
@@ -95,7 +97,7 @@ class FilterByScreen extends StatelessWidget {
                               ),
                             ))
                         .toList(),
-                    title: "Service",
+                    title: S.of(context).services,
                   ),
                 ),
                 CustomeDropDownWidget(
@@ -124,10 +126,10 @@ class FilterByScreen extends StatelessWidget {
                             ),
                           ))
                       .toList(),
-                  title: "Zone",
+                  title: S.of(context).zone,
                 ),
-                ratingDropDown(),
-                filtrationResult()
+                ratingDropDown(context),
+                filtrationResult(context)
               ],
             ),
           ),
@@ -136,7 +138,7 @@ class FilterByScreen extends StatelessWidget {
     );
   }
 
-  Widget filtrationResult() {
+  Widget filtrationResult(context) {
     return Obx(() => filtrationController.isFilterLoading.value
         ? filtrationController.obx(
             (state) => Container(
@@ -172,8 +174,29 @@ class FilterByScreen extends StatelessWidget {
                 ],
               ),
             ),
-            onEmpty: const Center(
-              child: Text("No results found"),
+            onEmpty: Container(
+              margin: const EdgeInsets.only(bottom: 90),
+              child: Column(
+                children: [
+                  SizedBox(
+                      height: 300,
+                      child: SvgPicture.asset("assets/filter_empty.svg")),
+                  Text(
+                    S.of(context).Noresultsmatchyourfilters,
+                    style: Get.textTheme.titleLarge,
+                  ),
+                  const SizedBox(
+                    height: 4,
+                  ),
+                  Text(
+                    S.of(context).Adjustyourfilters,
+                    textAlign: TextAlign.center,
+                    style: Get.textTheme.labelSmall!.copyWith(
+                      fontSize: 12,
+                    ),
+                  )
+                ],
+              ),
             ),
             onLoading: const Center(
               child: CircularProgressIndicator.adaptive(),
@@ -269,14 +292,14 @@ class FilterByScreen extends StatelessWidget {
     );
   }
 
-  Widget ratingDropDown() {
+  Widget ratingDropDown(context) {
     return Container(
       margin: const EdgeInsets.only(top: 15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Rate",
+            S.of(context).rate,
             style: Get.textTheme.titleSmall,
           ),
           const SizedBox(

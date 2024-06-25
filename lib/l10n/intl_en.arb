@@ -43,7 +43,18 @@
 "reviews":"Reviews",
 "projects":"Projects",
 "noreviewsyet":"No reviews Yet !",
-"NoProjectsyet":"No Projects Yet !"
+"NoProjectsyet":"No Projects Yet !",
+"Yourfavoritespageisempty":"Your favorites page is empty",
+"Saveyourpreferredprofessionalshere":"Save your preferred professionals here. Mark profiles as\n favorites to easily access them later",
+"Noresultsmatchyourfilters":"No results match your filters",
+"Adjustyourfilters":"Adjust your filters to find the professionals you're looking\n for",
+"Wecouldntfindanymatchesforyoursearch":"We couldn't find any matches for your search",
+"Trydifferentkeywords":"Try different keywords or browse our categories to find\n the professionals you're looking for",
+"Findprofessionalsyoucanrelyon":"Find professionals you can rely on",
+"SearchbynameorKeywordtofindwhatyouarelookingfor":"Search by name or Keyword to find what you \nare looking for",
+"Becomeaserviceprovider":"Become a service provider",
+"Callusformoreinformation":"Call us for more information"
+
 
 
 
