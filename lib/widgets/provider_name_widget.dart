@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:click_release/controllers/localization_controller.dart';
 import 'package:click_release/models/provider_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/svg.dart';
@@ -6,7 +7,9 @@ import 'package:get/get.dart';
 
 class ProviderNameWidget extends StatelessWidget {
   final ProviderModel provider;
-  const ProviderNameWidget({super.key, required this.provider});
+  ProviderNameWidget({super.key, required this.provider});
+
+  final LocalizationController localizationController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +50,9 @@ class ProviderNameWidget extends StatelessWidget {
             textBaseline: TextBaseline.alphabetic,
             children: [
               Text(
-                provider.serviceNameEng,
+                localizationController.selectedLang.value == 'en'
+                    ? provider.serviceNameEng
+                    : provider.serviceNameArb,
                 style: Get.textTheme.labelSmall,
               ),
               const SizedBox(

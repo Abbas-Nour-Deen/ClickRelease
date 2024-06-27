@@ -55,20 +55,28 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your favorites page is empty"),
         "about": MessageLookupByLibrary.simpleMessage("About"),
         "aboutUs": MessageLookupByLibrary.simpleMessage("About Us"),
+        "alreadyhaveanaccount":
+            MessageLookupByLibrary.simpleMessage("You already have an account"),
         "arabic": MessageLookupByLibrary.simpleMessage("عربي"),
         "away": MessageLookupByLibrary.simpleMessage("away"),
         "becomeaserviceprovider":
             MessageLookupByLibrary.simpleMessage("Become a Service Provider"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "categories": MessageLookupByLibrary.simpleMessage("Categories"),
+        "checknetwork": MessageLookupByLibrary.simpleMessage(
+            "Please check your network connection"),
         "click": MessageLookupByLibrary.simpleMessage("Click"),
         "contactUS": MessageLookupByLibrary.simpleMessage("Contact us"),
         "english": MessageLookupByLibrary.simpleMessage("English"),
+        "error": MessageLookupByLibrary.simpleMessage("Failed"),
         "favorites": MessageLookupByLibrary.simpleMessage("Favorites"),
         "featured": MessageLookupByLibrary.simpleMessage("Featured"),
         "filterby": MessageLookupByLibrary.simpleMessage("Filter By"),
         "helpCenter": MessageLookupByLibrary.simpleMessage("Help Center"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
+        "invalidotp": MessageLookupByLibrary.simpleMessage("Invalid OTP"),
+        "invalidphonenumber":
+            MessageLookupByLibrary.simpleMessage("Invalid phone number"),
         "inviteFriends": MessageLookupByLibrary.simpleMessage("Invite Friends"),
         "language": MessageLookupByLibrary.simpleMessage("Language"),
         "like": MessageLookupByLibrary.simpleMessage("Like"),
@@ -79,6 +87,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "myProfile": MessageLookupByLibrary.simpleMessage("My Profile"),
         "noreviewsyet":
             MessageLookupByLibrary.simpleMessage("No reviews Yet !"),
+        "otpverefiedsuccessfully":
+            MessageLookupByLibrary.simpleMessage("OTP verified successfully"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "projects": MessageLookupByLibrary.simpleMessage("Projects"),
@@ -91,9 +101,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "select": MessageLookupByLibrary.simpleMessage("Select"),
         "services": MessageLookupByLibrary.simpleMessage("Services"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "signedupsuccessfuly": MessageLookupByLibrary.simpleMessage(
+            "You have signed up successfully"),
+        "success": MessageLookupByLibrary.simpleMessage("success"),
         "termsconditions":
             MessageLookupByLibrary.simpleMessage("Terms & Conditions"),
+        "usernamealreadyexists":
+            MessageLookupByLibrary.simpleMessage("User name already exists"),
+        "userupdatedsuccessfully":
+            MessageLookupByLibrary.simpleMessage("User updated successfully"),
         "viewAll": MessageLookupByLibrary.simpleMessage("View All"),
+        "welcomeBack": MessageLookupByLibrary.simpleMessage("Welcome Back"),
         "zone": MessageLookupByLibrary.simpleMessage("Zone")
       };
 }

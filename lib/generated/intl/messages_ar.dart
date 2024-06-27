@@ -54,20 +54,29 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("صفحتك المفضلة فارغة"),
         "about": MessageLookupByLibrary.simpleMessage("مختصر"),
         "aboutUs": MessageLookupByLibrary.simpleMessage("معلومات عنا"),
+        "alreadyhaveanaccount":
+            MessageLookupByLibrary.simpleMessage("لديك حساب بالفعل"),
         "arabic": MessageLookupByLibrary.simpleMessage("عربي"),
         "away": MessageLookupByLibrary.simpleMessage("بعيد"),
         "becomeaserviceprovider":
             MessageLookupByLibrary.simpleMessage("كن مقدم خدمة"),
         "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
         "categories": MessageLookupByLibrary.simpleMessage("الفئات"),
+        "checknetwork": MessageLookupByLibrary.simpleMessage(
+            "Please check your network connection"),
         "click": MessageLookupByLibrary.simpleMessage("انقر"),
         "contactUS": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
         "english": MessageLookupByLibrary.simpleMessage("English"),
+        "error": MessageLookupByLibrary.simpleMessage("خطأ"),
         "favorites": MessageLookupByLibrary.simpleMessage("المفضلة"),
         "featured": MessageLookupByLibrary.simpleMessage("مميز"),
         "filterby": MessageLookupByLibrary.simpleMessage("تصفية حسب"),
         "helpCenter": MessageLookupByLibrary.simpleMessage("مركز المساعدة"),
         "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
+        "invalidotp": MessageLookupByLibrary.simpleMessage(
+            "كلمة المرور لمرة واحدة غير صالحة"),
+        "invalidphonenumber":
+            MessageLookupByLibrary.simpleMessage("رقم الهاتف غير صحيح"),
         "inviteFriends": MessageLookupByLibrary.simpleMessage("دعوة الأصدقاء"),
         "language": MessageLookupByLibrary.simpleMessage("اللغة"),
         "like": MessageLookupByLibrary.simpleMessage("اعجاب"),
@@ -78,6 +87,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "myProfile": MessageLookupByLibrary.simpleMessage("ملفي الشخصي"),
         "noreviewsyet": MessageLookupByLibrary.simpleMessage(
             "لم يتم تقديم أي تعليقات حتى الآن!"),
+        "otpverefiedsuccessfully": MessageLookupByLibrary.simpleMessage(
+            "تم التحقق من كلمة المرور مرة واحدة بنجاح"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
         "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
         "projects": MessageLookupByLibrary.simpleMessage("المشاريع"),
@@ -90,9 +101,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "select": MessageLookupByLibrary.simpleMessage("اختيار"),
         "services": MessageLookupByLibrary.simpleMessage("الخدمات"),
         "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
+        "signedupsuccessfuly":
+            MessageLookupByLibrary.simpleMessage("لقد قمت بتسجيل الدخول بنجاح"),
+        "success": MessageLookupByLibrary.simpleMessage("نجاح"),
         "termsconditions":
             MessageLookupByLibrary.simpleMessage("الشروط والأحكام"),
+        "usernamealreadyexists":
+            MessageLookupByLibrary.simpleMessage("اسم المستخدم موجود بالفعل"),
+        "userupdatedsuccessfully":
+            MessageLookupByLibrary.simpleMessage("تم تحديث المستخدم بنجاح"),
         "viewAll": MessageLookupByLibrary.simpleMessage("عرض الكل"),
+        "welcomeBack": MessageLookupByLibrary.simpleMessage("مرحبًا بعودتك"),
         "zone": MessageLookupByLibrary.simpleMessage("المنطقة")
       };
 }

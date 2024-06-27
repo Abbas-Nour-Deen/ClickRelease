@@ -1,6 +1,7 @@
 import 'dart:io';
-
+import 'package:click_release/controllers/loading_controller.dart';
 import 'package:click_release/data/repo/login_repo.dart';
+import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/models/gender_model.dart';
 import 'package:click_release/models/user_model.dart';
 import 'package:click_release/screens/regestration_Screens/createAccount_screen.dart';
@@ -47,6 +48,8 @@ class LoginController extends GetxController with StateMixin {
   bool optSent = false;
   File? pickedProfilePhoto;
 
+  final LoadingController loadingController = Get.put(LoadingController());
+
   Future<void> sendOTP() async {
     try {
       if (isPhoneNumberValid) {
@@ -65,10 +68,11 @@ class LoginController extends GetxController with StateMixin {
           }
         }
       } else {
-        Get.showSnackbar(const GetSnackBar(
-          message: "Invalid phone number !",
-          duration: Duration(seconds: 3),
-        ));
+        loadingController.showCustomeDialog(
+            type: "error",
+            title: S.of(Get.context!).error,
+            body: S.of(Get.context!).invalidphonenumber,
+            duration: 4);
       }
     } catch (e) {
       print(e.toString());
@@ -87,7 +91,14 @@ class LoginController extends GetxController with StateMixin {
 
         if (response.body['message'] ==
             'OTP verified successfully, User does not exist') {
-          Get.to(CreateAccountScreen());
+          loadingController.showCustomeDialog(
+              type: "success",
+              title: S.of(Get.context!).success,
+              body: S.of(Get.context!).otpverefiedsuccessfully,
+              duration: 3);
+
+          Future.delayed(const Duration(seconds: 2))
+              .then((value) => Get.to(CreateAccountScreen()));
         } else if (response.body['message'] == 'User already exists') {
           final data = response.body;
           final userData = data['data'];
@@ -103,20 +114,24 @@ class LoginController extends GetxController with StateMixin {
 
           print(
               "currentUser ${currentUser.firstName},  ${currentUser.lastName}");
-          Get.showSnackbar(const GetSnackBar(
-            message: "Welcome Back!",
-            duration: Duration(seconds: 3),
-          ));
+
+          loadingController.showCustomeDialog(
+              type: "success",
+              title: S.of(Get.context!).welcomeBack,
+              body: S.of(Get.context!).alreadyhaveanaccount,
+              duration: 4);
+
           Future.delayed(const Duration(seconds: 2))
               .then((value) => Get.to(CustomNavBar()));
         }
 
         print("recieved otp response  ${response.body}");
       } else {
-        Get.showSnackbar(const GetSnackBar(
-          message: "Invalid OTP !",
-          duration: Duration(seconds: 3),
-        ));
+        loadingController.showCustomeDialog(
+            type: "error",
+            title: S.of(Get.context!).error,
+            body: S.of(Get.context!).invalidotp,
+            duration: 4);
         print(response.statusCode);
       }
     } catch (e) {
@@ -137,6 +152,12 @@ class LoginController extends GetxController with StateMixin {
         final data = response.body;
         final userList = data['User'];
 
+        loadingController.showCustomeDialog(
+            type: "success",
+            title: S.of(Get.context!).success,
+            body: S.of(Get.context!).signedupsuccessfuly,
+            duration: 4);
+
         currentUser = UserModel.fromJson(userList[0]);
 
         userToken = response.body['token'];
@@ -144,7 +165,9 @@ class LoginController extends GetxController with StateMixin {
         storage.write("isLogedin", true);
         storage.write("userID", currentUser.userID);
 
-        Get.to(CustomNavBar());
+        Future.delayed(const Duration(seconds: 2))
+            .then((value) => Get.to(CustomNavBar()));
+
         print("new user response  ${response.body}");
         print("new user token  ${userToken}");
         print("new user id  ${currentUser.userID}");
@@ -206,11 +229,27 @@ class LoginController extends GetxController with StateMixin {
           userName: userNameController.text);
 
       if (response.statusCode == 200) {
+        Get.back();
+
+        loadingController.showCustomeDialog(
+            type: "success",
+            title: S.of(Get.context!).success,
+            body: S.of(Get.context!).userupdatedsuccessfully,
+            duration: 3);
       } else if (response.statusCode == 409) {
-        Get.showSnackbar(const GetSnackBar(
-          message: "Name already exists !",
-        ));
+        loadingController.showCustomeDialog(
+            type: "error",
+            title: S.of(Get.context!).error,
+            body: S.of(Get.context!).usernamealreadyexists,
+            duration: 4);
         print(response.statusCode);
+      } else {
+        loadingController.showCustomeDialog(
+            type: "error",
+            title: S.of(Get.context!).error,
+            body: S.of(Get.context!).checknetwork,
+            duration: 4);
+        print("update user status code ${response.statusCode}");
       }
     } catch (e) {
       print(e.toString());

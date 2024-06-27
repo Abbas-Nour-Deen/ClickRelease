@@ -53,7 +53,20 @@
 "Findprofessionalsyoucanrelyon":"Find professionals you can rely on",
 "SearchbynameorKeywordtofindwhatyouarelookingfor":"Search by name or Keyword to find what you \nare looking for",
 "Becomeaserviceprovider":"Become a service provider",
-"Callusformoreinformation":"Call us for more information"
+"Callusformoreinformation":"Call us for more information",
+"welcomeBack":"Welcome Back",
+"invalidotp":"Invalid OTP",
+"alreadyhaveanaccount":"You already have an account",
+"error":"Failed",
+"invalidphonenumber":"Invalid phone number",
+"success":"success",
+"otpverefiedsuccessfully":"OTP verified successfully",
+"signedupsuccessfuly":"You have signed up successfully",
+"userupdatedsuccessfully":"User updated successfully",
+"usernamealreadyexists":"User name already exists",
+"checknetwork":"Please check your network connection"
+
+
 
 
 

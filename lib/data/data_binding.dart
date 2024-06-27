@@ -10,7 +10,6 @@ import 'package:click_release/controllers/service_byID_controller.dart';
 import 'package:click_release/controllers/zones_controller.dart';
 import 'package:click_release/data/api/data_api.dart';
 import 'package:click_release/data/repo/data_repo.dart';
-
 import 'package:get/get.dart';
 
 class AppBindings extends Bindings {

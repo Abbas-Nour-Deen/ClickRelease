@@ -589,6 +589,116 @@ class S {
       args: [],
     );
   }
+
+  /// `Welcome Back`
+  String get welcomeBack {
+    return Intl.message(
+      'Welcome Back',
+      name: 'welcomeBack',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid OTP`
+  String get invalidotp {
+    return Intl.message(
+      'Invalid OTP',
+      name: 'invalidotp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You already have an account`
+  String get alreadyhaveanaccount {
+    return Intl.message(
+      'You already have an account',
+      name: 'alreadyhaveanaccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed`
+  String get error {
+    return Intl.message(
+      'Failed',
+      name: 'error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid phone number`
+  String get invalidphonenumber {
+    return Intl.message(
+      'Invalid phone number',
+      name: 'invalidphonenumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `success`
+  String get success {
+    return Intl.message(
+      'success',
+      name: 'success',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `OTP verified successfully`
+  String get otpverefiedsuccessfully {
+    return Intl.message(
+      'OTP verified successfully',
+      name: 'otpverefiedsuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have signed up successfully`
+  String get signedupsuccessfuly {
+    return Intl.message(
+      'You have signed up successfully',
+      name: 'signedupsuccessfuly',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User updated successfully`
+  String get userupdatedsuccessfully {
+    return Intl.message(
+      'User updated successfully',
+      name: 'userupdatedsuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User name already exists`
+  String get usernamealreadyexists {
+    return Intl.message(
+      'User name already exists',
+      name: 'usernamealreadyexists',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please check your network connection`
+  String get checknetwork {
+    return Intl.message(
+      'Please check your network connection',
+      name: 'checknetwork',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

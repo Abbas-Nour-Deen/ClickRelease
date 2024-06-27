@@ -53,7 +53,29 @@
 "Findprofessionalsyoucanrelyon":"ابحث عن محترفين يمكنك الاعتماد عليهم",
 "SearchbynameorKeywordtofindwhatyouarelookingfor":"ابحث بالاسم أو الكلمة الرئيسية للعثور على ما تبحث عنه",
 "Becomeaserviceprovider":"كن مقدم خدمة",
-"Callusformoreinformation":"اتصل بنا لمزيد من المعلومات"
+"Callusformoreinformation":"اتصل بنا لمزيد من المعلومات",
+"welcomeBack":"مرحبًا بعودتك",
+"invalidotp":"كلمة المرور لمرة واحدة غير صالحة",
+"alreadyhaveanaccount":"لديك حساب بالفعل",
+"error":"خطأ",
+"invalidphonenumber":"رقم الهاتف غير صحيح",
+"success":"نجاح",
+"otpverefiedsuccessfully":"تم التحقق من كلمة المرور مرة واحدة بنجاح",
+"signedupsuccessfuly":"لقد قمت بتسجيل الدخول بنجاح",
+"userupdatedsuccessfully":"تم تحديث المستخدم بنجاح",
+"usernamealreadyexists":"اسم المستخدم موجود بالفعل",
+"checknetwork":"Please check your network connection"
+
+
+
+
+
+
+
+
+
+
+
 
 
 
