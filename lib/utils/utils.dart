@@ -3,7 +3,9 @@ import 'package:click_release/controllers/provider_controller.dart';
 import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/screens/profile_screens/profileScreen_widgets/profile_option_tile.dart';
 import 'package:click_release/widgets/google_maps.dart';
+import 'package:click_release/widgets/public_widgets/custome_btn.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_exit_app/flutter_exit_app.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
@@ -77,5 +79,41 @@ class Utils {
         ),
       ),
     ));
+  }
+
+  bool exitAppDialog() {
+    showDialog(
+      context: Get.context!,
+      builder: (context) => AlertDialog(
+        title: Text(
+          S.of(context).exit,
+          style: Get.textTheme.titleMedium,
+        ),
+        content: Text(S.of(context).areyousureyouwanttoexittheapp),
+        actions: <Widget>[
+          TextButton(
+              onPressed: () {
+                Get.back();
+              },
+              child: Text(
+                S.of(context).cancel,
+                style: TextStyle(color: Get.theme.primaryColor),
+              )),
+          const SizedBox(
+            width: 3,
+          ),
+          CustomeButton(
+            width: 50,
+            text: S.of(context).ok,
+            ontap: () {
+              FlutterExitApp.exitApp(iosForceExit: true);
+            },
+            height: 40,
+            margin: const EdgeInsets.all(0),
+          ),
+        ],
+      ),
+    );
+    return false;
   }
 }

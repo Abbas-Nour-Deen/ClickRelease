@@ -22,15 +22,28 @@ class SelectedCategoryScreen extends StatelessWidget {
               : category.nameAr),
       body: Column(
         children: [
-          const DefaultSearchBar(),
+          DefaultSearchBar(
+            onChanged: (p0) {
+              _serviceByIDController.searchLogic(p0);
+            },
+            textController: _serviceByIDController.serviceByIDSearchController,
+          ),
           GetBuilder<ServiceByIDController>(
+              id: 'catServices',
+              dispose: (state) {
+                _serviceByIDController.serviceByIDSearchController.clear();
+              },
               initState: (state) async => await _serviceByIDController
                   .getServiceByID(categoryID: category.categoryID),
               builder: (controller) =>
                   _serviceByIDController.obx((state) => Expanded(
                         child: ListView.builder(
                           itemCount: _serviceByIDController
-                              .currentCategoryServices.length,
+                                  .serviceByIDSearchController.text.isEmpty
+                              ? _serviceByIDController
+                                  .currentCategoryServices.length
+                              : _serviceByIDController
+                                  .filteredCategoryServices.length,
                           itemBuilder: (context, index) {
                             return ServcieItem(
                               service: _serviceByIDController

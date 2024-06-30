@@ -12,6 +12,7 @@ import 'package:click_release/widgets/public_widgets/appBar.dart';
 import 'package:click_release/widgets/public_widgets/customeButtomSheet.dart';
 import 'package:click_release/widgets/public_widgets/custome_btn.dart';
 import 'package:click_release/widgets/provider_category_icons.dart';
+import 'package:click_release/widgets/public_widgets/provider_profile_widget.dart';
 import 'package:click_release/widgets/selected_provider_widgets/contained_Tab.dart';
 import 'package:click_release/widgets/selected_provider_widgets/expansion_tile.dart';
 import 'package:click_release/widgets/socialMedia_btn.dart';
@@ -75,28 +76,9 @@ class SelectedProviderScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //profilePhoto
-              ClipRRect(
-                borderRadius: provider!.profileImage == null ||
-                        provider.profileImage == ''
-                    ? BorderRadius.circular(0)
-                    : BorderRadius.circular(100),
-                child:
-                    provider.profileImage == null || provider.profileImage == ''
-                        ? Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: SvgPicture.asset(
-                              "assets/images/person.svg",
-                              height: 100,
-                              width: 100,
-                              fit: BoxFit.fill,
-                            ),
-                          )
-                        : Image.network(
-                            provider.profileImage,
-                            height: 100,
-                            width: 100,
-                            fit: BoxFit.cover,
-                          ),
+              ProviderProfilePhotoWidget(
+                imageurl: provider.profileImage,
+                type: 'provScreen',
               ),
 
               Expanded(

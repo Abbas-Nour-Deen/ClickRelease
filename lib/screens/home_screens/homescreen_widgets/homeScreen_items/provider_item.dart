@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:click_release/controllers/provider_calculation_controller.dart';
 import 'package:click_release/controllers/provider_controller.dart';
 import 'package:click_release/generated/l10n.dart';
@@ -9,7 +8,7 @@ import 'package:click_release/widgets/public_widgets/call_btn_widget.dart';
 import 'package:click_release/widgets/provider_category_icons.dart';
 import 'package:click_release/widgets/provider_name_widget.dart';
 import 'package:click_release/widgets/public_widgets/likeButton_widget.dart';
-// import 'package:click_release/widgets/public_widgets/likebtn_widget.dart';
+import 'package:click_release/widgets/public_widgets/provider_profile_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -51,25 +50,15 @@ class ProviderItem extends StatelessWidget {
                 Stack(
                   children: [
                     Container(
-                      width: 80,
-                      height: 100,
-                      margin: _providerController
-                                  .localizationController.selectedLang.value ==
-                              'en'
-                          ? const EdgeInsets.only(right: 10)
-                          : const EdgeInsets.only(left: 10),
-                      child: provider.profileImage == null ||
-                              provider.profileImage == ''
-                          ? Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child:
-                                  SvgPicture.asset("assets/images/person.svg"),
-                            )
-                          : CachedNetworkImage(
-                              imageUrl: provider.profileImage,
-                              fit: BoxFit.fill,
-                            ),
-                    ),
+                        width: 80,
+                        height: 100,
+                        margin: _providerController.localizationController
+                                    .selectedLang.value ==
+                                'en'
+                            ? const EdgeInsets.only(right: 10)
+                            : const EdgeInsets.only(left: 10),
+                        child: ProviderProfilePhotoWidget(
+                            imageurl: provider.profileImage, type: 'provItem')),
                     LikeButtunWidget(
                       provider: provider,
                     )

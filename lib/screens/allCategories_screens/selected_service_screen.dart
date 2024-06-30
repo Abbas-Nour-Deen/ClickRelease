@@ -15,12 +15,26 @@ class SelectedServiceScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomeAppBar(title: service.nameEn),
+      appBar: CustomeAppBar(
+          title:
+              _providerController.localizationController.selectedLang.value ==
+                      'en'
+                  ? service.nameEn
+                  : service.nameAr),
       body: Column(
         children: [
-          const DefaultSearchBar(),
+          DefaultSearchBar(
+            textController:
+                _providerController.searchProviderByServiceTextController,
+            onChanged: (p0) {
+              _providerController.searchLogic(p0);
+            },
+          ),
           GetBuilder<ProviderController>(
-            // init: Get.put(ProviderController(dataRepo: Get.find())),
+            id: 'provList',
+            dispose: (state) => _providerController
+                .searchProviderByServiceTextController
+                .clear(),
             initState: (state) async => await _providerController
                 .getProviderByServiceID(serviceID: service.serviceId),
             builder: (controller) =>
@@ -28,8 +42,12 @@ class SelectedServiceScreen extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: ListView.builder(
-                          itemCount:
-                              _providerController.currentProviders.length,
+                          itemCount: _providerController
+                                  .searchProviderByServiceTextController
+                                  .text
+                                  .isEmpty
+                              ? _providerController.currentProviders.length
+                              : _providerController.filteredProviders.length,
                           itemBuilder: (context, index) {
                             return SizedBox(
                                 height: 120,

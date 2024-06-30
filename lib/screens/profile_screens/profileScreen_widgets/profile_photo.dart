@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:click_release/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -32,9 +33,27 @@ class ProfilePhoto extends StatelessWidget {
               : imageUrl != null && imageUrl!.isNotEmpty
                   ? ClipRRect(
                       borderRadius: BorderRadius.circular(100),
-                      child: Image.network(
-                        imageUrl!,
+                      child: CachedNetworkImage(
+                        imageUrl: imageUrl!,
                         fit: BoxFit.cover,
+                        placeholder: (context, url) => Padding(
+                          padding: const EdgeInsets.all(25.0),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(0),
+                            child: SvgPicture.asset(
+                              "assets/images/person.svg",
+                            ),
+                          ),
+                        ),
+                        errorWidget: (context, url, error) => Padding(
+                          padding: const EdgeInsets.all(25.0),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(0),
+                            child: SvgPicture.asset(
+                              "assets/images/person.svg",
+                            ),
+                          ),
+                        ),
                       ),
                     )
                   : Padding(

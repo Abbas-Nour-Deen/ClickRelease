@@ -4,6 +4,7 @@ import 'package:click_release/screens/favorite_screen/favorite_screen.dart';
 import 'package:click_release/screens/home_screens/home_screen.dart';
 import 'package:click_release/screens/profile_screens/profile_screen.dart';
 import 'package:click_release/screens/search_screen/search_screen.dart';
+import 'package:click_release/utils/utils.dart';
 import 'package:click_release/widgets/loading_screen.dart';
 import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,41 +15,47 @@ import '../controllers/nabar_controller.dart';
 
 class CustomNavBar extends StatelessWidget {
   CustomNavBar({super.key});
-  NavBarController navController =
+  final NavBarController navController =
       Get.put(NavBarController(), permanent: false);
 
   final LoginController loginController = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<LoginController>(
-        initState: (state) => loginController.getUserByID(),
-        builder: (controller) => PersistentTabView(
-              controller: navController.tabController,
-              backgroundColor: Get.theme.scaffoldBackgroundColor,
-              resizeToAvoidBottomInset: true,
-              handleAndroidBackButtonPress: true,
-              stateManagement: true,
-              popActionScreens: PopActionScreensType.all,
-              navBarHeight: 63,
-              screenTransitionAnimation: const ScreenTransitionAnimation(
-                curve: Curves.ease,
-                duration: Duration(milliseconds: 200),
-              ),
-              onTabChanged: (value) {},
-              tabs: _buildScreens(context),
-              navBarBuilder: (p0) {
-                return Style2BottomNavBar(
-                  navBarConfig: p0,
-                  navBarDecoration: NavBarDecoration(
-                      color: Get.theme.scaffoldBackgroundColor,
-                      border: Border(
-                          top: BorderSide(
-                        color: Get.theme.colorScheme.primaryContainer,
-                      ))),
-                );
-              },
-            ));
+    return PopScope(
+        canPop: false,
+        onPopInvoked: (didPop) {
+          Utils().exitAppDialog();
+        },
+        child: GetBuilder<LoginController>(
+          initState: (state) => loginController.getUserByID(),
+          builder: (controller) => PersistentTabView(
+            controller: navController.tabController,
+            backgroundColor: Get.theme.scaffoldBackgroundColor,
+            resizeToAvoidBottomInset: true,
+            handleAndroidBackButtonPress: true,
+            stateManagement: true,
+            popActionScreens: PopActionScreensType.all,
+            navBarHeight: 63,
+            screenTransitionAnimation: const ScreenTransitionAnimation(
+              curve: Curves.ease,
+              duration: Duration(milliseconds: 200),
+            ),
+            onTabChanged: (value) {},
+            tabs: _buildScreens(context),
+            navBarBuilder: (p0) {
+              return Style2BottomNavBar(
+                navBarConfig: p0,
+                navBarDecoration: NavBarDecoration(
+                    color: Get.theme.scaffoldBackgroundColor,
+                    border: Border(
+                        top: BorderSide(
+                      color: Get.theme.colorScheme.primaryContainer,
+                    ))),
+              );
+            },
+          ),
+        ));
   }
 
   List<PersistentTabConfig> _buildScreens(context) {

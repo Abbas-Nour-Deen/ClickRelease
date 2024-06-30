@@ -30,6 +30,11 @@ class EditProfileScreen extends StatelessWidget {
                   margin: const EdgeInsets.symmetric(vertical: 20),
                   child: Center(
                     child: GetBuilder<LoginController>(
+                      initState: (state) =>
+                          loginController.savedPickedProfilePhoto != null
+                              ? loginController.pickedProfilePhoto =
+                                  loginController.savedPickedProfilePhoto
+                              : null,
                       id: 'profilePhoto',
                       dispose: (state) =>
                           loginController.pickedProfilePhoto = null,

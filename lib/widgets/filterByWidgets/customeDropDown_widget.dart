@@ -1,4 +1,5 @@
 import 'package:click_release/controllers/search_controller.dart';
+import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/theme/constant_designs.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -39,7 +40,7 @@ class CustomeDropDownWidget<T> extends StatelessWidget {
               isExpanded: true,
               dropdownColor: Get.theme.colorScheme.primaryContainer,
               hint: Text(
-                'Select',
+                S.of(context).select,
                 style: Get.textTheme.bodyMedium,
               ),
               value: value,

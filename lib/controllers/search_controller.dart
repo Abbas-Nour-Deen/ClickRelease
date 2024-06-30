@@ -1,3 +1,4 @@
+import 'package:click_release/controllers/localization_controller.dart';
 import 'package:click_release/data/repo/data_repo.dart';
 import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/models/provider_model.dart';
@@ -65,20 +66,23 @@ class SearchProviderController extends GetxController with StateMixin {
   }
 
   Widget initialPlaceHolder() {
-    return Column(
-      children: [
-        SvgPicture.asset("assets/images/empty_search.svg"),
-        Text(
-          S.of(Get.context!).Findprofessionalsyoucanrelyon,
-          style: Get.textTheme.titleMedium,
-        ),
-        Text(
-          S.of(Get.context!).SearchbynameorKeywordtofindwhatyouarelookingfor,
-          textAlign: TextAlign.center,
-          style: Get.textTheme.bodySmall!
-              .copyWith(color: Colors.grey, fontSize: 11),
-        )
-      ],
+    return GetBuilder<LocalizationController>(
+      id: 'placeholders',
+      builder: (controller) => Column(
+        children: [
+          SvgPicture.asset("assets/images/empty_search.svg"),
+          Text(
+            S.current.Findprofessionalsyoucanrelyon,
+            style: Get.textTheme.titleMedium,
+          ),
+          Text(
+            S.current.SearchbynameorKeywordtofindwhatyouarelookingfor,
+            textAlign: TextAlign.center,
+            style: Get.textTheme.bodySmall!
+                .copyWith(color: Colors.grey, fontSize: 11),
+          )
+        ],
+      ),
     );
   }
 
@@ -111,6 +115,7 @@ class SearchProviderController extends GetxController with StateMixin {
   void onInit() {
     super.onInit();
     resultContent = initialPlaceHolder();
+    print("search controller on init");
     update();
   }
 }

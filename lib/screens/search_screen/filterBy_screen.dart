@@ -22,7 +22,7 @@ class FilterByScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomSheet: bottomSheet(),
+      bottomSheet: bottomSheet(context),
       appBar: CustomeAppBar(title: S.of(context).filterby),
       body: Padding(
         padding: const EdgeInsets.all(15),
@@ -49,7 +49,11 @@ class FilterByScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  e.nameEn,
+                                  filtrationController.localizationController
+                                              .selectedLang.value ==
+                                          'en'
+                                      ? e.nameEn
+                                      : e.nameAr,
                                   style: Get.textTheme.bodyMedium,
                                 ),
                                 const Divider(
@@ -86,7 +90,11 @@ class FilterByScreen extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    e.nameEn,
+                                    filtrationController.localizationController
+                                                .selectedLang.value ==
+                                            'en'
+                                        ? e.nameEn
+                                        : e.nameAr,
                                     style: Get.textTheme.bodyMedium,
                                   ),
                                   const Divider(
@@ -115,7 +123,11 @@ class FilterByScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  e.nameEng,
+                                  filtrationController.localizationController
+                                              .selectedLang.value ==
+                                          'en'
+                                      ? e.nameEng
+                                      : e.nameArb,
                                   style: Get.textTheme.bodyMedium,
                                 ),
                                 const Divider(
@@ -153,7 +165,7 @@ class FilterByScreen extends StatelessWidget {
                     height: 10,
                   ),
                   Text(
-                    "${filtrationController.filterProviders.length} results found",
+                    "${filtrationController.filterProviders.length} ${S.of(context).resultsFound}",
                     style: Get.textTheme.labelSmall!.copyWith(fontSize: 11),
                   ),
                   const SizedBox(
@@ -184,6 +196,7 @@ class FilterByScreen extends StatelessWidget {
                   Text(
                     S.of(context).Noresultsmatchyourfilters,
                     style: Get.textTheme.titleLarge,
+                    textAlign: TextAlign.center,
                   ),
                   const SizedBox(
                     height: 4,
@@ -206,7 +219,7 @@ class FilterByScreen extends StatelessWidget {
         : const SizedBox.shrink());
   }
 
-  Widget bottomSheet() {
+  Widget bottomSheet(context) {
     return CustomeButtomSheet(
       childrens: [
         const SizedBox(
@@ -215,7 +228,7 @@ class FilterByScreen extends StatelessWidget {
         TextButton(
             onPressed: () => Get.back(),
             child: Text(
-              "Cancel",
+              S.of(context).cancel,
               style: Get.textTheme.labelLarge,
             )),
         const SizedBox(
@@ -226,69 +239,10 @@ class FilterByScreen extends StatelessWidget {
             ontap: () {
               filtrationController.onFilterSubmittied();
             },
-            text: "Click",
+            text: S.of(context).search,
           ),
         ),
       ],
-    );
-  }
-
-  Widget categoryDropDown() {
-    return Container(
-      margin: const EdgeInsets.only(top: 15),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "Category",
-            style: Get.textTheme.titleSmall,
-          ),
-          const SizedBox(
-            height: 7,
-          ),
-          Container(
-            decoration: customContainerDecoration(),
-            child: DropdownButtonHideUnderline(
-              child: DropdownButton<CategoryModel>(
-                dropdownColor: Get.theme.colorScheme.primaryContainer,
-                isExpanded: true,
-                elevation: 2,
-                padding:
-                    const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                underline: Container(),
-                hint: Text(
-                  'Select',
-                  style: Get.textTheme.bodyMedium,
-                ),
-                value: filtrationController.selectedCategoryForFilter,
-                items: filtrationController.categoryControler.allCategories
-                    .map((e) => DropdownMenuItem<CategoryModel>(
-                          value: e,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                e.nameEn,
-                                style: Get.textTheme.bodyMedium,
-                              ),
-                              const Divider(
-                                color: Colors.white,
-                                thickness: 1,
-                              )
-                            ],
-                          ),
-                        ))
-                    .toList(),
-                onChanged: (value) {
-                  filtrationController.selectedCategoryForFilter = value;
-                  filtrationController.update(["DropDowns"]);
-                },
-              ),
-            ),
-          ),
-        ],
-      ),
     );
   }
 
@@ -316,7 +270,7 @@ class FilterByScreen extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                 underline: Container(),
                 hint: Text(
-                  'Select',
+                  S.of(context).select,
                   style: Get.textTheme.bodyMedium,
                 ),
                 value: filtrationController.selectedRateForFilter,

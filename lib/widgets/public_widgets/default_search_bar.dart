@@ -4,7 +4,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class DefaultSearchBar extends StatelessWidget {
-  const DefaultSearchBar({super.key});
+  final TextEditingController textController;
+  final Function(String) onChanged;
+  const DefaultSearchBar(
+      {super.key, required this.textController, required this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -12,6 +15,8 @@ class DefaultSearchBar extends StatelessWidget {
       height: 50,
       margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 11),
       child: SearchBar(
+        onChanged: onChanged,
+        controller: textController,
         elevation: const WidgetStatePropertyAll(0),
         backgroundColor:
             WidgetStatePropertyAll(Get.theme.colorScheme.onSecondaryContainer),

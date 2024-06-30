@@ -11,7 +11,7 @@ class LoginApiHandler extends GetConnect implements GetxService {
 
   LoginApiHandler() {
     baseUrl = appBaseUrl;
-    timeout = const Duration(seconds: 30);
+    timeout = const Duration(minutes: 1);
     maxAuthRetries = 50;
 
     _mainHeaders = {

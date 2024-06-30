@@ -57,17 +57,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "alreadyhaveanaccount":
             MessageLookupByLibrary.simpleMessage("لديك حساب بالفعل"),
         "arabic": MessageLookupByLibrary.simpleMessage("عربي"),
+        "areyousureyouwanttoexittheapp": MessageLookupByLibrary.simpleMessage(
+            "هل أنت متأكد أنك تريد الخروج من التطبيق؟"),
         "away": MessageLookupByLibrary.simpleMessage("بعيد"),
         "becomeaserviceprovider":
             MessageLookupByLibrary.simpleMessage("كن مقدم خدمة"),
         "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
         "categories": MessageLookupByLibrary.simpleMessage("الفئات"),
         "checknetwork": MessageLookupByLibrary.simpleMessage(
-            "Please check your network connection"),
+            "الرجاء التحقق من اتصال الشبكة الخاصة بك"),
         "click": MessageLookupByLibrary.simpleMessage("انقر"),
         "contactUS": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
         "english": MessageLookupByLibrary.simpleMessage("English"),
         "error": MessageLookupByLibrary.simpleMessage("خطأ"),
+        "exit": MessageLookupByLibrary.simpleMessage("اغلاق التطبيق"),
         "favorites": MessageLookupByLibrary.simpleMessage("المفضلة"),
         "featured": MessageLookupByLibrary.simpleMessage("مميز"),
         "filterby": MessageLookupByLibrary.simpleMessage("تصفية حسب"),
@@ -87,12 +90,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "myProfile": MessageLookupByLibrary.simpleMessage("ملفي الشخصي"),
         "noreviewsyet": MessageLookupByLibrary.simpleMessage(
             "لم يتم تقديم أي تعليقات حتى الآن!"),
+        "ok": MessageLookupByLibrary.simpleMessage("نعم"),
         "otpverefiedsuccessfully": MessageLookupByLibrary.simpleMessage(
             "تم التحقق من كلمة المرور مرة واحدة بنجاح"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
         "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
         "projects": MessageLookupByLibrary.simpleMessage("المشاريع"),
         "rate": MessageLookupByLibrary.simpleMessage("تقييم"),
+        "resultsFound":
+            MessageLookupByLibrary.simpleMessage("العثور على نتائج"),
         "reviews": MessageLookupByLibrary.simpleMessage("تعليق"),
         "search": MessageLookupByLibrary.simpleMessage("بحث"),
         "searchbynameorkeyword": MessageLookupByLibrary.simpleMessage(

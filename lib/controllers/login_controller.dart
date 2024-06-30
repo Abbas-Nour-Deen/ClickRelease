@@ -47,6 +47,7 @@ class LoginController extends GetxController with StateMixin {
   bool isTokenLoading = false;
   bool optSent = false;
   File? pickedProfilePhoto;
+  File? savedPickedProfilePhoto;
 
   final LoadingController loadingController = Get.put(LoadingController());
 
@@ -230,12 +231,15 @@ class LoginController extends GetxController with StateMixin {
 
       if (response.statusCode == 200) {
         Get.back();
+        update(['profilePhoto']);
 
         loadingController.showCustomeDialog(
             type: "success",
             title: S.of(Get.context!).success,
             body: S.of(Get.context!).userupdatedsuccessfully,
             duration: 3);
+
+        savedPickedProfilePhoto = pickedProfilePhoto;
       } else if (response.statusCode == 409) {
         loadingController.showCustomeDialog(
             type: "error",

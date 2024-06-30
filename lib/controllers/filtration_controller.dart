@@ -1,5 +1,6 @@
 import 'package:click_release/controllers/allServices_controller.dart';
 import 'package:click_release/controllers/categories_controller.dart';
+import 'package:click_release/controllers/localization_controller.dart';
 import 'package:click_release/controllers/zones_controller.dart';
 import 'package:click_release/data/repo/data_repo.dart';
 import 'package:click_release/models/category_model.dart';
@@ -29,7 +30,7 @@ class FiltrationController extends GetxController with StateMixin {
   ZoneModel? selectedZoneForFilter;
   int? selectedRateForFilter;
 
-  // final ScrollController scrolController = ScrollController();
+  final LocalizationController localizationController = Get.find();
 
   Future<void> onFilterSubmittied() async {
     try {

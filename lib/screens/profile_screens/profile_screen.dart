@@ -1,4 +1,5 @@
 import 'package:click_release/controllers/login_controller.dart';
+import 'package:click_release/controllers/nabar_controller.dart';
 import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/screens/profile_screens/contact_us.dart';
 import 'package:click_release/screens/profile_screens/editProfile_screen.dart';
@@ -15,6 +16,7 @@ class ProfileScreen extends StatelessWidget {
   ProfileScreen({super.key});
 
   final LoginController loginController = Get.find();
+  final NavBarController navBarController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +52,7 @@ class ProfileScreen extends StatelessWidget {
           builder: (controller) => ProfilePhoto(
             type: 'noteditable',
             imageUrl: loginController.currentUser.profilePhoto,
-            pickedImage: loginController.pickedProfilePhoto,
+            pickedImage: loginController.savedPickedProfilePhoto,
           ),
         ),
       ),
@@ -84,12 +86,16 @@ class ProfileScreen extends StatelessWidget {
         const CustomeDivider(),
         ProfileOptionTile(
           iconPath: "assets/icons/lightheme_icons/address.svg",
-          onTap: () {},
+          onTap: () {
+            Utils().showLocationBottomSheet();
+          },
           title: S.of(context).manageAddress,
         ),
         ProfileOptionTile(
           iconPath: "assets/icons/lightheme_icons/fav.svg",
-          onTap: () {},
+          onTap: () {
+            navBarController.tabController.jumpToTab(2);
+          },
           title: S.of(context).myFavorites,
         ),
         const CustomeDivider(),

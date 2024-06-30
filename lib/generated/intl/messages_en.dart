@@ -58,6 +58,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "alreadyhaveanaccount":
             MessageLookupByLibrary.simpleMessage("You already have an account"),
         "arabic": MessageLookupByLibrary.simpleMessage("عربي"),
+        "areyousureyouwanttoexittheapp": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to exit the application?"),
         "away": MessageLookupByLibrary.simpleMessage("away"),
         "becomeaserviceprovider":
             MessageLookupByLibrary.simpleMessage("Become a Service Provider"),
@@ -69,6 +71,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "contactUS": MessageLookupByLibrary.simpleMessage("Contact us"),
         "english": MessageLookupByLibrary.simpleMessage("English"),
         "error": MessageLookupByLibrary.simpleMessage("Failed"),
+        "exit": MessageLookupByLibrary.simpleMessage("Exit application"),
         "favorites": MessageLookupByLibrary.simpleMessage("Favorites"),
         "featured": MessageLookupByLibrary.simpleMessage("Featured"),
         "filterby": MessageLookupByLibrary.simpleMessage("Filter By"),
@@ -87,12 +90,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "myProfile": MessageLookupByLibrary.simpleMessage("My Profile"),
         "noreviewsyet":
             MessageLookupByLibrary.simpleMessage("No reviews Yet !"),
+        "ok": MessageLookupByLibrary.simpleMessage("Ok"),
         "otpverefiedsuccessfully":
             MessageLookupByLibrary.simpleMessage("OTP verified successfully"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "projects": MessageLookupByLibrary.simpleMessage("Projects"),
         "rate": MessageLookupByLibrary.simpleMessage("Rate"),
+        "resultsFound": MessageLookupByLibrary.simpleMessage("results found"),
         "reviews": MessageLookupByLibrary.simpleMessage("Reviews"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "searchbynameorkeyword":

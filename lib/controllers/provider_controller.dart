@@ -30,10 +30,30 @@ class ProviderController extends GetxController
   final LikedProvidersController likedProviderController = Get.find();
 
   final TextEditingController commentTextController = TextEditingController();
+  final TextEditingController searchProviderByServiceTextController =
+      TextEditingController();
 
   int? rateOfProvider;
 
   final LocalizationController localizationController = Get.find();
+
+  final TextEditingController provByServiceSearchController =
+      TextEditingController();
+
+  List<ProviderModel> filteredProviders = [];
+
+  void searchLogic(String query) {
+    String lowercaseQuery = query.toLowerCase();
+    filteredProviders.clear();
+    filteredProviders = currentProviders.where((prov) {
+      return prov.firstName.toLowerCase().contains(lowercaseQuery) ||
+          prov.lastName.toLowerCase().contains(lowercaseQuery) ||
+          prov.serviceNameEng.toLowerCase().contains(lowercaseQuery) ||
+          prov.serviceNameArb.contains(lowercaseQuery);
+    }).toList();
+
+    update(['provList']);
+  }
 
   Future<void> getProviderByServiceID({required String serviceID}) async {
     try {
@@ -78,12 +98,6 @@ class ProviderController extends GetxController
 
           topProviders.add(provider);
         });
-
-        // for (var provider in topProviders) {
-        //   final ProviderInfoModel providerInfo = await providerInfoController
-        //       .fetchData(providerID: provider.provid);
-        //   provider.workingHR = providerInfo.workingHR;
-        // }
 
         isTopProvidersLoading = false;
 
@@ -148,13 +162,16 @@ class ProviderController extends GetxController
   Future<void> likeProvider(
       {required ProviderModel provider, required bool isLiked}) async {
     try {
+      provider.isLiked = isLiked;
+      update(['likebtn']);
+
       final response = await dataRepo.likeProvider(
           provID: provider.provid,
           isFavorite: isLiked,
           clientID: loginController.currentUserID);
 
       if (response.statusCode == 200) {
-        provider.isLiked = isLiked;
+        // provider.isLiked = isLiked;
         if (!isLiked) {
           likedProviderController.likedProviders
               .removeWhere((element) => element.provid == provider.provid);
@@ -171,6 +188,9 @@ class ProviderController extends GetxController
               status: RxStatus.success());
           likedProviderController.update();
         }
+        update(['likebtn']);
+      } else {
+        provider.isLiked = !isLiked;
         update(['likebtn']);
       }
       print("like provider response ${response.statusCode}, ${response.body}");

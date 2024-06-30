@@ -1,6 +1,7 @@
 import 'package:click_release/controllers/localization_controller.dart';
 import 'package:click_release/data/repo/data_repo.dart';
 import 'package:click_release/models/service_model.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AllServicesController extends GetxController with StateMixin {
@@ -9,11 +10,24 @@ class AllServicesController extends GetxController with StateMixin {
   AllServicesController({required this.dataRepo});
 
   final List<ServiceModel> allServices = [];
-  final List<ServiceModel> currentCategoryServices = [];
+  List<ServiceModel> filteredServices = [];
 
   late ServiceModel selectedService;
 
   final LocalizationController localizationController = Get.find();
+  TextEditingController serviceSearchController = TextEditingController();
+
+  void searchLogic(String query) {
+    String lowercaseQuery = query.toLowerCase();
+    filteredServices.clear();
+    filteredServices = allServices.where((service) {
+      return service.nameEn.toLowerCase().contains(lowercaseQuery) ||
+          service.descr.toLowerCase().contains(lowercaseQuery) ||
+          service.nameAr.contains(lowercaseQuery);
+    }).toList();
+
+    update(['servicesList']);
+  }
 
   Future<void> getAllallServices() async {
     try {

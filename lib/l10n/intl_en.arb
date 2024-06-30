@@ -64,7 +64,11 @@
 "signedupsuccessfuly":"You have signed up successfully",
 "userupdatedsuccessfully":"User updated successfully",
 "usernamealreadyexists":"User name already exists",
-"checknetwork":"Please check your network connection"
+"checknetwork":"Please check your network connection",
+"resultsFound":"results found",
+"ok":"Ok",
+"exit":"Exit application",
+"areyousureyouwanttoexittheapp":"Are you sure you want to exit the application?"
 
 
 

@@ -1,6 +1,7 @@
 import 'package:click_release/controllers/localization_controller.dart';
 import 'package:click_release/data/repo/data_repo.dart';
 import 'package:click_release/models/service_model.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ServiceByIDController extends GetxController with StateMixin {
@@ -9,8 +10,24 @@ class ServiceByIDController extends GetxController with StateMixin {
   ServiceByIDController({required this.dataRepo});
 
   final List<ServiceModel> currentCategoryServices = [];
+  List<ServiceModel> filteredCategoryServices = [];
 
   final LocalizationController localizationController = Get.find();
+
+  final TextEditingController serviceByIDSearchController =
+      TextEditingController();
+
+  void searchLogic(String query) {
+    String lowercaseQuery = query.toLowerCase();
+    filteredCategoryServices.clear();
+    filteredCategoryServices = currentCategoryServices.where((service) {
+      return service.nameEn.toLowerCase().contains(lowercaseQuery) ||
+          service.descr.toLowerCase().contains(lowercaseQuery) ||
+          service.nameAr.contains(lowercaseQuery);
+    }).toList();
+
+    update(['catServices']);
+  }
 
   Future<void> getServiceByID({required String categoryID}) async {
     try {
@@ -30,6 +47,8 @@ class ServiceByIDController extends GetxController with StateMixin {
         change(currentCategoryServices, status: RxStatus.success());
 
         print("current services length ${currentCategoryServices.length}");
+      } else {
+        change(currentCategoryServices, status: RxStatus.error());
       }
     } catch (e) {
       print(e.toString());

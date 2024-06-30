@@ -699,6 +699,46 @@ class S {
       args: [],
     );
   }
+
+  /// `results found`
+  String get resultsFound {
+    return Intl.message(
+      'results found',
+      name: 'resultsFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ok`
+  String get ok {
+    return Intl.message(
+      'Ok',
+      name: 'ok',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exit application`
+  String get exit {
+    return Intl.message(
+      'Exit application',
+      name: 'exit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to exit the application?`
+  String get areyousureyouwanttoexittheapp {
+    return Intl.message(
+      'Are you sure you want to exit the application?',
+      name: 'areyousureyouwanttoexittheapp',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
