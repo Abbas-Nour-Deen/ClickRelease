@@ -30,9 +30,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "Call us for more information"),
         "Certifications":
             MessageLookupByLibrary.simpleMessage("Certifications"),
+        "Enterhere": MessageLookupByLibrary.simpleMessage("Enter here"),
+        "Enterlocation":
+            MessageLookupByLibrary.simpleMessage("Enter location manually"),
         "Findprofessionalsyoucanrelyon": MessageLookupByLibrary.simpleMessage(
             "Find professionals you can rely on"),
         "Km": MessageLookupByLibrary.simpleMessage("Km"),
+        "LeaveReview": MessageLookupByLibrary.simpleMessage("Leave Review"),
         "LocationErrorpleasetryagain": MessageLookupByLibrary.simpleMessage(
             "Location error. Please try again !"),
         "NoProjectsyet":
@@ -51,8 +55,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "We couldn\'t find any matches for your search"),
         "WorkingHours": MessageLookupByLibrary.simpleMessage("Working Hours"),
+        "Yourcurrentlocation":
+            MessageLookupByLibrary.simpleMessage("Your current location"),
         "Yourfavoritespageisempty": MessageLookupByLibrary.simpleMessage(
             "Your favorites page is empty"),
+        "Youroverallrating":
+            MessageLookupByLibrary.simpleMessage("Your overall rating"),
         "about": MessageLookupByLibrary.simpleMessage("About"),
         "aboutUs": MessageLookupByLibrary.simpleMessage("About Us"),
         "alreadyhaveanaccount":
@@ -99,6 +107,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "rate": MessageLookupByLibrary.simpleMessage("Rate"),
         "resultsFound": MessageLookupByLibrary.simpleMessage("results found"),
         "reviews": MessageLookupByLibrary.simpleMessage("Reviews"),
+        "save": MessageLookupByLibrary.simpleMessage("Save"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "searchbynameorkeyword":
             MessageLookupByLibrary.simpleMessage("Search by Name or Keyword"),

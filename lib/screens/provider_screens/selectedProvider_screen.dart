@@ -434,33 +434,43 @@ class SelectedProviderScreen extends StatelessWidget {
       child: Column(
         children: [
           CustomExpansionTile(
-            icon: Icons.settings,
+            icon: 'assets/icons/lightheme_icons/specilities.svg',
             title: S.of(context).Specialities,
             options: [
               for (var info
                   in providerInfoController.currentProviderInfoModel.speciality)
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    const CirclePoint(),
-                    const SizedBox(width: 10),
-                    Text(providerConteroller
-                                .localizationController.selectedLang.value ==
-                            'en'
-                        ? info.serviceNameEng
-                        : info.serviceNameArb)
-                  ],
+                Container(
+                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  decoration: BoxDecoration(
+                      border:
+                          Border(bottom: BorderSide(color: Colors.white38))),
+                  margin: const EdgeInsets.symmetric(vertical: 6),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const CirclePoint(),
+                      const SizedBox(width: 10),
+                      Text(providerConteroller
+                                  .localizationController.selectedLang.value ==
+                              'en'
+                          ? info.serviceNameEng
+                          : info.serviceNameArb)
+                    ],
+                  ),
                 )
             ],
           ),
           CustomExpansionTile(
-            icon: Icons.settings,
+            icon: 'assets/icons/lightheme_icons/clock.svg',
             title: S.of(context).WorkingHours,
             options: [
               for (var info in provider.workingHR!)
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10.0, vertical: 2),
+                Container(
+                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  decoration: BoxDecoration(
+                      border:
+                          Border(bottom: BorderSide(color: Colors.white38))),
+                  margin: const EdgeInsets.symmetric(vertical: 6),
                   child: Row(
                     children: [
                       const CirclePoint(),
@@ -483,14 +493,20 @@ class SelectedProviderScreen extends StatelessWidget {
                 ),
             ],
           ),
-          CustomExpansionTile(
-            icon: Icons.settings,
-            title: S.of(context).Certifications,
-            options: [
-              for (var info in providerInfoController
-                  .currentProviderInfoModel.certification)
-                Text(info.certificationName)
-            ],
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 5),
+            decoration: BoxDecoration(
+                border: Border(bottom: BorderSide(color: Colors.white38))),
+            margin: const EdgeInsets.symmetric(vertical: 6),
+            child: CustomExpansionTile(
+              icon: 'assets/icons/lightheme_icons/medal.svg',
+              title: S.of(context).Certifications,
+              options: [
+                for (var info in providerInfoController
+                    .currentProviderInfoModel.certification)
+                  Text(info.certificationName)
+              ],
+            ),
           ),
         ],
       ),

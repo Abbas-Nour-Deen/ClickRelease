@@ -29,9 +29,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "Callusformoreinformation":
             MessageLookupByLibrary.simpleMessage("اتصل بنا لمزيد من المعلومات"),
         "Certifications": MessageLookupByLibrary.simpleMessage("الشهادات"),
+        "Enterhere": MessageLookupByLibrary.simpleMessage("أدخل هنا"),
+        "Enterlocation":
+            MessageLookupByLibrary.simpleMessage("أدخل الموقع يدويا"),
         "Findprofessionalsyoucanrelyon": MessageLookupByLibrary.simpleMessage(
             "ابحث عن محترفين يمكنك الاعتماد عليهم"),
         "Km": MessageLookupByLibrary.simpleMessage("كم"),
+        "LeaveReview": MessageLookupByLibrary.simpleMessage("اترك تقييمك"),
         "LocationErrorpleasetryagain": MessageLookupByLibrary.simpleMessage(
             "خطأ في تحديد الموقع. يرجى المحاولة مرة أخرى."),
         "NoProjectsyet":
@@ -50,8 +54,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "لم نتمكن من العثور على أي نتائج مطابقة لبحثك"),
         "WorkingHours": MessageLookupByLibrary.simpleMessage("ساعات العمل"),
+        "Yourcurrentlocation":
+            MessageLookupByLibrary.simpleMessage("موقعك الحالي"),
         "Yourfavoritespageisempty":
             MessageLookupByLibrary.simpleMessage("صفحتك المفضلة فارغة"),
+        "Youroverallrating":
+            MessageLookupByLibrary.simpleMessage("تقييمك العام"),
         "about": MessageLookupByLibrary.simpleMessage("مختصر"),
         "aboutUs": MessageLookupByLibrary.simpleMessage("معلومات عنا"),
         "alreadyhaveanaccount":
@@ -100,6 +108,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "resultsFound":
             MessageLookupByLibrary.simpleMessage("العثور على نتائج"),
         "reviews": MessageLookupByLibrary.simpleMessage("تعليق"),
+        "save": MessageLookupByLibrary.simpleMessage("حفظ"),
         "search": MessageLookupByLibrary.simpleMessage("بحث"),
         "searchbynameorkeyword": MessageLookupByLibrary.simpleMessage(
             "البحث بالاسم أو الكلمة الرئيسية"),

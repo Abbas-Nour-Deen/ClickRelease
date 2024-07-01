@@ -81,11 +81,11 @@ class CustomDrawer extends StatelessWidget {
           },
           title: S.of(context).becomeaserviceprovider,
         ),
-        ProfileOptionTile(
-          iconPath: "assets/icons/lightheme_icons/contactus.svg",
-          onTap: () {},
-          title: S.of(context).helpCenter,
-        ),
+        // ProfileOptionTile(
+        //   iconPath: "assets/icons/lightheme_icons/contactus.svg",
+        //   onTap: () {},
+        //   title: S.of(context).helpCenter,
+        // ),
       ],
     );
   }

@@ -68,7 +68,16 @@
 "resultsFound":"العثور على نتائج",
 "ok":"نعم",
 "exit":"اغلاق التطبيق",
-"areyousureyouwanttoexittheapp": "هل أنت متأكد أنك تريد الخروج من التطبيق؟"
+"areyousureyouwanttoexittheapp": "هل أنت متأكد أنك تريد الخروج من التطبيق؟",
+"Yourcurrentlocation":"موقعك الحالي",
+"Enterlocation":"أدخل الموقع يدويا",
+"LeaveReview": "اترك تقييمك",
+"Youroverallrating": "تقييمك العام",
+"Enterhere": "أدخل هنا",
+"save":"حفظ"
+
+
+
 
 
 

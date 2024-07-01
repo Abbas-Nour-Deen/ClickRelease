@@ -7,7 +7,6 @@ import 'package:click_release/models/category_model.dart';
 import 'package:click_release/models/provider_model.dart';
 import 'package:click_release/models/service_model.dart';
 import 'package:click_release/models/zone_model.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class FiltrationController extends GetxController with StateMixin {

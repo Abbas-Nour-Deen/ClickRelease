@@ -68,7 +68,13 @@
 "resultsFound":"results found",
 "ok":"Ok",
 "exit":"Exit application",
-"areyousureyouwanttoexittheapp":"Are you sure you want to exit the application?"
+"areyousureyouwanttoexittheapp":"Are you sure you want to exit the application?",
+"Yourcurrentlocation":"Your current location",
+"Enterlocation":"Enter location manually",
+"LeaveReview":"Leave Review",
+"Youroverallrating":"Your overall rating",
+"Enterhere":"Enter here",
+"save":"Save"
 
 
 

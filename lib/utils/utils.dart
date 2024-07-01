@@ -26,7 +26,7 @@ class Utils {
         child: Column(
           children: [
             ProfileOptionTile(
-              title: "Your current location",
+              title: S.of(Get.context!).Yourcurrentlocation,
               iconPath: "assets/icons/location.svg",
               onTap: () async {
                 await _locationController
@@ -36,7 +36,7 @@ class Utils {
               iconSize: 20,
             ),
             ProfileOptionTile(
-              title: "Enter location",
+              title: S.of(Get.context!).Enterlocation,
               iconPath: "assets/icons/lightheme_icons/pin.svg",
               onTap: () {
                 Get.to(GoogleMapsWidget());

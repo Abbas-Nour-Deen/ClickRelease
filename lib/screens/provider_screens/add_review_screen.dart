@@ -1,4 +1,5 @@
 import 'package:click_release/controllers/provider_controller.dart';
+import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/theme/app_theme.dart';
 import 'package:click_release/widgets/public_widgets/appBar.dart';
 import 'package:click_release/widgets/public_widgets/customeButtomSheet.dart';
@@ -15,14 +16,14 @@ class AddReviewScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomSheet: bottomSheet(),
-      appBar: CustomeAppBar(title: "Leave Review"),
+      bottomSheet: bottomSheet(context),
+      appBar: CustomeAppBar(title: S.of(context).LeaveReview),
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(
           children: [
-            stars(),
-            textField()
+            stars(context),
+            textField(context)
             // text(),
           ],
         ),
@@ -30,7 +31,7 @@ class AddReviewScreen extends StatelessWidget {
     );
   }
 
-  Widget stars() {
+  Widget stars(context) {
     return Container(
         padding: const EdgeInsets.only(bottom: 30, top: 10),
         decoration: const BoxDecoration(
@@ -40,7 +41,7 @@ class AddReviewScreen extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              "Your overall rating",
+              S.of(context).Youroverallrating,
               style: Get.textTheme.titleSmall,
             ),
             const SizedBox(
@@ -53,7 +54,7 @@ class AddReviewScreen extends StatelessWidget {
         ));
   }
 
-  Widget textField() {
+  Widget textField(context) {
     return Container(
       margin: const EdgeInsets.only(top: 10),
       padding: const EdgeInsets.all(5),
@@ -67,14 +68,14 @@ class AddReviewScreen extends StatelessWidget {
         style: Get.textTheme.bodyMedium,
         decoration: InputDecoration(
             border: InputBorder.none,
-            labelText: "Enter here",
+            labelText: S.of(context).Enterhere,
             labelStyle: Get.textTheme.labelMedium!
                 .copyWith(color: lightTHemeSecondTextColor)),
       ),
     );
   }
 
-  Widget bottomSheet() {
+  Widget bottomSheet(context) {
     return CustomeButtomSheet(
       childrens: [
         const SizedBox(
@@ -83,7 +84,7 @@ class AddReviewScreen extends StatelessWidget {
         TextButton(
             onPressed: () => Get.back(),
             child: Text(
-              "Cancel",
+              S.of(context).cancel,
               style: Get.textTheme.labelLarge,
             )),
         const SizedBox(
@@ -94,7 +95,7 @@ class AddReviewScreen extends StatelessWidget {
             ontap: () {
               providerController.rateProvider();
             },
-            text: "Click",
+            text: S.of(context).save,
           ),
         ),
       ],

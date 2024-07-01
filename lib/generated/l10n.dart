@@ -739,6 +739,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Your current location`
+  String get Yourcurrentlocation {
+    return Intl.message(
+      'Your current location',
+      name: 'Yourcurrentlocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter location manually`
+  String get Enterlocation {
+    return Intl.message(
+      'Enter location manually',
+      name: 'Enterlocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Leave Review`
+  String get LeaveReview {
+    return Intl.message(
+      'Leave Review',
+      name: 'LeaveReview',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your overall rating`
+  String get Youroverallrating {
+    return Intl.message(
+      'Your overall rating',
+      name: 'Youroverallrating',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter here`
+  String get Enterhere {
+    return Intl.message(
+      'Enter here',
+      name: 'Enterhere',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save`
+  String get save {
+    return Intl.message(
+      'Save',
+      name: 'save',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

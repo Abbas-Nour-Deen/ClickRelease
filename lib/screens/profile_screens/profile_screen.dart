@@ -111,7 +111,9 @@ class ProfileScreen extends StatelessWidget {
         ),
         ProfileOptionTile(
           iconPath: "assets/icons/lightheme_icons/termscondition.svg",
-          onTap: () {},
+          onTap: () {
+            loginController.launchUrls(type: 'termsandconditions');
+          },
           title: S.of(context).termsconditions,
         ),
         ProfileOptionTile(

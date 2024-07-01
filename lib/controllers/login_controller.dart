@@ -12,6 +12,7 @@ import 'package:get/get.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class LoginController extends GetxController with StateMixin {
   final LoginRepo loginRepo;
@@ -274,6 +275,33 @@ class LoginController extends GetxController with StateMixin {
       update(['profilePhoto']);
     } else {
       print('No image picked');
+    }
+  }
+
+  void launchUrls({required String type}) async {
+    try {
+      final Uri faceBookUri = Uri.parse("https://www.facebook.com");
+      final Uri termsandConditionsUrl =
+          Uri.parse("http://216.225.199.11:8091/click/termsAndConditions.html");
+
+      switch (type) {
+        case "termsandconditions":
+          if (await canLaunchUrl(termsandConditionsUrl)) {
+            await launchUrl(termsandConditionsUrl,
+                mode: LaunchMode.inAppBrowserView,
+                browserConfiguration: BrowserConfiguration(showTitle: false));
+            break;
+          }
+
+        case "privacypolicy":
+          if (await canLaunchUrl(faceBookUri)) {
+            await launchUrl(faceBookUri,
+                mode: LaunchMode.externalNonBrowserApplication);
+            break;
+          }
+      }
+    } catch (e) {
+      throw Exception(e);
     }
   }
 
