@@ -74,7 +74,11 @@
 "LeaveReview": "اترك تقييمك",
 "Youroverallrating": "تقييمك العام",
 "Enterhere": "أدخل هنا",
-"save":"حفظ"
+"save":"حفظ",
+"ops":"عذراً!",
+"noenternetconnection":"حدث خطأ في الاتصال. يرجى التحقق من اتصال الإنترنت\n والمحاولة مرة أخرى",
+"tryagain":"حاول مرة أخرى"
+
 
 
 

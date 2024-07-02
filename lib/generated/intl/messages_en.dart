@@ -96,9 +96,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "manageAddress": MessageLookupByLibrary.simpleMessage("Manage Address"),
         "myFavorites": MessageLookupByLibrary.simpleMessage("My Favorites"),
         "myProfile": MessageLookupByLibrary.simpleMessage("My Profile"),
+        "noenternetconnection": MessageLookupByLibrary.simpleMessage(
+            "There is a connection error. Please check your internet\n and try again"),
         "noreviewsyet":
             MessageLookupByLibrary.simpleMessage("No reviews Yet !"),
         "ok": MessageLookupByLibrary.simpleMessage("Ok"),
+        "ops": MessageLookupByLibrary.simpleMessage("Oops!"),
         "otpverefiedsuccessfully":
             MessageLookupByLibrary.simpleMessage("OTP verified successfully"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
@@ -120,6 +123,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "success": MessageLookupByLibrary.simpleMessage("success"),
         "termsconditions":
             MessageLookupByLibrary.simpleMessage("Terms & Conditions"),
+        "tryagain": MessageLookupByLibrary.simpleMessage("Try Again"),
         "usernamealreadyexists":
             MessageLookupByLibrary.simpleMessage("User name already exists"),
         "userupdatedsuccessfully":

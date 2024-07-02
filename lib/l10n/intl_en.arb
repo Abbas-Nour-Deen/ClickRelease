@@ -74,7 +74,10 @@
 "LeaveReview":"Leave Review",
 "Youroverallrating":"Your overall rating",
 "Enterhere":"Enter here",
-"save":"Save"
+"save":"Save",
+"ops":"Oops!",
+"noenternetconnection":"There is a connection error. Please check your internet\n and try again",
+"tryagain":"Try Again"
 
 
 

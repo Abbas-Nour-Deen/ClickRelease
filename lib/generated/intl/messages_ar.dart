@@ -96,9 +96,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "manageAddress": MessageLookupByLibrary.simpleMessage("إدارة العناوين"),
         "myFavorites": MessageLookupByLibrary.simpleMessage("المفضلة لدي"),
         "myProfile": MessageLookupByLibrary.simpleMessage("ملفي الشخصي"),
+        "noenternetconnection": MessageLookupByLibrary.simpleMessage(
+            "حدث خطأ في الاتصال. يرجى التحقق من اتصال الإنترنت\n والمحاولة مرة أخرى"),
         "noreviewsyet": MessageLookupByLibrary.simpleMessage(
             "لم يتم تقديم أي تعليقات حتى الآن!"),
         "ok": MessageLookupByLibrary.simpleMessage("نعم"),
+        "ops": MessageLookupByLibrary.simpleMessage("عذراً!"),
         "otpverefiedsuccessfully": MessageLookupByLibrary.simpleMessage(
             "تم التحقق من كلمة المرور مرة واحدة بنجاح"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
@@ -121,6 +124,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "success": MessageLookupByLibrary.simpleMessage("نجاح"),
         "termsconditions":
             MessageLookupByLibrary.simpleMessage("الشروط والأحكام"),
+        "tryagain": MessageLookupByLibrary.simpleMessage("حاول مرة أخرى"),
         "usernamealreadyexists":
             MessageLookupByLibrary.simpleMessage("اسم المستخدم موجود بالفعل"),
         "userupdatedsuccessfully":

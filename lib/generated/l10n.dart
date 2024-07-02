@@ -799,6 +799,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Oops!`
+  String get ops {
+    return Intl.message(
+      'Oops!',
+      name: 'ops',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There is a connection error. Please check your internet\n and try again`
+  String get noenternetconnection {
+    return Intl.message(
+      'There is a connection error. Please check your internet\n and try again',
+      name: 'noenternetconnection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Try Again`
+  String get tryagain {
+    return Intl.message(
+      'Try Again',
+      name: 'tryagain',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

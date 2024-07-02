@@ -52,6 +52,8 @@ class LoginController extends GetxController with StateMixin {
 
   final LoadingController loadingController = Get.put(LoadingController());
 
+  bool enternetConnectionError = false;
+
   Future<void> sendOTP() async {
     try {
       if (isPhoneNumberValid) {
@@ -195,6 +197,8 @@ class LoginController extends GetxController with StateMixin {
   Future<void> getUserByID() async {
     if (currentUserID != null) {
       isTokenLoading = true;
+      enternetConnectionError = false;
+      update();
       try {
         print("current user id$currentUserID");
         final response = await loginRepo.getUserByID(userID: currentUserID!);
@@ -213,6 +217,12 @@ class LoginController extends GetxController with StateMixin {
               genders.where((element) => element.code == currentUser.sex).first;
 
           isTokenLoading = false;
+          update();
+        } else {
+          print("no internetttttt");
+          userToken = '';
+          enternetConnectionError = true;
+
           update();
         }
       } catch (e) {
