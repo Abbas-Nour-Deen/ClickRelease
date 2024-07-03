@@ -28,6 +28,7 @@ class ProviderModel {
   String categoryNameArb;
   String categoryNameEng;
   String categoryIcon;
+  String updateDate;
   List<WorkingHoursModel>? workingHR;
   bool isLiked;
   String classification;
@@ -62,7 +63,8 @@ class ProviderModel {
       required this.categoryIcon,
       this.workingHR,
       required this.isLiked,
-      required this.classification});
+      required this.classification,
+      required this.updateDate});
 
   factory ProviderModel.fromJson(Map<String, dynamic> json) {
     return ProviderModel(
@@ -85,6 +87,7 @@ class ProviderModel {
         type: json['Type'] ?? "",
         verified: json['Verified'] ?? "",
         locationCode: json['LocationCode'] ?? "",
+        updateDate: json['UpdateDate'],
         locationEnglishName: json['locationEnglishName'] ?? "",
         locationArabicName: json['locationArabicName'] ?? "",
         rate: double.parse(json['averageRate'].toString()) ?? 0.0,

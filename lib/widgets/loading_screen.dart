@@ -11,9 +11,11 @@ class LoadingScreen extends StatelessWidget {
     return Scaffold(
       body: GetBuilder<LoginController>(
           builder: (controller) => controller.enternetConnectionError
-              ? Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: NoEnternetPlaceHolder())
+              ? NoEnternetPlaceHolder(
+                  onretry: () {
+                    controller.getUserByID();
+                  },
+                )
               : Center(
                   child: CircularProgressIndicator.adaptive(),
                 )),

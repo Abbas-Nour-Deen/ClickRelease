@@ -1,9 +1,10 @@
 import 'package:click_release/controllers/liked_providers_controller.dart';
+import 'package:click_release/controllers/loading_controller.dart';
 import 'package:click_release/controllers/localization_controller.dart';
 import 'package:click_release/controllers/login_controller.dart';
 import 'package:click_release/controllers/providerInfo_controller.dart';
 import 'package:click_release/data/repo/data_repo.dart';
-import 'package:click_release/models/provider_info.dart';
+import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/models/provider_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -40,7 +41,11 @@ class ProviderController extends GetxController
   final TextEditingController provByServiceSearchController =
       TextEditingController();
 
+  final LoadingController loadingController = Get.find();
+
   List<ProviderModel> filteredProviders = [];
+
+  String tStamp = '0';
 
   void searchLogic(String query) {
     String lowercaseQuery = query.toLowerCase();
@@ -58,7 +63,8 @@ class ProviderController extends GetxController
   Future<void> getProviderByServiceID({required String serviceID}) async {
     try {
       change(currentProviders, status: RxStatus.loading());
-      final response = await dataRepo.getProviderByServiceID(id: serviceID);
+      final response =
+          await dataRepo.getProviderByServiceID(id: serviceID, tStamp: tStamp);
       if (response.statusCode == 200) {
         currentProviders.clear();
 
@@ -70,10 +76,13 @@ class ProviderController extends GetxController
 
           currentProviders.add(provider);
         });
+        tStamp = currentProviders.first.updateDate;
         change(currentProviders, status: RxStatus.success());
 
         print("providers length ${currentProviders.length}");
       } else {
+        change(currentProviders, status: RxStatus.error());
+
         print(response.statusCode);
       }
     } catch (e) {
@@ -192,6 +201,11 @@ class ProviderController extends GetxController
       } else {
         provider.isLiked = !isLiked;
         update(['likebtn']);
+        loadingController.showCustomeDialog(
+            type: "error",
+            title: S.of(Get.context!).error,
+            body: S.of(Get.context!).checknetwork,
+            duration: 2);
       }
       print("like provider response ${response.statusCode}, ${response.body}");
     } catch (e) {

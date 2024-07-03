@@ -70,6 +70,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "away": MessageLookupByLibrary.simpleMessage("بعيد"),
         "becomeaserviceprovider":
             MessageLookupByLibrary.simpleMessage("كن مقدم خدمة"),
+        "call": MessageLookupByLibrary.simpleMessage("اتصال"),
         "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
         "categories": MessageLookupByLibrary.simpleMessage("الفئات"),
         "checknetwork": MessageLookupByLibrary.simpleMessage(

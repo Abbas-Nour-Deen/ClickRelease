@@ -42,13 +42,15 @@ class DataApiHandler extends GetConnect implements GetxService {
     }
   }
 
-  Future<Response> getProviders(url) async {
+  Future<Response> getProviders(url, tStamp) async {
     try {
       print(url);
       Response response = await post(url, headers: _mainHeaders, {
         'clientId': loginController.currentUserID,
         "latitude": 40.7095,
-        "longitude": -74.0025
+        "longitude": -74.0025,
+        "tStamp": tStamp,
+        "count": 10
       });
 
       print("recieved providers data ${response.statusCode}");

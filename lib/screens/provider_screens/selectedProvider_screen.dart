@@ -12,6 +12,7 @@ import 'package:click_release/widgets/public_widgets/appBar.dart';
 import 'package:click_release/widgets/public_widgets/customeButtomSheet.dart';
 import 'package:click_release/widgets/public_widgets/custome_btn.dart';
 import 'package:click_release/widgets/provider_category_icons.dart';
+import 'package:click_release/widgets/public_widgets/noenternet_placeholder.dart';
 import 'package:click_release/widgets/public_widgets/provider_profile_widget.dart';
 import 'package:click_release/widgets/selected_provider_widgets/contained_Tab.dart';
 import 'package:click_release/widgets/selected_provider_widgets/expansion_tile.dart';
@@ -44,24 +45,30 @@ class SelectedProviderScreen extends StatelessWidget {
           padding: const EdgeInsets.all(10.0),
           child: SingleChildScrollView(
             child: controller.obx(
-                onLoading: const Center(
-                  child: CircularProgressIndicator.adaptive(),
-                ),
-                (state) => Column(
-                      children: [
-                        providerInfo(),
-                        butons(context),
-                        details(controller: controller, context: context),
-                        about(controller: controller, context: context),
-                        ContainedTabWidget(),
-                        expansions(
-                            providerInfoController: controller,
-                            context: context),
-                        const SizedBox(
-                          height: 65,
-                        ),
-                      ],
-                    )),
+              onLoading: const Center(
+                child: CircularProgressIndicator.adaptive(),
+              ),
+              (state) => Column(
+                children: [
+                  providerInfo(),
+                  butons(context),
+                  details(controller: controller, context: context),
+                  about(controller: controller, context: context),
+                  ContainedTabWidget(),
+                  expansions(
+                      providerInfoController: controller, context: context),
+                  const SizedBox(
+                    height: 65,
+                  ),
+                ],
+              ),
+              onError: (error) => NoEnternetPlaceHolder(
+                onretry: () async {
+                  await providerConteroller.providerInfoController
+                      .fetchData(providerID: provider.provid);
+                },
+              ),
+            ),
           ),
         ),
       ),
@@ -518,16 +525,16 @@ class SelectedProviderScreen extends StatelessWidget {
       childrens: [
         Expanded(
           child: CustomeButton(
-            icon: const Icon(
-              CupertinoIcons.phone,
-              color: Colors.white,
-              size: 22,
+            svg: SvgPicture.asset(
+              "assets/icons/call_btn.svg",
             ),
             ontap: () {
               providerConteroller.launchUrls(
-                  url: provider.phoneNumber, inApp: false, type: "call");
+                  url: provider.phoneNumber,
+                  inApp: false,
+                  type: S.of(Get.context!).call);
             },
-            text: "Click",
+            text: S.of(Get.context!).call,
             width: double.infinity,
           ),
         )

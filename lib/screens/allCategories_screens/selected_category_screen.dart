@@ -3,6 +3,7 @@ import 'package:click_release/models/category_model.dart';
 import 'package:click_release/widgets/items/service_item.dart';
 import 'package:click_release/widgets/public_widgets/appBar.dart';
 import 'package:click_release/widgets/public_widgets/default_search_bar.dart';
+import 'package:click_release/widgets/public_widgets/noenternet_placeholder.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,40 +21,48 @@ class SelectedCategoryScreen extends StatelessWidget {
                   'en'
               ? category.nameEn
               : category.nameAr),
-      body: Column(
-        children: [
-          DefaultSearchBar(
-            onChanged: (p0) {
-              _serviceByIDController.searchLogic(p0);
-            },
-            textController: _serviceByIDController.serviceByIDSearchController,
-          ),
-          GetBuilder<ServiceByIDController>(
-              id: 'catServices',
-              dispose: (state) {
-                _serviceByIDController.serviceByIDSearchController.clear();
-              },
-              initState: (state) async => await _serviceByIDController
-                  .getServiceByID(categoryID: category.categoryID),
-              builder: (controller) =>
-                  _serviceByIDController.obx((state) => Expanded(
-                        child: ListView.builder(
-                          itemCount: _serviceByIDController
-                                  .serviceByIDSearchController.text.isEmpty
-                              ? _serviceByIDController
-                                  .currentCategoryServices.length
-                              : _serviceByIDController
-                                  .filteredCategoryServices.length,
-                          itemBuilder: (context, index) {
-                            return ServcieItem(
-                              service: _serviceByIDController
-                                  .currentCategoryServices[index],
-                            );
-                          },
-                        ),
-                      )))
-        ],
-      ),
+      body: GetBuilder<ServiceByIDController>(
+          id: 'catServices',
+          dispose: (state) {
+            _serviceByIDController.serviceByIDSearchController.clear();
+          },
+          initState: (state) async => await _serviceByIDController
+              .getServiceByID(categoryID: category.categoryID),
+          builder: (controller) => _serviceByIDController.obx(
+                (state) => Column(
+                  children: [
+                    DefaultSearchBar(
+                      onChanged: (p0) {
+                        _serviceByIDController.searchLogic(p0);
+                      },
+                      textController:
+                          _serviceByIDController.serviceByIDSearchController,
+                    ),
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: _serviceByIDController
+                                .serviceByIDSearchController.text.isEmpty
+                            ? _serviceByIDController
+                                .currentCategoryServices.length
+                            : _serviceByIDController
+                                .filteredCategoryServices.length,
+                        itemBuilder: (context, index) {
+                          return ServcieItem(
+                            service: _serviceByIDController
+                                .currentCategoryServices[index],
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+                onError: (error) => NoEnternetPlaceHolder(
+                  onretry: () async {
+                    await _serviceByIDController.getServiceByID(
+                        categoryID: category.categoryID);
+                  },
+                ),
+              )),
     );
   }
 }

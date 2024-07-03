@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class CustomeButton extends StatelessWidget {
+  final SvgPicture? svg;
   final Icon? icon;
   final String text;
   final TextStyle? textStyle;
@@ -14,6 +16,7 @@ class CustomeButton extends StatelessWidget {
       {super.key,
       required this.text,
       this.icon,
+      this.svg,
       this.width,
       this.height,
       this.ontap,
@@ -38,6 +41,7 @@ class CustomeButton extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             icon ?? Container(),
+            svg ?? Container(),
             const SizedBox(
               width: 6,
             ),

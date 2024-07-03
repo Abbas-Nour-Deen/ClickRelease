@@ -71,6 +71,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "away": MessageLookupByLibrary.simpleMessage("away"),
         "becomeaserviceprovider":
             MessageLookupByLibrary.simpleMessage("Become a Service Provider"),
+        "call": MessageLookupByLibrary.simpleMessage("Call"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "categories": MessageLookupByLibrary.simpleMessage("Categories"),
         "checknetwork": MessageLookupByLibrary.simpleMessage(

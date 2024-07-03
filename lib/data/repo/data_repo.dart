@@ -19,8 +19,10 @@ class DataRepo extends GetxService {
     return await dataApiHandler.getAllServices("api/serviceByCat/$id");
   }
 
-  Future<Response> getProviderByServiceID({required String id}) async {
-    return await dataApiHandler.getProviders("api/providerByservice/$id");
+  Future<Response> getProviderByServiceID(
+      {required String id, required String tStamp}) async {
+    return await dataApiHandler.getProviders(
+        "api/providerByservice/$id", tStamp);
   }
 
   Future<Response> getProviderBySearch({required String keyWord}) async {
