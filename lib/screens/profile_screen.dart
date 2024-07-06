@@ -1,14 +1,15 @@
 import 'package:click_release/controllers/login_controller.dart';
 import 'package:click_release/controllers/nabar_controller.dart';
 import 'package:click_release/generated/l10n.dart';
-import 'package:click_release/screens/profile_screens/contact_us.dart';
-import 'package:click_release/screens/profile_screens/editProfile_screen.dart';
-import 'package:click_release/screens/profile_screens/settings_screen.dart';
+import 'package:click_release/screens/contact_us.dart';
+import 'package:click_release/screens/editProfile_screen.dart';
+import 'package:click_release/screens/settings_screen.dart';
 import 'package:click_release/utils/utils.dart';
-import 'package:click_release/widgets/public_widgets/appBar.dart';
+import 'package:click_release/widgets/custome_drawer.dart';
+import 'package:click_release/widgets/navbar_appbar.dart';
 import 'package:click_release/widgets/public_widgets/customedivider.dart';
-import 'package:click_release/screens/profile_screens/profileScreen_widgets/profile_option_tile.dart';
-import 'package:click_release/screens/profile_screens/profileScreen_widgets/profile_photo.dart';
+import 'package:click_release/widgets/public_widgets/profile_option_tile.dart';
+import 'package:click_release/widgets/profile_photo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,10 +19,16 @@ class ProfileScreen extends StatelessWidget {
   final LoginController loginController = Get.find();
   final NavBarController navBarController = Get.find();
 
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomeAppBar(title: S.of(context).profile, type: false),
+        drawer: CustomDrawer(),
+        key: _scaffoldKey,
+        appBar: AppBarForNavBar(
+          scaffoldKey: _scaffoldKey,
+        ),
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(15),
@@ -29,6 +36,10 @@ class ProfileScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 profilePhoto(),
+                Text(
+                  loginController.currentUser.clientUsername,
+                  style: Get.textTheme.titleLarge,
+                ),
                 const SizedBox(
                   height: 10,
                 ),
@@ -80,7 +91,9 @@ class ProfileScreen extends StatelessWidget {
         ),
         ProfileOptionTile(
           iconPath: "assets/icons/lightheme_icons/invitefriends.svg",
-          onTap: () {},
+          onTap: () {
+            loginController.shareApp("Download click app");
+          },
           title: S.of(context).inviteFriends,
         ),
         const CustomeDivider(),
@@ -106,7 +119,9 @@ class ProfileScreen extends StatelessWidget {
         ),
         ProfileOptionTile(
           iconPath: "assets/icons/lightheme_icons/privacypolicy.svg",
-          onTap: () {},
+          onTap: () {
+            loginController.launchUrls(type: 'privacypolicy');
+          },
           title: S.of(context).privacyPolicy,
         ),
         ProfileOptionTile(

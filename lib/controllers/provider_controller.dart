@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:click_release/controllers/liked_providers_controller.dart';
 import 'package:click_release/controllers/loading_controller.dart';
 import 'package:click_release/controllers/localization_controller.dart';
@@ -46,6 +48,12 @@ class ProviderController extends GetxController
   List<ProviderModel> filteredProviders = [];
 
   String tStamp = '0';
+
+  final ScrollController scrollController = ScrollController();
+
+  Timer? _timer;
+  double _scrollOffset = 0.0;
+  final double _scrollSpeed = 1.0;
 
   void searchLogic(String query) {
     String lowercaseQuery = query.toLowerCase();
@@ -107,9 +115,7 @@ class ProviderController extends GetxController
 
           topProviders.add(provider);
         });
-
         isTopProvidersLoading = false;
-
         print("top providers length ${topProviders.length}");
       } else {
         print(response.statusCode);

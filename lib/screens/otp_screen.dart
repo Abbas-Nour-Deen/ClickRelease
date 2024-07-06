@@ -1,5 +1,5 @@
 import 'package:click_release/controllers/login_controller.dart';
-import 'package:click_release/screens/regestration_Screens/registration_widgets/otp_widget.dart';
+import 'package:click_release/widgets/otp_widget.dart';
 import 'package:click_release/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

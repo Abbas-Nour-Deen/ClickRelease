@@ -1,4 +1,4 @@
-import 'package:click_release/screens/regestration_Screens/phonenumber_screen.dart';
+import 'package:click_release/screens/phonenumber_screen.dart';
 import 'package:click_release/widgets/onBoarding/onboarding_items.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

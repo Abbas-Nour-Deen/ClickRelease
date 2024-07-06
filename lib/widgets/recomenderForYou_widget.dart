@@ -1,6 +1,7 @@
+import 'package:auto_scroll/auto_scroll.dart';
 import 'package:click_release/controllers/provider_controller.dart';
 import 'package:click_release/generated/l10n.dart';
-import 'package:click_release/screens/home_screens/homescreen_widgets/homeScreen_items/provider_item.dart';
+import 'package:click_release/widgets/items/provider_item.dart';
 import 'package:click_release/widgets/public_widgets/loading_widgets/topProviders_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -35,16 +36,16 @@ class RecommendedForYouSlideWidget extends StatelessWidget {
                 ? const TopProvidersLoading()
                 : Expanded(
                     child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: _providerController.topProviders.length,
-                      itemBuilder: (context, index) {
-                        return ProviderItem(
-                          provider: _providerController.topProviders[index],
-                          margin: const EdgeInsets.only(right: 10),
-                        );
-                      },
-                    ),
-                  ),
+                    controller: _providerController.scrollController,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: _providerController.topProviders.length,
+                    itemBuilder: (context, index) {
+                      return ProviderItem(
+                        provider: _providerController.topProviders[index],
+                        margin: const EdgeInsets.only(right: 10),
+                      );
+                    },
+                  )),
           )
         ],
       ),

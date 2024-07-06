@@ -1,15 +1,16 @@
 import 'package:click_release/controllers/location_controller.dart';
 import 'package:click_release/controllers/nabar_controller.dart';
 import 'package:click_release/generated/l10n.dart';
-import 'package:click_release/screens/home_screens/homescreen_widgets/categories_widget.dart';
-import 'package:click_release/screens/home_screens/homescreen_widgets/imageslidShow.dart';
-import 'package:click_release/screens/home_screens/homescreen_widgets/recomenderForYou_widget.dart';
-import 'package:click_release/screens/home_screens/homescreen_widgets/searchShape.dart';
-import 'package:click_release/screens/home_screens/homescreen_widgets/servicesChip_widget.dart';
+import 'package:click_release/widgets/categories_widget.dart';
+import 'package:click_release/widgets/imageslidShow.dart';
+import 'package:click_release/widgets/navbar_appbar.dart';
+import 'package:click_release/widgets/recomenderForYou_widget.dart';
+import 'package:click_release/widgets/searchShape.dart';
+import 'package:click_release/widgets/servicesChip_widget.dart';
 import 'package:click_release/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'homescreen_widgets/custome_drawer.dart';
+import '../widgets/custome_drawer.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -22,7 +23,9 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       key: _scaffoldKey,
       drawer: CustomDrawer(),
-      appBar: appBar(context),
+      appBar: AppBarForNavBar(
+        scaffoldKey: _scaffoldKey,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
@@ -82,9 +85,14 @@ class HomeScreen extends StatelessWidget {
                           S.of(context).searching,
                           style: Get.textTheme.labelMedium,
                         ),
-                        (state) => Text(
-                              controller.pickedLocation.locationName,
-                              style: Get.textTheme.labelMedium,
+                        (state) => SizedBox(
+                              width: 300,
+                              child: Text(
+                                controller.pickedLocation.locationName,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: Get.textTheme.labelMedium,
+                              ),
                             )),
                   ),
                   const Icon(Icons.keyboard_arrow_down)

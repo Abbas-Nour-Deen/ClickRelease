@@ -1,6 +1,6 @@
 import 'package:click_release/controllers/provider_controller.dart';
 import 'package:click_release/models/service_model.dart';
-import 'package:click_release/screens/home_screens/homescreen_widgets/homeScreen_items/provider_item.dart';
+import 'package:click_release/widgets/items/provider_item.dart';
 import 'package:click_release/widgets/public_widgets/appBar.dart';
 import 'package:click_release/widgets/public_widgets/default_search_bar.dart';
 import 'package:click_release/widgets/public_widgets/noenternet_placeholder.dart';

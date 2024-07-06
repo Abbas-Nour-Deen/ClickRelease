@@ -1,4 +1,4 @@
-import 'package:click_release/screens/home_screens/homescreen_widgets/homeScreen_items/nearme_item.dart';
+import 'package:click_release/widgets/items/nearme_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

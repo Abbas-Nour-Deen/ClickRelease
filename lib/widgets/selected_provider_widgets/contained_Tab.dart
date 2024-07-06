@@ -1,6 +1,6 @@
 import 'package:click_release/controllers/review_controller.dart';
 import 'package:click_release/generated/l10n.dart';
-import 'package:click_release/screens/provider_screens/reviews_screen.dart';
+import 'package:click_release/screens/reviews_screen.dart';
 import 'package:click_release/theme/app_theme.dart';
 import 'package:click_release/widgets/selected_provider_widgets/items/post_item.dart';
 import 'package:click_release/widgets/selected_provider_widgets/items/project_item.dart';

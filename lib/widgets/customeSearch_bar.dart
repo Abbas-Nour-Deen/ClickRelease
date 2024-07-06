@@ -1,6 +1,6 @@
 import 'package:click_release/controllers/search_controller.dart';
 import 'package:click_release/generated/l10n.dart';
-import 'package:click_release/screens/search_screen/filterBy_screen.dart';
+import 'package:click_release/screens/filterBy_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';

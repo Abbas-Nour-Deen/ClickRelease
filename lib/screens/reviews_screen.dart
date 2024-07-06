@@ -1,5 +1,5 @@
 import 'package:click_release/models/review_model.dart';
-import 'package:click_release/screens/provider_screens/add_review_screen.dart';
+import 'package:click_release/screens/add_review_screen.dart';
 import 'package:click_release/theme/app_theme.dart';
 import 'package:click_release/widgets/public_widgets/appBar.dart';
 import 'package:click_release/widgets/public_widgets/customeButtomSheet.dart';

@@ -1,9 +1,9 @@
 import 'package:click_release/controllers/login_controller.dart';
 import 'package:click_release/generated/l10n.dart';
-import 'package:click_release/screens/favorite_screen/favorite_screen.dart';
-import 'package:click_release/screens/home_screens/home_screen.dart';
-import 'package:click_release/screens/profile_screens/profile_screen.dart';
-import 'package:click_release/screens/search_screen/search_screen.dart';
+import 'package:click_release/screens/favorite_screen.dart';
+import 'package:click_release/screens/home_screen.dart';
+import 'package:click_release/screens/profile_screen.dart';
+import 'package:click_release/screens/search_screen.dart';
 import 'package:click_release/utils/utils.dart';
 import 'package:click_release/widgets/loading_screen.dart';
 import 'package:get/get.dart';

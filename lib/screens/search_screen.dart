@@ -1,7 +1,7 @@
 import 'package:click_release/controllers/search_controller.dart';
-import 'package:click_release/generated/l10n.dart';
-import 'package:click_release/screens/home_screens/homescreen_widgets/customeSearch_bar.dart';
-import 'package:click_release/widgets/public_widgets/appBar.dart';
+import 'package:click_release/widgets/customeSearch_bar.dart';
+import 'package:click_release/widgets/custome_drawer.dart';
+import 'package:click_release/widgets/navbar_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,14 +9,16 @@ class SearchScreen extends StatelessWidget {
   SearchScreen({super.key});
 
   final SearchProviderController _searchProviderController = Get.find();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomeAppBar(
-        type: false,
-        title: S.of(context).search,
+      key: _scaffoldKey,
+      appBar: AppBarForNavBar(
+        scaffoldKey: _scaffoldKey,
       ),
+      drawer: CustomDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: SingleChildScrollView(

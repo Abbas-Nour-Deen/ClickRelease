@@ -2,7 +2,7 @@ import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart
 import 'package:click_release/controllers/login_controller.dart';
 import 'package:click_release/data/api/login_api.dart';
 import 'package:click_release/data/repo/login_repo.dart';
-import 'package:click_release/screens/regestration_Screens/entry_screen.dart';
+import 'package:click_release/screens/entry_screen.dart';
 import 'package:click_release/widgets/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

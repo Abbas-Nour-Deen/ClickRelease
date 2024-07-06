@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:click_release/controllers/localization_controller.dart';
 import 'package:click_release/models/category_model.dart';
-import 'package:click_release/screens/allCategories_screens/selected_category_screen.dart';
+import 'package:click_release/screens/selected_category_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

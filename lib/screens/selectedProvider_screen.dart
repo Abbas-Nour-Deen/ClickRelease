@@ -4,7 +4,7 @@ import 'package:click_release/controllers/provider_calculation_controller.dart';
 import 'package:click_release/controllers/provider_controller.dart';
 import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/models/provider_model.dart';
-import 'package:click_release/screens/provider_screens/add_review_screen.dart';
+import 'package:click_release/screens/add_review_screen.dart';
 import 'package:click_release/theme/app_theme.dart';
 import 'package:click_release/utils/utils.dart';
 import 'package:click_release/widgets/point.dart';
@@ -39,8 +39,14 @@ class SelectedProviderScreen extends StatelessWidget {
         bottomSheet: bottomSheet(providerInfoController: controller),
         appBar: CustomeAppBar(
             title: "",
-            trailing: SvgPicture.asset(
-                "assets/icons/lightheme_icons/share_btn_light.svg")),
+            trailing: InkWell(
+              onTap: () {
+                providerConteroller.loginController.shareApp(
+                    "${provider.firstName}${provider.lastName}\n${provider.serviceNameEng}\n${provider.serviceNameArb}\n${provider.phoneNumber}");
+              },
+              child: SvgPicture.asset(
+                  "assets/icons/lightheme_icons/share_btn_light.svg"),
+            )),
         body: Padding(
           padding: const EdgeInsets.all(10.0),
           child: SingleChildScrollView(
@@ -122,7 +128,7 @@ class SelectedProviderScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 AutoSizeText(
-                  provider.providerUsername,
+                  '${provider.firstName}${provider.lastName}',
                   style: Get.textTheme.titleLarge,
                   maxLines: 1,
                 ),
@@ -500,20 +506,14 @@ class SelectedProviderScreen extends StatelessWidget {
                 ),
             ],
           ),
-          Container(
-            padding: const EdgeInsets.symmetric(vertical: 5),
-            decoration: BoxDecoration(
-                border: Border(bottom: BorderSide(color: Colors.white38))),
-            margin: const EdgeInsets.symmetric(vertical: 6),
-            child: CustomExpansionTile(
-              icon: 'assets/icons/lightheme_icons/medal.svg',
-              title: S.of(context).Certifications,
-              options: [
-                for (var info in providerInfoController
-                    .currentProviderInfoModel.certification)
-                  Text(info.certificationName)
-              ],
-            ),
+          CustomExpansionTile(
+            icon: 'assets/icons/lightheme_icons/medal.svg',
+            title: S.of(context).Certifications,
+            options: [
+              for (var info in providerInfoController
+                  .currentProviderInfoModel.certification)
+                Text(info.certificationName)
+            ],
           ),
         ],
       ),

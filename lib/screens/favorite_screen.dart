@@ -1,7 +1,8 @@
 import 'package:click_release/controllers/liked_providers_controller.dart';
 import 'package:click_release/generated/l10n.dart';
-import 'package:click_release/widgets/public_widgets/appBar.dart';
-import 'package:click_release/screens/home_screens/homescreen_widgets/homeScreen_items/provider_item.dart';
+import 'package:click_release/widgets/custome_drawer.dart';
+import 'package:click_release/widgets/navbar_appbar.dart';
+import 'package:click_release/widgets/items/provider_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -9,10 +10,16 @@ import 'package:get/get.dart';
 class FavoriteScreen extends StatelessWidget {
   FavoriteScreen({super.key});
 
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomeAppBar(title: S.of(context).favorites, type: false),
+        drawer: CustomDrawer(),
+        key: _scaffoldKey,
+        appBar: AppBarForNavBar(
+          scaffoldKey: _scaffoldKey,
+        ),
         body: Padding(
             padding: const EdgeInsets.all(10.0),
             child: GetBuilder<LikedProvidersController>(

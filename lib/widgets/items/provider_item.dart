@@ -2,7 +2,7 @@ import 'package:click_release/controllers/provider_calculation_controller.dart';
 import 'package:click_release/controllers/provider_controller.dart';
 import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/models/provider_model.dart';
-import 'package:click_release/screens/provider_screens/selectedProvider_screen.dart';
+import 'package:click_release/screens/selectedProvider_screen.dart';
 import 'package:click_release/theme/app_theme.dart';
 import 'package:click_release/widgets/public_widgets/call_btn_widget.dart';
 import 'package:click_release/widgets/provider_category_icons.dart';

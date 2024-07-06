@@ -2,7 +2,7 @@ import 'package:click_release/controllers/localization_controller.dart';
 import 'package:click_release/data/repo/data_repo.dart';
 import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/models/provider_model.dart';
-import 'package:click_release/screens/home_screens/homescreen_widgets/homeScreen_items/provider_item.dart';
+import 'package:click_release/widgets/items/provider_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';

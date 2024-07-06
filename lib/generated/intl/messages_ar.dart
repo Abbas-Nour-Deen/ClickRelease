@@ -55,7 +55,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "لم نتمكن من العثور على أي نتائج مطابقة لبحثك"),
         "WorkingHours": MessageLookupByLibrary.simpleMessage("ساعات العمل"),
         "Yourcurrentlocation":
-            MessageLookupByLibrary.simpleMessage("موقعك الحالي"),
+            MessageLookupByLibrary.simpleMessage("موقعي الحالي"),
         "Yourfavoritespageisempty":
             MessageLookupByLibrary.simpleMessage("صفحتك المفضلة فارغة"),
         "Youroverallrating":
@@ -81,7 +81,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "error": MessageLookupByLibrary.simpleMessage("خطأ"),
         "exit": MessageLookupByLibrary.simpleMessage("اغلاق التطبيق"),
         "favorites": MessageLookupByLibrary.simpleMessage("المفضلة"),
-        "featured": MessageLookupByLibrary.simpleMessage("مميز"),
+        "featured": MessageLookupByLibrary.simpleMessage("مميزون"),
         "filterby": MessageLookupByLibrary.simpleMessage("تصفية حسب"),
         "helpCenter": MessageLookupByLibrary.simpleMessage("مركز المساعدة"),
         "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),

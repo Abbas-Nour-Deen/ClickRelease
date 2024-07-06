@@ -1,4 +1,4 @@
-import 'package:click_release/screens/profile_screens/profileScreen_widgets/profile_option_tile.dart';
+import 'package:click_release/widgets/public_widgets/profile_option_tile.dart';
 import 'package:click_release/widgets/public_widgets/appBar.dart';
 import 'package:flutter/material.dart';
 

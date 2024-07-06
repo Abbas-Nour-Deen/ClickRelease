@@ -1,6 +1,6 @@
 import 'package:click_release/controllers/login_controller.dart';
 import 'package:click_release/models/gender_model.dart';
-import 'package:click_release/screens/profile_screens/profileScreen_widgets/profile_photo.dart';
+import 'package:click_release/widgets/profile_photo.dart';
 import 'package:click_release/theme/constant_designs.dart';
 import 'package:click_release/widgets/public_widgets/appBar.dart';
 import 'package:click_release/widgets/public_widgets/customeButtomSheet.dart';

@@ -4,14 +4,15 @@ import 'package:click_release/data/repo/login_repo.dart';
 import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/models/gender_model.dart';
 import 'package:click_release/models/user_model.dart';
-import 'package:click_release/screens/regestration_Screens/createAccount_screen.dart';
-import 'package:click_release/screens/regestration_Screens/otp_screen.dart';
+import 'package:click_release/screens/createAccount_screen.dart';
+import 'package:click_release/screens/otp_screen.dart';
 import 'package:click_release/widgets/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LoginController extends GetxController with StateMixin {
@@ -238,7 +239,9 @@ class LoginController extends GetxController with StateMixin {
           phoneNumber: currentUser.clientPhone,
           sex: selectedGender!.code,
           userID: currentUser.userID,
-          userName: userNameController.text);
+          userName: userNameController.text.isEmpty
+              ? currentUser.clientUsername
+              : userNameController.text);
 
       if (response.statusCode == 200) {
         Get.back();
@@ -290,9 +293,11 @@ class LoginController extends GetxController with StateMixin {
 
   void launchUrls({required String type}) async {
     try {
-      final Uri faceBookUri = Uri.parse("https://www.facebook.com");
       final Uri termsandConditionsUrl =
           Uri.parse("http://216.225.199.11:8091/click/termsAndConditions.html");
+
+      final privacyPolicyUri =
+          Uri.parse('http://216.225.199.11:8091/click/privacypolicy.html');
 
       switch (type) {
         case "termsandconditions":
@@ -304,8 +309,8 @@ class LoginController extends GetxController with StateMixin {
           }
 
         case "privacypolicy":
-          if (await canLaunchUrl(faceBookUri)) {
-            await launchUrl(faceBookUri,
+          if (await canLaunchUrl(privacyPolicyUri)) {
+            await launchUrl(privacyPolicyUri,
                 mode: LaunchMode.externalNonBrowserApplication);
             break;
           }
@@ -313,6 +318,15 @@ class LoginController extends GetxController with StateMixin {
     } catch (e) {
       throw Exception(e);
     }
+  }
+
+  void shareApp(text) async {
+    final box = Get.context!.findRenderObject() as RenderBox?;
+
+    await Share.share(
+      text,
+      sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size,
+    );
   }
 
   @override

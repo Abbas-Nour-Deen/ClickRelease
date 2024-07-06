@@ -2,8 +2,8 @@ import 'package:choice/choice.dart';
 import 'package:click_release/controllers/allServices_controller.dart';
 import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/models/service_model.dart';
-import 'package:click_release/screens/allCategories_screens/selected_service_screen.dart';
-import 'package:click_release/screens/allServices_screens/allServices_screen.dart';
+import 'package:click_release/screens/selected_service_screen.dart';
+import 'package:click_release/screens/allServices_screen.dart';
 import 'package:click_release/widgets/public_widgets/loading_widgets/services_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -57,6 +57,8 @@ class ServicesChipsWidget extends StatelessWidget {
                   itemCount: _servicesController.allServices.length,
                   itemBuilder: (state, i) {
                     return ChoiceChip(
+                      showCheckmark: false,
+                      selectedColor: Get.theme.colorScheme.onSecondaryContainer,
                       selected:
                           state.selected(_servicesController.allServices[i]),
                       onSelected:

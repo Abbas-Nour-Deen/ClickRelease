@@ -1,6 +1,6 @@
 import 'package:click_release/controllers/localization_controller.dart';
 import 'package:click_release/models/service_model.dart';
-import 'package:click_release/screens/allCategories_screens/selected_service_screen.dart';
+import 'package:click_release/screens/selected_service_screen.dart';
 import 'package:click_release/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

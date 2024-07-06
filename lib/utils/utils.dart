@@ -1,7 +1,7 @@
 import 'package:click_release/controllers/location_controller.dart';
 import 'package:click_release/controllers/provider_controller.dart';
 import 'package:click_release/generated/l10n.dart';
-import 'package:click_release/screens/profile_screens/profileScreen_widgets/profile_option_tile.dart';
+import 'package:click_release/widgets/public_widgets/profile_option_tile.dart';
 import 'package:click_release/widgets/google_maps.dart';
 import 'package:click_release/widgets/public_widgets/custome_btn.dart';
 import 'package:flutter/material.dart';
