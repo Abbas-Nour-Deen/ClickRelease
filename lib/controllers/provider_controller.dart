@@ -51,9 +51,7 @@ class ProviderController extends GetxController
 
   final ScrollController scrollController = ScrollController();
 
-  Timer? _timer;
-  double _scrollOffset = 0.0;
-  final double _scrollSpeed = 1.0;
+  final List<String> sliderImages = [];
 
   void searchLogic(String query) {
     String lowercaseQuery = query.toLowerCase();
@@ -108,18 +106,19 @@ class ProviderController extends GetxController
         topProviders.clear();
 
         final List<dynamic> list = response.body['providers'];
-
+        print(response.body['providers']);
         list.forEach((element) {
           final ProviderModel provider =
               ProviderModel.fromJson(element as Map<String, dynamic>);
 
           topProviders.add(provider);
         });
+
         isTopProvidersLoading = false;
-        print("top providers length ${topProviders.length}");
       } else {
         print(response.statusCode);
       }
+      print("top providers length ${topProviders.length}");
     } catch (e) {
       print("top providers response ${e.toString()}");
     }
@@ -239,7 +238,29 @@ class ProviderController extends GetxController
     }
   }
 
-// Widget getworkingTimeForProvider({provider}){
+  Future<void> getImageSlider() async {
+    try {
+      final response = await dataRepo.getImageSliderImages();
+      if (response.statusCode == 200) {
+        sliderImages.clear();
 
-// }
+        final List<dynamic> list = response.body;
+
+        list.forEach(
+          (element) => sliderImages.add(element['imgUrl']),
+        );
+        update(['slider']);
+        print("slider response  ${sliderImages.length} ");
+      } else {}
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    getImageSlider();
+  }
 }

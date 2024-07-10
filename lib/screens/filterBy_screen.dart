@@ -140,7 +140,7 @@ class FilterByScreen extends StatelessWidget {
                       .toList(),
                   title: S.of(context).zone,
                 ),
-                ratingDropDown(context),
+                // ratingDropDown(context),
                 filtrationResult(context)
               ],
             ),
@@ -246,68 +246,68 @@ class FilterByScreen extends StatelessWidget {
     );
   }
 
-  Widget ratingDropDown(context) {
-    return Container(
-      margin: const EdgeInsets.only(top: 15),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            S.of(context).rate,
-            style: Get.textTheme.titleSmall,
-          ),
-          const SizedBox(
-            height: 7,
-          ),
-          Container(
-            decoration: customContainerDecoration(),
-            child: DropdownButtonHideUnderline(
-              child: DropdownButton<int>(
-                dropdownColor: Get.theme.colorScheme.primaryContainer,
-                isExpanded: true,
-                elevation: 2,
-                padding:
-                    const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                underline: Container(),
-                hint: Text(
-                  S.of(context).select,
-                  style: Get.textTheme.bodyMedium,
-                ),
-                value: filtrationController.selectedRateForFilter,
-                items: filtrationController.ratings
-                    .map((e) => DropdownMenuItem<int>(
-                        value: e,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Row(
-                              children: [
-                                Text(e.toString()),
-                                const SizedBox(
-                                  width: 3,
-                                ),
-                                for (int i = 0; i < e; i++)
-                                  SvgPicture.asset(
-                                      "assets/icons/lightheme_icons/star.svg")
-                              ],
-                            ),
-                            const Divider(
-                              color: Colors.white,
-                              thickness: 1,
-                            )
-                          ],
-                        )))
-                    .toList(),
-                onChanged: (value) {
-                  filtrationController.selectedRateForFilter = value;
-                  filtrationController.update(["DropDowns"]);
-                },
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  // Widget ratingDropDown(context) {
+  //   return Container(
+  //     margin: const EdgeInsets.only(top: 15),
+  //     child: Column(
+  //       crossAxisAlignment: CrossAxisAlignment.start,
+  //       children: [
+  //         Text(
+  //           S.of(context).rate,
+  //           style: Get.textTheme.titleSmall,
+  //         ),
+  //         const SizedBox(
+  //           height: 7,
+  //         ),
+  //         Container(
+  //           decoration: customContainerDecoration(),
+  //           child: DropdownButtonHideUnderline(
+  //             child: DropdownButton<int>(
+  //               dropdownColor: Get.theme.colorScheme.primaryContainer,
+  //               isExpanded: true,
+  //               elevation: 2,
+  //               padding:
+  //                   const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+  //               underline: Container(),
+  //               hint: Text(
+  //                 S.of(context).select,
+  //                 style: Get.textTheme.bodyMedium,
+  //               ),
+  //               value: filtrationController.selectedRateForFilter,
+  //               items: filtrationController.ratings
+  //                   .map((e) => DropdownMenuItem<int>(
+  //                       value: e,
+  //                       child: Column(
+  //                         crossAxisAlignment: CrossAxisAlignment.start,
+  //                         mainAxisAlignment: MainAxisAlignment.center,
+  //                         children: [
+  //                           Row(
+  //                             children: [
+  //                               Text(e.toString()),
+  //                               const SizedBox(
+  //                                 width: 3,
+  //                               ),
+  //                               for (int i = 0; i < e; i++)
+  //                                 SvgPicture.asset(
+  //                                     "assets/icons/lightheme_icons/star.svg")
+  //                             ],
+  //                           ),
+  //                           const Divider(
+  //                             color: Colors.white,
+  //                             thickness: 1,
+  //                           )
+  //                         ],
+  //                       )))
+  //                   .toList(),
+  //               onChanged: (value) {
+  //                 filtrationController.selectedRateForFilter = value;
+  //                 filtrationController.update(["DropDowns"]);
+  //               },
+  //             ),
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 }

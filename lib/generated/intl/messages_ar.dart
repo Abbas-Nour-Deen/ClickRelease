@@ -83,6 +83,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "favorites": MessageLookupByLibrary.simpleMessage("المفضلة"),
         "featured": MessageLookupByLibrary.simpleMessage("مميزون"),
         "filterby": MessageLookupByLibrary.simpleMessage("تصفية حسب"),
+        "gender": MessageLookupByLibrary.simpleMessage("الجنس"),
         "helpCenter": MessageLookupByLibrary.simpleMessage("مركز المساعدة"),
         "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
         "invalidotp": MessageLookupByLibrary.simpleMessage(
@@ -97,6 +98,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "manageAddress": MessageLookupByLibrary.simpleMessage("إدارة العناوين"),
         "myFavorites": MessageLookupByLibrary.simpleMessage("المفضلة لدي"),
         "myProfile": MessageLookupByLibrary.simpleMessage("ملفي الشخصي"),
+        "name": MessageLookupByLibrary.simpleMessage("الاسم"),
         "noenternetconnection": MessageLookupByLibrary.simpleMessage(
             "حدث خطأ في الاتصال. يرجى التحقق من اتصال الإنترنت\n والمحاولة مرة أخرى"),
         "noreviewsyet": MessageLookupByLibrary.simpleMessage(
@@ -105,6 +107,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ops": MessageLookupByLibrary.simpleMessage("عذراً!"),
         "otpverefiedsuccessfully": MessageLookupByLibrary.simpleMessage(
             "تم التحقق من كلمة المرور مرة واحدة بنجاح"),
+        "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
         "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
         "projects": MessageLookupByLibrary.simpleMessage("المشاريع"),

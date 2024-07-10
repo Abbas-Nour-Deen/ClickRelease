@@ -22,7 +22,7 @@ class FiltrationController extends GetxController with StateMixin {
 
   final ZonesController zoneController = Get.find();
 
-  final List<int> ratings = [1, 2, 3, 4, 5];
+  // final List<int> ratings = [1, 2, 3, 4, 5];
 
   CategoryModel? selectedCategoryForFilter;
   ServiceModel? selectedServiceForFilter;
@@ -39,7 +39,6 @@ class FiltrationController extends GetxController with StateMixin {
       final response = await dataRepo.getDataByFilter(
           zoneId: selectedZoneForFilter!.zoneId,
           categoryID: selectedCategoryForFilter!.categoryID,
-          rate: selectedRateForFilter,
           serviceId: selectedServiceForFilter!.serviceId);
       if (response.statusCode == 200) {
         filterProviders.clear();

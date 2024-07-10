@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:click_release/controllers/service_byID_controller.dart';
 import 'package:click_release/models/category_model.dart';
 import 'package:click_release/widgets/items/service_item.dart';
@@ -47,10 +48,12 @@ class SelectedCategoryScreen extends StatelessWidget {
                             : _serviceByIDController
                                 .filteredCategoryServices.length,
                         itemBuilder: (context, index) {
-                          return ServcieItem(
-                            service: _serviceByIDController
-                                .currentCategoryServices[index],
-                          );
+                          return FadeInRight(
+                              animate: true,
+                              child: ServcieItem(
+                                service: _serviceByIDController
+                                    .currentCategoryServices[index],
+                              ));
                         },
                       ),
                     ),

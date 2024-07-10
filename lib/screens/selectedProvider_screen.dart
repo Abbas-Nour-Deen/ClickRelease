@@ -36,7 +36,7 @@ class SelectedProviderScreen extends StatelessWidget {
       initState: (state) => providerConteroller.providerInfoController
           .fetchData(providerID: provider.provid),
       builder: (controller) => Scaffold(
-        bottomSheet: bottomSheet(providerInfoController: controller),
+        bottomSheet: bottomSheet(),
         appBar: CustomeAppBar(
             title: "",
             trailing: InkWell(
@@ -294,53 +294,57 @@ class SelectedProviderScreen extends StatelessWidget {
           const SizedBox(
             height: 5,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const Icon(
-                Icons.access_time_rounded,
-                size: 18,
-              ),
-              const SizedBox(
-                width: 2,
-              ),
-              Expanded(
-                child: RichText(
-                    maxLines: 1,
-                    overflow: TextOverflow.clip,
-                    softWrap: true,
-                    text: providerController
-                                .localizationController.selectedLang.value ==
-                            'en'
-                        ? TextSpan(children: <TextSpan>[
-                            TextSpan(
-                                style: Get.textTheme.labelSmall!.copyWith(
-                                  fontWeight: FontWeight.w600,
-                                ),
-                                text:
-                                    "${DateFormat('hh:mma', 'en').format(DateFormat('HH:mm:ss', 'en').parse(provider.workingHR!.first.start))} till ${DateFormat('hh:mma', 'en').format(DateFormat('HH:mm:ss', 'en').parse(provider.workingHR!.first.end))} - "),
-                            TextSpan(
-                                style: Get.textTheme.labelMedium!
-                                    .copyWith(fontWeight: FontWeight.bold),
-                                text:
-                                    "${provider.workingHR!.first.day} ${provider.workingHR!.last.day}"),
-                          ])
-                        : TextSpan(children: <TextSpan>[
-                            TextSpan(
-                                style: Get.textTheme.labelMedium!
-                                    .copyWith(fontWeight: FontWeight.bold),
-                                text:
-                                    "${provider.workingHR!.first.day} ${provider.workingHR!.last.day} - "),
-                            TextSpan(
-                                style: Get.textTheme.labelSmall!.copyWith(
-                                  fontWeight: FontWeight.w600,
-                                ),
-                                text:
-                                    "${DateFormat('hh:mma', 'en').format(DateFormat('HH:mm:ss', 'en').parse(provider.workingHR!.first.start))} till ${DateFormat('hh:mma', 'en').format(DateFormat('HH:mm:ss', 'en').parse(provider.workingHR!.first.end))} "),
-                          ])),
-              )
-            ],
-          )
+          provider.workingHR!.isEmpty
+              ? Container()
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const Icon(
+                      Icons.access_time_rounded,
+                      size: 18,
+                    ),
+                    const SizedBox(
+                      width: 2,
+                    ),
+                    Expanded(
+                      child: RichText(
+                          maxLines: 1,
+                          overflow: TextOverflow.clip,
+                          softWrap: true,
+                          text: providerController.localizationController
+                                      .selectedLang.value ==
+                                  'en'
+                              ? TextSpan(children: <TextSpan>[
+                                  TextSpan(
+                                      style: Get.textTheme.labelSmall!.copyWith(
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                      text:
+                                          "${DateFormat('hh:mma', 'en').format(DateFormat('HH:mm:ss', 'en').parse(provider.workingHR!.first.start))} till ${DateFormat('hh:mma', 'en').format(DateFormat('HH:mm:ss', 'en').parse(provider.workingHR!.first.end))} - "),
+                                  TextSpan(
+                                      style: Get.textTheme.labelMedium!
+                                          .copyWith(
+                                              fontWeight: FontWeight.bold),
+                                      text:
+                                          "${provider.workingHR!.first.day} ${provider.workingHR!.last.day}"),
+                                ])
+                              : TextSpan(children: <TextSpan>[
+                                  TextSpan(
+                                      style: Get.textTheme.labelMedium!
+                                          .copyWith(
+                                              fontWeight: FontWeight.bold),
+                                      text:
+                                          "${provider.workingHR!.first.day} ${provider.workingHR!.last.day} - "),
+                                  TextSpan(
+                                      style: Get.textTheme.labelSmall!.copyWith(
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                      text:
+                                          "${DateFormat('hh:mma', 'en').format(DateFormat('HH:mm:ss', 'en').parse(provider.workingHR!.first.start))} till ${DateFormat('hh:mma', 'en').format(DateFormat('HH:mm:ss', 'en').parse(provider.workingHR!.first.end))} "),
+                                ])),
+                    )
+                  ],
+                )
         ],
       ),
     );
@@ -473,39 +477,41 @@ class SelectedProviderScreen extends StatelessWidget {
                 )
             ],
           ),
-          CustomExpansionTile(
-            icon: 'assets/icons/lightheme_icons/clock.svg',
-            title: S.of(context).WorkingHours,
-            options: [
-              for (var info in provider.workingHR!)
-                Container(
-                  padding: const EdgeInsets.symmetric(vertical: 5),
-                  decoration: BoxDecoration(
-                      border:
-                          Border(bottom: BorderSide(color: Colors.white38))),
-                  margin: const EdgeInsets.symmetric(vertical: 6),
-                  child: Row(
-                    children: [
-                      const CirclePoint(),
-                      const SizedBox(width: 10),
-                      AutoSizeText(
-                        info.day,
-                        style: Get.textTheme.bodyMedium,
-                        maxLines: 2,
-                      ),
-                      const Spacer(),
-                      AutoSizeText(
-                        '${DateFormat('hh:mma', 'en').format(DateFormat('HH:mm:ss', 'en').parse(info.start))} - ${DateFormat('hh:mma', 'en').format(DateFormat('HH:mm:ss', 'en').parse(info.end))}',
-                        style: Get.textTheme.labelSmall!.copyWith(
-                          fontWeight: FontWeight.w600,
+          provider.workingHR!.isEmpty
+              ? Container()
+              : CustomExpansionTile(
+                  icon: 'assets/icons/lightheme_icons/clock.svg',
+                  title: S.of(context).WorkingHours,
+                  options: [
+                    for (var info in provider.workingHR!)
+                      Container(
+                        padding: const EdgeInsets.symmetric(vertical: 5),
+                        decoration: BoxDecoration(
+                            border: Border(
+                                bottom: BorderSide(color: Colors.white38))),
+                        margin: const EdgeInsets.symmetric(vertical: 6),
+                        child: Row(
+                          children: [
+                            const CirclePoint(),
+                            const SizedBox(width: 10),
+                            AutoSizeText(
+                              info.day,
+                              style: Get.textTheme.bodyMedium,
+                              maxLines: 2,
+                            ),
+                            const Spacer(),
+                            AutoSizeText(
+                              '${DateFormat('hh:mma', 'en').format(DateFormat('HH:mm:ss', 'en').parse(info.start))} - ${DateFormat('hh:mma', 'en').format(DateFormat('HH:mm:ss', 'en').parse(info.end))}',
+                              style: Get.textTheme.labelSmall!.copyWith(
+                                fontWeight: FontWeight.w600,
+                              ),
+                              maxLines: 1,
+                            ),
+                          ],
                         ),
-                        maxLines: 1,
                       ),
-                    ],
-                  ),
+                  ],
                 ),
-            ],
-          ),
           CustomExpansionTile(
             icon: 'assets/icons/lightheme_icons/medal.svg',
             title: S.of(context).Certifications,
@@ -520,7 +526,7 @@ class SelectedProviderScreen extends StatelessWidget {
     );
   }
 
-  Widget bottomSheet({required ProviderInfoController providerInfoController}) {
+  Widget bottomSheet() {
     return CustomeButtomSheet(
       childrens: [
         Expanded(
@@ -530,9 +536,7 @@ class SelectedProviderScreen extends StatelessWidget {
             ),
             ontap: () {
               providerConteroller.launchUrls(
-                  url: provider.phoneNumber,
-                  inApp: false,
-                  type: S.of(Get.context!).call);
+                  url: provider.phoneNumber, inApp: false, type: 'call');
             },
             text: S.of(Get.context!).call,
             width: double.infinity,

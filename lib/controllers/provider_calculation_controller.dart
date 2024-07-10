@@ -14,8 +14,8 @@ class ProviderCalculations extends GetxController {
         _degreesToRadians(locationController.pickedLocation.latitude);
     double userLongRad =
         _degreesToRadians(locationController.pickedLocation.longitude);
-    double providerLatRad = _degreesToRadians(providerLat);
-    double providerLongRad = _degreesToRadians(providerLong);
+    double providerLatRad = _degreesToRadians(providerLong);
+    double providerLongRad = _degreesToRadians(providerLat);
 
     // Haversine formula
     double dLat = providerLatRad - userLatRad;

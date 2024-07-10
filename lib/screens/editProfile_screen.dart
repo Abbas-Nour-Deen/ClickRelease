@@ -1,4 +1,5 @@
 import 'package:click_release/controllers/login_controller.dart';
+import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/models/gender_model.dart';
 import 'package:click_release/widgets/profile_photo.dart';
 import 'package:click_release/theme/constant_designs.dart';
@@ -16,8 +17,8 @@ class EditProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomSheet: bottomSheet(),
-      appBar: CustomeAppBar(title: "My Profile"),
+      bottomSheet: bottomSheet(context),
+      appBar: CustomeAppBar(title: S.of(context).myProfile),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(5),
@@ -51,7 +52,7 @@ class EditProfileScreen extends StatelessWidget {
                 textcontroller: loginController.userNameController,
                 hint: loginController.currentUser.clientUsername,
                 type: "name",
-                title: "Name",
+                title: S.of(context).name,
                 margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
               ),
               const SizedBox(
@@ -62,7 +63,7 @@ class EditProfileScreen extends StatelessWidget {
                 textcontroller: loginController.phoneController,
                 hint: loginController.currentUser.clientPhone,
                 type: "name",
-                title: "Phone Number",
+                title: S.of(context).phoneNumber,
                 margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
               ),
               const SizedBox(
@@ -74,7 +75,7 @@ class EditProfileScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Gender",
+                      S.of(context).gender,
                       style: Get.textTheme.titleSmall,
                     ),
                     const SizedBox(
@@ -127,7 +128,7 @@ class EditProfileScreen extends StatelessWidget {
     );
   }
 
-  Widget bottomSheet() {
+  Widget bottomSheet(context) {
     return CustomeButtomSheet(
       childrens: [
         Expanded(
@@ -135,7 +136,7 @@ class EditProfileScreen extends StatelessWidget {
             ontap: () {
               loginController.updateUser();
             },
-            text: "Click",
+            text: S.of(context).save,
             width: double.infinity,
           ),
         )

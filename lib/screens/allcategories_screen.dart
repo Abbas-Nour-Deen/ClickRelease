@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:click_release/controllers/categories_controller.dart';
 import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/widgets/public_widgets/appBar.dart';
@@ -18,9 +19,11 @@ class AllCategoriesScreen extends StatelessWidget {
           padding: const EdgeInsets.all(10.0),
           child: DynamicHeightGridView(
               builder: (context, index) {
-                return CategoryItem(
-                  category: categoryControler.allCategories[index],
-                );
+                return FadeInRight(
+                    animate: true,
+                    child: CategoryItem(
+                      category: categoryControler.allCategories[index],
+                    ));
               },
               itemCount: categoryControler.allCategories.length,
               crossAxisCount: 4)),

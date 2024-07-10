@@ -52,10 +52,9 @@ class DataRepo extends GetxService {
     return await dataApiHandler.getAllServices("api/zone");
   }
 
-  Future<Response> getDataByFilter(
-      {serviceId, zoneId, rate, categoryID}) async {
+  Future<Response> getDataByFilter({serviceId, zoneId, categoryID}) async {
     return await dataApiHandler.getdataByFilter(
-        "api/provider-filter", serviceId, zoneId, rate, categoryID);
+        "api/provider-filter", serviceId, zoneId, categoryID);
   }
 
   Future<Response> getLikedProviders({required userID}) async {
@@ -87,5 +86,9 @@ class DataRepo extends GetxService {
         rate: rate,
         entryUser: entryUser,
         updateUser: updateUser);
+  }
+
+  Future<Response> getImageSliderImages() async {
+    return await dataApiHandler.getAllServices("api/slider");
   }
 }

@@ -84,6 +84,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "favorites": MessageLookupByLibrary.simpleMessage("Favorites"),
         "featured": MessageLookupByLibrary.simpleMessage("Featured"),
         "filterby": MessageLookupByLibrary.simpleMessage("Filter By"),
+        "gender": MessageLookupByLibrary.simpleMessage("Gender"),
         "helpCenter": MessageLookupByLibrary.simpleMessage("Help Center"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "invalidotp": MessageLookupByLibrary.simpleMessage("Invalid OTP"),
@@ -97,6 +98,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "manageAddress": MessageLookupByLibrary.simpleMessage("Manage Address"),
         "myFavorites": MessageLookupByLibrary.simpleMessage("My Favorites"),
         "myProfile": MessageLookupByLibrary.simpleMessage("My Profile"),
+        "name": MessageLookupByLibrary.simpleMessage("Name"),
         "noenternetconnection": MessageLookupByLibrary.simpleMessage(
             "There is a connection error. Please check your internet\n and try again"),
         "noreviewsyet":
@@ -105,6 +107,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ops": MessageLookupByLibrary.simpleMessage("Oops!"),
         "otpverefiedsuccessfully":
             MessageLookupByLibrary.simpleMessage("OTP verified successfully"),
+        "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone number"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "projects": MessageLookupByLibrary.simpleMessage("Projects"),

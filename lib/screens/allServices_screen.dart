@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:click_release/controllers/allServices_controller.dart';
 import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/widgets/items/service_item.dart';
@@ -35,8 +36,11 @@ class AllServicesScreen extends StatelessWidget {
                               ? servicesController.allServices.length
                               : servicesController.filteredServices.length,
                           itemBuilder: (context, index) {
-                            return ServcieItem(
-                                service: servicesController.allServices[index]);
+                            return FadeInRight(
+                                animate: true,
+                                child: ServcieItem(
+                                    service:
+                                        servicesController.allServices[index]));
                           },
                         ))),
           )

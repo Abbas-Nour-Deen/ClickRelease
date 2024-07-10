@@ -36,6 +36,7 @@ class ProjectsController extends GetxController with StateMixin {
       } else {
         print(response.statusCode);
       }
+      update(['containedTab']);
     } catch (e) {
       throw Exception(e);
     }

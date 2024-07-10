@@ -37,7 +37,7 @@ class ProfileScreen extends StatelessWidget {
               children: [
                 profilePhoto(),
                 Text(
-                  loginController.currentUser.clientUsername,
+                  "${loginController.currentUser.clientUsername}",
                   style: Get.textTheme.titleLarge,
                 ),
                 const SizedBox(
@@ -114,7 +114,9 @@ class ProfileScreen extends StatelessWidget {
         const CustomeDivider(),
         ProfileOptionTile(
           iconPath: "assets/icons/lightheme_icons/aboutus.svg",
-          onTap: () {},
+          onTap: () {
+            loginController.launchUrls(type: 'aboutus');
+          },
           title: S.of(context).aboutUs,
         ),
         ProfileOptionTile(

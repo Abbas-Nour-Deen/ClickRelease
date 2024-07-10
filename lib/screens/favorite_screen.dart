@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:click_release/controllers/liked_providers_controller.dart';
 import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/widgets/custome_drawer.dart';
@@ -29,10 +30,13 @@ class FavoriteScreen extends StatelessWidget {
                           itemBuilder: (context, index) {
                             return SizedBox(
                                 height: 120,
-                                child: ProviderItem(
-                                  provider: controller.likedProviders[index],
-                                  margin: const EdgeInsets.only(bottom: 10),
-                                ));
+                                child: FadeInRight(
+                                    animate: true,
+                                    child: ProviderItem(
+                                      provider:
+                                          controller.likedProviders[index],
+                                      margin: const EdgeInsets.only(bottom: 10),
+                                    )));
                           },
                         ),
                     onEmpty: Column(

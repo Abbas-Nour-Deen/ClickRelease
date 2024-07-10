@@ -50,8 +50,8 @@ class ProviderItem extends StatelessWidget {
                 Stack(
                   children: [
                     Container(
-                        width: 80,
-                        height: 100,
+                        width: 90,
+                        height: 110,
                         margin: _providerController.localizationController
                                     .selectedLang.value ==
                                 'en'
@@ -132,22 +132,24 @@ class ProviderItem extends StatelessWidget {
                   ),
                 ],
               ),
-              Row(
-                children: [
-                  const Icon(
-                    CupertinoIcons.clock,
-                    size: 12,
-                    color: lightTHemeSecondTextColor,
-                  ),
-                  const SizedBox(
-                    width: 2,
-                  ),
-                  Text(
-                    "${DateFormat('hh:mma', 'en').format(DateFormat('HH:mm:ss', 'en').parse(provider.workingHR!.first.start))} till ${DateFormat('hh:mma', 'en').format(DateFormat('HH:mm:ss', 'en').parse(provider.workingHR!.first.end))}",
-                    style: Get.textTheme.labelSmall!,
-                  ),
-                ],
-              )
+              provider.workingHR!.isNotEmpty
+                  ? Row(
+                      children: [
+                        const Icon(
+                          CupertinoIcons.clock,
+                          size: 12,
+                          color: lightTHemeSecondTextColor,
+                        ),
+                        const SizedBox(
+                          width: 2,
+                        ),
+                        Text(
+                          "${DateFormat('hh:mma', 'en').format(DateFormat('HH:mm:ss', 'en').parse(provider.workingHR!.first.start))} till ${DateFormat('hh:mma', 'en').format(DateFormat('HH:mm:ss', 'en').parse(provider.workingHR!.first.end))}",
+                          style: Get.textTheme.labelSmall!,
+                        ),
+                      ],
+                    )
+                  : Container()
             ],
           ),
         ],

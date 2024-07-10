@@ -299,6 +299,9 @@ class LoginController extends GetxController with StateMixin {
       final privacyPolicyUri =
           Uri.parse('http://216.225.199.11:8091/click/privacypolicy.html');
 
+      final aboutUsUri =
+          Uri.parse("http://216.225.199.11:8091/click/aboutus.html");
+
       switch (type) {
         case "termsandconditions":
           if (await canLaunchUrl(termsandConditionsUrl)) {
@@ -311,6 +314,12 @@ class LoginController extends GetxController with StateMixin {
         case "privacypolicy":
           if (await canLaunchUrl(privacyPolicyUri)) {
             await launchUrl(privacyPolicyUri,
+                mode: LaunchMode.externalNonBrowserApplication);
+            break;
+          }
+        case "aboutus":
+          if (await canLaunchUrl(aboutUsUri)) {
+            await launchUrl(aboutUsUri,
                 mode: LaunchMode.externalNonBrowserApplication);
             break;
           }

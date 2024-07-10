@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:click_release/controllers/provider_controller.dart';
 import 'package:click_release/models/service_model.dart';
 import 'package:click_release/widgets/items/provider_item.dart';
@@ -52,11 +53,13 @@ class SelectedServiceScreen extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return SizedBox(
                           height: 120,
-                          child: ProviderItem(
-                            provider:
-                                _providerController.currentProviders[index],
-                            margin: const EdgeInsets.only(bottom: 10),
-                          ));
+                          child: FadeInRight(
+                              animate: true,
+                              child: ProviderItem(
+                                provider:
+                                    _providerController.currentProviders[index],
+                                margin: const EdgeInsets.only(bottom: 10),
+                              )));
                     },
                   ),
                 ),

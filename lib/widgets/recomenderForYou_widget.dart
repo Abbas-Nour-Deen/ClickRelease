@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:auto_scroll/auto_scroll.dart';
 import 'package:click_release/controllers/provider_controller.dart';
 import 'package:click_release/generated/l10n.dart';
@@ -36,14 +37,15 @@ class RecommendedForYouSlideWidget extends StatelessWidget {
                 ? const TopProvidersLoading()
                 : Expanded(
                     child: ListView.builder(
-                    controller: _providerController.scrollController,
                     scrollDirection: Axis.horizontal,
                     itemCount: _providerController.topProviders.length,
                     itemBuilder: (context, index) {
-                      return ProviderItem(
-                        provider: _providerController.topProviders[index],
-                        margin: const EdgeInsets.only(right: 10),
-                      );
+                      return FadeInRight(
+                          animate: true,
+                          child: ProviderItem(
+                            provider: _providerController.topProviders[index],
+                            margin: const EdgeInsets.only(right: 10),
+                          ));
                     },
                   )),
           )

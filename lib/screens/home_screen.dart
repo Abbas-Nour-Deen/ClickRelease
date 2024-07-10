@@ -39,7 +39,7 @@ class HomeScreen extends StatelessWidget {
                   child: SearchShape(),
                 ),
               ),
-              const ImageSlideShowWidget(),
+              ImageSlideShowWidget(),
               CategoriesWidget(),
               RecommendedForYouSlideWidget(),
               // const NearMeWidget(),

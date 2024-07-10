@@ -1,3 +1,4 @@
+import 'package:click_release/controllers/location_controller.dart';
 import 'package:click_release/controllers/login_controller.dart';
 import 'package:click_release/data/appconfig.dart';
 import 'package:get/get.dart';
@@ -6,7 +7,7 @@ class DataApiHandler extends GetConnect implements GetxService {
   late Map<String, String> _mainHeaders;
 
   final LoginController loginController = Get.find();
-
+  final LocationController locationController = Get.find();
   DataApiHandler() {
     baseUrl = appBaseUrl;
     timeout = const Duration(seconds: 60);
@@ -44,11 +45,13 @@ class DataApiHandler extends GetConnect implements GetxService {
 
   Future<Response> getProviders(url, tStamp) async {
     try {
-      print(url);
+      print(
+          "CALLED WITH THIS LOCATION latitude ${locationController.pickedLocation.latitude} longitude ${locationController.pickedLocation.longitude}");
+
       Response response = await post(url, headers: _mainHeaders, {
         'clientId': loginController.currentUserID,
-        "latitude": 40.7095,
-        "longitude": -74.0025,
+        "latitude": locationController.pickedLocation.longitude,
+        "longitude": locationController.pickedLocation.latitude,
         "tStamp": tStamp,
         "count": 10
       });
@@ -100,14 +103,12 @@ class DataApiHandler extends GetConnect implements GetxService {
     }
   }
 
-  Future<Response> getdataByFilter(
-      url, serviceId, zoneId, rate, categoryID) async {
+  Future<Response> getdataByFilter(url, serviceId, zoneId, categoryID) async {
     try {
       Response response = await post(url, headers: _mainHeaders, {
         'clientId': loginController.currentUserID,
         "serviceId": serviceId,
         "zoneId": zoneId,
-        "rate": 0,
         'categoryID': categoryID
       });
 

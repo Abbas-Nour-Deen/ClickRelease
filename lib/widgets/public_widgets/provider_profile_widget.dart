@@ -51,7 +51,25 @@ class ProviderProfilePhotoWidget extends StatelessWidget {
               )
             : CachedNetworkImage(
                 imageUrl: imageurl!,
-                fit: BoxFit.fill,
+                fit: BoxFit.cover,
+                placeholder: (context, url) => Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SvgPicture.asset(
+                    "assets/images/person.svg",
+                    height: 100,
+                    width: 70,
+                    fit: BoxFit.contain,
+                  ),
+                ),
+                errorWidget: (context, url, error) => Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SvgPicture.asset(
+                    "assets/images/person.svg",
+                    height: 100,
+                    width: 70,
+                    fit: BoxFit.contain,
+                  ),
+                ),
               );
   }
 }

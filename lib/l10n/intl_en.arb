@@ -78,7 +78,10 @@
 "ops":"Oops!",
 "noenternetconnection":"There is a connection error. Please check your internet\n and try again",
 "tryagain":"Try Again",
-"call":"Call"
+"call":"Call",
+"name":"Name",
+"phoneNumber":"Phone number",
+"gender":"Gender"
 
 
 

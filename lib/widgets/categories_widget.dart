@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:click_release/controllers/categories_controller.dart';
 import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/screens/allcategories_screen.dart';
@@ -46,9 +47,11 @@ class CategoriesWidget extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemCount: categoryControler.allCategories.length,
                 itemBuilder: (context, index) {
-                  return CategoryItem(
-                    category: categoryControler.allCategories[index],
-                  );
+                  return FadeInRight(
+                      animate: true,
+                      child: CategoryItem(
+                        category: categoryControler.allCategories[index],
+                      ));
                 },
               ),
             ),
