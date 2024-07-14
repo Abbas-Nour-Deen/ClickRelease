@@ -12,8 +12,10 @@ import 'package:get/get.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:otp_timer_button/otp_timer_button.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:video_player/video_player.dart';
 
 class LoginController extends GetxController with StateMixin {
   final LoginRepo loginRepo;
@@ -47,30 +49,30 @@ class LoginController extends GetxController with StateMixin {
   String? currentUserID;
 
   bool isTokenLoading = false;
-  bool optSent = false;
   File? pickedProfilePhoto;
   File? savedPickedProfilePhoto;
 
   final LoadingController loadingController = Get.put(LoadingController());
-
+  final OtpTimerButtonController timerController = OtpTimerButtonController();
   bool enternetConnectionError = false;
+
+  final VideoPlayerController videoController = VideoPlayerController.asset(
+      "assets/animations/mp43.mp4",
+      videoPlayerOptions: VideoPlayerOptions(allowBackgroundPlayback: false));
 
   Future<void> sendOTP() async {
     try {
       if (isPhoneNumberValid) {
         change(null, status: RxStatus.loading());
         Get.to(OtpScreen());
-        if (!optSent) {
-          final response =
-              await loginRepo.sendOtp("${enteredNumber.phoneNumber}");
-          if (response.statusCode == 200) {
-            optSent = true;
-            change(null, status: RxStatus.success());
-            otpID = response.body['data']["otp_id"];
-            print("recieved otp id  ${otpID}");
-          } else {
-            print(response.statusCode);
-          }
+        final response =
+            await loginRepo.sendOtp("${enteredNumber.phoneNumber}");
+        if (response.statusCode == 200) {
+          change(null, status: RxStatus.success());
+          otpID = response.body['data']["otp_id"];
+          print("recieved otp id  ${otpID}");
+        } else {
+          print(response.statusCode);
         }
       } else {
         loadingController.showCustomeDialog(
@@ -82,6 +84,29 @@ class LoginController extends GetxController with StateMixin {
     } catch (e) {
       print(e.toString());
     }
+  }
+
+  Future<void> resendOTP() async {
+    try {
+      timerController.startTimer();
+      final response = await loginRepo.resendOTP(
+        otpID,
+      );
+
+      if (response.statusCode == 200) {
+        loadingController.showCustomeDialog(
+            type: "success",
+            title: "Success",
+            body: "OTP resend successfully",
+            duration: 3);
+      } else {
+        loadingController.showCustomeDialog(
+            type: "error",
+            title: "Failed",
+            body: "Failed to resend OTP",
+            duration: 3);
+      }
+    } catch (e) {}
   }
 
   Future<void> validateOTP({required String otp}) async {
@@ -199,7 +224,7 @@ class LoginController extends GetxController with StateMixin {
     if (currentUserID != null) {
       isTokenLoading = true;
       enternetConnectionError = false;
-      update();
+      update(['navbar']);
       try {
         print("current user id$currentUserID");
         final response = await loginRepo.getUserByID(userID: currentUserID!);
@@ -218,13 +243,13 @@ class LoginController extends GetxController with StateMixin {
               genders.where((element) => element.code == currentUser.sex).first;
 
           isTokenLoading = false;
-          update();
+          update(['navbar']);
         } else {
           print("no internetttttt");
           userToken = '';
           enternetConnectionError = true;
 
-          update();
+          update(['navbar']);
         }
       } catch (e) {
         throw Exception(e);

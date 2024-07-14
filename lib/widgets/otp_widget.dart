@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:click_release/controllers/login_controller.dart';
 import 'package:click_release/theme/app_theme.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +10,8 @@ class OtpPinFieldWidget extends StatelessWidget {
 
   final LoginController _loginController = Get.find();
 
-  StreamController<ErrorAnimationType> errorController = StreamController();
+  final StreamController<ErrorAnimationType> errorController =
+      StreamController();
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class OtpPinFieldWidget extends StatelessWidget {
         child: PinCodeTextField(
           appContext: context,
           length: 6,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           obscureText: false,
           keyboardType: TextInputType.number,
           animationType: AnimationType.fade,

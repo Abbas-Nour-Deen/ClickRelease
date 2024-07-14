@@ -1,8 +1,10 @@
 import 'package:click_release/controllers/login_controller.dart';
 import 'package:click_release/widgets/otp_widget.dart';
 import 'package:click_release/theme/app_theme.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:otp_timer_button/otp_timer_button.dart';
 
 class OtpScreen extends StatelessWidget {
   OtpScreen({super.key});
@@ -56,11 +58,22 @@ class OtpScreen extends StatelessWidget {
             margin: const EdgeInsets.only(top: 40),
             child: Column(
               children: [
-                Text(
-                  "Resend code in 00:50 sec",
-                  style: Get.textTheme.bodyMedium!
-                      .copyWith(fontWeight: FontWeight.bold),
-                ),
+                GetBuilder<LoginController>(
+                    id: "otptimer",
+                    builder: (controller) => OtpTimerButton(
+                          buttonType: ButtonType.text_button,
+                          backgroundColor: Colors.transparent,
+                          controller: logInController.timerController,
+                          onPressed: () {
+                            logInController.resendOTP();
+                          },
+                          text: Text('Resend code ',
+                              style: Get.textTheme.bodySmall!.copyWith(
+                                fontWeight: FontWeight.bold,
+                                color: lightTHemeSecondTextColor,
+                              )),
+                          duration: 60,
+                        )),
                 SizedBox(
                   height: MediaQuery.of(Get.context!).size.height * 0.03,
                 ),
@@ -83,6 +96,10 @@ class OtpScreen extends StatelessWidget {
               style: Get.textTheme.bodySmall!
                   .copyWith(color: lightTHemeSecondTextColor)),
           TextSpan(
+            recognizer: TapGestureRecognizer()
+              ..onTap = () {
+                logInController.launchUrls(type: "privacypolicy");
+              },
             text: 'privacy policy',
             style: Get.textTheme.bodySmall!.copyWith(
               fontWeight: FontWeight.bold,
@@ -95,6 +112,10 @@ class OtpScreen extends StatelessWidget {
               style: Get.textTheme.bodyMedium!
                   .copyWith(color: lightTHemeSecondTextColor)),
           TextSpan(
+            recognizer: TapGestureRecognizer()
+              ..onTap = () {
+                logInController.launchUrls(type: "termsandconditions");
+              },
             text: 'terms and condition',
             style: Get.textTheme.bodySmall!.copyWith(
                 fontWeight: FontWeight.bold,

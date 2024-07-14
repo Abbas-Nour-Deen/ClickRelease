@@ -82,8 +82,13 @@ class ProviderController extends GetxController
 
           currentProviders.add(provider);
         });
-        tStamp = currentProviders.first.updateDate;
-        change(currentProviders, status: RxStatus.success());
+        if (currentProviders.isEmpty) {
+          change(currentProviders, status: RxStatus.empty());
+        } else {
+          tStamp = currentProviders.first.updateDate;
+
+          change(currentProviders, status: RxStatus.success());
+        }
 
         print("providers length ${currentProviders.length}");
       } else {

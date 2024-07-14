@@ -81,7 +81,9 @@
 "call":"Call",
 "name":"Name",
 "phoneNumber":"Phone number",
-"gender":"Gender"
+"gender":"Gender",
+"comingsoon":"Coming soon",
+"noprovidershasjoined":"No providers has joined this service yet in your location\ncheck back later for updates"
 
 
 

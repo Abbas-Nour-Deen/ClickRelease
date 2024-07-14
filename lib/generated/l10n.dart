@@ -869,6 +869,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Coming soon`
+  String get comingsoon {
+    return Intl.message(
+      'Coming soon',
+      name: 'comingsoon',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No providers has joined this service yet in your location\ncheck back later for updates`
+  String get noprovidershasjoined {
+    return Intl.message(
+      'No providers has joined this service yet in your location\ncheck back later for updates',
+      name: 'noprovidershasjoined',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

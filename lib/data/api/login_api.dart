@@ -45,6 +45,20 @@ class LoginApiHandler extends GetConnect implements GetxService {
     }
   }
 
+  Future<Response> resendOTP(url, otpID) async {
+    try {
+      Response response = await post(url, {
+        "otp_id": otpID,
+      });
+
+      print("resend otp status  ${response.body}");
+      return response;
+    } catch (e) {
+      print(e);
+      return Response(statusCode: 1, statusText: e.toString());
+    }
+  }
+
   Future<Response> createNewUser({
     url,
     firstName,

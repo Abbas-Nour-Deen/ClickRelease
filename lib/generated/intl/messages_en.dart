@@ -77,6 +77,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "checknetwork": MessageLookupByLibrary.simpleMessage(
             "Please check your network connection"),
         "click": MessageLookupByLibrary.simpleMessage("Click"),
+        "comingsoon": MessageLookupByLibrary.simpleMessage("Coming soon"),
         "contactUS": MessageLookupByLibrary.simpleMessage("Contact us"),
         "english": MessageLookupByLibrary.simpleMessage("English"),
         "error": MessageLookupByLibrary.simpleMessage("Failed"),
@@ -101,6 +102,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "name": MessageLookupByLibrary.simpleMessage("Name"),
         "noenternetconnection": MessageLookupByLibrary.simpleMessage(
             "There is a connection error. Please check your internet\n and try again"),
+        "noprovidershasjoined": MessageLookupByLibrary.simpleMessage(
+            "No providers has joined this service yet in your location\ncheck back later for updates"),
         "noreviewsyet":
             MessageLookupByLibrary.simpleMessage("No reviews Yet !"),
         "ok": MessageLookupByLibrary.simpleMessage("Ok"),

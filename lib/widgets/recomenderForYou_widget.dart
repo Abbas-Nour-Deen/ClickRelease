@@ -1,5 +1,4 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:auto_scroll/auto_scroll.dart';
 import 'package:click_release/controllers/provider_controller.dart';
 import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/widgets/items/provider_item.dart';

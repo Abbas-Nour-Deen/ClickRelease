@@ -28,6 +28,7 @@ class CustomNavBar extends StatelessWidget {
           Utils().exitAppDialog();
         },
         child: GetBuilder<LoginController>(
+          id: 'navbar',
           initState: (state) => loginController.getUserByID(),
           builder: (controller) => PersistentTabView(
             controller: navController.tabController,

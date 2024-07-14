@@ -1,4 +1,3 @@
-import 'package:click_release/theme/app_theme.dart';
 import 'package:click_release/widgets/onBoarding/onboarding_view.dart';
 import 'package:click_release/widgets/public_widgets/custome_btn.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +20,6 @@ class EntryScreen extends StatelessWidget {
             // ),
             title(),
             btnWidget(),
-            signInText()
           ],
         ),
       ),
@@ -66,28 +64,6 @@ class EntryScreen extends StatelessWidget {
         ontap: () {
           Get.to(() => OnboardingView());
         },
-      ),
-    );
-  }
-
-  Widget signInText() {
-    return GestureDetector(
-      onTap: () {
-        print("Text Clicked");
-      },
-      child: RichText(
-        text: TextSpan(
-          text: 'Already have an account ',
-          style: Get.textTheme.labelMedium,
-          children: <TextSpan>[
-            TextSpan(
-                text: 'Sign In',
-                style: Get.textTheme.labelMedium!.copyWith(
-                    fontWeight: FontWeight.normal,
-                    decoration: TextDecoration.underline,
-                    color: lightTHemeSecondTextColor)),
-          ],
-        ),
       ),
     );
   }

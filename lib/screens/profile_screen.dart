@@ -11,6 +11,7 @@ import 'package:click_release/widgets/public_widgets/customedivider.dart';
 import 'package:click_release/widgets/public_widgets/profile_option_tile.dart';
 import 'package:click_release/widgets/profile_photo.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class ProfileScreen extends StatelessWidget {

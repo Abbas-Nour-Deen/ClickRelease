@@ -16,6 +16,10 @@ class LoginRepo extends GetxService {
         "api/verify-otp", otp, otpID, phoneNumber);
   }
 
+  Future<Response> resendOTP(otpID) async {
+    return await loginApiHandler.resendOTP("api/resend-otp", otpID);
+  }
+
   Future<Response> createNewUser(
       {firstName, lastName, userName, sex, phoneNumber, profilePhoto}) async {
     return await loginApiHandler.createNewUser(

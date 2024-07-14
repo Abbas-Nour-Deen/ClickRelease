@@ -76,6 +76,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "checknetwork": MessageLookupByLibrary.simpleMessage(
             "الرجاء التحقق من اتصال الشبكة الخاصة بك"),
         "click": MessageLookupByLibrary.simpleMessage("انقر"),
+        "comingsoon": MessageLookupByLibrary.simpleMessage("قريباً"),
         "contactUS": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
         "english": MessageLookupByLibrary.simpleMessage("English"),
         "error": MessageLookupByLibrary.simpleMessage("خطأ"),
@@ -101,6 +102,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "name": MessageLookupByLibrary.simpleMessage("الاسم"),
         "noenternetconnection": MessageLookupByLibrary.simpleMessage(
             "حدث خطأ في الاتصال. يرجى التحقق من اتصال الإنترنت\n والمحاولة مرة أخرى"),
+        "noprovidershasjoined": MessageLookupByLibrary.simpleMessage(
+            "لم ينضم أي مزودين لهذه الخدمة بعد في موقعك، تحقق مرة أخرى\nلاحقاً للحصول على التحديثات"),
         "noreviewsyet": MessageLookupByLibrary.simpleMessage(
             "لم يتم تقديم أي تعليقات حتى الآن!"),
         "ok": MessageLookupByLibrary.simpleMessage("نعم"),
