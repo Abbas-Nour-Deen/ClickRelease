@@ -25,10 +25,13 @@ class ProviderCategoryIcons extends StatelessWidget {
         ),
         provider.classification == 'Agency'
             ? SvgPicture.asset(
+                "assets/icons/agency_case.svg",
+                height: 14,
+              )
+            : SvgPicture.asset(
                 "assets/icons/individual.svg",
                 height: 14,
               )
-            : Container()
       ],
     );
   }

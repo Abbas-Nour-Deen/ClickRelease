@@ -6,6 +6,7 @@ import 'package:click_release/models/gender_model.dart';
 import 'package:click_release/models/user_model.dart';
 import 'package:click_release/screens/createAccount_screen.dart';
 import 'package:click_release/screens/otp_screen.dart';
+import 'package:click_release/screens/phonenumber_screen.dart';
 import 'package:click_release/widgets/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -361,6 +362,11 @@ class LoginController extends GetxController with StateMixin {
       text,
       sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size,
     );
+  }
+
+  void logOut() async {
+    await storage.write("isLogedin", false);
+    Get.offAll(() => PhoneNumberScreen());
   }
 
   @override

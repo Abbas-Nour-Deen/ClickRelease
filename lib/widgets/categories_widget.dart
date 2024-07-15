@@ -15,7 +15,7 @@ class CategoriesWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 150,
+      height: 170,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

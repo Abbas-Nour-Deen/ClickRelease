@@ -6,7 +6,7 @@ class NavBarController extends GetxController {
   final LocationController locationController =
       Get.put(LocationController(), permanent: true);
 
-  final PersistentTabController tabController = PersistentTabController(
+  PersistentTabController tabController = PersistentTabController(
     initialIndex: 0,
   );
 }

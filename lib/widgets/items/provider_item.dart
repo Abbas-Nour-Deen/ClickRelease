@@ -36,7 +36,7 @@ class ProviderItem extends StatelessWidget {
         ));
       },
       child: Container(
-        width: width ?? 310,
+        width: width ?? 315,
         margin: margin,
         height: 110,
         decoration: BoxDecoration(
@@ -55,8 +55,10 @@ class ProviderItem extends StatelessWidget {
                         margin: _providerController.localizationController
                                     .selectedLang.value ==
                                 'en'
-                            ? const EdgeInsets.only(right: 10)
-                            : const EdgeInsets.only(left: 10),
+                            ? const EdgeInsets.only(
+                                right: 10, left: 2, bottom: 2, top: 2)
+                            : const EdgeInsets.only(
+                                left: 10, right: 2, bottom: 2, top: 2),
                         child: ProviderProfilePhotoWidget(
                             imageurl: provider.profileImage, type: 'provItem')),
                     LikeButtunWidget(

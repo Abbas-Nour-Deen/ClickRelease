@@ -12,6 +12,7 @@ class ImageSlideShowWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: Get.height * 0.25,
       width: double.infinity,
       margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 4),
       child: GetBuilder<ProviderController>(

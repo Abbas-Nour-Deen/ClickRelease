@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:click_release/controllers/localization_controller.dart';
 import 'package:click_release/data/repo/data_repo.dart';
 import 'package:click_release/generated/l10n.dart';
@@ -59,9 +60,11 @@ class SearchProviderController extends GetxController with StateMixin {
       itemCount: searchProviders.length,
       itemBuilder: (context, index) => SizedBox(
           height: 120,
-          child: ProviderItem(
-              provider: searchProviders[index],
-              margin: const EdgeInsets.symmetric(horizontal: 2, vertical: 3))),
+          child: FadeInRight(
+            child: ProviderItem(
+                provider: searchProviders[index],
+                margin: const EdgeInsets.symmetric(horizontal: 2, vertical: 3)),
+          )),
     );
   }
 

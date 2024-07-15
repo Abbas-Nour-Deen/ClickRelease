@@ -29,9 +29,8 @@ class Utils {
               title: S.of(Get.context!).Yourcurrentlocation,
               iconPath: "assets/icons/location.svg",
               onTap: () async {
-                await _locationController
-                    .determineUserCurrentPosition()
-                    .then((value) => Get.back());
+                Get.back();
+                await _locationController.determineUserCurrentPosition();
               },
               iconSize: 20,
             ),

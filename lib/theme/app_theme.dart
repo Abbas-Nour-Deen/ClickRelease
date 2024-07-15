@@ -15,7 +15,11 @@ final ThemeData lightTheme = ThemeData.light().copyWith(
         primaryContainer: Color(0xFFEEF1F9),
         secondaryContainer: Color(0xFF92E8F6),
         onSecondaryContainer: Color(0xFFEEF1F9)),
-    appBarTheme: const AppBarTheme(backgroundColor: Colors.white, elevation: 0),
+    appBarTheme: const AppBarTheme(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        shadowColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent),
     scaffoldBackgroundColor: Colors.white,
     iconTheme: const IconThemeData(color: lightTHemeSecondTextColor),
     dividerColor: lightThemeDividerColor,

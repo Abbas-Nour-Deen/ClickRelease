@@ -29,7 +29,11 @@ class RatingAndReviewsScreen extends StatelessWidget {
                 ),
                 Column(
                   children: List.generate(
-                      reviews.length,
+                      reviews
+                          .where(
+                            (element) => element.comment.isNotEmpty,
+                          )
+                          .length,
                       (index) => Container(
                           decoration: const BoxDecoration(
                               border: Border(

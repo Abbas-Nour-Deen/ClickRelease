@@ -18,17 +18,21 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => DataApiHandler());
     Get.lazyPut(() => DataRepo(dataApiHandler: Get.find()));
 
-    Get.lazyPut(() => CategoryControler(dataRepo: Get.find()));
-    Get.lazyPut(() => AllServicesController(dataRepo: Get.find()));
+    Get.lazyPut(() => CategoryControler(dataRepo: Get.find()), fenix: true);
+    Get.lazyPut(() => AllServicesController(dataRepo: Get.find()), fenix: true);
     Get.lazyPut(
         () => ProviderController(
               dataRepo: Get.find(),
             ),
         fenix: true);
 
-    Get.lazyPut(() => ServiceByIDController(dataRepo: Get.find()));
+    Get.lazyPut(() => ServiceByIDController(dataRepo: Get.find()), fenix: true);
 
-    Get.lazyPut(() => SearchProviderController(dataRepo: Get.find()));
+    Get.lazyPut(
+        () => SearchProviderController(
+              dataRepo: Get.find(),
+            ),
+        fenix: true);
 
     Get.lazyPut(() => OOnBoardingController(), fenix: true);
 
@@ -36,9 +40,8 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => ProviderInfoController(dataRepo: Get.find()),
         fenix: true);
 
-    Get.lazyPut(
-      () => LikedProvidersController(dataRepo: Get.find()),
-    );
+    Get.lazyPut(() => LikedProvidersController(dataRepo: Get.find()),
+        fenix: true);
 
     Get.lazyPut(() => ZonesController(dataRepo: Get.find()), fenix: true);
   }

@@ -8,8 +8,6 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 class OnboardingView extends StatelessWidget {
   OnboardingView({super.key});
 
-  bool isLastPage = false;
-
   final OOnBoardingController _onBoardingController = Get.find();
 
   @override

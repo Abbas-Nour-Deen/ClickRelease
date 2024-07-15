@@ -10,6 +10,7 @@ class LoadingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: GetBuilder<LoginController>(
+          id: 'navbar',
           builder: (controller) => controller.enternetConnectionError
               ? NoEnternetPlaceHolder(
                   onretry: () {

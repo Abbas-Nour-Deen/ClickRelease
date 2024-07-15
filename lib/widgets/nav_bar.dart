@@ -16,7 +16,7 @@ import '../controllers/nabar_controller.dart';
 class CustomNavBar extends StatelessWidget {
   CustomNavBar({super.key});
   final NavBarController navController =
-      Get.put(NavBarController(), permanent: false);
+      Get.put(NavBarController(), permanent: true);
 
   final LoginController loginController = Get.find();
 
@@ -29,7 +29,11 @@ class CustomNavBar extends StatelessWidget {
         },
         child: GetBuilder<LoginController>(
           id: 'navbar',
-          initState: (state) => loginController.getUserByID(),
+          initState: (state) {
+            navController.tabController =
+                PersistentTabController(initialIndex: 0);
+            loginController.getUserByID();
+          },
           builder: (controller) => PersistentTabView(
             controller: navController.tabController,
             backgroundColor: Get.theme.scaffoldBackgroundColor,

@@ -9,8 +9,8 @@ import 'package:geolocator/geolocator.dart';
 class LocationController extends GetxController with StateMixin {
   RxBool isLocationEnabled = false.obs;
 
-  PickedLocationModel pickedLocation =
-      PickedLocationModel(longitude: 0.0, latitude: 0.0, locationName: "");
+  PickedLocationModel pickedLocation = PickedLocationModel(
+      longitude: 35.513963, latitude: 33.8709085, locationName: "");
 
   Completer<GoogleMapController> googleMapController = Completer();
   CameraPosition? cameraPosition;
@@ -70,21 +70,19 @@ class LocationController extends GetxController with StateMixin {
   Future<void> getLocation() async {
     try {
       final position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high,
-      );
+          desiredAccuracy: LocationAccuracy.high,
+          timeLimit: Duration(minutes: 1));
 
       pickedLocation.latitude = position.latitude;
       pickedLocation.longitude = position.longitude;
     } on PlatformException catch (e) {
-      change(pickedLocation, status: RxStatus.error());
-
       if (e.code == 'PERMISSION_DENIED') {
         print('Permission denied');
       } else if (e.code == 'LOCATION_SERVICES_DISABLED') {
         print('Location services are disabled');
       }
     } catch (e) {
-      change(pickedLocation, status: RxStatus.error());
+      // change(pickedLocation, status: RxStatus.error());
 
       print('Failed to get location: $e');
     } finally {}
@@ -105,133 +103,4 @@ class LocationController extends GetxController with StateMixin {
 
     determineUserCurrentPosition();
   }
-
-  // Future<void> gotoUserCurrentPosition() async {
-  //   final locater.Position currentPosition =
-  //       await determineUserCurrentPosition();
-  //   gotoSpecificPosition(
-  //     LatLng(currentPosition.latitude, currentPosition.longitude),
-  //   );
-  // }
-
-  // Future<void> determineUserCurrentPosition() async {
-  //   locater.LocationPermission locationPermission;
-
-  // final bool isLocationServiceEnabled =
-  //     await locater.Geolocator.isLocationServiceEnabled();
-
-  //   //   if (!serviceEnabled) {
-  //   //     await checkLocationStatus();
-  //   //     serviceEnabled = isLocationEnabled.value;
-  //   //   }
-
-  //   if (!isLocationServiceEnabled) {
-  //     pickedLocation.locationName = "Select Location";
-  //     update();
-  //     return;
-  //   }
-
-  //   locationPermission = await locater.Geolocator.checkPermission();
-
-  //   if (locationPermission == locater.LocationPermission.denied) {
-  //     locationPermission = await locater.Geolocator.requestPermission();
-  //   }
-
-  //   if (locationPermission != locater.LocationPermission.denied ||
-  //       locationPermission != locater.LocationPermission.deniedForever ||
-  //       locationPermission != locater.LocationPermission.unableToDetermine) {
-  //     locater.Position currentPosition =
-  //         await locater.Geolocator.getCurrentPosition(
-  //       desiredAccuracy: locater.LocationAccuracy.high,
-  //     );
-  //     await getAddress(
-  //         LatLng(currentPosition.latitude, currentPosition.longitude));
-  // cameraPosition = CameraPosition(
-  //     zoom: 13,
-  //     target: LatLng(currentPosition.latitude, currentPosition.longitude));
-  //     pickedLocation.longitude = currentPosition.longitude;
-  //     pickedLocation.latitude = currentPosition.latitude;
-  //     print(
-  //         "abbas location latitude ${pickedLocation.latitude}, longitude ${pickedLocation.longitude}, name ${pickedLocation.locationName}");
-  //     update();
-  //   }
-  // }
-
-  // Future<void> gotoSpecificPosition(LatLng position) async {
-  //   final GoogleMapController mapController = await googleMapController.future;
-  //   mapController.animateCamera(
-  //     CameraUpdate.newCameraPosition(
-  //       CameraPosition(target: position, zoom: 13.5),
-  //     ),
-  //   );
-  //   await getAddress(position);
-  // }
-
-////////////////////////////////////////////////
-
-  // Future<void> getCurrentLocation() async {
-  //   Location location = Location();
-
-  //   bool serviceEnabled = await location.serviceEnabled();
-  //   if (!serviceEnabled) {
-  //     await checkLocationStatus();
-  //     serviceEnabled = isLocationEnabled.value;
-  //   }
-
-  //   if (serviceEnabled) {
-  //     var permissionStatus = await Permission.location.request();
-  //     if (permissionStatus.isGranted) {
-  //       LocationData locationData = await location.getLocation();
-
-  //       // Reverse geocoding to get the address
-  //       List<geo.Placemark> placemarks = await geo.placemarkFromCoordinates(
-  //           locationData.latitude!, locationData.longitude!);
-  //       String locationName = '';
-
-  //       if (placemarks.isNotEmpty) {
-  //         geo.Placemark placemark = placemarks[0];
-  //         locationName =
-  //             ' ${placemark.locality ?? ''}, ${placemark.administrativeArea ?? ''}';
-  //       } else {
-  //         locationName = 'Unknown location';
-  //       }
-
-  //       pickedLocation = PickedLocationModel(
-  //           longitude: locationData.longitude!,
-  //           latitude: locationData.latitude!,
-  //           locationName: locationName);
-
-  //       cameraPosition = CameraPosition(
-  //           zoom: 13.0,
-  //           target: LatLng(locationData.latitude!, locationData.longitude!));
-
-  //       print(
-  //           'Latitude: ${locationData.latitude}, Longitude: ${locationData.longitude}, Name: $locationName');
-  //     } else {
-  //       print('Location permission not granted');
-  //     }
-  //   } else {
-  //     print('Location service not enabled');
-  //   }
-  //   update();
-  // }
-
-  // Future<void> checkLocationStatus() async {
-  //   Location location = Location();
-
-  //   bool serviceEnabled = await location.serviceEnabled();
-  //   isLocationEnabled.value = serviceEnabled;
-
-  //   if (!serviceEnabled) {
-  //     serviceEnabled = await location.requestService();
-  //     isLocationEnabled.value = serviceEnabled;
-  //   }
-  // }
-
-  // void updateLocation({required lat, required long, required name}) {
-  //   pickedLocation.locationName = name.toString();
-  //   pickedLocation.latitude = lat;
-  //   pickedLocation.longitude = long;
-  //   Get.back();
-  // }
 }

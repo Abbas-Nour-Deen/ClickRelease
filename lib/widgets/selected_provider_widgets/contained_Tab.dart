@@ -92,7 +92,9 @@ class ContainedTabWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "${reviewsController.currentProviderReviews.length} ${S.of(context).reviews}",
+                "${reviewsController.currentProviderReviews.where(
+                      (element) => element.comment.isNotEmpty,
+                    ).length} ${S.of(context).reviews}",
                 style: Get.textTheme.labelMedium!
                     .copyWith(color: lightTHemeSecondTextColor),
               ),
@@ -113,9 +115,18 @@ class ContainedTabWidget extends StatelessWidget {
           ),
           Column(
             children: List.generate(
-                reviewsController.currentProviderReviews.length > 2
+                reviewsController.currentProviderReviews
+                            .where(
+                              (element) => element.comment.isNotEmpty,
+                            )
+                            .length >
+                        2
                     ? 2
-                    : reviewsController.currentProviderReviews.length, (index) {
+                    : reviewsController.currentProviderReviews
+                        .where(
+                          (element) => element.comment.isNotEmpty,
+                        )
+                        .length, (index) {
               return ReviewItem(
                 review: reviewsController.currentProviderReviews[index],
               );
