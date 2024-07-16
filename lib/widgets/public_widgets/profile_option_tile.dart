@@ -26,7 +26,8 @@ class ProfileOptionTile extends StatelessWidget {
           titleAlignment: ListTileTitleAlignment.threeLine,
           leading: SvgPicture.asset(
             iconPath,
-            color: Get.theme.iconTheme.color,
+            colorFilter:
+                ColorFilter.mode(Get.theme.iconTheme.color!, BlendMode.srcIn),
             height: iconSize ?? null,
           ),
           title: Text(

@@ -1,5 +1,4 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:click_release/controllers/review_controller.dart';
 import 'package:click_release/models/review_model.dart';
 import 'package:click_release/screens/reviews_screen.dart';

@@ -1,5 +1,4 @@
 import 'package:click_release/controllers/provider_controller.dart';
-import 'package:click_release/screens/selectedProvider_screen.dart';
 import 'package:click_release/widgets/public_widgets/call_btn_widget.dart';
 import 'package:click_release/widgets/provider_category_icons.dart';
 import 'package:click_release/widgets/provider_name_widget.dart';

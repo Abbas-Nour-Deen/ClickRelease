@@ -1,7 +1,6 @@
 import 'package:click_release/controllers/project_controller.dart';
 import 'package:click_release/controllers/provider_controller.dart';
 import 'package:click_release/data/repo/data_repo.dart';
-import 'package:click_release/models/project_model.dart';
 import 'package:click_release/models/review_model.dart';
 import 'package:get/get.dart';
 
@@ -76,7 +75,6 @@ class ReviewsController extends GetxController with StateMixin {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     getCurrentProviderReviews(
         providerID: providerController.selectedProvider.provid);

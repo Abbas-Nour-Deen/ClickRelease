@@ -128,7 +128,7 @@ class SelectedProviderScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 AutoSizeText(
-                  '${provider.firstName}${provider.lastName}',
+                  '${provider.providerUsername}',
                   style: Get.textTheme.titleLarge,
                   maxLines: 1,
                 ),

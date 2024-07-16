@@ -55,9 +55,11 @@ class ProviderController extends GetxController
 
   void searchLogic(String query) {
     String lowercaseQuery = query.toLowerCase();
+
     filteredProviders.clear();
     filteredProviders = currentProviders.where((prov) {
       return prov.firstName.toLowerCase().contains(lowercaseQuery) ||
+          prov.providerUsername.toLowerCase().contains(lowercaseQuery) ||
           prov.lastName.toLowerCase().contains(lowercaseQuery) ||
           prov.serviceNameEng.toLowerCase().contains(lowercaseQuery) ||
           prov.serviceNameArb.contains(lowercaseQuery);
@@ -264,7 +266,6 @@ class ProviderController extends GetxController
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     getImageSlider();
   }

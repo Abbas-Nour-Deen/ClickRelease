@@ -39,8 +39,13 @@ class AllServicesScreen extends StatelessWidget {
                             return FadeInRight(
                                 animate: true,
                                 child: ServcieItem(
-                                    service:
-                                        servicesController.allServices[index]));
+                                    service: servicesController
+                                            .serviceSearchController
+                                            .text
+                                            .isEmpty
+                                        ? servicesController.allServices[index]
+                                        : servicesController
+                                            .filteredServices[index]));
                           },
                         ))),
           )

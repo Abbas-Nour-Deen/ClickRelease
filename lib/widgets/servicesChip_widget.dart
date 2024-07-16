@@ -52,7 +52,7 @@ class ServicesChipsWidget extends StatelessWidget {
                     Get.to(SelectedServiceScreen(
                       service: value!,
                     ));
-                    print("selected service ${value!.nameEn}");
+                    print("selected service ${value.nameEn}");
                   },
                   itemCount: _servicesController.allServices.length,
                   itemBuilder: (state, i) {

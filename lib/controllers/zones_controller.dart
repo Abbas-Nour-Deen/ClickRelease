@@ -35,7 +35,6 @@ class ZonesController extends GetxController with StateMixin {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     getZones();
   }

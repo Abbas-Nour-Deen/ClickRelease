@@ -1,7 +1,6 @@
 import 'package:click_release/controllers/provider_controller.dart';
 import 'package:click_release/data/repo/data_repo.dart';
 import 'package:click_release/models/category_model.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CategoryControler extends GetxController with StateMixin {
@@ -44,7 +43,6 @@ class CategoryControler extends GetxController with StateMixin {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     getAllCategories();
   }

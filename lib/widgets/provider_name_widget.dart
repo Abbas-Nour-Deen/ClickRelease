@@ -25,7 +25,7 @@ class ProviderNameWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 AutoSizeText(
-                  '${provider.firstName}${provider.lastName}',
+                  '${provider.providerUsername}',
                   style: Get.textTheme.titleSmall,
                   maxLines: 1,
                 ),

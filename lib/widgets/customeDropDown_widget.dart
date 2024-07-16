@@ -1,4 +1,3 @@
-import 'package:click_release/controllers/search_controller.dart';
 import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/theme/constant_designs.dart';
 import 'package:flutter/material.dart';
@@ -6,9 +5,9 @@ import 'package:get/get.dart';
 
 class CustomeDropDownWidget<T> extends StatelessWidget {
   final String title;
-  List<DropdownMenuItem<T>> items;
+  final List<DropdownMenuItem<T>> items;
   final Function(T) onChanged;
-  T value;
+  final T value;
   CustomeDropDownWidget(
       {Key? key,
       required this.title,

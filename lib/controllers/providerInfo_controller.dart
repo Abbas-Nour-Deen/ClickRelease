@@ -1,4 +1,3 @@
-import 'package:click_release/controllers/provider_controller.dart';
 import 'package:click_release/data/repo/data_repo.dart';
 import 'package:click_release/models/provider_info.dart';
 import 'package:get/get.dart';
@@ -26,10 +25,4 @@ class ProviderInfoController extends GetxController with StateMixin {
       throw Exception('Failed to load data');
     }
   }
-
-  // @override
-  // void onInit() {
-  //   super.onInit();
-  //   fetchData(providerID: providerController.selectedProvider.provid);
-  // }
 }

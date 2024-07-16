@@ -61,7 +61,13 @@ class SelectedServiceScreen extends StatelessWidget {
                                     animate: true,
                                     child: ProviderItem(
                                       provider: _providerController
-                                          .currentProviders[index],
+                                              .searchProviderByServiceTextController
+                                              .text
+                                              .isEmpty
+                                          ? _providerController
+                                              .currentProviders[index]
+                                          : _providerController
+                                              .filteredProviders[index],
                                       margin: const EdgeInsets.only(bottom: 10),
                                     )));
                           },

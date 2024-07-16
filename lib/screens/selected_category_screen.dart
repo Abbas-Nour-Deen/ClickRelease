@@ -51,9 +51,14 @@ class SelectedCategoryScreen extends StatelessWidget {
                           return FadeInRight(
                               animate: true,
                               child: ServcieItem(
-                                service: _serviceByIDController
-                                    .currentCategoryServices[index],
-                              ));
+                                  service: _serviceByIDController
+                                          .serviceByIDSearchController
+                                          .text
+                                          .isEmpty
+                                      ? _serviceByIDController
+                                          .currentCategoryServices[index]
+                                      : _serviceByIDController
+                                          .filteredCategoryServices[index]));
                         },
                       ),
                     ),
