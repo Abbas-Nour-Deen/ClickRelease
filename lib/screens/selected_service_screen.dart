@@ -9,6 +9,7 @@ import 'package:click_release/widgets/public_widgets/noenternet_placeholder.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 class SelectedServiceScreen extends StatelessWidget {
   final ServiceModel service;
@@ -35,6 +36,10 @@ class SelectedServiceScreen extends StatelessWidget {
         initState: (state) async => await _providerController
             .getProviderByServiceID(serviceID: service.serviceId),
         builder: (controller) => _providerController.obx(
+            onLoading: Center(
+              child: Lottie.asset("assets/animations/ClickAnimation.json",
+                  height: 250),
+            ),
             (state) => Column(
                   children: [
                     DefaultSearchBar(

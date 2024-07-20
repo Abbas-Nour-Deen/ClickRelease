@@ -41,6 +41,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Location error. Please try again !"),
         "NoProjectsyet":
             MessageLookupByLibrary.simpleMessage("No Projects Yet !"),
+        "Nochangesdetected":
+            MessageLookupByLibrary.simpleMessage("No changes detected !"),
         "Noresultsmatchyourfilters": MessageLookupByLibrary.simpleMessage(
             "No results match your filters"),
         "Saveyourpreferredprofessionalshere": MessageLookupByLibrary.simpleMessage(
@@ -82,6 +84,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "english": MessageLookupByLibrary.simpleMessage("English"),
         "error": MessageLookupByLibrary.simpleMessage("Failed"),
         "exit": MessageLookupByLibrary.simpleMessage("Exit application"),
+        "failed": MessageLookupByLibrary.simpleMessage("Failed"),
+        "failedtoaddReview": MessageLookupByLibrary.simpleMessage(
+            "Failed to save review, please try again!"),
         "favorites": MessageLookupByLibrary.simpleMessage("Favorites"),
         "featured": MessageLookupByLibrary.simpleMessage("Featured"),
         "filterby": MessageLookupByLibrary.simpleMessage("Filter By"),
@@ -116,6 +121,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "projects": MessageLookupByLibrary.simpleMessage("Projects"),
         "rate": MessageLookupByLibrary.simpleMessage("Rate"),
         "resultsFound": MessageLookupByLibrary.simpleMessage("results found"),
+        "reviewSavedSuccessfully":
+            MessageLookupByLibrary.simpleMessage("Review Saved Successfully"),
         "reviews": MessageLookupByLibrary.simpleMessage("Reviews"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),

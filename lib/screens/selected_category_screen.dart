@@ -7,6 +7,7 @@ import 'package:click_release/widgets/public_widgets/default_search_bar.dart';
 import 'package:click_release/widgets/public_widgets/noenternet_placeholder.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 class SelectedCategoryScreen extends StatelessWidget {
   final CategoryModel category;
@@ -30,6 +31,10 @@ class SelectedCategoryScreen extends StatelessWidget {
           initState: (state) async => await _serviceByIDController
               .getServiceByID(categoryID: category.categoryID),
           builder: (controller) => _serviceByIDController.obx(
+                onLoading: Center(
+                  child: Lottie.asset("assets/animations/ClickAnimation.json",
+                      height: 250),
+                ),
                 (state) => Column(
                   children: [
                     DefaultSearchBar(

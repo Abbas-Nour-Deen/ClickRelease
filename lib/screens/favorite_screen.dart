@@ -7,6 +7,7 @@ import 'package:click_release/widgets/items/provider_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 class FavoriteScreen extends StatelessWidget {
   FavoriteScreen({super.key});
@@ -25,6 +26,14 @@ class FavoriteScreen extends StatelessWidget {
             padding: const EdgeInsets.all(10.0),
             child: GetBuilder<LikedProvidersController>(
                 builder: (controller) => controller.obx(
+                    onLoading: Container(
+                      margin: EdgeInsets.only(top: Get.width * 0.5),
+                      child: Center(
+                        child: Lottie.asset(
+                            "assets/animations/ClickAnimation.json",
+                            height: 250),
+                      ),
+                    ),
                     (state) => ListView.builder(
                           itemCount: controller.likedProviders.length,
                           itemBuilder: (context, index) {

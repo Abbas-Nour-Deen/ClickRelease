@@ -2,6 +2,7 @@ import 'package:click_release/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 class LoadingController extends GetxController {
   void showCustomeDialog(
@@ -38,5 +39,15 @@ class LoadingController extends GetxController {
             offset: Offset(0, 2),
           ),
         ]);
+  }
+
+  void showLoadingDialog() {
+    Get.dialog(
+        barrierDismissible: false,
+        Container(
+            child: Center(
+          child: Lottie.asset("assets/animations/ClickAnimation.json",
+              height: 250),
+        )));
   }
 }

@@ -889,6 +889,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Failed`
+  String get failed {
+    return Intl.message(
+      'Failed',
+      name: 'failed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to save review, please try again!`
+  String get failedtoaddReview {
+    return Intl.message(
+      'Failed to save review, please try again!',
+      name: 'failedtoaddReview',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Review Saved Successfully`
+  String get reviewSavedSuccessfully {
+    return Intl.message(
+      'Review Saved Successfully',
+      name: 'reviewSavedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No changes detected !`
+  String get Nochangesdetected {
+    return Intl.message(
+      'No changes detected !',
+      name: 'Nochangesdetected',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

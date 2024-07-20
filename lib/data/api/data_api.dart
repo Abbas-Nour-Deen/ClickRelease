@@ -53,10 +53,10 @@ class DataApiHandler extends GetConnect implements GetxService {
         "latitude": locationController.pickedLocation.longitude,
         "longitude": locationController.pickedLocation.latitude,
         "tStamp": tStamp,
-        "count": 10
+        "count": 7
       });
 
-      print("recieved providers data ${response.statusCode}");
+      print("recieved providers data ${response.body}");
       return response;
     } catch (e) {
       print(e);

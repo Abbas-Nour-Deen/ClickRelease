@@ -18,7 +18,7 @@ class CreateAccountScreen extends StatelessWidget {
       floatingActionButton: CustomeButton(
         height: 45,
         text: "Click",
-        width: Get.width * 0.8,
+        width: Get.width * 0.92,
         ontap: () => loginController.createNewUser(),
         margin: const EdgeInsets.only(top: 30),
       ),

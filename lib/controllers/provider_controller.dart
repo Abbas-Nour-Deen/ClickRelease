@@ -103,6 +103,27 @@ class ProviderController extends GetxController
     }
   }
 
+  Future<void> loadMoreProviders({required String serviceID}) async {
+    try {
+      final response =
+          await dataRepo.getProviderByServiceID(id: serviceID, tStamp: tStamp);
+      if (response.statusCode == 200) {
+        final List<dynamic> list = response.body['providers'];
+
+        list.forEach((element) {
+          final ProviderModel provider =
+              ProviderModel.fromJson(element as Map<String, dynamic>);
+
+          currentProviders.add(provider);
+        });
+        if (currentProviders.isEmpty) {
+        } else {
+          tStamp = currentProviders.first.updateDate;
+        }
+      } else {}
+    } catch (e) {}
+  }
+
   Future<void> getTopProviders() async {
     try {
       isTopProvidersLoading = true;
@@ -227,6 +248,7 @@ class ProviderController extends GetxController
 
   Future<void> rateProvider() async {
     try {
+      loadingController.showLoadingDialog();
       final response = await dataRepo.rateProvider(
           provID: selectedProvider.provid,
           comment: commentTextController.text,
@@ -236,8 +258,22 @@ class ProviderController extends GetxController
           updateUser: loginController.currentUser.clientUsername);
 
       if (response.statusCode == 200) {
+        commentTextController.clear();
+        Get.back();
+        Get.back();
+
+        loadingController.showCustomeDialog(
+            type: "success",
+            title: S.of(Get.context!).success,
+            body: S.of(Get.context!).reviewSavedSuccessfully,
+            duration: 2);
         print("provider rated successfully !");
       } else {
+        loadingController.showCustomeDialog(
+            type: "error",
+            title: S.of(Get.context!).failed,
+            body: S.of(Get.context!).failedtoaddReview,
+            duration: 2);
         print("failed to rate provider ${response.body}");
       }
     } catch (e) {

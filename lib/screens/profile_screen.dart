@@ -36,10 +36,12 @@ class ProfileScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 profilePhoto(),
-                Text(
-                  "${loginController.currentUser.clientUsername}",
-                  style: Get.textTheme.titleLarge,
-                ),
+                GetBuilder<LoginController>(
+                    id: 'profilePhoto',
+                    builder: (controller) => Text(
+                          "${loginController.currentUser.clientUsername}",
+                          style: Get.textTheme.titleLarge,
+                        )),
                 const SizedBox(
                   height: 10,
                 ),

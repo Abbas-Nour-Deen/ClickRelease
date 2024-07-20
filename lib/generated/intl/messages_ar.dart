@@ -40,6 +40,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "خطأ في تحديد الموقع. يرجى المحاولة مرة أخرى."),
         "NoProjectsyet":
             MessageLookupByLibrary.simpleMessage("لا توجد مشاريع حتى الآن !"),
+        "Nochangesdetected":
+            MessageLookupByLibrary.simpleMessage("لا تغييرات تم اكتشافها!"),
         "Noresultsmatchyourfilters": MessageLookupByLibrary.simpleMessage(
             "لا توجد نتائج تطابق عوامل التصفية الخاصة بك"),
         "Saveyourpreferredprofessionalshere": MessageLookupByLibrary.simpleMessage(
@@ -81,6 +83,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "english": MessageLookupByLibrary.simpleMessage("English"),
         "error": MessageLookupByLibrary.simpleMessage("خطأ"),
         "exit": MessageLookupByLibrary.simpleMessage("اغلاق التطبيق"),
+        "failed": MessageLookupByLibrary.simpleMessage("فشل"),
+        "failedtoaddReview": MessageLookupByLibrary.simpleMessage(
+            "فشل في حفظ التقييم، يرجى المحاولة مرة أخرى!"),
         "favorites": MessageLookupByLibrary.simpleMessage("المفضلة"),
         "featured": MessageLookupByLibrary.simpleMessage("مميزون"),
         "filterby": MessageLookupByLibrary.simpleMessage("تصفية حسب"),
@@ -117,6 +122,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "rate": MessageLookupByLibrary.simpleMessage("تقييم"),
         "resultsFound":
             MessageLookupByLibrary.simpleMessage("العثور على نتائج"),
+        "reviewSavedSuccessfully":
+            MessageLookupByLibrary.simpleMessage("تم حفظ التقييم بنجاح"),
         "reviews": MessageLookupByLibrary.simpleMessage("تعليق"),
         "save": MessageLookupByLibrary.simpleMessage("حفظ"),
         "search": MessageLookupByLibrary.simpleMessage("بحث"),

@@ -7,6 +7,7 @@ import 'package:click_release/widgets/items/provider_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 class SearchProviderController extends GetxController with StateMixin {
   final DataRepo dataRepo;
@@ -109,8 +110,12 @@ class SearchProviderController extends GetxController with StateMixin {
   }
 
   Widget loadingPlaceHolder() {
-    return const Center(
-      child: CircularProgressIndicator.adaptive(),
+    return Container(
+      margin: const EdgeInsets.only(top: 80),
+      child: Center(
+        child:
+            Lottie.asset("assets/animations/ClickAnimation.json", height: 250),
+      ),
     );
   }
 

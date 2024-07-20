@@ -61,7 +61,7 @@ class ReviewItem extends StatelessWidget {
                     color: lightThemeDividerColor,
                     borderRadius: BorderRadius.circular(100)),
                 child:
-                    review.profilePhoto == null || review.profilePhoto.isEmpty
+                    review.profilePhoto.isEmpty
                         ? Padding(
                             padding: const EdgeInsets.all(2.0),
                             child: ClipRRect(

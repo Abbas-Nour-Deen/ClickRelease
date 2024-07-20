@@ -22,6 +22,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 
 class SelectedProviderScreen extends StatelessWidget {
   final ProviderModel provider;
@@ -51,8 +52,12 @@ class SelectedProviderScreen extends StatelessWidget {
           padding: const EdgeInsets.all(10.0),
           child: SingleChildScrollView(
             child: controller.obx(
-              onLoading: const Center(
-                child: CircularProgressIndicator.adaptive(),
+              onLoading: Container(
+                margin: EdgeInsets.only(top: Get.width * 0.5),
+                child: Center(
+                  child: Lottie.asset("assets/animations/ClickAnimation.json",
+                      height: 250),
+                ),
               ),
               (state) => Column(
                 children: [

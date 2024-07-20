@@ -83,8 +83,11 @@
 "phoneNumber":"Phone number",
 "gender":"Gender",
 "comingsoon":"Coming soon",
-"noprovidershasjoined":"No providers has joined this service yet in your location\ncheck back later for updates"
-
+"noprovidershasjoined":"No providers has joined this service yet in your location\ncheck back later for updates",
+"failed":"Failed",
+"failedtoaddReview":"Failed to save review, please try again!",
+"reviewSavedSuccessfully":"Review Saved Successfully",
+"Nochangesdetected":"No changes detected !"
 
 
 

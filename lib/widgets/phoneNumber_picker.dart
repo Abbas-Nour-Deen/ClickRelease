@@ -48,6 +48,7 @@ class PhoneNumberPicker extends StatelessWidget {
           if (!logInController.isPhoneNumberValid) {
             return "invalid phone number";
           }
+          return null;
 
           // if (p0!.length != 8) {
           // }

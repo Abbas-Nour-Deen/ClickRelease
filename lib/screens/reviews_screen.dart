@@ -11,7 +11,7 @@ import 'package:get/get.dart';
 
 class RatingAndReviewsScreen extends StatelessWidget {
   final List<ReviewModel> reviews;
-  const RatingAndReviewsScreen({super.key, required this.reviews});
+  RatingAndReviewsScreen({super.key, required this.reviews});
 
   @override
   Widget build(BuildContext context) {

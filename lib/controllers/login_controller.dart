@@ -41,7 +41,8 @@ class LoginController extends GetxController with StateMixin {
   ];
 
   GenderModel? selectedGender;
-
+  String temperorGenderCode = '';
+  String temporarProfilePath = '';
   GetStorage storage = GetStorage();
 
   late String userToken;
@@ -113,6 +114,7 @@ class LoginController extends GetxController with StateMixin {
   Future<void> validateOTP({required String otp}) async {
     try {
       change(null, status: RxStatus.loading());
+      loadingController.showLoadingDialog();
       final response =
           await loginRepo.validateOTP(otp, otpID, enteredNumber.phoneNumber);
       print("recieved otp response  ${response.body}");
@@ -122,6 +124,7 @@ class LoginController extends GetxController with StateMixin {
 
         if (response.body['message'] ==
             'OTP verified successfully, User does not exist') {
+          Get.back();
           loadingController.showCustomeDialog(
               type: "success",
               title: S.of(Get.context!).success,
@@ -142,6 +145,7 @@ class LoginController extends GetxController with StateMixin {
           storage.write("token", userToken);
           storage.write("isLogedin", true);
           storage.write("userID", currentUser.userID);
+          Get.back();
 
           print(
               "currentUser ${currentUser.firstName},  ${currentUser.lastName}");
@@ -158,6 +162,8 @@ class LoginController extends GetxController with StateMixin {
 
         print("recieved otp response  ${response.body}");
       } else {
+        Get.back();
+
         loadingController.showCustomeDialog(
             type: "error",
             title: S.of(Get.context!).error,
@@ -172,6 +178,20 @@ class LoginController extends GetxController with StateMixin {
 
   Future<void> createNewUser() async {
     try {
+      if (firstNameController.text.isEmpty ||
+          lastNameController.text.isEmpty ||
+          userNameController.text.isEmpty ||
+          selectedGender == null) {
+        loadingController.showCustomeDialog(
+            type: "error",
+            title: S.of(Get.context!).error,
+            body: "All fields are required !",
+            duration: 4);
+        return;
+      }
+
+      loadingController.showLoadingDialog();
+
       final response = await loginRepo.createNewUser(
           firstName: firstNameController.text,
           lastName: lastNameController.text,
@@ -182,7 +202,7 @@ class LoginController extends GetxController with StateMixin {
       if (response.statusCode == 200) {
         final data = response.body;
         final userList = data['User'];
-
+        Get.back();
         loadingController.showCustomeDialog(
             type: "success",
             title: S.of(Get.context!).success,
@@ -190,6 +210,7 @@ class LoginController extends GetxController with StateMixin {
             duration: 4);
 
         currentUser = UserModel.fromJson(userList[0]);
+        currentUserID = currentUser.userID;
 
         userToken = response.body['token'];
         storage.write("token", userToken);
@@ -203,6 +224,12 @@ class LoginController extends GetxController with StateMixin {
         print("new user token  ${userToken}");
         print("new user id  ${currentUser.userID}");
       } else {
+        Get.back();
+        loadingController.showCustomeDialog(
+            type: "error",
+            title: S.of(Get.context!).error,
+            body: S.of(Get.context!).tryagain,
+            duration: 4);
         print(response.statusCode);
       }
     } catch (e) {
@@ -242,6 +269,7 @@ class LoginController extends GetxController with StateMixin {
 
           selectedGender =
               genders.where((element) => element.code == currentUser.sex).first;
+          temperorGenderCode = selectedGender!.code;
 
           isTokenLoading = false;
           update(['navbar']);
@@ -260,6 +288,20 @@ class LoginController extends GetxController with StateMixin {
 
   Future<void> updateUser() async {
     try {
+      if (userNameController.text.isEmpty &&
+          selectedGender!.code == temperorGenderCode &&
+          (pickedProfilePhoto == null ||
+              temporarProfilePath == pickedProfilePhoto!.path)) {
+        loadingController.showCustomeDialog(
+            type: "error",
+            title: S.of(Get.context!).error,
+            body: S.of(Get.context!).Nochangesdetected,
+            duration: 4);
+        return;
+      }
+
+      loadingController.showLoadingDialog();
+
       final response = await loginRepo.updateUser(
           profilePhoto: pickedProfilePhoto,
           phoneNumber: currentUser.clientPhone,
@@ -270,7 +312,13 @@ class LoginController extends GetxController with StateMixin {
               : userNameController.text);
 
       if (response.statusCode == 200) {
+        currentUser.clientUsername = userNameController.text.isEmpty
+            ? currentUser.clientUsername
+            : userNameController.text;
+        temporarProfilePath = pickedProfilePhoto!.path;
         Get.back();
+        Get.back();
+
         update(['profilePhoto']);
 
         loadingController.showCustomeDialog(
@@ -279,20 +327,28 @@ class LoginController extends GetxController with StateMixin {
             body: S.of(Get.context!).userupdatedsuccessfully,
             duration: 3);
 
+        if (userNameController.text.isNotEmpty) {
+          userNameController.clear();
+        }
+
         savedPickedProfilePhoto = pickedProfilePhoto;
       } else if (response.statusCode == 409) {
+        Get.back();
+
         loadingController.showCustomeDialog(
             type: "error",
             title: S.of(Get.context!).error,
             body: S.of(Get.context!).usernamealreadyexists,
-            duration: 4);
+            duration: 3);
         print(response.statusCode);
       } else {
+        Get.back();
+
         loadingController.showCustomeDialog(
             type: "error",
             title: S.of(Get.context!).error,
             body: S.of(Get.context!).checknetwork,
-            duration: 4);
+            duration: 3);
         print("update user status code ${response.statusCode}");
       }
     } catch (e) {
@@ -309,6 +365,7 @@ class LoginController extends GetxController with StateMixin {
     if (pickedFile != null) {
       // Create a File object from the picked image path
       pickedProfilePhoto = File(pickedFile.path);
+
       print("picked image ${pickedFile.path}");
 
       update(['profilePhoto']);
