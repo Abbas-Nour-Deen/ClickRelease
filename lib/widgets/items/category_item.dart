@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:click_release/controllers/localization_controller.dart';
 import 'package:click_release/models/category_model.dart';
@@ -13,38 +14,46 @@ class CategoryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => Get.to(SelectedCategoryScreen(
-        category: category,
-      )),
-      child: Container(
-        padding: const EdgeInsets.all(5),
-        width: 80,
-        height: 110,
+    return Container(
+      margin: const EdgeInsets.all(5),
+      child: InkWell(
+        onTap: () => Get.to(SelectedCategoryScreen(
+          category: category,
+        )),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
+              height: 60,
               width: 60,
-              padding: const EdgeInsets.all(15),
+              padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(150),
                   color: Get.theme.colorScheme.onSecondaryContainer),
               child: Center(
-                child: CachedNetworkImage(imageUrl: category.image),
+                child: CachedNetworkImage(
+                  imageUrl: category.image,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             const SizedBox(
               height: 10,
             ),
-            Expanded(
-                child: Text(
-              localizationController.selectedLang.value == 'en'
-                  ? category.nameEn
-                  : category.nameAr,
-              textAlign: TextAlign.center,
-              style: Get.textTheme.labelMedium,
-            ))
+            Container(
+              width: 90,
+              child: AutoSizeText(
+                localizationController.selectedLang.value == 'en'
+                    ? category.nameEn
+                    : category.nameAr,
+                textAlign: TextAlign.center,
+                minFontSize: 9,
+                softWrap: true,
+                wrapWords: true,
+                maxLines: 2,
+                style: Get.textTheme.labelMedium,
+                overflow: TextOverflow.clip,
+              ),
+            )
           ],
         ),
       ),

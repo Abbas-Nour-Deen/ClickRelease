@@ -17,6 +17,8 @@ class AllServicesController extends GetxController with StateMixin {
   final LocalizationController localizationController = Get.find();
   TextEditingController serviceSearchController = TextEditingController();
 
+  List<ServiceModel> shuffledServices = [];
+
   void searchLogic(String query) {
     String lowercaseQuery = query.toLowerCase();
     filteredServices.clear();
@@ -45,6 +47,9 @@ class AllServicesController extends GetxController with StateMixin {
           allServices.add(service);
         });
         selectedService = allServices.first;
+
+        shuffledServices = allServices;
+        shuffledServices.shuffle();
         change(allServices, status: RxStatus.success());
 
         print("allServices length ${allServices.length}");

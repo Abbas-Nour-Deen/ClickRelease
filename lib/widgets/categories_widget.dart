@@ -45,7 +45,7 @@ class CategoriesWidget extends StatelessWidget {
             (state) => Expanded(
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: categoryControler.allCategories.length,
+                itemCount: categoryControler.allCategories.length - 5,
                 itemBuilder: (context, index) {
                   return FadeInRight(
                       animate: true,

@@ -54,20 +54,20 @@ class ServicesChipsWidget extends StatelessWidget {
                     ));
                     print("selected service ${value.nameEn}");
                   },
-                  itemCount: _servicesController.allServices.length,
+                  itemCount: 10,
                   itemBuilder: (state, i) {
                     return ChoiceChip(
                       showCheckmark: false,
                       selectedColor: Get.theme.colorScheme.onSecondaryContainer,
-                      selected:
-                          state.selected(_servicesController.allServices[i]),
-                      onSelected:
-                          state.onSelected(_servicesController.allServices[i]),
+                      selected: state
+                          .selected(_servicesController.shuffledServices[i]),
+                      onSelected: state
+                          .onSelected(_servicesController.shuffledServices[i]),
                       label: Text(_servicesController
                                   .localizationController.selectedLang.value ==
                               'en'
-                          ? _servicesController.allServices[i].nameEn
-                          : _servicesController.allServices[i].nameAr),
+                          ? _servicesController.shuffledServices[i].nameEn
+                          : _servicesController.shuffledServices[i].nameAr),
                       backgroundColor:
                           Get.theme.colorScheme.onSecondaryContainer,
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -80,6 +80,7 @@ class ServicesChipsWidget extends StatelessWidget {
                     );
                   },
                   listBuilder: ChoiceList.createWrapped(
+                    crossAxisAlignment: WrapCrossAlignment.start,
                     spacing: 5,
                     runSpacing: 10,
                     padding: const EdgeInsets.symmetric(
