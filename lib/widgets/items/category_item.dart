@@ -15,7 +15,7 @@ class CategoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(5),
+      margin: const EdgeInsets.all(3),
       child: InkWell(
         onTap: () => Get.to(SelectedCategoryScreen(
           category: category,
@@ -46,11 +46,9 @@ class CategoryItem extends StatelessWidget {
                     ? category.nameEn
                     : category.nameAr,
                 textAlign: TextAlign.center,
-                minFontSize: 9,
-                softWrap: true,
-                wrapWords: true,
+                minFontSize: 8,
                 maxLines: 2,
-                style: Get.textTheme.labelMedium,
+                style: Get.textTheme.labelMedium!.copyWith(fontSize: 10),
                 overflow: TextOverflow.clip,
               ),
             )

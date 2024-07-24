@@ -160,6 +160,16 @@ class S {
     );
   }
 
+  /// `Favorite`
+  String get Favorite {
+    return Intl.message(
+      'Favorite',
+      name: 'Favorite',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Favorites`
   String get favorites {
     return Intl.message(

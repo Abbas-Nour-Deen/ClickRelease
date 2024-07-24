@@ -32,6 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Enterhere": MessageLookupByLibrary.simpleMessage("أدخل هنا"),
         "Enterlocation":
             MessageLookupByLibrary.simpleMessage("أدخل الموقع يدويا"),
+        "Favorite": MessageLookupByLibrary.simpleMessage("مفضل لدي"),
         "Findprofessionalsyoucanrelyon": MessageLookupByLibrary.simpleMessage(
             "ابحث عن محترفين يمكنك الاعتماد عليهم"),
         "Km": MessageLookupByLibrary.simpleMessage("كم"),

@@ -218,9 +218,8 @@ class SelectedProviderScreen extends StatelessWidget {
                       provider: provider,
                       isLiked: provider.isLiked ? false : true);
                 },
-                height: 35,
-                text:
-                    provider.isLiked ? S.of(context).liked : S.of(context).like,
+                height: 33,
+                text: S.of(context).Favorite,
                 icon: Icon(
                   CupertinoIcons.suit_heart,
                   color:
@@ -238,7 +237,7 @@ class SelectedProviderScreen extends StatelessWidget {
               ontap: () {
                 Get.to(AddReviewScreen());
               },
-              height: 35,
+              height: 33,
               text: S.of(context).rate,
               icon: const Icon(
                 CupertinoIcons.star,

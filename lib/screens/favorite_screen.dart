@@ -69,9 +69,8 @@ class FavoriteScreen extends StatelessWidget {
                         Text(
                           S.of(context).Saveyourpreferredprofessionalshere,
                           textAlign: TextAlign.center,
-                          style: Get.textTheme.labelSmall!.copyWith(
-                            fontSize: 12,
-                          ),
+                          style: Get.textTheme.bodySmall!
+                              .copyWith(color: Colors.grey, fontSize: 11),
                         )
                       ],
                     )))));
