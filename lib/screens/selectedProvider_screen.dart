@@ -289,7 +289,7 @@ class SelectedProviderScreen extends StatelessWidget {
                           text: providerController.localizationController
                                       .selectedLang.value ==
                                   'en'
-                              ? "${providerCalculations.calculateDistance(provider.location.y, provider.location.x).toStringAsFixed(2)} ${S.of(context).Km}  ${S.of(context).away}"
+                              ? "${providerCalculations.calculateDistance(provider.location.y, provider.location.x).toStringAsFixed(2)} ${S.of(context).Km} ${S.of(context).away}"
                               : " ${S.of(context).away} ${providerCalculations.calculateDistance(provider.location.y, provider.location.x).toStringAsFixed(2)} ${S.of(context).Km} "),
                     ])),
               )

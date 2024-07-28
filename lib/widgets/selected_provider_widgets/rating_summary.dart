@@ -10,7 +10,7 @@ class RatingSummaryWidget extends StatelessWidget {
     super.key,
   });
 
-  final ReviewsController reviewsController = Get.find();
+  final ReviewsAndProjectController reviewsController = Get.find();
 
   @override
   Widget build(BuildContext context) {

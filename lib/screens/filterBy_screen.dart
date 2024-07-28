@@ -12,6 +12,7 @@ import 'package:click_release/widgets/public_widgets/customedivider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 class FilterByScreen extends StatelessWidget {
   FilterByScreen({super.key});
@@ -210,8 +211,9 @@ class FilterByScreen extends StatelessWidget {
                 ],
               ),
             ),
-            onLoading: const Center(
-              child: CircularProgressIndicator.adaptive(),
+            onLoading: Center(
+              child: Lottie.asset("assets/animations/ClickAnimation.json",
+                  height: 250),
             ),
             onError: (error) => Text(error.toString()),
           )

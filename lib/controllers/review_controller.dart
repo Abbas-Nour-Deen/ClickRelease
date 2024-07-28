@@ -1,13 +1,13 @@
-import 'package:click_release/controllers/project_controller.dart';
 import 'package:click_release/controllers/provider_controller.dart';
 import 'package:click_release/data/repo/data_repo.dart';
+import 'package:click_release/models/project_model.dart';
 import 'package:click_release/models/review_model.dart';
 import 'package:get/get.dart';
 
-class ReviewsController extends GetxController with StateMixin {
+class ReviewsAndProjectController extends GetxController with StateMixin {
   final DataRepo dataRepo;
 
-  ReviewsController({required this.dataRepo});
+  ReviewsAndProjectController({required this.dataRepo});
 
   final List<ReviewModel> currentProviderReviews = [];
 
@@ -20,14 +20,27 @@ class ReviewsController extends GetxController with StateMixin {
   late int totalOneStars;
   late double average;
 
-  final ProjectsController projectsController =
-      Get.put(ProjectsController(dataRepo: Get.find()));
+  // final ProjectsController projectsController =
+  //     Get.put(ProjectsController(dataRepo: Get.find()));
+
+  ProjectModel? currentProviderProjects;
+
+  bool isDataLoading = false;
+
+  Future<void> getData() async {
+    isDataLoading = true;
+    await getCurrentProviderReviews(
+        providerID: providerController.selectedProvider.provid);
+    await getProviderProjects(
+        providerID: providerController.selectedProvider.provid);
+    isDataLoading = false;
+    update(['containedTab']);
+
+    print("dataaaaaaaaaaa ${isDataLoading}");
+  }
 
   Future<void> getCurrentProviderReviews({required String providerID}) async {
     try {
-      print("getting reviews");
-
-      change(currentProviderReviews, status: RxStatus.loading());
       final response = await dataRepo.getCurrentProviderReviews(id: providerID);
       if (response.statusCode == 200) {
         currentProviderReviews.clear();
@@ -59,12 +72,8 @@ class ReviewsController extends GetxController with StateMixin {
                 1 * totalOneStars) /
             currentProviderReviews.length;
 
-        update(['containedTab']);
-        change(currentProviderReviews, status: RxStatus.success());
-
         print("reviews length ${currentProviderReviews.length}");
       } else if (response.statusCode == 404) {
-        change(currentProviderReviews, status: RxStatus.empty());
       } else {
         print(response.statusCode);
       }
@@ -73,10 +82,32 @@ class ReviewsController extends GetxController with StateMixin {
     }
   }
 
+  Future<void> getProviderProjects({required String providerID}) async {
+    try {
+      final response =
+          await dataRepo.getCurrentProviderProjects(id: providerID);
+      if (response.statusCode == 200) {
+        final List<dynamic> list = response.body;
+
+        if (list.isNotEmpty) {
+          list.forEach((element) {
+            final ProjectModel project =
+                ProjectModel.fromJson(element as Map<String, dynamic>);
+            currentProviderProjects = project;
+          });
+        }
+      } else if (response.statusCode == 404) {
+      } else {
+        print(response.statusCode);
+      }
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
   @override
   void onInit() {
     super.onInit();
-    getCurrentProviderReviews(
-        providerID: providerController.selectedProvider.provid);
+    getData();
   }
 }

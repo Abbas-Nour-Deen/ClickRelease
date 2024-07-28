@@ -1,41 +1,35 @@
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:click_release/models/project_model.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_image_viewer/easy_image_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProjectItem extends StatelessWidget {
-  final ProjectModel projectModel;
-  const ProjectItem({super.key, required this.projectModel});
+  final String imageURL;
+  const ProjectItem({super.key, required this.imageURL});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 150,
+      height: 120,
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(5)),
       margin: const EdgeInsets.only(bottom: 5),
       padding: const EdgeInsets.all(10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Image.asset(
-            "assets/images/post.png",
-            height: 90,
-            fit: BoxFit.fill,
+      child: InkWell(
+        onTap: () {
+          showImageViewer(context, NetworkImage(imageURL),
+              doubleTapZoomable: true,
+              immersive: false,
+              useSafeArea: true,
+              swipeDismissible: true,
+              closeButtonColor: Get.theme.primaryColor);
+        },
+        child: CachedNetworkImage(
+          imageUrl: imageURL,
+          placeholder: (context, url) => const SizedBox(
+            height: 20,
           ),
-          const SizedBox(
-            height: 10,
-          ),
-          Expanded(
-            child: AutoSizeText(
-              'projectModel.projectDesc',
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: Get.textTheme.labelSmall!
-                  .copyWith(fontSize: 8, fontWeight: FontWeight.w400),
-            ),
-          )
-        ],
+        ),
       ),
     );
   }

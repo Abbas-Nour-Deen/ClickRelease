@@ -157,30 +157,27 @@ class ProviderController extends GetxController
   void launchUrls(
       {required String url, required bool inApp, required String type}) async {
     try {
-      final Uri faceBookUri = Uri.parse("https://www.facebook.com/$url");
-      final Uri instagramUri = Uri.parse("https://www.instagram.com/$url");
-      final Uri linkedInUri = Uri.parse("https://www.linkedin.com/in/$url");
+      final Uri faceBookUri = Uri.parse(url);
+      final Uri instagramUri = Uri.parse(url);
+      final Uri linkedInUri = Uri.parse(url);
       final Uri websiteUri = Uri.parse(url);
       final Uri callUri = Uri.parse('tel:$url');
 
       switch (type) {
         case "linkedin":
           if (await canLaunchUrl(linkedInUri)) {
-            await launchUrl(linkedInUri,
-                mode: LaunchMode.externalNonBrowserApplication);
+            await launchUrl(linkedInUri, mode: LaunchMode.externalApplication);
             break;
           }
 
         case "facebook":
           if (await canLaunchUrl(faceBookUri)) {
-            await launchUrl(faceBookUri,
-                mode: LaunchMode.externalNonBrowserApplication);
+            await launchUrl(faceBookUri, mode: LaunchMode.externalApplication);
             break;
           }
         case "instagram":
           if (await canLaunchUrl(instagramUri)) {
-            await launchUrl(instagramUri,
-                mode: LaunchMode.externalNonBrowserApplication);
+            await launchUrl(instagramUri, mode: LaunchMode.externalApplication);
             break;
           }
         case "website":

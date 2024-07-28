@@ -15,7 +15,7 @@ class ReviewItem extends StatelessWidget {
     required this.review,
   });
 
-  final ReviewsController reviewsController = Get.find();
+  final ReviewsAndProjectController reviewsController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -60,24 +60,23 @@ class ReviewItem extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: lightThemeDividerColor,
                     borderRadius: BorderRadius.circular(100)),
-                child:
-                    review.profilePhoto.isEmpty
-                        ? Padding(
-                            padding: const EdgeInsets.all(2.0),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(50),
-                              child: SvgPicture.asset(
-                                "assets/images/person.svg",
-                              ),
-                            ),
-                          )
-                        : ClipRRect(
-                            borderRadius: BorderRadius.circular(100),
-                            child: Image.network(
-                              review.profilePhoto,
-                              fit: BoxFit.cover,
-                            ),
-                          )),
+                child: review.profilePhoto.isEmpty
+                    ? Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(50),
+                          child: SvgPicture.asset(
+                            "assets/images/person.svg",
+                          ),
+                        ),
+                      )
+                    : ClipRRect(
+                        borderRadius: BorderRadius.circular(100),
+                        child: Image.network(
+                          review.profilePhoto,
+                          fit: BoxFit.cover,
+                        ),
+                      )),
             const SizedBox(
               width: 8,
             ),
