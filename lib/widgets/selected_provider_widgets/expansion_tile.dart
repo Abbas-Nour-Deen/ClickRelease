@@ -4,13 +4,13 @@ import 'package:get/get.dart';
 
 class CustomExpansionTile extends StatelessWidget {
   final String title;
-  final String icon;
+  final String? icon;
   final List<Widget> options;
 
   CustomExpansionTile({
     Key? key,
     required this.title,
-    required this.icon,
+    this.icon,
     required this.options,
   }) : super(key: key);
 
@@ -25,10 +25,12 @@ class CustomExpansionTile extends StatelessWidget {
           color: Get.theme.colorScheme.primaryContainer,
           borderRadius: BorderRadius.circular(5)),
       child: ExpansionTile(
-        leading: SvgPicture.asset(
-          icon,
-          height: 19,
-        ),
+        leading: icon == null
+            ? null
+            : SvgPicture.asset(
+                icon!,
+                height: 19,
+              ),
         iconColor: Get.theme.primaryColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(5.0),
@@ -38,8 +40,10 @@ class CustomExpansionTile extends StatelessWidget {
         initiallyExpanded: false,
         title: Text(
           title,
-          style: Get.textTheme.labelLarge!
-              .copyWith(color: Colors.black, fontWeight: FontWeight.bold),
+          style: icon == null
+              ? Get.textTheme.labelSmall!.copyWith(fontSize: 14)
+              : Get.textTheme.labelLarge!
+                  .copyWith(color: Colors.black, fontWeight: FontWeight.bold),
         ),
         children: options,
       ),

@@ -12,6 +12,7 @@ import 'package:click_release/widgets/public_widgets/profile_option_tile.dart';
 import 'package:click_release/widgets/profile_photo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({super.key});
@@ -47,12 +48,44 @@ class ProfileScreen extends StatelessWidget {
                 ),
                 tilesWidgets(context),
                 const SizedBox(
+                  height: 20,
+                ),
+                poweredByWidget(),
+                const SizedBox(
                   height: 70,
                 ),
               ],
             ),
           ),
         ));
+  }
+
+  Widget poweredByWidget() {
+    return Container(
+      child: InkWell(
+        onTap: () async {
+          final url = Uri.parse("https://www.hisoftlb.com/");
+          if (await canLaunchUrl(url)) {
+            await launchUrl(
+              url,
+              mode: LaunchMode.externalApplication,
+            );
+          }
+        },
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Powered by",
+              style: Get.textTheme.bodySmall!
+                  .copyWith(fontWeight: FontWeight.bold, color: Colors.black),
+            ),
+            Container(
+                width: 80, height: 70, child: Image.asset("assets/hisoft.png"))
+          ],
+        ),
+      ),
+    );
   }
 
   Widget profilePhoto() {

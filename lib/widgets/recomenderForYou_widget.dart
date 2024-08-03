@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:click_release/controllers/provider_controller.dart';
 import 'package:click_release/generated/l10n.dart';
+import 'package:click_release/screens/all_topproviders_screen.dart';
 import 'package:click_release/widgets/items/provider_item.dart';
 import 'package:click_release/widgets/public_widgets/loading_widgets/topProviders_loading.dart';
 import 'package:flutter/material.dart';
@@ -20,9 +21,22 @@ class RecommendedForYouSlideWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            S.of(context).featured,
-            style: Get.textTheme.titleLarge,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                S.of(context).featured,
+                style: Get.textTheme.titleLarge,
+              ),
+              InkWell(
+                onTap: () => Get.to(AllTopProvidersScreen()),
+                child: Text(
+                  S.of(context).viewAll,
+                  style: Get.textTheme.labelSmall!
+                      .copyWith(fontWeight: FontWeight.bold, fontSize: 13),
+                ),
+              ),
+            ],
           ),
           const SizedBox(
             height: 10,

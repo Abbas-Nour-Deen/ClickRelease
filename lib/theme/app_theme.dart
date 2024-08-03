@@ -45,7 +45,7 @@ final ThemeData lightTheme = ThemeData.light().copyWith(
         bodySmall: TextStyle(fontSize: 12, color: Colors.black)));
 
 final ThemeData darkTheme = ThemeData.dark().copyWith(
-    brightness: Brightness.light,
+    brightness: Brightness.dark,
     primaryColor: const Color(0xFF00A1BD),
     colorScheme: const ColorScheme.light(
         secondary: Color(0xFFB71E00), secondaryContainer: Color(0xFF92E8F6)));

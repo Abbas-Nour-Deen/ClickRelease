@@ -33,10 +33,8 @@ class ServicesChipsWidget extends StatelessWidget {
                 )),
                 child: Text(
                   S.of(context).viewAll,
-                  style: Get.textTheme.labelMedium!.copyWith(
-                      color: Colors.grey,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 13),
+                  style: Get.textTheme.labelSmall!
+                      .copyWith(fontWeight: FontWeight.bold, fontSize: 13),
                 ),
               ),
             ],

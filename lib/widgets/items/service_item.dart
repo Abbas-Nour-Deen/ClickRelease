@@ -1,7 +1,6 @@
 import 'package:click_release/controllers/localization_controller.dart';
 import 'package:click_release/models/service_model.dart';
 import 'package:click_release/screens/selected_service_screen.dart';
-import 'package:click_release/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -29,8 +28,8 @@ class ServcieItem extends StatelessWidget {
       )),
       shape: const Border(
           bottom: BorderSide(
-              color: lightThemeDividerColor,
-              width: 1.0)), // Border for the bottom of the ListTile
+              color: Colors.white,
+              width: 0.8)), // Border for the bottom of the ListTile
     );
   }
 }
