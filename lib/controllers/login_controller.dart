@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:click_release/controllers/loading_controller.dart';
+import 'package:click_release/controllers/notification_controller.dart';
 import 'package:click_release/data/repo/login_repo.dart';
 import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/models/gender_model.dart';
@@ -61,6 +62,9 @@ class LoginController extends GetxController with StateMixin {
   final VideoPlayerController videoController = VideoPlayerController.asset(
       "assets/animations/mp43.mp4",
       videoPlayerOptions: VideoPlayerOptions(allowBackgroundPlayback: false));
+
+  final NotificationController notificationController =
+      Get.put(NotificationController());
 
   Future<void> sendOTP() async {
     try {
@@ -270,6 +274,8 @@ class LoginController extends GetxController with StateMixin {
           selectedGender =
               genders.where((element) => element.code == currentUser.sex).first;
           temperorGenderCode = selectedGender!.code;
+
+          await notificationController.initializeNotification();
 
           isTokenLoading = false;
           update(['navbar']);

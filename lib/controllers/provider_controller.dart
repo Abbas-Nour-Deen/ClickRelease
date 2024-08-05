@@ -5,6 +5,7 @@ import 'package:click_release/controllers/loading_controller.dart';
 import 'package:click_release/controllers/localization_controller.dart';
 import 'package:click_release/controllers/login_controller.dart';
 import 'package:click_release/controllers/providerInfo_controller.dart';
+import 'package:click_release/data/analytics_engine.dart';
 import 'package:click_release/data/repo/data_repo.dart';
 import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/models/provider_model.dart';
@@ -210,6 +211,7 @@ class ProviderController extends GetxController
           clientID: loginController.currentUserID);
 
       if (response.statusCode == 200) {
+        AnalyticsEngine.likeProvider(provider);
         // provider.isLiked = isLiked;
         if (!isLiked) {
           likedProviderController.likedProviders

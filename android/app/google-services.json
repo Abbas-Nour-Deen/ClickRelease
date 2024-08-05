@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "694650578432",
+    "project_id": "click-df62e",
+    "storage_bucket": "click-df62e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:694650578432:android:68b14c3d2af94748c0dae5",
+        "android_client_info": {
+          "package_name": "com.click.click_release"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGI6MBX2TjA7Fl-4L1lFB0b4_VJlNEzU0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:694650578432:android:2f21144395427b25c0dae5",
+        "android_client_info": {
+          "package_name": "com.company.Click"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGI6MBX2TjA7Fl-4L1lFB0b4_VJlNEzU0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
