@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:click_release/controllers/providerInfo_controller.dart';
 import 'package:click_release/controllers/provider_calculation_controller.dart';
 import 'package:click_release/controllers/provider_controller.dart';
+import 'package:click_release/data/analytics_engine.dart';
 import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/models/provider_model.dart';
 import 'package:click_release/screens/add_review_screen.dart';
@@ -539,6 +540,8 @@ class SelectedProviderScreen extends StatelessWidget {
               "assets/icons/call_btn.svg",
             ),
             ontap: () {
+              AnalyticsEngine.callProvider(provider);
+
               providerConteroller.launchUrls(
                   url: provider.phoneNumber, inApp: false, type: 'call');
             },

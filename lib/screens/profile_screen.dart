@@ -1,3 +1,4 @@
+import 'package:click_release/controllers/defaults_controller.dart';
 import 'package:click_release/controllers/login_controller.dart';
 import 'package:click_release/controllers/nabar_controller.dart';
 import 'package:click_release/generated/l10n.dart';
@@ -19,7 +20,7 @@ class ProfileScreen extends StatelessWidget {
 
   final LoginController loginController = Get.find();
   final NavBarController navBarController = Get.find();
-
+  final DefaultsController defaultsController = Get.find();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -120,7 +121,14 @@ class ProfileScreen extends StatelessWidget {
         ProfileOptionTile(
           iconPath: "assets/icons/lightheme_icons/aboutus.svg",
           onTap: () {
-            Utils().becomeAserviceProviderWidget(context);
+            Utils().becomeAserviceProviderWidget(
+                context,
+                defaultsController.defaultsList
+                    .where(
+                      (element) => element.name == 'phoneNumber',
+                    )
+                    .first
+                    .number);
           },
           title: S.of(context).becomeaserviceprovider,
         ),
@@ -170,7 +178,7 @@ class ProfileScreen extends StatelessWidget {
         ),
         ProfileOptionTile(
           iconPath: "assets/icons/lightheme_icons/contactus.svg",
-          onTap: () => Get.to(const ContactUsScreen()),
+          onTap: () => Get.to(ContactUsScreen()),
           title: S.of(context).contactUS,
         ),
         const CustomeDivider(),

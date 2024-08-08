@@ -47,7 +47,7 @@ class Utils {
     ));
   }
 
-  void becomeAserviceProviderWidget(BuildContext context) {
+  void becomeAserviceProviderWidget(BuildContext context, String number) {
     Get.dialog(AlertDialog.adaptive(
       backgroundColor: Get.theme.primaryColor,
       content: SizedBox(
@@ -69,7 +69,7 @@ class Utils {
             InkWell(
               onTap: () {
                 providerController.launchUrls(
-                    url: '81851410', inApp: false, type: 'call');
+                    url: number, inApp: false, type: 'call');
               },
               child: SvgPicture.asset(
                   "assets/icons/lightheme_icons/call_btn_2.svg"),

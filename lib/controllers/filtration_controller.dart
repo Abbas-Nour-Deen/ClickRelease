@@ -2,6 +2,7 @@ import 'package:click_release/controllers/allServices_controller.dart';
 import 'package:click_release/controllers/categories_controller.dart';
 import 'package:click_release/controllers/localization_controller.dart';
 import 'package:click_release/controllers/zones_controller.dart';
+import 'package:click_release/data/analytics_engine.dart';
 import 'package:click_release/data/repo/data_repo.dart';
 import 'package:click_release/models/category_model.dart';
 import 'package:click_release/models/provider_model.dart';
@@ -35,6 +36,25 @@ class FiltrationController extends GetxController with StateMixin {
     try {
       isFilterLoading.value = true;
       change(filterProviders, status: RxStatus.loading());
+
+      AnalyticsEngine.filterQueary(
+          category: categoryControler.allCategories
+              .firstWhere(
+                (element) =>
+                    element.categoryID == selectedCategoryForFilter!.categoryID,
+              )
+              .nameEn,
+          service: servicesController.allServices
+              .firstWhere(
+                (element) =>
+                    element.serviceId == selectedServiceForFilter!.serviceId,
+              )
+              .nameEn,
+          zone: zoneController.zones
+              .firstWhere(
+                (element) => element.zoneId == selectedZoneForFilter!.zoneId,
+              )
+              .nameEng);
 
       final response = await dataRepo.getDataByFilter(
           zoneId: selectedZoneForFilter!.zoneId,

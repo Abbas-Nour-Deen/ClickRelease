@@ -1,4 +1,5 @@
 import 'package:click_release/controllers/localization_controller.dart';
+import 'package:click_release/data/analytics_engine.dart';
 import 'package:click_release/models/service_model.dart';
 import 'package:click_release/screens/selected_service_screen.dart';
 import 'package:flutter/material.dart';
@@ -23,9 +24,12 @@ class ServcieItem extends StatelessWidget {
         Icons.arrow_forward_ios_outlined,
         size: 20,
       ),
-      onTap: () => Get.to(SelectedServiceScreen(
-        service: service,
-      )),
+      onTap: () {
+        AnalyticsEngine.viewService(service);
+        Get.to(SelectedServiceScreen(
+          service: service,
+        ));
+      },
       shape: const Border(
           bottom: BorderSide(
               color: Colors.white,

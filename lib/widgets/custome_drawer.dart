@@ -1,4 +1,5 @@
 import 'package:click_release/controllers/allServices_controller.dart';
+import 'package:click_release/controllers/defaults_controller.dart';
 import 'package:click_release/controllers/nabar_controller.dart';
 import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/screens/allcategories_screen.dart';
@@ -12,6 +13,7 @@ import 'package:get/get.dart';
 
 class CustomDrawer extends StatelessWidget {
   final NavBarController navBarController = Get.find();
+  final DefaultsController defaultsController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +100,14 @@ class CustomDrawer extends StatelessWidget {
           iconPath: "assets/icons/lightheme_icons/aboutus.svg",
           onTap: () {
             Navigator.of(context).pop();
-            Utils().becomeAserviceProviderWidget(context);
+            Utils().becomeAserviceProviderWidget(
+                context,
+                defaultsController.defaultsList
+                    .where(
+                      (element) => element.name == 'phoneNumber',
+                    )
+                    .first
+                    .number);
           },
           title: S.of(context).becomeaserviceprovider,
         ),

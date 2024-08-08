@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:click_release/controllers/localization_controller.dart';
+import 'package:click_release/data/analytics_engine.dart';
 import 'package:click_release/models/category_model.dart';
 import 'package:click_release/screens/selected_category_screen.dart';
 import 'package:flutter/material.dart';
@@ -17,9 +18,12 @@ class CategoryItem extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.all(3),
       child: InkWell(
-        onTap: () => Get.to(SelectedCategoryScreen(
-          category: category,
-        )),
+        onTap: () {
+          AnalyticsEngine.viewCategory(category);
+          Get.to(SelectedCategoryScreen(
+            category: category,
+          ));
+        },
         child: Column(
           children: [
             Container(

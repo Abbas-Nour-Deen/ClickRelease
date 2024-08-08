@@ -91,4 +91,8 @@ class DataRepo extends GetxService {
   Future<Response> getImageSliderImages() async {
     return await dataApiHandler.getAllServices("api/slider");
   }
+
+  Future<Response> getDefaults() async {
+    return await dataApiHandler.getAllCategories("api/def");
+  }
 }

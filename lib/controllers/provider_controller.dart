@@ -163,11 +163,17 @@ class ProviderController extends GetxController
       final Uri linkedInUri = Uri.parse(url);
       final Uri websiteUri = Uri.parse(url);
       final Uri callUri = Uri.parse('tel:$url');
-
+      final Uri whatsappUri = Uri.parse('https://wa.me/$url');
       switch (type) {
         case "linkedin":
           if (await canLaunchUrl(linkedInUri)) {
             await launchUrl(linkedInUri, mode: LaunchMode.externalApplication);
+            break;
+          }
+
+        case "whatsapp":
+          if (await canLaunchUrl(whatsappUri)) {
+            await launchUrl(whatsappUri, mode: LaunchMode.externalApplication);
             break;
           }
 

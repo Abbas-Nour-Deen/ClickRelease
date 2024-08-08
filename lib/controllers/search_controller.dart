@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:click_release/controllers/localization_controller.dart';
+import 'package:click_release/data/analytics_engine.dart';
 import 'package:click_release/data/repo/data_repo.dart';
 import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/models/provider_model.dart';
@@ -25,7 +26,8 @@ class SearchProviderController extends GetxController with StateMixin {
     try {
       resultContent = loadingPlaceHolder();
       update();
-      // change(searchProviders, status: RxStatus.loading());
+      AnalyticsEngine.searchQuery(keyWord);
+
       final response = await dataRepo.getProviderBySearch(keyWord: keyWord);
       if (response.statusCode == 200) {
         searchProviders.clear();

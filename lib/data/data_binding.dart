@@ -1,5 +1,6 @@
 import 'package:click_release/controllers/categories_controller.dart';
 import 'package:click_release/controllers/allServices_controller.dart';
+import 'package:click_release/controllers/defaults_controller.dart';
 import 'package:click_release/controllers/liked_providers_controller.dart';
 import 'package:click_release/controllers/onBoarding_controller.dart';
 import 'package:click_release/controllers/providerInfo_controller.dart';
@@ -44,5 +45,7 @@ class AppBindings extends Bindings {
         fenix: true);
 
     Get.lazyPut(() => ZonesController(dataRepo: Get.find()), fenix: true);
+
+    Get.lazyPut(() => DefaultsController(dataRepo: Get.find()), fenix: true);
   }
 }

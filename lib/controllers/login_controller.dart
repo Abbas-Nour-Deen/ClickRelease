@@ -244,6 +244,10 @@ class LoginController extends GetxController with StateMixin {
   Future<void> loadKeys() async {
     isUserLogedin = storage.read("isLogedin") ?? false;
 
+    if (!isUserLogedin) {
+      await notificationController.initializeNotification();
+    }
+
     if (isUserLogedin) {
       print("user already logedin, calling get user by id");
       currentUserID = storage.read("userID") ?? "";
@@ -274,8 +278,6 @@ class LoginController extends GetxController with StateMixin {
           selectedGender =
               genders.where((element) => element.code == currentUser.sex).first;
           temperorGenderCode = selectedGender!.code;
-
-          await notificationController.initializeNotification();
 
           isTokenLoading = false;
           update(['navbar']);

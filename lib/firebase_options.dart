@@ -50,20 +50,19 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCGI6MBX2TjA7Fl-4L1lFB0b4_VJlNEzU0',
-    appId: '1:694650578432:android:68b14c3d2af94748c0dae5',
-    messagingSenderId: '694650578432',
-    projectId: 'click-df62e',
-    storageBucket: 'click-df62e.appspot.com',
+    apiKey: 'AIzaSyAF8Mqlx8Yt1nH6qtEUxLMzI2zplRozm7s',
+    appId: '1:854496102095:android:9f13fcbe14da07438259ba',
+    messagingSenderId: '854496102095',
+    projectId: 'click-85cdd',
+    storageBucket: 'click-85cdd.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDNA4FOkIEb83s_1BAAk8bVZS7bkwtXZZY',
-    appId: '1:694650578432:ios:62a63981e921c245c0dae5',
-    messagingSenderId: '694650578432',
-    projectId: 'click-df62e',
-    storageBucket: 'click-df62e.appspot.com',
+    apiKey: 'AIzaSyD2oPKegWac5dRXA3Nhki0vcLtLRL0Uieg',
+    appId: '1:854496102095:ios:754be4cb52788f2c8259ba',
+    messagingSenderId: '854496102095',
+    projectId: 'click-85cdd',
+    storageBucket: 'click-85cdd.appspot.com',
     iosBundleId: 'com.example.clickRelease',
   );
-
 }

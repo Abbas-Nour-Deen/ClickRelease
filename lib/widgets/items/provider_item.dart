@@ -1,5 +1,6 @@
 import 'package:click_release/controllers/provider_calculation_controller.dart';
 import 'package:click_release/controllers/provider_controller.dart';
+import 'package:click_release/data/analytics_engine.dart';
 import 'package:click_release/generated/l10n.dart';
 import 'package:click_release/models/provider_model.dart';
 import 'package:click_release/screens/selectedProvider_screen.dart';
@@ -31,6 +32,8 @@ class ProviderItem extends StatelessWidget {
     return InkWell(
       onTap: () {
         _providerController.selectedProvider = provider;
+        AnalyticsEngine.viewProvider(provider);
+
         Get.to(SelectedProviderScreen(
           provider: provider,
         ));

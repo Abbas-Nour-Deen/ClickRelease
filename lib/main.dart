@@ -1,4 +1,5 @@
 import 'package:click_release/controllers/localization_controller.dart';
+import 'package:click_release/data/analytics_engine.dart';
 import 'package:click_release/data/data_binding.dart';
 import 'package:click_release/firebase_options.dart';
 import 'package:click_release/generated/l10n.dart';
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      navigatorObservers: <NavigatorObserver>[AnalyticsEngine.observer],
       enableLog: true,
       title: 'Click',
       debugShowCheckedModeBanner: false,
