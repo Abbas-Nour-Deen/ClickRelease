@@ -102,8 +102,9 @@ class Utils {
             width: 3,
           ),
           CustomeButton(
-            width: 50,
-            text: S.of(context).ok,
+            icon: null,
+            width: 55,
+            text: S.of(context).yes,
             ontap: () {
               FlutterExitApp.exitApp(iosForceExit: true);
             },
@@ -114,5 +115,40 @@ class Utils {
       ),
     );
     return false;
+  }
+
+  void deleteAccountDialog() {
+    showDialog(
+      context: Get.context!,
+      builder: (context) => AlertDialog(
+        title: Text(
+          S.of(context).deleteAccount,
+          style: Get.textTheme.titleMedium,
+        ),
+        content: Text(S.of(context).areYouSureDeleteAccount),
+        actions: <Widget>[
+          TextButton(
+              onPressed: () {
+                Get.back();
+              },
+              child: Text(
+                S.of(context).cancel,
+                style: TextStyle(color: Get.theme.primaryColor),
+              )),
+          const SizedBox(
+            width: 3,
+          ),
+          CustomeButton(
+            width: 55,
+            text: S.of(context).yes,
+            ontap: () {
+              providerController.loginController.deleteAccount();
+            },
+            height: 40,
+            margin: const EdgeInsets.all(0),
+          ),
+        ],
+      ),
+    );
   }
 }

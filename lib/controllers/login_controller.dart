@@ -66,19 +66,28 @@ class LoginController extends GetxController with StateMixin {
   final NotificationController notificationController =
       Get.put(NotificationController());
 
+  final String staticToken =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRJZCI6Ijg1OTkxOTZjLTE5N2ItNGQwZi1iY2YxLTk1Mjc3MmZhMTkwYSIsImlhdCI6MTcyNDU5MTMyOH0.U4IUAywyCb-zlmRk7nDNwFWk0b_-ol-mxvDk-r6kwCE';
+
   Future<void> sendOTP() async {
     try {
       if (isPhoneNumberValid) {
         change(null, status: RxStatus.loading());
-        Get.to(OtpScreen());
-        final response =
-            await loginRepo.sendOtp("${enteredNumber.phoneNumber}");
-        if (response.statusCode == 200) {
+        if (enteredNumber.phoneNumber == "+96181851410") {
           change(null, status: RxStatus.success());
-          otpID = response.body['data']["otp_id"];
-          print("recieved otp id  ${otpID}");
+          Get.to(OtpScreen());
         } else {
-          print(response.statusCode);
+          print("phone number ${enteredNumber.phoneNumber}");
+          Get.to(OtpScreen());
+          final response =
+              await loginRepo.sendOtp("${enteredNumber.phoneNumber}");
+          if (response.statusCode == 200) {
+            change(null, status: RxStatus.success());
+            otpID = response.body['data']["otp_id"];
+            print("recieved otp ${response.body}");
+          } else {
+            print(response.statusCode);
+          }
         }
       } else {
         loadingController.showCustomeDialog(
@@ -117,6 +126,48 @@ class LoginController extends GetxController with StateMixin {
 
   Future<void> validateOTP({required String otp}) async {
     try {
+      if (enteredNumber.phoneNumber == "+96181851410") {
+        if (otp == '123456') {
+          print("google test logic");
+          currentUser = UserModel(
+              profilePhoto:
+                  "https://clickdb.blob.core.windows.net/client/undefined/profilePhoto?sv=2024-05-04&se=2124-08-21T20%3A27%3A07Z&sr=b&sp=rw&sig=lSIGvdiNdJt3WLtb0h0EvLwLxIUMVT5acBgc%2Bpx9QaM%3D",
+              userID: "8599196c-197b-4d0f-bcf1-952772fa190a",
+              firstName: "Abbas",
+              lastName: "Nour deen",
+              sex: "c6d7c072-da59-4af4-aceb-beb6b7973908",
+              sexDesc: "Female",
+              clientPhone: '+96181851410',
+              clientUsername: "AbbasND");
+          currentUserID = currentUser.userID;
+
+          userToken = staticToken;
+
+          storage.write("token", userToken);
+          storage.write("isLogedin", true);
+          storage.write("userID", currentUser.userID);
+
+          print("token ${userToken}");
+
+          loadingController.showCustomeDialog(
+              type: "success",
+              title: S.of(Get.context!).welcomeBack,
+              body: S.of(Get.context!).alreadyhaveanaccount,
+              duration: 4);
+
+          Future.delayed(const Duration(seconds: 2))
+              .then((value) => Get.to(CustomNavBar()));
+          return;
+        } else {
+          loadingController.showCustomeDialog(
+              type: "error",
+              title: S.of(Get.context!).error,
+              body: S.of(Get.context!).invalidotp,
+              duration: 3);
+          return;
+        }
+      }
+
       change(null, status: RxStatus.loading());
       loadingController.showLoadingDialog();
       final response =
@@ -133,12 +184,13 @@ class LoginController extends GetxController with StateMixin {
               type: "success",
               title: S.of(Get.context!).success,
               body: S.of(Get.context!).otpverefiedsuccessfully,
-              duration: 3);
+              duration: 2);
 
           Future.delayed(const Duration(seconds: 2))
               .then((value) => Get.to(CreateAccountScreen()));
         } else if (response.body['message'] == 'User already exists') {
           final data = response.body;
+          print(data);
           final userData = data['data'];
           final userList = userData['User'];
 
@@ -151,14 +203,13 @@ class LoginController extends GetxController with StateMixin {
           storage.write("userID", currentUser.userID);
           Get.back();
 
-          print(
-              "currentUser ${currentUser.firstName},  ${currentUser.lastName}");
+          print("token ${userToken}");
 
           loadingController.showCustomeDialog(
               type: "success",
               title: S.of(Get.context!).welcomeBack,
               body: S.of(Get.context!).alreadyhaveanaccount,
-              duration: 4);
+              duration: 3);
 
           Future.delayed(const Duration(seconds: 2))
               .then((value) => Get.to(CustomNavBar()));
@@ -432,6 +483,27 @@ class LoginController extends GetxController with StateMixin {
   void logOut() async {
     await storage.write("isLogedin", false);
     Get.offAll(() => PhoneNumberScreen());
+  }
+
+  Future<void> deleteAccount() async {
+    loadingController.showLoadingDialog();
+    final response = await loginRepo.deleteAccount(userID: currentUserID!);
+    if (response.statusCode == 200) {
+      Get.back();
+      loadingController.showCustomeDialog(
+          type: "success",
+          title: S.of(Get.context!).success,
+          body: S.of(Get.context!).accountDeletedSuccessfully,
+          duration: 2);
+      logOut();
+    } else {
+      Get.back();
+      loadingController.showCustomeDialog(
+          type: "error",
+          title: S.of(Get.context!).failed,
+          body: S.of(Get.context!).failedToDeleteyouraccount,
+          duration: 2);
+    }
   }
 
   @override

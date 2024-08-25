@@ -20,6 +20,7 @@ class PhoneNumberPicker extends StatelessWidget {
           color: lightThemeDividerColor,
           borderRadius: BorderRadius.all(Radius.circular(3))),
       child: InternationalPhoneNumberInput(
+        countries: ['LB'],
         textAlignVertical: TextAlignVertical.top,
         inputDecoration: const InputDecoration(
             hintStyle: TextStyle(

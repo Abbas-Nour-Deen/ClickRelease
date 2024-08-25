@@ -54,6 +54,8 @@ class ReviewsAndProjectController extends GetxController with StateMixin {
           currentProviderReviews.add(review);
         });
 
+        print("reviews length ${currentProviderReviews.length}");
+
         totalFiveStars =
             currentProviderReviews.where((element) => element.rate == 5).length;
         totalFourStars =

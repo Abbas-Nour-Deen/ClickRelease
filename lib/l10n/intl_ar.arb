@@ -1,135 +1,96 @@
 {
-
-"settings": "الإعدادات",
-"english":"English",
-"arabic":"عربي",
-"language":"اللغة",
-"categories": "الفئات",
-"featured": "مميزون",
-"services": "الخدمات",
-"viewAll": "عرض الكل",
-"searchbynameorkeyword": "البحث بالاسم أو الكلمة الرئيسية",
-"home": "الرئيسية",
-"search": "بحث",
-"favorites": "المفضلة",
-"Favorite":"مفضل لدي", 
-"profile": "الملف الشخصي",
-"select": "اختيار",
-"zone": "المنطقة",
-"rate": "تقييم",
-"filterby": "تصفية حسب",
-"cancel": "إلغاء",
-"click": "انقر",
-"myProfile": "ملفي الشخصي",
-"becomeaserviceprovider": "كن مقدم خدمة",
-"inviteFriends": "دعوة الأصدقاء",
-"manageAddress": "إدارة العناوين",
-"myFavorites": "المفضلة لدي",
-"aboutUs": "معلومات عنا",
-"privacyPolicy": "سياسة الخصوصية",
-"termsconditions": "الشروط والأحكام",
-"contactUS":"اتصل بنا",
-"logout":"تسجيل خروج",
-"searching": "جار البحث...",
-"LocationErrorpleasetryagain": "خطأ في تحديد الموقع. يرجى المحاولة مرة أخرى.",
-"helpCenter":"مركز المساعدة",
-"Certifications":"الشهادات",
-"WorkingHours":"ساعات العمل",
-"Specialities":"التخصصات",
-"away":"بعيد",
-"Km":"كم",
-"about":"مختصر",
-"like":"اعجاب",
-"liked":"أعجبني",
-"reviews":"تعليق",
-"projects":"المشاريع",
-"noreviewsyet":"لم يتم تقديم أي تعليقات حتى الآن!",
-"NoProjectsyet":"لا توجد مشاريع حتى الآن !",
-"Yourfavoritespageisempty":"صفحتك المفضلة فارغة",
-"Saveyourpreferredprofessionalshere":"احفظ المحترفين المفضلين لديك هنا. قم بوضع علامة على الملفات الشخصية\n كمفضلة للوصول إليها بسهولة لاحقًا",
-"Noresultsmatchyourfilters":"لا توجد نتائج تطابق عوامل التصفية الخاصة بك",
-"Adjustyourfilters":"اضبط عوامل التصفية للعثور على المحترفين الذين تبحث\n عنهم",
-"Wecouldntfindanymatchesforyoursearch":"لم نتمكن من العثور على أي نتائج مطابقة لبحثك",
-"Trydifferentkeywords":"جرّب كلمات رئيسية مختلفة أو تصفح فئاتنا للعثور على\n المحترفين الذين تبحث عنهم",
-"Findprofessionalsyoucanrelyon":"ابحث عن محترفين يمكنك الاعتماد عليهم",
-"SearchbynameorKeywordtofindwhatyouarelookingfor":"ابحث بالاسم أو الكلمة الرئيسية للعثور على ما تبحث عنه",
-"Becomeaserviceprovider":"كن مقدم خدمة",
-"Callusformoreinformation":"اتصل بنا لمزيد من المعلومات",
-"welcomeBack":"مرحبًا بعودتك",
-"invalidotp":"كلمة المرور لمرة واحدة غير صالحة",
-"alreadyhaveanaccount":"لديك حساب بالفعل",
-"error":"خطأ",
-"invalidphonenumber":"رقم الهاتف غير صحيح",
-"success":"نجاح",
-"otpverefiedsuccessfully":"تم التحقق من كلمة المرور مرة واحدة بنجاح",
-"signedupsuccessfuly":"لقد قمت بتسجيل الدخول بنجاح",
-"userupdatedsuccessfully":"تم تحديث المستخدم بنجاح",
-"usernamealreadyexists":"اسم المستخدم موجود بالفعل",
-"checknetwork":"الرجاء التحقق من اتصال الشبكة الخاصة بك",
-"resultsFound":"العثور على نتائج",
-"ok":"نعم",
-"exit":"اغلاق التطبيق",
-"areyousureyouwanttoexittheapp": "هل أنت متأكد أنك تريد الخروج من التطبيق؟",
-"Yourcurrentlocation":"موقعي الحالي",
-"Enterlocation":"أدخل الموقع يدويا",
-"LeaveReview": "اترك تقييمك",
-"Youroverallrating": "تقييمك العام",
-"Enterhere": "أدخل هنا",
-"save":"حفظ",
-"ops":"عذراً!",
-"noenternetconnection":"حدث خطأ في الاتصال. يرجى التحقق من اتصال الإنترنت\n والمحاولة مرة أخرى",
-"tryagain":"حاول مرة أخرى",
-"call":"اتصال",
-"name":"الاسم",
-"phoneNumber":"رقم الهاتف",
-"gender":"الجنس",
-"comingsoon": "قريباً",
-"noprovidershasjoined": "لم ينضم أي مزودين لهذه الخدمة بعد في موقعك، تحقق مرة أخرى\nلاحقاً للحصول على التحديثات",
-"failed":"فشل",
-"failedtoaddReview":"فشل في حفظ التقييم، يرجى المحاولة مرة أخرى!",
-"reviewSavedSuccessfully":"تم حفظ التقييم بنجاح",
-"Nochangesdetected":"لا تغييرات تم اكتشافها!"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  "settings": "الإعدادات",
+  "english": "English",
+  "arabic": "عربي",
+  "language": "اللغة",
+  "categories": "الفئات",
+  "featured": "مميزون",
+  "services": "الخدمات",
+  "viewAll": "عرض الكل",
+  "searchbynameorkeyword": "البحث بالاسم أو الكلمة الرئيسية",
+  "home": "الرئيسية",
+  "search": "بحث",
+  "favorites": "المفضلة",
+  "Favorite": "مفضل لدي",
+  "profile": "الملف الشخصي",
+  "select": "اختيار",
+  "zone": "المنطقة",
+  "rate": "تقييم",
+  "filterby": "تصفية حسب",
+  "cancel": "إلغاء",
+  "click": "انقر",
+  "myProfile": "ملفي الشخصي",
+  "becomeaserviceprovider": "كن مقدم خدمة",
+  "inviteFriends": "دعوة الأصدقاء",
+  "manageAddress": "إدارة العناوين",
+  "myFavorites": "المفضلة لدي",
+  "aboutUs": "معلومات عنا",
+  "privacyPolicy": "سياسة الخصوصية",
+  "termsconditions": "الشروط والأحكام",
+  "contactUS": "اتصل بنا",
+  "logout": "تسجيل خروج",
+  "searching": "جار البحث...",
+  "LocationErrorpleasetryagain": "خطأ في تحديد الموقع. يرجى المحاولة مرة أخرى.",
+  "helpCenter": "مركز المساعدة",
+  "Certifications": "الشهادات",
+  "WorkingHours": "ساعات العمل",
+  "Specialities": "التخصصات",
+  "away": "بعيد",
+  "Km": "كم",
+  "about": "مختصر",
+  "like": "اعجاب",
+  "liked": "أعجبني",
+  "reviews": "تعليق",
+  "projects": "المشاريع",
+  "noreviewsyet": "لم يتم تقديم أي تعليقات حتى الآن!",
+  "NoProjectsyet": "لا توجد مشاريع حتى الآن !",
+  "Yourfavoritespageisempty": "صفحتك المفضلة فارغة",
+  "Saveyourpreferredprofessionalshere": "احفظ المحترفين المفضلين لديك هنا. قم بوضع علامة على الملفات الشخصية\n كمفضلة للوصول إليها بسهولة لاحقًا",
+  "Noresultsmatchyourfilters": "لا توجد نتائج تطابق عوامل التصفية الخاصة بك",
+  "Adjustyourfilters": "اضبط عوامل التصفية للعثور على المحترفين الذين تبحث\n عنهم",
+  "Wecouldntfindanymatchesforyoursearch": "لم نتمكن من العثور على أي نتائج مطابقة لبحثك",
+  "Trydifferentkeywords": "جرّب كلمات رئيسية مختلفة أو تصفح فئاتنا للعثور على\n المحترفين الذين تبحث عنهم",
+  "Findprofessionalsyoucanrelyon": "ابحث عن محترفين يمكنك الاعتماد عليهم",
+  "SearchbynameorKeywordtofindwhatyouarelookingfor": "ابحث بالاسم أو الكلمة الرئيسية للعثور على ما تبحث عنه",
+  "Becomeaserviceprovider": "كن مقدم خدمة",
+  "Callusformoreinformation": "اتصل بنا لمزيد من المعلومات",
+  "welcomeBack": "مرحبًا بعودتك",
+  "invalidotp": "كلمة المرور لمرة واحدة غير صالحة",
+  "alreadyhaveanaccount": "لديك حساب بالفعل",
+  "error": "خطأ",
+  "invalidphonenumber": "رقم الهاتف غير صحيح",
+  "success": "نجاح",
+  "otpverefiedsuccessfully": "تم التحقق من كلمة المرور مرة واحدة بنجاح",
+  "signedupsuccessfuly": "لقد قمت بتسجيل الدخول بنجاح",
+  "userupdatedsuccessfully": "تم تحديث المستخدم بنجاح",
+  "usernamealreadyexists": "اسم المستخدم موجود بالفعل",
+  "checknetwork": "الرجاء التحقق من اتصال الشبكة الخاصة بك",
+  "resultsFound": "العثور على نتائج",
+  "ok": "نعم",
+  "exit": "اغلاق التطبيق",
+  "areyousureyouwanttoexittheapp": "هل أنت متأكد أنك تريد الخروج من التطبيق؟",
+  "Yourcurrentlocation": "موقعي الحالي",
+  "Enterlocation": "أدخل الموقع يدويا",
+  "LeaveReview": "اترك تقييمك",
+  "Youroverallrating": "تقييمك العام",
+  "Enterhere": "أدخل هنا",
+  "save": "حفظ",
+  "ops": "عذراً!",
+  "noenternetconnection": "حدث خطأ في الاتصال. يرجى التحقق من اتصال الإنترنت\n والمحاولة مرة أخرى",
+  "tryagain": "حاول مرة أخرى",
+  "call": "اتصال",
+  "name": "الاسم",
+  "phoneNumber": "رقم الهاتف",
+  "gender": "الجنس",
+  "comingsoon": "قريباً",
+  "noprovidershasjoined": "لم ينضم أي مزودين لهذه الخدمة بعد في موقعك، تحقق مرة أخرى\nلاحقاً للحصول على التحديثات",
+  "failed": "فشل",
+  "failedtoaddReview": "فشل في حفظ التقييم، يرجى المحاولة مرة أخرى!",
+  "reviewSavedSuccessfully": "تم حفظ التقييم بنجاح",
+  "Nochangesdetected": "لا تغييرات تم اكتشافها!",
+  "deleteAccount": "حذف الحساب",
+  "areYouSureDeleteAccount": "هل أنت متأكد أنك تريد حذف حسابك؟",
+  "yes": "نعم",
+  "accountDeletedSuccessfully": "تم حذف حسابك بنجاح",
+  "failedToDeleteyouraccount": "فشل في حذف حسابك"
 }

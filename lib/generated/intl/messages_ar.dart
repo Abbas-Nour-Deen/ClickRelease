@@ -65,9 +65,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تقييمك العام"),
         "about": MessageLookupByLibrary.simpleMessage("مختصر"),
         "aboutUs": MessageLookupByLibrary.simpleMessage("معلومات عنا"),
+        "accountDeletedSuccessfully":
+            MessageLookupByLibrary.simpleMessage("تم حذف حسابك بنجاح"),
         "alreadyhaveanaccount":
             MessageLookupByLibrary.simpleMessage("لديك حساب بالفعل"),
         "arabic": MessageLookupByLibrary.simpleMessage("عربي"),
+        "areYouSureDeleteAccount": MessageLookupByLibrary.simpleMessage(
+            "هل أنت متأكد أنك تريد حذف حسابك؟"),
         "areyousureyouwanttoexittheapp": MessageLookupByLibrary.simpleMessage(
             "هل أنت متأكد أنك تريد الخروج من التطبيق؟"),
         "away": MessageLookupByLibrary.simpleMessage("بعيد"),
@@ -81,10 +85,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "click": MessageLookupByLibrary.simpleMessage("انقر"),
         "comingsoon": MessageLookupByLibrary.simpleMessage("قريباً"),
         "contactUS": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
+        "deleteAccount": MessageLookupByLibrary.simpleMessage("حذف الحساب"),
         "english": MessageLookupByLibrary.simpleMessage("English"),
         "error": MessageLookupByLibrary.simpleMessage("خطأ"),
         "exit": MessageLookupByLibrary.simpleMessage("اغلاق التطبيق"),
         "failed": MessageLookupByLibrary.simpleMessage("فشل"),
+        "failedToDeleteyouraccount":
+            MessageLookupByLibrary.simpleMessage("فشل في حذف حسابك"),
         "failedtoaddReview": MessageLookupByLibrary.simpleMessage(
             "فشل في حفظ التقييم، يرجى المحاولة مرة أخرى!"),
         "favorites": MessageLookupByLibrary.simpleMessage("المفضلة"),
@@ -146,6 +153,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تم تحديث المستخدم بنجاح"),
         "viewAll": MessageLookupByLibrary.simpleMessage("عرض الكل"),
         "welcomeBack": MessageLookupByLibrary.simpleMessage("مرحبًا بعودتك"),
+        "yes": MessageLookupByLibrary.simpleMessage("نعم"),
         "zone": MessageLookupByLibrary.simpleMessage("المنطقة")
       };
 }

@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:click_release/data/appconfig.dart';
@@ -95,6 +96,18 @@ class LoginApiHandler extends GetConnect implements GetxService {
     } catch (e) {
       print(e);
       return Response(statusCode: 1, statusText: e.toString());
+    }
+  }
+
+  Future<http.Response> deleteUser(url, clientID) async {
+    try {
+      final response = await http.delete(Uri.parse("${appBaseUrl}$url"),
+          headers: _mainHeaders, body: jsonEncode({"clientId": clientID}));
+
+      return response;
+    } catch (e) {
+      print(e);
+      return http.Response("$e", 400);
     }
   }
 

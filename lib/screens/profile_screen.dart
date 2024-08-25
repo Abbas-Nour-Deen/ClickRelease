@@ -190,6 +190,13 @@ class ProfileScreen extends StatelessWidget {
           title: S.of(context).settings,
         ),
         ProfileOptionTile(
+          iconPath: "assets/icons/trash.svg",
+          onTap: () {
+            Utils().deleteAccountDialog();
+          },
+          title: S.of(context).deleteAccount,
+        ),
+        ProfileOptionTile(
           iconPath: "assets/icons/lightheme_icons/logout.svg",
           onTap: () {
             loginController.logOut();

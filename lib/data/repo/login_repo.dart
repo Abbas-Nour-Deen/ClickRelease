@@ -45,4 +45,8 @@ class LoginRepo extends GetxService {
   Future<Response> getUserByID({required String userID}) async {
     return await loginApiHandler.getUserByID("api/client/$userID");
   }
+
+  Future<http.Response> deleteAccount({required String userID}) async {
+    return await loginApiHandler.deleteUser("api/client", userID);
+  }
 }

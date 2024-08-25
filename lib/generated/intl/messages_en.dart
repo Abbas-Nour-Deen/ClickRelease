@@ -66,9 +66,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Your overall rating"),
         "about": MessageLookupByLibrary.simpleMessage("About"),
         "aboutUs": MessageLookupByLibrary.simpleMessage("About Us"),
+        "accountDeletedSuccessfully": MessageLookupByLibrary.simpleMessage(
+            "Your account deleted successfully"),
         "alreadyhaveanaccount":
             MessageLookupByLibrary.simpleMessage("You already have an account"),
         "arabic": MessageLookupByLibrary.simpleMessage("عربي"),
+        "areYouSureDeleteAccount": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to delete your account?"),
         "areyousureyouwanttoexittheapp": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to exit the application?"),
         "away": MessageLookupByLibrary.simpleMessage("away"),
@@ -82,10 +86,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "click": MessageLookupByLibrary.simpleMessage("Click"),
         "comingsoon": MessageLookupByLibrary.simpleMessage("Coming soon"),
         "contactUS": MessageLookupByLibrary.simpleMessage("Contact us"),
+        "deleteAccount": MessageLookupByLibrary.simpleMessage("Delete Account"),
         "english": MessageLookupByLibrary.simpleMessage("English"),
         "error": MessageLookupByLibrary.simpleMessage("Failed"),
         "exit": MessageLookupByLibrary.simpleMessage("Exit application"),
         "failed": MessageLookupByLibrary.simpleMessage("Failed"),
+        "failedToDeleteyouraccount": MessageLookupByLibrary.simpleMessage(
+            "Failed to delete your account"),
         "failedtoaddReview": MessageLookupByLibrary.simpleMessage(
             "Failed to save review, please try again!"),
         "favorites": MessageLookupByLibrary.simpleMessage("Favorites"),
@@ -145,6 +152,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("User updated successfully"),
         "viewAll": MessageLookupByLibrary.simpleMessage("View All"),
         "welcomeBack": MessageLookupByLibrary.simpleMessage("Welcome Back"),
+        "yes": MessageLookupByLibrary.simpleMessage("Yes"),
         "zone": MessageLookupByLibrary.simpleMessage("Zone")
       };
 }

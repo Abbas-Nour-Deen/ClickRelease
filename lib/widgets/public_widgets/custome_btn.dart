@@ -42,9 +42,11 @@ class CustomeButton extends StatelessWidget {
           children: [
             icon ?? Container(),
             svg ?? Container(),
-            const SizedBox(
-              width: 6,
-            ),
+            icon != null
+                ? const SizedBox(
+                    width: 6,
+                  )
+                : Container(),
             Text(
               text,
               style: textStyle ??

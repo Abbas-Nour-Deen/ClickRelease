@@ -41,7 +41,11 @@ class RatingAndReviewsScreen extends StatelessWidget {
                                       width: 1,
                                       color: lightThemeDividerColor))),
                           child: ReviewItem(
-                            review: reviews[index],
+                            review: reviews
+                                .where(
+                                  (element) => element.comment.isNotEmpty,
+                                )
+                                .toList()[index],
                           ))),
                 ),
                 SizedBox(

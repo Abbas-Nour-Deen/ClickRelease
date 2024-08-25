@@ -939,6 +939,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Delete Account`
+  String get deleteAccount {
+    return Intl.message(
+      'Delete Account',
+      name: 'deleteAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to delete your account?`
+  String get areYouSureDeleteAccount {
+    return Intl.message(
+      'Are you sure you want to delete your account?',
+      name: 'areYouSureDeleteAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yes`
+  String get yes {
+    return Intl.message(
+      'Yes',
+      name: 'yes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your account deleted successfully`
+  String get accountDeletedSuccessfully {
+    return Intl.message(
+      'Your account deleted successfully',
+      name: 'accountDeletedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to delete your account`
+  String get failedToDeleteyouraccount {
+    return Intl.message(
+      'Failed to delete your account',
+      name: 'failedToDeleteyouraccount',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
