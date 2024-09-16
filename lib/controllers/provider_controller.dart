@@ -143,6 +143,10 @@ class ProviderController extends GetxController
           topProviders.add(provider);
         });
 
+        if (topProviders.isNotEmpty) {
+          topProviders.shuffle();
+        }
+
         isTopProvidersLoading = false;
       } else {
         print(response.statusCode);

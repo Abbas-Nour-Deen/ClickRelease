@@ -124,6 +124,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "otpverefiedsuccessfully":
             MessageLookupByLibrary.simpleMessage("OTP verified successfully"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone number"),
+        "portfolio": MessageLookupByLibrary.simpleMessage("Portfolio"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "projects": MessageLookupByLibrary.simpleMessage("Projects"),

@@ -385,7 +385,10 @@ class SelectedProviderScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Visibility(
-                visible: provider.facebook == null || provider.facebook == ''
+                visible: provider.facebook == null ||
+                        provider.facebook == '' ||
+                        provider.facebook == "null" ||
+                        provider.facebook == "undefined"
                     ? false
                     : true,
                 child: SocialMediaButtom(
@@ -399,7 +402,10 @@ class SelectedProviderScreen extends StatelessWidget {
                 ),
               ),
               Visibility(
-                visible: provider.instagram == null || provider.instagram == ''
+                visible: provider.instagram == null ||
+                        provider.instagram == '' ||
+                        provider.instagram == "null" ||
+                        provider.instagram == "undefined"
                     ? false
                     : true,
                 child: SocialMediaButtom(
@@ -413,7 +419,10 @@ class SelectedProviderScreen extends StatelessWidget {
                 ),
               ),
               Visibility(
-                visible: provider.linkedIn == null || provider.linkedIn == ''
+                visible: provider.linkedIn == null ||
+                        provider.linkedIn == '' ||
+                        provider.linkedIn == "null" ||
+                        provider.linkedIn == "undefined"
                     ? false
                     : true,
                 child: SocialMediaButtom(
@@ -427,7 +436,10 @@ class SelectedProviderScreen extends StatelessWidget {
                 ),
               ),
               Visibility(
-                visible: provider.website == null || provider.website == ''
+                visible: provider.website == null ||
+                        provider.website == '' ||
+                        provider.website == "null" ||
+                        provider.website == "undefined"
                     ? false
                     : true,
                 child: SocialMediaButtom(
@@ -517,15 +529,15 @@ class SelectedProviderScreen extends StatelessWidget {
                       ),
                   ],
                 ),
-          CustomExpansionTile(
-            icon: 'assets/icons/lightheme_icons/medal.svg',
-            title: S.of(context).Certifications,
-            options: [
-              for (var info in providerInfoController
-                  .currentProviderInfoModel.certification)
-                Text(info.certificationName)
-            ],
-          ),
+          // CustomExpansionTile(
+          //   icon: 'assets/icons/lightheme_icons/medal.svg',
+          //   title: S.of(context).Certifications,
+          //   options: [
+          //     for (var info in providerInfoController
+          //         .currentProviderInfoModel.certification)
+          //       Text(info.certificationName)
+          //   ],
+          // ),
         ],
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_image_viewer/easy_image_viewer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_svg/svg.dart';
 
 class ProviderProfilePhotoWidget extends StatelessWidget {
@@ -64,6 +65,13 @@ class ProviderProfilePhotoWidget extends StatelessWidget {
               )
             : InkWell(
                 child: CachedNetworkImage(
+                  cacheManager: CacheManager(
+                    Config(
+                      "pic",
+                      stalePeriod: const Duration(days: 2),
+                      fileService: HttpFileService(),
+                    ),
+                  ),
                   imageUrl: imageurl!,
                   fit: BoxFit.cover,
                   placeholder: (context, url) => Padding(

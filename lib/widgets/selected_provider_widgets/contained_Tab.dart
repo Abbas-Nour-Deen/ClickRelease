@@ -23,8 +23,18 @@ class ContainedTabWidget extends StatelessWidget {
       builder: (controller) {
         // final bool isLoading = reviewsController.isReviewsDataLoading &&
         //     reviewsController.isprojectsDataLoading;
-        final bool hasReviews =
-            reviewsController.currentProviderReviews.isNotEmpty;
+        bool hasReviews = reviewsController.currentProviderReviews.isNotEmpty;
+
+        if (hasReviews) {
+          bool hasComments = reviewsController.currentProviderReviews.any(
+            (element) => element.comment.isNotEmpty && element.comment != '',
+          );
+          if (hasComments) {
+            hasReviews = true;
+          } else {
+            hasReviews = false;
+          }
+        }
         final bool hasProjects =
             reviewsController.currentProviderProjects != null &&
                 reviewsController.currentProviderProjects!.imageUrl.isNotEmpty;
@@ -40,7 +50,7 @@ class ContainedTabWidget extends StatelessWidget {
         if (hasReviews && hasProjects) {
           tabs = [
             Text(S.of(context).reviews),
-            Text(S.of(context).projects),
+            Text(S.of(context).portfolio),
           ];
           views = [
             reviewsContent(context: context),

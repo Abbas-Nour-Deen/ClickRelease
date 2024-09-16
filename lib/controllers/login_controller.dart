@@ -168,11 +168,15 @@ class LoginController extends GetxController with StateMixin {
         }
       }
 
+      print("phone number not 81");
+
       change(null, status: RxStatus.loading());
       loadingController.showLoadingDialog();
       final response =
           await loginRepo.validateOTP(otp, otpID, enteredNumber.phoneNumber);
       print("recieved otp response  ${response.body}");
+
+      print(response.statusCode);
 
       if (response.statusCode == 200) {
         change(null, status: RxStatus.success());
@@ -218,6 +222,7 @@ class LoginController extends GetxController with StateMixin {
         print("recieved otp response  ${response.body}");
       } else {
         Get.back();
+        print("response not 200");
 
         loadingController.showCustomeDialog(
             type: "error",

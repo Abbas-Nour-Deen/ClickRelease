@@ -18,7 +18,7 @@ class CustomeSearchBar extends StatelessWidget {
       child: SearchBar(
         controller: searchController.searchTextController,
         onSubmitted: (value) {
-          if (value.isNotEmpty) {
+          if (value.trim().isNotEmpty) {
             searchController.getProvidersBySearch(keyWord: value);
           }
         },

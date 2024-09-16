@@ -92,5 +92,6 @@
   "areYouSureDeleteAccount": "هل أنت متأكد أنك تريد حذف حسابك؟",
   "yes": "نعم",
   "accountDeletedSuccessfully": "تم حذف حسابك بنجاح",
-  "failedToDeleteyouraccount": "فشل في حذف حسابك"
+  "failedToDeleteyouraccount": "فشل في حذف حسابك",
+  "portfolio": "مجموعة أعمال"
 }

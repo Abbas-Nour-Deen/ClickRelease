@@ -92,5 +92,6 @@
   "areYouSureDeleteAccount": "Are you sure you want to delete your account?",
   "yes": "Yes",
   "accountDeletedSuccessfully": "Your account deleted successfully",
-  "failedToDeleteyouraccount": "Failed to delete your account"
+  "failedToDeleteyouraccount": "Failed to delete your account",
+  "portfolio": "Portfolio"
 }

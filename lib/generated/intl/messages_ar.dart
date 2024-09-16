@@ -124,6 +124,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "otpverefiedsuccessfully": MessageLookupByLibrary.simpleMessage(
             "تم التحقق من كلمة المرور مرة واحدة بنجاح"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
+        "portfolio": MessageLookupByLibrary.simpleMessage("مجموعة أعمال"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
         "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
         "projects": MessageLookupByLibrary.simpleMessage("المشاريع"),
