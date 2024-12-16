@@ -1,3 +1,4 @@
+import 'package:click_release/controllers/localization_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -12,6 +13,8 @@ class CustomeAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Size get preferredSize => Size.fromHeight(kToolbarHeight);
+
+  final LocalizationController localizationController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +35,9 @@ class CustomeAppBar extends StatelessWidget implements PreferredSizeWidget {
               child: InkWell(
                 onTap: () => Get.back(),
                 child: SvgPicture.asset(
-                  "assets/icons/back_btn.svg",
+                  localizationController.selectedLang.value == 'en'
+                      ? "assets/icons/back_btn.svg"
+                      : "assets/back_arb.svg",
                 ),
               ),
             )

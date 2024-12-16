@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:854496102095:android:9f13fcbe14da07438259ba",
         "android_client_info": {
-          "package_name": "com.click.click_release"
+          "package_name": "com.click.click_service"
         }
       },
       "oauth_client": [],

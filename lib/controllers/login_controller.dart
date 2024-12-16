@@ -132,7 +132,7 @@ class LoginController extends GetxController with StateMixin {
           currentUser = UserModel(
               profilePhoto:
                   "https://clickdb.blob.core.windows.net/client/undefined/profilePhoto?sv=2024-05-04&se=2124-08-21T20%3A27%3A07Z&sr=b&sp=rw&sig=lSIGvdiNdJt3WLtb0h0EvLwLxIUMVT5acBgc%2Bpx9QaM%3D",
-              userID: "8599196c-197b-4d0f-bcf1-952772fa190a",
+              userID: "9ac6b78e-bfae-48ba-93a1-139747753c33",
               firstName: "Abbas",
               lastName: "Nour deen",
               sex: "c6d7c072-da59-4af4-aceb-beb6b7973908",
@@ -318,7 +318,6 @@ class LoginController extends GetxController with StateMixin {
       enternetConnectionError = false;
       update(['navbar']);
       try {
-        print("current user id$currentUserID");
         final response = await loginRepo.getUserByID(userID: currentUserID!);
         final data = response.body;
 
